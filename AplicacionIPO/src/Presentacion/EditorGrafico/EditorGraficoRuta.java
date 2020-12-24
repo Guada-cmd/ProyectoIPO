@@ -1,0 +1,533 @@
+package Presentacion.EditorGrafico;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Presentacion.InicioSesion.FormularioRegistro;
+
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Point;
+
+import javax.swing.JToolBar;
+import javax.swing.JScrollPane;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.Font;
+
+public class EditorGraficoRuta extends JFrame {
+
+	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mArchivo;
+	private JMenuItem miAbrir;
+	private JMenuItem miNuevo;
+	private JMenuItem miGuardar;
+	private JMenuItem miGuardarComo;
+	private JSeparator separator;
+	private JMenuItem miAcercaEditorGrafico;
+	private JMenuItem miSalir;
+	private JMenu mVer;
+	private JMenuItem miAcercar;
+	private JMenuItem miAlejar;
+	private JToolBar tbBarraFuncionalidades;
+	private JScrollPane scrollPane;
+	private JButton btnCargarRuta;
+	private JButton btnIconosRepresentativos;
+	private JButton btnAnotaciones;
+	
+	//Creaccion de los atributos para las coordenadas
+	
+	private int x;
+	private int y;
+	
+	
+	//Variable a la que se le asignara un color depensiendo del boton pulsado
+	
+	private Color color_forma;
+	
+	//Variable donde se podra escribir texto
+	
+	private JTextField txtTexto = new JTextField();
+	
+	//Como estamos utilizando un JFrame necesitamos crear un atributo privado a nivel de clase
+	
+	private JFrame frame;
+	
+	//Area de dibujo personalizada (creada extendiendo de JLabel)
+	
+	private MiAreaDibujo miAreaDibujo;
+	
+	//Imagen en la que se cargará el fichero seleccionado por el usuario 
+	
+	private ImageIcon imagen;
+	private JPanel pnlContenido;
+	private JPanel pnlIconos;
+	private JPanel pnlAnotaciones;
+	private JButton btnLimpiar;
+	
+	//Variable global para pulsar los botones de otros paneles
+	
+	public static int modo = -1;
+	public static int color = -1;
+	
+	//Variable constantes
+	
+	private final int RECTANGULO = 1;
+	private final int LINEA = 2;
+	private final int TRIANGULO = 3;
+	private final int CIRCULO = 4;
+	private final int TEXTO = 5;
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EditorGraficoRuta frame = new EditorGraficoRuta();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public EditorGraficoRuta() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EditorGraficoRuta.class.getResource("/recursos/editorGrafico.png")));
+		setBackground(new Color(255, 255, 255));
+		setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		setForeground(new Color(255, 255, 255));
+		setResizable(false);
+		
+		inicializarDatosEditorGraficoRutas();
+		
+		//Inicializacion de los datos de la barra de menu
+		inicializarDatosBarraMenu();
+		
+		//Inicializacion de los datos del panel contenido donde se visualizaran los principales componente y acciones de Editor Grafico
+		inicializarDatosPanelPrincipal();
+		
+		//Inicializacion de los datos de la Barra de Funcionalidades que contiene botones y se encuentarn dentro del Panel Principal
+		inicializarDatosBarraFuncionalidades();
+		
+		//Inicializacion de los datos de la componente Scroll Pane que contendra el area de dibujo
+		inicializarDatosComponenteScrollPane();
+	
+		//Inicializacion de los datos del Panel llamado Panel Contenido 
+		inicializarDatosPanelContenido();
+		
+		//Inicializacion de los datos de mi area de dibujo personalizada
+		inicializarDatosAreaDibujoPersonalizada();
+		
+		
+		asociacionOyentesEditorGrafico();
+		
+	}
+	/**
+	 * 
+	 * Descripcion: datos generado de la parte de disenio con respecto al frame del editor
+	 * 
+	 */
+	private void inicializarDatosEditorGraficoRutas() {
+		
+		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		setTitle("Editor gráfico rutas\r\n");
+		setBounds(new Rectangle(100, 100, 850, 700));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: datos generados de la parte de disenio con respecto a los items de la barra de menu
+	 * 
+	 */
+	private void inicializarDatosBarraMenu() {
+		
+		// Creaccion de la barra de menu
+		
+		menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(255, 255, 255));
+		setJMenuBar(menuBar);
+		
+		//Inicializacion de los items del Menu Archivo
+		
+		mArchivo = new JMenu("Archivo");
+		menuBar.add(mArchivo);
+		
+		miNuevo = new JMenuItem("Nuevo");
+		mArchivo.add(miNuevo);
+		
+		miAbrir = new JMenuItem("Abrir...");
+		miAbrir.setName("");
+		mArchivo.add(miAbrir);
+		
+		miGuardar = new JMenuItem("Guardar");
+		mArchivo.add(miGuardar);
+		
+		miGuardarComo = new JMenuItem("Guardar como");
+		mArchivo.add(miGuardarComo);
+		
+		separator = new JSeparator();
+		mArchivo.add(separator);
+		
+		miAcercaEditorGrafico = new JMenuItem("Acerca de Editor gráfico rutas");
+		mArchivo.add(miAcercaEditorGrafico);
+		
+		miSalir = new JMenuItem("Salir");
+		mArchivo.add(miSalir);
+		
+		//Inicializacion de los items del Menu Ver
+		
+		mVer = new JMenu("Ver");
+		menuBar.add(mVer);
+		
+		miAcercar = new JMenuItem("Acercar");
+		mVer.add(miAcercar);
+		
+		miAlejar = new JMenuItem("Alejar");
+		mVer.add(miAlejar);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo generado al crear la parte de disenio para el panel principal del Editor Grafico 
+	 * 
+	 */
+	private void inicializarDatosPanelPrincipal() {
+		
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setForeground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para inicializar los datos generados de la parte de disenio de los componentes de la barra de funcionalidades
+	 * 
+	 */
+	private void inicializarDatosBarraFuncionalidades() {
+		
+		//Datos de la barra de funcionalidades
+		
+		tbBarraFuncionalidades = new JToolBar();
+		tbBarraFuncionalidades.setBackground(new Color(255, 255, 255));
+		contentPane.add(tbBarraFuncionalidades, BorderLayout.NORTH);
+		
+		//Creaccion del boton Cargar Ruta
+		
+		btnCargarRuta = new JButton("Cargar ruta...");
+		
+		btnCargarRuta.setForeground(new Color(255, 255, 255));
+		btnCargarRuta.setBackground(new Color(51, 51, 51));
+		btnCargarRuta.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		tbBarraFuncionalidades.add(btnCargarRuta);
+		
+		//Creaccion del boton que mostrara los iconos
+		
+		btnIconosRepresentativos = new JButton("Insertar iconos");
+		
+		btnIconosRepresentativos.setForeground(new Color(255, 255, 255));
+		btnIconosRepresentativos.setBackground(new Color(51, 51, 51));
+		btnIconosRepresentativos.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		tbBarraFuncionalidades.add(btnIconosRepresentativos);
+		
+		//Creaccion del boton que permitira insertar anotaciones
+		
+		btnAnotaciones = new JButton("Insertar anotaciones");
+		
+		btnAnotaciones.setForeground(new Color(255, 255, 255));
+		btnAnotaciones.setBackground(new Color(51, 51, 51));
+		btnAnotaciones.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		tbBarraFuncionalidades.add(btnAnotaciones);
+		
+		//Creaccion del boton que limpiara el Edistor Grafico
+		
+		btnLimpiar = new JButton("Limpiar ");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		btnLimpiar.setForeground(new Color(255, 255, 255));
+		btnLimpiar.setBackground(new Color(51, 51, 51));
+		btnLimpiar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		tbBarraFuncionalidades.add(btnLimpiar);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para inicializar la componente Scroll Pane que contendra el area de dibujo
+	 * 
+	 */
+	private void inicializarDatosComponenteScrollPane() {
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para inicializar los datos del Panel Contenido donde se mostraran dos paneles personalizados, anotaciones e iconos
+	 * 
+	 */
+	private void inicializarDatosPanelContenido() {
+		
+		pnlContenido = new JPanel();
+		pnlContenido.setForeground(new Color(255, 255, 255));
+		pnlContenido.setBounds(new Rectangle(0, 0, 30, 0));
+		
+		contentPane.add(pnlContenido, BorderLayout.WEST);
+		pnlContenido.setLayout(new CardLayout(0, 0));
+		
+		//Aniadimos el panel Iconos al panel contenido
+		
+		{
+			pnlIconos = new MiPanelIconos();
+			pnlContenido.add(pnlIconos, "Insertar iconos");
+		}
+		
+		//Aniadimos el panel Anotaciones al panel contenido
+		
+		{
+			pnlAnotaciones = new MiPanelAnotaciones();
+			pnlContenido.add(pnlAnotaciones, "Insertar anotaciones");
+
+		}
+		
+		pnlContenido.setVisible(false);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para inicializar los datos del area de dibujo personalizada
+	 * 
+	 */
+	private void inicializarDatosAreaDibujoPersonalizada() {
+		
+		//Creación del área de dibujo personalizada
+		
+		miAreaDibujo = new MiAreaDibujo();		
+		miAreaDibujo.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		miAreaDibujo.setIcon(null);
+		scrollPane.setViewportView(miAreaDibujo);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: metodo que contiene todos los oyentes del Editor grafico rutas
+	 * 
+	 */
+	private void asociacionOyentesEditorGrafico() {
+		
+		//IMPORTANTE
+		miAbrir.addActionListener(new CargarRutaActionListener());
+		
+		btnCargarRuta.addActionListener(new CargarRutaActionListener()); //Se asocia un oyente al btnCargarRuta para poder seleccionar un fichero
+		btnIconosRepresentativos.addActionListener(new CambiarPanelesPersonalizadosActionListener()); //Oyente para que aparezca el panel iconos
+		btnAnotaciones.addActionListener(new CambiarPanelesPersonalizadosActionListener()); //Oyente para que aparexca el panel anotaciones
+		
+		miAreaDibujo.addMouseListener(new MiAreaDibujoMouseListener());
+		miAreaDibujo.addMouseMotionListener(new MiAreaDibujoMouseDragged());
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Clase que permite cargar una ruta desde el menu Abrir o desde el boton cargar ruta
+	 * 
+	 *
+	 */
+	private class CargarRutaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			Image imagenEscalada, imagenOriginal;
+			ImageIcon imagenNueva;
+			File file;
+			int valorDevuelto = 0;
+			
+			JFileChooser fcAbrir = new JFileChooser();
+			
+			//Aplicamos un filtro que solo permita cargar imagenes png y jpg
+			fcAbrir.setFileFilter(new ImageFilter());
+			
+			valorDevuelto = fcAbrir.showOpenDialog(frame);
+			
+			if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
+				
+				file = fcAbrir.getSelectedFile();
+				imagen = new ImageIcon(file.getAbsolutePath());
+				//miAreaDibujo.setIcon(imagen);
+				
+				try {
+					imagenOriginal= ImageIO.read(file);
+					imagenEscalada = imagenOriginal.getScaledInstance(miAreaDibujo.getWidth(), miAreaDibujo.getHeight(), java.awt.Image.SCALE_SMOOTH);
+					imagenNueva = new ImageIcon(imagenEscalada);
+					miAreaDibujo.setIcon(imagenNueva);
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * Descripcion: Permite cambiar entre los distintos paneles personalizados al pulsar un boton
+	 *
+	 */
+	private class CambiarPanelesPersonalizadosActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			CardLayout cardLayoutPanel = (CardLayout)(pnlContenido.getLayout());
+			pnlContenido.setVisible(true);
+			cardLayoutPanel.show(pnlContenido, arg0.getActionCommand());
+			
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: clase que depensiendo del modo permite pintar una forma al arrastrar un el raton y pulsar el determinado boton
+	 *
+	 */
+	private class MiAreaDibujoMouseDragged extends MouseAdapter{
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			if (modo == RECTANGULO && imagen!=null) {
+				
+				((RectanguloGrafico)miAreaDibujo.getUltimoObjetoGrafico()).setX1(e.getX());
+				((RectanguloGrafico)miAreaDibujo.getUltimoObjetoGrafico()).setY1(e.getY());
+				miAreaDibujo.repaint();
+				
+			}
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: Clase que permite realizar distintas acciones dependiendo de los botones que se pulsen
+	 *
+	 */
+	private class MiAreaDibujoMouseListener extends MouseAdapter {
+		public void mousePressed(MouseEvent e) {
+			
+			x = e.getX();
+			y = e.getY();
+			
+			
+			switch(color) {
+				case 1:
+					color_forma = Color.RED;
+					break;
+				case 2:
+					color_forma = Color.ORANGE;
+					break;
+				case 3:
+					color_forma = Color.YELLOW;
+					break;
+				case 4:
+					color_forma = Color.GREEN;
+					break;
+				case 5:
+					color_forma = Color.BLUE;
+					break;
+				case 6:
+					color_forma = Color.GRAY;
+					break;
+				case 7:
+					color_forma = Color.WHITE;
+					break;
+				case 8:
+					color_forma = Color.BLACK;
+					break;
+				default:
+					color_forma = Color.BLACK;
+					break;
+				
+			}
+			
+			if (imagen != null) {
+				switch (modo){
+				
+					case RECTANGULO:
+						
+						miAreaDibujo.addObjetoGrafico(new RectanguloGrafico(x,y,x,y, color_forma));
+						break;
+						
+					case TEXTO:
+						
+						txtTexto.setBounds(x, y, 200,30);
+						txtTexto.setVisible(true);
+						txtTexto.requestFocus();
+						
+						txtTexto.addActionListener(new TxtAnotacionesAreaDibujoActionListener());
+								
+						miAreaDibujo.add(txtTexto);
+				}
+			}
+		}
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Clase que permite introducir texto en el area de dibujo
+	 *
+	 */
+	private class TxtAnotacionesAreaDibujoActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			if(!txtTexto.getText().equals("")) {
+				
+				miAreaDibujo.addObjetoGrafico(new TextoGrafico(x, y+15, txtTexto.getText(), color_forma));
+				txtTexto.setText("");
+				txtTexto.setVisible(false);
+				miAreaDibujo.repaint();
+				
+			}	
+		}
+	}
+}
+
