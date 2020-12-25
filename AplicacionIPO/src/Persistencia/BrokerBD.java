@@ -10,13 +10,14 @@ import java.util.Vector;
 
 public class BrokerBD {
 	
-	private static final String url = "jdbc:ucanaccess://IPOCamping.accdb";
+	private static final String url = "jdbc:ucanaccess://IPOCamping.accdb"; // Pruebas remoto
+	//private static final String url = "jdbc:ucanaccess://C:\\Users\\user8000\\git\\ProyectoIPO\\AplicacionIPO\\IPOCamping.accdb"; Pruebas JAR
 	protected static BrokerBD instancia;
 	
 	
 	/**
 	 * 
-	 * @return An instance of the Broker
+	 * @return Una instancia del Broker
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
