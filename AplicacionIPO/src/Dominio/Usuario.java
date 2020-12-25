@@ -1,4 +1,4 @@
-package Presentacion.InicioSesion;
+package Dominio;
 
 import java.util.Date;
 

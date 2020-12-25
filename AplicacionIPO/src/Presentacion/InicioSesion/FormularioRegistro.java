@@ -65,7 +65,7 @@ public class FormularioRegistro extends JFrame {
 	private JTextField txtCorreoElectronico;
 	private JLabel lblTelefono;
 	private JLabel lblTipoUsuario;
-	private JComboBox comboBox;
+	private JComboBox cmbTipoUsuario;
 	private JLabel lblCorreoElectronico;
 	private JButton btnRegistroTerminado;
 	private JLabel lblblFechaNacimiento;
@@ -312,8 +312,7 @@ public class FormularioRegistro extends JFrame {
 					
 					txtCorreoElectronico.setBorder(bordeVerde);
 					
-					metodos_gestor_usuario.insertarUsuario(txtNombre.getText(), txtApellido.getText(), txtNombreUsuario.getText(), pwdfContrasena.getText(), "", "", txtCorreoElectronico.getText());
-					
+					metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString());
 					
 					ventanaExito.setVisible(true);
 					ventanaExito.setLocationRelativeTo(null);
@@ -516,17 +515,17 @@ public class FormularioRegistro extends JFrame {
 		gbc_lblTipoUsuario.gridy = 7;
 		contentPane.add(lblTipoUsuario, gbc_lblTipoUsuario);
 		
-		comboBox = new JComboBox();
-		comboBox.setBackground(new Color(248, 248, 255));
-		comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Guía", "Monitor", "Otro"}));
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.anchor = GridBagConstraints.NORTH;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 7;
-		contentPane.add(comboBox, gbc_comboBox);
+		cmbTipoUsuario = new JComboBox();
+		cmbTipoUsuario.setBackground(new Color(248, 248, 255));
+		cmbTipoUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbTipoUsuario.setModel(new DefaultComboBoxModel(new String[] {"Guía", "Monitor", "Otro"}));
+		GridBagConstraints gbc_cmbTipoUsuario = new GridBagConstraints();
+		gbc_cmbTipoUsuario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbTipoUsuario.anchor = GridBagConstraints.NORTH;
+		gbc_cmbTipoUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbTipoUsuario.gridx = 2;
+		gbc_cmbTipoUsuario.gridy = 7;
+		contentPane.add(cmbTipoUsuario, gbc_cmbTipoUsuario);
 		
 	}
 	/**
