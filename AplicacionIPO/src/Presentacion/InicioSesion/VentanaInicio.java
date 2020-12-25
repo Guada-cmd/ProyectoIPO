@@ -54,7 +54,7 @@ public class VentanaInicio {
 	private JCheckBox chckbxPasswordLogin;
 	
 	private AplicacionPrincipal frame_principal;
-	private FormularioRegistro frame_registro;
+	public static FormularioRegistro frame_registro;
 	
 	//Creaccion de dos atributos privados a nivel de clase
 	

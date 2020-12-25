@@ -14,6 +14,8 @@ import java.awt.GridBagLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.KeyboardFocusManager;
@@ -280,6 +282,8 @@ public class FormularioRegistro extends JFrame {
 	private class BtnFinalizarRegistroActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
+			int validacion = 0;
+			
 			String comprobar_correo = txtCorreoElectronico.getText();
 			boolean correo_correcto = false;
 			
@@ -316,15 +320,25 @@ public class FormularioRegistro extends JFrame {
 					
 					if (dcFechaNacimiento.getDate() == null) {
 						
-						metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
+						validacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
 						
 					} else {
 						
 						String cadena_formato_fecha = dcFechaNacimiento.getDate().getDay()+"-"+dcFechaNacimiento.getDate().getMonth()+"-"+dcFechaNacimiento.getDate().getYear();					
-						metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
+						
+						validacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
 
 					}
-										
+					
+					
+					//Para cerrar la ventana del formulario y no se puedan introducir mas datos
+					
+					if (VentanaInicio.frame_registro != null) {
+						
+						VentanaInicio.frame_registro.dispose();
+						
+					}
+					
 					ventanaExito.setVisible(true);
 					ventanaExito.setLocationRelativeTo(null);
 					
@@ -767,5 +781,5 @@ public class FormularioRegistro extends JFrame {
 		}
 		
 	}
-
+	
 }
