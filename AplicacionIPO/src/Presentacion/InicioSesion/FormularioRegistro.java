@@ -96,6 +96,8 @@ public class FormularioRegistro extends JFrame {
 	private ImageIcon image_icon_show_password = new ImageIcon(FormularioRegistro.class.getResource("/recursos/eye.png"));
 	private ImageIcon image_icon_hide_password = new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png"));
 	
+	//Atributo que permite las operaciones con la base de datos
+	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	
 	/**
@@ -312,8 +314,17 @@ public class FormularioRegistro extends JFrame {
 					
 					txtCorreoElectronico.setBorder(bordeVerde);
 					
-					metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString());
-					
+					if (dcFechaNacimiento.getDate() == null) {
+						
+						metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
+						
+					} else {
+						
+						String cadena_formato_fecha = dcFechaNacimiento.getDate().getDay()+"-"+dcFechaNacimiento.getDate().getMonth()+"-"+dcFechaNacimiento.getDate().getYear();					
+						metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
+
+					}
+										
 					ventanaExito.setVisible(true);
 					ventanaExito.setLocationRelativeTo(null);
 					

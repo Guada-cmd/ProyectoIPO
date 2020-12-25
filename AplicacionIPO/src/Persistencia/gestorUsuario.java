@@ -14,12 +14,12 @@ public class gestorUsuario {
 	public static int comprobacion_resultado;
 	
 	
-	public int insertarUsuario(String nombre, String apellidos, String nombre_usuario, String contrasena, String tipo_usuario, String telefono, String correo_electronico) {
+	public int insertarUsuario(String nombre, String apellidos, String nombre_usuario, String contrasena, String tipo_usuario, String telefono, String correo_electronico, String fecha_nacimiento) {
 		
 		int resultado = 0;
 		Connection connection = null;
 		
-		String sentencia_insertar_usuario = "insert into Usuario (Nombre, Apellidos, NombreUsuario, Contrasena, Tipo, Telefono, Correo) values(?, ?, ?, ?, ?, ?, ?)";
+		String sentencia_insertar_usuario = "insert into Usuario (Nombre, Apellidos, NombreUsuario, Contrasena, Tipo, Telefono, Correo, FechaNacimiento) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			
@@ -33,6 +33,7 @@ public class gestorUsuario {
 			prepared_statement.setString(5, tipo_usuario);
 			prepared_statement.setString(6, telefono);
 			prepared_statement.setString(7, correo_electronico);
+			prepared_statement.setString(8, fecha_nacimiento);
 			//prepared_statement.setDate(8, (java.sql.Date) fecha_nacimiento);
 			
 			resultado = prepared_statement.executeUpdate();
