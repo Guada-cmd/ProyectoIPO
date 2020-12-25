@@ -213,6 +213,9 @@ public class VentanaInicio {
 			
 			//Aparece un panel con el formulario registro
 			frame_registro = new FormularioRegistro();
+			
+			//Para situarlo en el centro de la pantalla
+			frame_registro.setLocationRelativeTo(null);
 			frame_registro.setVisible(true);
 			
 		}

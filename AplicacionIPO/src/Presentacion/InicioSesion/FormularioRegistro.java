@@ -101,6 +101,8 @@ public class FormularioRegistro extends JFrame {
 	//Atributo que permite las operaciones con la base de datos
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	private JButton btnRegistroCancelado;
+	
 	
 	/**
 	 * Launch the application.
@@ -111,7 +113,6 @@ public class FormularioRegistro extends JFrame {
 				try {
 					FormularioRegistro frame = new FormularioRegistro();
 					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -154,6 +155,7 @@ public class FormularioRegistro extends JFrame {
 	private void asociacionOyentesFormularioRegistro() {
 		
 		btnRegistroTerminado.addActionListener(new BtnFinalizarRegistroActionListener());
+		btnRegistroCancelado.addActionListener(new BtnCancelarRegistroActionListener());
 		
 		txtNombre.addFocusListener(new TxtFormularioRegistroFocusListener());
 		txtApellido.addFocusListener(new TxtFormularioRegistroFocusListener());
@@ -192,6 +194,22 @@ public class FormularioRegistro extends JFrame {
 			
 		}
 		
+	}
+	/**
+	 * 
+	 * Descripcion: Cancelar el resgistro y salirse si el usuario lo desea
+	 *
+	 */
+	private class BtnCancelarRegistroActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			if (VentanaInicio.frame_registro != null) {
+				
+				VentanaInicio.frame_registro.dispose();
+				
+			}
+			
+		}
 	}
 	/**
 	 * 
@@ -295,9 +313,15 @@ public class FormularioRegistro extends JFrame {
 			
 			if (txtCorreoElectronico.getText().equals("") || correo_correcto == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
 				
-				AvisoFormularioRegistro ventanaAviso = new AvisoFormularioRegistro();
-				ventanaAviso.setVisible(true);
-				ventanaAviso.setLocationRelativeTo(null);
+
+				JOptionPane dialogo_campos_incompletos = new JOptionPane();
+				
+				//Datos dialogo error en el registro
+				
+				dialogo_campos_incompletos.setBackground(new Color(255, 255, 255));
+				dialogo_campos_incompletos.setLayout(null);
+				dialogo_campos_incompletos.setFont(new Font("Segoe UI", Font.BOLD, 14));
+				JOptionPane.showMessageDialog(VentanaInicio.frame_registro, "Termine de completar los campos que faltan.");
 				
 				comprobarDatosFormularioRegistro();
 				
@@ -305,8 +329,6 @@ public class FormularioRegistro extends JFrame {
 			else {
 							
 				if (pwdfConfirmarContrasena.getText().equals(pwdfContrasena.getText())) {
-					
-					AvisoExitoRegistro ventanaExito = new AvisoExitoRegistro();
 					
 					txtNombre.setBorder(bordeVerde);
 					txtApellido.setBorder(bordeVerde);
@@ -317,6 +339,8 @@ public class FormularioRegistro extends JFrame {
 					lblEstadoContrasena.setText("");
 					
 					txtCorreoElectronico.setBorder(bordeVerde);
+					
+					//Codigo que permite insertar los datos en la base de datos
 					
 					if (dcFechaNacimiento.getDate() == null) {
 						
@@ -339,15 +363,45 @@ public class FormularioRegistro extends JFrame {
 						
 					}
 					
-					ventanaExito.setVisible(true);
-					ventanaExito.setLocationRelativeTo(null);
+					//Mostrar cuadros de dialogos correspondientes
+					
+					if(validacion > 0) {
+						
+						JOptionPane dialogo_exito = new JOptionPane();
+						
+						//Datos dialogo exito en el registro
+						
+						dialogo_exito.setBackground(new Color(255, 255, 255));
+						dialogo_exito.setLayout(null);
+						dialogo_exito.setFont(new Font("Segoe UI", Font.BOLD, 14));
+						dialogo_exito.showMessageDialog(VentanaInicio.frame_registro, "Registro finalizado con exito.");
+						
+						
+					}
+					else {
+						
+						JOptionPane dialogo_fallo = new JOptionPane();
+						
+						//Datos dialogo error en el registro
+						
+						dialogo_fallo.setBackground(new Color(255, 255, 255));
+						dialogo_fallo.setLayout(null);
+						dialogo_fallo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+						dialogo_fallo.showMessageDialog(VentanaInicio.frame_registro, "No se han podido registrar los datos.");
+						
+					}
 					
 				}
 				else {
 					
-					AvisoFalloRegistro ventanaFallo = new AvisoFalloRegistro();
-					ventanaFallo.setVisible(true);
-					ventanaFallo.setLocationRelativeTo(null);
+					JOptionPane dialogo_contrasenas_distintas = new JOptionPane();
+					
+					//Datos dialogo error en el registro
+					
+					dialogo_contrasenas_distintas.setBackground(new Color(255, 255, 255));
+					dialogo_contrasenas_distintas.setLayout(null);
+					dialogo_contrasenas_distintas.setFont(new Font("Segoe UI", Font.BOLD, 14));
+					dialogo_contrasenas_distintas.showMessageDialog(VentanaInicio.frame_registro, "Las contraseñas no coinciden.");
 					
 					pwdfContrasena.setBorder(bordeRojo);
 					pwdfConfirmarContrasena.setBorder(bordeRojo);
@@ -376,7 +430,7 @@ public class FormularioRegistro extends JFrame {
 		contentPane.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{48, 167, 52, 80, 94, 47, 0};
+		gbl_contentPane.columnWidths = new int[]{48, 167, 52, 80, 129, 47, 0};
 		gbl_contentPane.rowHeights = new int[]{45, 29, 30, 42, 31, 30, 32, 36, 46, 31, 33, 32, 32, 25, 0, 32, 22, 35, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -581,7 +635,6 @@ public class FormularioRegistro extends JFrame {
 			ftxtTelefono = new JFormattedTextField(formatoTlfno);
 		} 
 		catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -695,6 +748,18 @@ public class FormularioRegistro extends JFrame {
 	 */
 	private void inicializarDatosBotones() {
 		
+		//Datos boton Cancelar el registro
+		
+		btnRegistroCancelado = new JButton("Cancelar");
+		btnRegistroCancelado.setForeground(Color.WHITE);
+		btnRegistroCancelado.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnRegistroCancelado.setBackground(new Color(51, 51, 51));
+		GridBagConstraints gbc_btnRegistroCancelado = new GridBagConstraints();
+		gbc_btnRegistroCancelado.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRegistroCancelado.gridx = 3;
+		gbc_btnRegistroCancelado.gridy = 16;
+		contentPane.add(btnRegistroCancelado, gbc_btnRegistroCancelado);
+		
 		//Datos boton Finalizar el registro
 		
 		btnRegistroTerminado = new JButton("Guardar");
@@ -702,12 +767,11 @@ public class FormularioRegistro extends JFrame {
 		btnRegistroTerminado.setBackground(new Color(51, 51, 51));
 		btnRegistroTerminado.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistroTerminado.setBounds(355, 192, 84, 31);
-	
-		
 		GridBagConstraints gbc_btnRegistroTerminado = new GridBagConstraints();
+		gbc_btnRegistroTerminado.anchor = GridBagConstraints.WEST;
 		gbc_btnRegistroTerminado.insets = new Insets(0, 0, 5, 5);
-		gbc_btnRegistroTerminado.fill = GridBagConstraints.BOTH;
-		gbc_btnRegistroTerminado.gridx = 3;
+		gbc_btnRegistroTerminado.fill = GridBagConstraints.VERTICAL;
+		gbc_btnRegistroTerminado.gridx = 4;
 		gbc_btnRegistroTerminado.gridy = 16;
 		contentPane.add(btnRegistroTerminado, gbc_btnRegistroTerminado);
 		
