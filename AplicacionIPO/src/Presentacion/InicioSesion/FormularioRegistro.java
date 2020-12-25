@@ -35,6 +35,7 @@ import javax.swing.UIManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.awt.Toolkit;
@@ -45,6 +46,8 @@ import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JSpinField;
 
 import javax.swing.JFormattedTextField;
+
+import Persistencia.gestorUsuario;
 
 public class FormularioRegistro extends JFrame {
 
@@ -93,8 +96,7 @@ public class FormularioRegistro extends JFrame {
 	private ImageIcon image_icon_show_password = new ImageIcon(FormularioRegistro.class.getResource("/recursos/eye.png"));
 	private ImageIcon image_icon_hide_password = new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png"));
 	
-	
-	
+	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	
 	/**
 	 * Launch the application.
@@ -117,6 +119,7 @@ public class FormularioRegistro extends JFrame {
 	 * Create the frame.
 	 */
 	public FormularioRegistro() {
+		
 		setTitle("Ventana Formulario Registro.");
 		
 		inicializarDatosFormularioRegistro();
@@ -308,7 +311,10 @@ public class FormularioRegistro extends JFrame {
 					lblEstadoContrasena.setText("");
 					
 					txtCorreoElectronico.setBorder(bordeVerde);
-										
+					
+					metodos_gestor_usuario.insertarUsuario(txtNombre.getText(), txtApellido.getText(), txtNombreUsuario.getText(), pwdfContrasena.getText(), "", "", txtCorreoElectronico.getText());
+					
+					
 					ventanaExito.setVisible(true);
 					ventanaExito.setLocationRelativeTo(null);
 					
