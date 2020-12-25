@@ -34,18 +34,45 @@ public class gestorUsuario {
 			prepared_statement.setString(6, telefono);
 			prepared_statement.setString(7, correo_electronico);
 			prepared_statement.setString(8, fecha_nacimiento);
-			//prepared_statement.setDate(8, (java.sql.Date) fecha_nacimiento);
 			
 			resultado = prepared_statement.executeUpdate();
 			prepared_statement.close();
+			connection.close();
 			
 		}catch (Exception e) {
 			
-			System.out.print(e);
+			System.out.println(e);
 			
 		}
 		
 		return resultado;
+	}
+	
+	public int buscarUsuarioRegistrado(String nombre_usuario) {
+		
+		int usuario_registrado = -1;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			String sentencia_buscar_usuario = "select NombreUsuario from Usuario WHERE NombreUsuario = '"+nombre_usuario+"'";
+			prepared_statement = connection.prepareStatement(sentencia_buscar_usuario);
+			resultado_consulta = prepared_statement.executeQuery();
+			
+			if(resultado_consulta.next()) {
+				
+				usuario_registrado = 0;
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return usuario_registrado;
 	}
 
 }

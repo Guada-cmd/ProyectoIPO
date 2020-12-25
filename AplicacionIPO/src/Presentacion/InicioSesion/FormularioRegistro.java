@@ -102,6 +102,7 @@ public class FormularioRegistro extends JFrame {
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	private JButton btnRegistroCancelado;
+	private JLabel lblComprobarUsuario;
 	
 	
 	/**
@@ -301,6 +302,7 @@ public class FormularioRegistro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			int validacion = 0;
+			int comprobar_usuario_registrado_sistema = -1;
 			
 			String comprobar_correo = txtCorreoElectronico.getText();
 			boolean correo_correcto = false;
@@ -311,7 +313,19 @@ public class FormularioRegistro extends JFrame {
 				}
 			}
 			
-			if (txtCorreoElectronico.getText().equals("") || correo_correcto == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
+			if (txtNombreUsuario.getText() != null) {
+				
+				comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText());
+				
+				if(comprobar_usuario_registrado_sistema == 0) {
+					lblComprobarUsuario.setText("Usuario en uso");
+					txtNombreUsuario.setBorder(bordeRojo);
+				}
+			}
+			
+			
+			
+			if (txtCorreoElectronico.getText().equals("") || comprobar_usuario_registrado_sistema == 0 || correo_correcto == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
 				
 
 				JOptionPane dialogo_campos_incompletos = new JOptionPane();
@@ -322,6 +336,10 @@ public class FormularioRegistro extends JFrame {
 				dialogo_campos_incompletos.setLayout(null);
 				dialogo_campos_incompletos.setFont(new Font("Segoe UI", Font.BOLD, 14));
 				JOptionPane.showMessageDialog(VentanaInicio.frame_registro, "Termine de completar los campos que faltan.");
+				
+				if (lblComprobarUsuario.getText().equals("Usuario en uso")) {
+					txtNombreUsuario.setBorder(bordeRojo);
+				}
 				
 				comprobarDatosFormularioRegistro();
 				
@@ -521,6 +539,14 @@ public class FormularioRegistro extends JFrame {
 		gbc_txtNombreUsuario.gridy = 4;
 		contentPane.add(txtNombreUsuario, gbc_txtNombreUsuario);
 		txtNombreUsuario.setColumns(10);
+		
+		lblComprobarUsuario = new JLabel("");
+		lblComprobarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		GridBagConstraints gbc_lblComprobarUsuario = new GridBagConstraints();
+		gbc_lblComprobarUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblComprobarUsuario.gridx = 3;
+		gbc_lblComprobarUsuario.gridy = 4;
+		contentPane.add(lblComprobarUsuario, gbc_lblComprobarUsuario);
 		
 		// Datos campos contrasenas
 		
@@ -804,13 +830,23 @@ public class FormularioRegistro extends JFrame {
 		
 		//Bordes Nombre usuario
 		
-		if (txtNombreUsuario.getText().equals("")) {
-			txtNombreUsuario.setBorder(bordeRojo);
+		if (txtNombreUsuario.getText() != null) {
+			
+			int comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText());
+			
+			if(comprobar_usuario_registrado_sistema == 0) {
+				lblComprobarUsuario.setText("Usuario en uso");
+				txtNombreUsuario.setBorder(bordeRojo);
+			}
+			else {
+				txtNombreUsuario.setBorder(bordeVerde);
+			}
 		}
 		else {
-			txtNombreUsuario.setBorder(bordeVerde);
+			txtNombreUsuario.setBorder(bordeRojo);
 		}
 		
+			
 		//Bordes contrasena
 		
 		if (pwdfContrasena.getText().equals("")) {
