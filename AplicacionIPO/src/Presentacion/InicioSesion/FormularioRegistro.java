@@ -275,7 +275,16 @@ public class FormularioRegistro extends JFrame {
 	private class BtnFinalizarRegistroActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-			if (txtCorreoElectronico.getText().equals("") || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
+			String comprobar_correo = txtCorreoElectronico.getText();
+			boolean correo_correcto = false;
+			
+			for(int i = 0; i<comprobar_correo.length(); i++) {
+				if(comprobar_correo.charAt(i) == '@') {
+					correo_correcto = true;
+				}
+			}
+			
+			if (txtCorreoElectronico.getText().equals("") || correo_correcto == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
 				
 				AvisoFormularioRegistro ventanaAviso = new AvisoFormularioRegistro();
 				ventanaAviso.setVisible(true);
@@ -723,9 +732,18 @@ public class FormularioRegistro extends JFrame {
 			pwdfConfirmarContrasena.setBorder(bordeRojo);
 		}
 		
-		//Bordes telefono
+		//Bordes correo
+		
+		String comprobar_correo = txtCorreoElectronico.getText();
+		boolean correo_correcto = false;
+		
+		for(int i = 0; i<comprobar_correo.length(); i++) {
+			if(comprobar_correo.charAt(i) == '@') {
+				correo_correcto = true;
+			}
+		}
         
-		if (txtCorreoElectronico.getText().equals("")) {
+		if (txtCorreoElectronico.getText().equals("") || correo_correcto == false) {
 			txtCorreoElectronico.setBorder(bordeRojo);
 		}
 		else {
