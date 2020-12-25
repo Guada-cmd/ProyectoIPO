@@ -79,6 +79,8 @@ public class FormularioRegistro extends JFrame {
 	private JDateChooser dcFechaNacimiento;
 	private JFormattedTextField ftxtTelefono;
 	private JLabel lblEstadoContrasena;
+	private JButton btnRegistroCancelado;
+	private JLabel lblComprobarUsuario;
 	
 	//Creaccion de colores como atributos privados a nivel de clase
 	
@@ -101,8 +103,7 @@ public class FormularioRegistro extends JFrame {
 	//Atributo que permite las operaciones con la base de datos
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
-	private JButton btnRegistroCancelado;
-	private JLabel lblComprobarUsuario;
+
 	
 	
 	/**
@@ -315,7 +316,7 @@ public class FormularioRegistro extends JFrame {
 			
 			if (txtNombreUsuario.getText() != null) {
 				
-				comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText());
+				comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText().toString());
 				
 				if(comprobar_usuario_registrado_sistema == 0) {
 					lblComprobarUsuario.setText("Usuario en uso");

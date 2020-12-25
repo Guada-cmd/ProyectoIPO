@@ -74,5 +74,32 @@ public class gestorUsuario {
 		
 		return usuario_registrado;
 	}
+	
+	public String iniciarSesionSistema(String nombre_usuario) {
+		
+		String contrasena = null;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();  
+			String sentencia_usuario_registrado = "select Contrasena from Usuario WHERE NombreUsuario = '"+nombre_usuario+"'";
+			prepared_statement = connection.prepareStatement(sentencia_usuario_registrado);
+			resultado_consulta = prepared_statement.executeQuery();
+			
+			if(resultado_consulta.next()) {
+				
+				contrasena = resultado_consulta.getString("Contrasena");
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return contrasena;
+	}
 
 }

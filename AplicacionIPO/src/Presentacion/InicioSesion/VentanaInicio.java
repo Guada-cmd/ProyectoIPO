@@ -8,7 +8,10 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
 import java.awt.Font;
 import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
@@ -23,6 +26,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import Persistencia.gestorUsuario;
 import Presentacion.Principal.AplicacionPrincipal;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -34,6 +38,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 
@@ -60,10 +66,21 @@ public class VentanaInicio {
 	
 	private Color colorBlanco = new Color (255,255,255);
 	private Color colorResaltado = new Color (255,255,210);
+	private Color colorVerde = new Color(0, 143, 57);
 	
+	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
+	
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
+	
+	//Creaccion imagenes ocultar o mostrar contrasena
 	
 	private ImageIcon image_icon_show_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/eye.png"));
 	private ImageIcon image_icon_hide_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png"));
+	
+	//Instancia para comprobar si el usuario esta registrado en el sistema
+	
+	private gestorUsuario metodos_gestor_usuario_login = new gestorUsuario();
 
 	/**
 	 * Launch the application.
@@ -177,9 +194,7 @@ public class VentanaInicio {
 	 */
 	private class PwdfPasswordActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			
-			//TO DO
-			
+				
 			btnEntrar.setEnabled(true);
 			
 		}
@@ -229,14 +244,68 @@ public class VentanaInicio {
 	private class BtnEntrarActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-			//Se crea un frame con la aplicacion principal
-			frame_principal = new AplicacionPrincipal();
-			frame_principal.getJFrame().setVisible(true);
+			JOptionPane dialogo_campos_incorrectos;
+			int datos_sistema_usuario = -1;
+			String datos_sistema_contrasena = null;
 			
-			//Se destruye la ventana actual (atributo a nivel de clase)
-			frmVentanaDeLogin.dispose();
+			if (txtUsuario.getText() != null) {
+				
+				datos_sistema_usuario = metodos_gestor_usuario_login.buscarUsuarioRegistrado(txtUsuario.getText().toString());
+				
+				if(datos_sistema_usuario == 0) {
+					
+					txtUsuario.setBorder(bordeVerde);
+					datos_sistema_contrasena = metodos_gestor_usuario_login.iniciarSesionSistema(txtUsuario.getText().toString());
+					//pwdfContrasena.setText(datos_sistema_contrasena);
+					
+					//System.out.println(datos_sistema_contrasena);
+					//System.out.println(pwdfContrasena.getText());
+					
+					if(datos_sistema_contrasena.equals(pwdfContrasena.getText())) {
+						
+						pwdfContrasena.setBorder(bordeVerde);
+						
+					
+						//Se crea un frame con la aplicacion principal
+					
+						frame_principal = new AplicacionPrincipal();
+						frame_principal.getJFrame().setVisible(true);
+					
+						//Se destruye la ventana actual (atributo a nivel de clase)
+					
+						frmVentanaDeLogin.dispose();
+					}
+					else {
+						pwdfContrasena.setBorder(bordeRojo);
+					}
+				}
+				else {
+					
+					txtUsuario.setBorder(bordeRojo);
+					
+				}
+			}
 			
+		//	metodos_gestor_usuario_login.buscarUsuarioRegistrado(nombre_usuario)(txtUsuario.getText().toString(), pwdfContrasena.getText().toString());
+			
+			
+			else {
+				
+				txtUsuario.setBorder(bordeRojo);
+				pwdfContrasena.setBorder(bordeRojo);
+				
+				dialogo_campos_incorrectos = new JOptionPane();
+				
+				//Datos dialogo error en los datos inicio sesion
+				
+				dialogo_campos_incorrectos.setBackground(new Color(255, 255, 255));
+				dialogo_campos_incorrectos.setLayout(null);
+				dialogo_campos_incorrectos.setFont(new Font("Segoe UI", Font.BOLD, 14));
+				JOptionPane.showMessageDialog(frmVentanaDeLogin, "Los datos del usuario y la contraseña no coinciden.");
+				
+			}
 		}
+
 	}
 	/**
 	 * 
