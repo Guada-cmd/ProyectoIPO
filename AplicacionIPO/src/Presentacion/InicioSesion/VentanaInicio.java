@@ -285,10 +285,7 @@ public class VentanaInicio {
 					
 				}
 			}
-			
-		//	metodos_gestor_usuario_login.buscarUsuarioRegistrado(nombre_usuario)(txtUsuario.getText().toString(), pwdfContrasena.getText().toString());
-			
-			
+					
 			else {
 				
 				txtUsuario.setBorder(bordeRojo);
