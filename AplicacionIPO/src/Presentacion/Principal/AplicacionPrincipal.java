@@ -76,7 +76,10 @@ public class AplicacionPrincipal {
 	 * Create the application.
 	 */
 	public AplicacionPrincipal() {
+		
 		initialize();
+		this.getJFrame().setLocationRelativeTo(null);
+		
 	}
 
 	/**
