@@ -105,7 +105,7 @@ public class FormularioRegistro extends JFrame {
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	
-	private JOptionPane dialogo_contrasenas_distintas;
+	
 
 	
 	
@@ -431,7 +431,8 @@ public class FormularioRegistro extends JFrame {
 				}
 				else {
 					
-					dialogo_contrasenas_distintas = new JOptionPane();
+					
+					JOptionPane dialogo_contrasenas_distintas = new JOptionPane();
 					
 					//Datos dialogo error en el registro
 					
