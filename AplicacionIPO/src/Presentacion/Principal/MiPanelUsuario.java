@@ -23,21 +23,23 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class MiPanelUsuario extends JPanel {
 	
 	private JScrollPane scrollPane;
 	private JLabel lblInformacionUsuarioAvatar;
-	private JLabel lblTitleInformacionUsuarioFoto;
 	private JLabel lblInformacionUsuarioNombre;
-	private JLabel lblApellidosInformacionUsuario;
 	private JLabel lblInformacionUsuarioTelefono;
 	private JLabel lblInformacionUsuarioCorreoElectronico;
-	private JLabel lblInformacionUsuarioIdioma;
-	private JLabel lblInformacionUsuarioDisponibilidad;
 	private JLabel lblEdicionDatosInformacionUsuario;
-	private JComboBox comboBoxInformacionUsuarioDisponibilidad;
-	private JLabel lblDatosDisponibles;
+	private JLabel lblHoraUltimoAcceso;
+	private JLabel lblNombreUsuario;
+	private JLabel lblTipoDeEmpleado;
+	private JLabel lblNivelDeEstudios_1;
+	private JLabel lblInformacionUsuarioTelefono_2;
+	private JLabel lblInformacionUsuarioTelefono_1;
+	private JLabel lblltimoAccesso;
 
 	/**
 	 * Create the panel.
@@ -72,23 +74,11 @@ public class MiPanelUsuario extends JPanel {
 	private void inicializarDatosPanelInformacionUsuario() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{47, 44, 80, 105, 67, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{70, 31, 27, 0, 34, 0, 43, 25, 33, 30, 29, 28, 49, 32, 34, 42, 27, 27, 41, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{69, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{124, 17, 22, 19, 7, 34, 32, 39, 23, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		//Etiqueta que sirve de titulo
-		
-		lblEdicionDatosInformacionUsuario = new JLabel("Información actualizada del Usuario");
-		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
-		gbc_lblEdicionDatosInformacionUsuario.anchor = GridBagConstraints.WEST;
-		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 3;
-		gbc_lblEdicionDatosInformacionUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEdicionDatosInformacionUsuario.gridx = 2;
-		gbc_lblEdicionDatosInformacionUsuario.gridy = 0;
-		add(lblEdicionDatosInformacionUsuario, gbc_lblEdicionDatosInformacionUsuario);
 		
 	}
 	/**
@@ -98,34 +88,6 @@ public class MiPanelUsuario extends JPanel {
 	 */
 	private void inicializarDatosImagenUsuario() {
 		
-		//Etiqueta titulo del apartado imagen
-		
-		lblTitleInformacionUsuarioFoto = new JLabel("Avatar en la aplicación");
-		lblTitleInformacionUsuarioFoto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblTitleInformacionUsuarioFoto = new GridBagConstraints();
-		gbc_lblTitleInformacionUsuarioFoto.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTitleInformacionUsuarioFoto.gridx = 2;
-		gbc_lblTitleInformacionUsuarioFoto.gridy = 1;
-		add(lblTitleInformacionUsuarioFoto, gbc_lblTitleInformacionUsuarioFoto);
-		
-		//Componente scrollPane para la imagen del Usuario
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 5;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 2;
-		gbc_scrollPane.gridy = 2;
-		add(scrollPane, gbc_scrollPane);
-		
-		//Etiqueta que permite seleccionar la foto
-		
-		lblInformacionUsuarioAvatar = new JLabel("");
-		lblInformacionUsuarioAvatar.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/User.png")));
-		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
-		
 	}
 	/**
 	 * 
@@ -134,91 +96,140 @@ public class MiPanelUsuario extends JPanel {
 	 */
 	private void inicializarDatosInformacionUsuario() {
 		
-		lblDatosDisponibles = new JLabel("Datos editables del Usuario");
-		lblDatosDisponibles.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblDatosDisponibles = new GridBagConstraints();
-		gbc_lblDatosDisponibles.anchor = GridBagConstraints.WEST;
-		gbc_lblDatosDisponibles.gridwidth = 2;
-		gbc_lblDatosDisponibles.insets = new Insets(0, 0, 5, 5);
-		gbc_lblDatosDisponibles.gridx = 2;
-		gbc_lblDatosDisponibles.gridy = 8;
-		add(lblDatosDisponibles, gbc_lblDatosDisponibles);
+		//Etiqueta que sirve de titulo
+		
+		lblEdicionDatosInformacionUsuario = new JLabel("Información actualizada del perfil de Usuario");
+		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
+		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 4;
+		gbc_lblEdicionDatosInformacionUsuario.anchor = GridBagConstraints.WEST;
+		gbc_lblEdicionDatosInformacionUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEdicionDatosInformacionUsuario.gridx = 1;
+		gbc_lblEdicionDatosInformacionUsuario.gridy = 1;
+		add(lblEdicionDatosInformacionUsuario, gbc_lblEdicionDatosInformacionUsuario);
+		
+		//Componente scrollPane para la imagen del Usuario
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.gridheight = 5;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 3;
+		add(scrollPane, gbc_scrollPane);
+		
+		//Etiqueta que permite seleccionar la foto
+		
+		lblInformacionUsuarioAvatar = new JLabel("");
+		lblInformacionUsuarioAvatar.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/Avatar.png")));
+		lblInformacionUsuarioAvatar.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
+		
+		lblltimoAccesso = new JLabel("Información de accesso");
+		lblltimoAccesso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblltimoAccesso = new GridBagConstraints();
+		gbc_lblltimoAccesso.anchor = GridBagConstraints.SOUTH;
+		gbc_lblltimoAccesso.gridwidth = 2;
+		gbc_lblltimoAccesso.insets = new Insets(0, 0, 5, 5);
+		gbc_lblltimoAccesso.gridx = 4;
+		gbc_lblltimoAccesso.gridy = 3;
+		add(lblltimoAccesso, gbc_lblltimoAccesso);
+		
+		lblHoraUltimoAcceso = new JLabel("Último accesso:");
+		lblHoraUltimoAcceso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblHoraUltimoAcceso = new GridBagConstraints();
+		gbc_lblHoraUltimoAcceso.anchor = GridBagConstraints.EAST;
+		gbc_lblHoraUltimoAcceso.insets = new Insets(0, 0, 5, 5);
+		gbc_lblHoraUltimoAcceso.gridx = 4;
+		gbc_lblHoraUltimoAcceso.gridy = 5;
+		add(lblHoraUltimoAcceso, gbc_lblHoraUltimoAcceso);
+		
+		lblNombreUsuario = new JLabel("Usuario:");
+		lblNombreUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNombreUsuario = new GridBagConstraints();
+		gbc_lblNombreUsuario.anchor = GridBagConstraints.EAST;
+		gbc_lblNombreUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreUsuario.gridx = 4;
+		gbc_lblNombreUsuario.gridy = 6;
+		add(lblNombreUsuario, gbc_lblNombreUsuario);
 		
 		//Datos relacionados con el nombre
 		
-		lblInformacionUsuarioNombre = new JLabel("Nombre:");
+		lblInformacionUsuarioNombre = new JLabel("Nombre y apellidos:");
 		lblInformacionUsuarioNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioNombre = new GridBagConstraints();
+		gbc_lblInformacionUsuarioNombre.gridwidth = 2;
 		gbc_lblInformacionUsuarioNombre.anchor = GridBagConstraints.EAST;
 		gbc_lblInformacionUsuarioNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInformacionUsuarioNombre.gridx = 2;
-		gbc_lblInformacionUsuarioNombre.gridy = 10;
+		gbc_lblInformacionUsuarioNombre.gridx = 1;
+		gbc_lblInformacionUsuarioNombre.gridy = 9;
 		add(lblInformacionUsuarioNombre, gbc_lblInformacionUsuarioNombre);
 		
-		//Datos relacionados con el apellido
-		
-		lblApellidosInformacionUsuario = new JLabel("Apellidos:");
-		lblApellidosInformacionUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblApellidosInformacionUsuario = new GridBagConstraints();
-		gbc_lblApellidosInformacionUsuario.anchor = GridBagConstraints.EAST;
-		gbc_lblApellidosInformacionUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_lblApellidosInformacionUsuario.gridx = 2;
-		gbc_lblApellidosInformacionUsuario.gridy = 11;
-		add(lblApellidosInformacionUsuario, gbc_lblApellidosInformacionUsuario);
-		
-		//Datos relacionados con el telefono
-		
-		lblInformacionUsuarioTelefono = new JLabel("Teléfono:");
-		lblInformacionUsuarioTelefono.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblInformacionUsuarioTelefono = new GridBagConstraints();
-		gbc_lblInformacionUsuarioTelefono.anchor = GridBagConstraints.EAST;
-		gbc_lblInformacionUsuarioTelefono.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInformacionUsuarioTelefono.gridx = 2;
-		gbc_lblInformacionUsuarioTelefono.gridy = 13;
-		add(lblInformacionUsuarioTelefono, gbc_lblInformacionUsuarioTelefono);
+		lblTipoDeEmpleado = new JLabel("");
+		lblTipoDeEmpleado.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblTipoDeEmpleado = new GridBagConstraints();
+		gbc_lblTipoDeEmpleado.anchor = GridBagConstraints.EAST;
+		gbc_lblTipoDeEmpleado.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTipoDeEmpleado.gridx = 3;
+		gbc_lblTipoDeEmpleado.gridy = 10;
+		add(lblTipoDeEmpleado, gbc_lblTipoDeEmpleado);
 		
 		//Datos relacionados con el correo electronico
 		
 		lblInformacionUsuarioCorreoElectronico = new JLabel("Correo electrónico:");
 		lblInformacionUsuarioCorreoElectronico.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioCorreoElectronico = new GridBagConstraints();
+		gbc_lblInformacionUsuarioCorreoElectronico.gridwidth = 2;
 		gbc_lblInformacionUsuarioCorreoElectronico.anchor = GridBagConstraints.EAST;
 		gbc_lblInformacionUsuarioCorreoElectronico.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInformacionUsuarioCorreoElectronico.gridx = 2;
-		gbc_lblInformacionUsuarioCorreoElectronico.gridy = 14;
+		gbc_lblInformacionUsuarioCorreoElectronico.gridx = 1;
+		gbc_lblInformacionUsuarioCorreoElectronico.gridy = 11;
 		add(lblInformacionUsuarioCorreoElectronico, gbc_lblInformacionUsuarioCorreoElectronico);
 		
-		//Datos relacionados con el idioma
+		//Datos relacionados con el telefono
 		
-		lblInformacionUsuarioIdioma = new JLabel("Idioma:");
-		lblInformacionUsuarioIdioma.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblInformacionUsuarioIdioma = new GridBagConstraints();
-		gbc_lblInformacionUsuarioIdioma.anchor = GridBagConstraints.EAST;
-		gbc_lblInformacionUsuarioIdioma.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInformacionUsuarioIdioma.gridx = 2;
-		gbc_lblInformacionUsuarioIdioma.gridy = 16;
-		add(lblInformacionUsuarioIdioma, gbc_lblInformacionUsuarioIdioma);
+		lblInformacionUsuarioTelefono = new JLabel("Teléfono:");
+		lblInformacionUsuarioTelefono.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblInformacionUsuarioTelefono = new GridBagConstraints();
+		gbc_lblInformacionUsuarioTelefono.gridwidth = 2;
+		gbc_lblInformacionUsuarioTelefono.anchor = GridBagConstraints.EAST;
+		gbc_lblInformacionUsuarioTelefono.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInformacionUsuarioTelefono.gridx = 1;
+		gbc_lblInformacionUsuarioTelefono.gridy = 12;
+		add(lblInformacionUsuarioTelefono, gbc_lblInformacionUsuarioTelefono);
 		
-		//Datos relacionados con la restriccion de disponibilidad
+		lblInformacionUsuarioTelefono_2 = new JLabel("Idiomas:");
+		lblInformacionUsuarioTelefono_2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblInformacionUsuarioTelefono_2 = new GridBagConstraints();
+		gbc_lblInformacionUsuarioTelefono_2.gridwidth = 2;
+		gbc_lblInformacionUsuarioTelefono_2.anchor = GridBagConstraints.EAST;
+		gbc_lblInformacionUsuarioTelefono_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInformacionUsuarioTelefono_2.gridx = 1;
+		gbc_lblInformacionUsuarioTelefono_2.gridy = 14;
+		add(lblInformacionUsuarioTelefono_2, gbc_lblInformacionUsuarioTelefono_2);
 		
-		lblInformacionUsuarioDisponibilidad = new JLabel("Disponibilidad:");
-		lblInformacionUsuarioDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblInformacionUsuarioDisponibilidad = new GridBagConstraints();
-		gbc_lblInformacionUsuarioDisponibilidad.anchor = GridBagConstraints.EAST;
-		gbc_lblInformacionUsuarioDisponibilidad.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInformacionUsuarioDisponibilidad.gridx = 2;
-		gbc_lblInformacionUsuarioDisponibilidad.gridy = 17;
-		add(lblInformacionUsuarioDisponibilidad, gbc_lblInformacionUsuarioDisponibilidad);
+		lblInformacionUsuarioTelefono_1 = new JLabel("Disponibilidad:");
+		lblInformacionUsuarioTelefono_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblInformacionUsuarioTelefono_1 = new GridBagConstraints();
+		gbc_lblInformacionUsuarioTelefono_1.gridwidth = 2;
+		gbc_lblInformacionUsuarioTelefono_1.anchor = GridBagConstraints.EAST;
+		gbc_lblInformacionUsuarioTelefono_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInformacionUsuarioTelefono_1.gridx = 1;
+		gbc_lblInformacionUsuarioTelefono_1.gridy = 15;
+		add(lblInformacionUsuarioTelefono_1, gbc_lblInformacionUsuarioTelefono_1);
 		
-		comboBoxInformacionUsuarioDisponibilidad = new JComboBox();
-		comboBoxInformacionUsuarioDisponibilidad.setModel(new DefaultComboBoxModel(new String[] {"No", "Si"}));
-		comboBoxInformacionUsuarioDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_comboBoxInformacionUsuarioDisponibilidad = new GridBagConstraints();
-		gbc_comboBoxInformacionUsuarioDisponibilidad.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxInformacionUsuarioDisponibilidad.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxInformacionUsuarioDisponibilidad.gridx = 3;
-		gbc_comboBoxInformacionUsuarioDisponibilidad.gridy = 17;
-		add(comboBoxInformacionUsuarioDisponibilidad, gbc_comboBoxInformacionUsuarioDisponibilidad);
+		lblNivelDeEstudios_1 = new JLabel("Nivel de estudios:");
+		lblNivelDeEstudios_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNivelDeEstudios_1 = new GridBagConstraints();
+		gbc_lblNivelDeEstudios_1.gridwidth = 2;
+		gbc_lblNivelDeEstudios_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNivelDeEstudios_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNivelDeEstudios_1.gridx = 1;
+		gbc_lblNivelDeEstudios_1.gridy = 16;
+		add(lblNivelDeEstudios_1, gbc_lblNivelDeEstudios_1);
 		
 	}
 

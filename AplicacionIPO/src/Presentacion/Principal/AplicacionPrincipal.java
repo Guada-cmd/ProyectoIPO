@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
@@ -29,18 +30,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
+import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.ImageIcon;
 
 public class AplicacionPrincipal {
 
-	private JFrame frame;
+	private JFrame frmAplicacinPrincipalDe;
 	private JMenuBar menuBarAplicacionPrincipal;
 	private JMenu mUsuario;
 	private JMenuItem miUsuario;
 	private JSeparator separatorUA;
-	private JMenuItem miAbout;
-	private JSeparator separatorAC;
 	private JMenuItem miConfiguracion;
-	private JMenuItem miAyuda;
+	private JMenuItem miCerrarSesion;
 	private JPanel pnlContenidoAplicacionPrincipal;
 	private JPanel pnlBotones;
 	private JPanel pnlReservas;
@@ -54,6 +57,7 @@ public class AplicacionPrincipal {
 	private JTextArea MarcadorActividades;
 	private JTextArea MarcadorReservas;
 	private JTextArea MarcadorRutas;
+	private JMenu mAyuda;
 
 
 	/**
@@ -64,7 +68,7 @@ public class AplicacionPrincipal {
 			public void run() {
 				try {
 					AplicacionPrincipal window = new AplicacionPrincipal();
-					window.frame.setVisible(true);
+					window.frmAplicacinPrincipalDe.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -181,11 +185,14 @@ public class AplicacionPrincipal {
 	 */
 	private void inicializarDatosAplicacionPrincipal() {
 		
-		frame = new JFrame();
-		frame.setVisible(true);
-		frame.setBounds(new Rectangle(100, 100, 960, 540));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmAplicacinPrincipalDe = new JFrame();
+		frmAplicacinPrincipalDe.setTitle("Aplicación principal.");
+		frmAplicacinPrincipalDe.setResizable(false);
+		frmAplicacinPrincipalDe.setIconImage(Toolkit.getDefaultToolkit().getImage(AplicacionPrincipal.class.getResource("/recursos/logo_aplicacion.png")));
+		frmAplicacinPrincipalDe.setVisible(true);
+		frmAplicacinPrincipalDe.setBounds(new Rectangle(100, 100, 960, 540));
+		frmAplicacinPrincipalDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAplicacinPrincipalDe.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 	}
 	/**
@@ -198,7 +205,7 @@ public class AplicacionPrincipal {
 		//Panel Principal de la aplicacion
 		
 		pnlContenidoAplicacionPrincipal = new JPanel();
-		frame.getContentPane().add(pnlContenidoAplicacionPrincipal, BorderLayout.CENTER);
+		frmAplicacinPrincipalDe.getContentPane().add(pnlContenidoAplicacionPrincipal, BorderLayout.CENTER);
 		pnlContenidoAplicacionPrincipal.setLayout(new CardLayout(0, 0));
 		
 		//Panel que da acceso a las reservas
@@ -214,7 +221,7 @@ public class AplicacionPrincipal {
 		//Panel que da acceso a la informacion del usuario
 		
 		pnlUsuario = new MiPanelUsuario();
-		pnlContenidoAplicacionPrincipal.add(pnlUsuario, "Usuario");
+		pnlContenidoAplicacionPrincipal.add(pnlUsuario, "Perfil");
 		
 		//Panel que da acceso al gestor de la configuracion para editar la informacion
 		
@@ -236,7 +243,7 @@ public class AplicacionPrincipal {
 		
 		pnlBotones = new JPanel();
 		pnlBotones.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		frame.getContentPane().add(pnlBotones, BorderLayout.WEST);
+		frmAplicacinPrincipalDe.getContentPane().add(pnlBotones, BorderLayout.WEST);
 		GridBagLayout gbl_pnlBotones = new GridBagLayout();
 		gbl_pnlBotones.columnWidths = new int[]{9, 85, 21, 0};
 		gbl_pnlBotones.rowHeights = new int[]{51, 36, 41, 36, 19, 23, 0};
@@ -349,16 +356,19 @@ public class AplicacionPrincipal {
 		//Datos barra de menu
 		
 		menuBarAplicacionPrincipal = new JMenuBar();
-		frame.setJMenuBar(menuBarAplicacionPrincipal);
+		menuBarAplicacionPrincipal.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		frmAplicacinPrincipalDe.setJMenuBar(menuBarAplicacionPrincipal);
 		
 		//Menu Usuario
 		
-		mUsuario = new JMenu("Usuario");
+		mUsuario = new JMenu("");
+		mUsuario.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/profile-user.png")));
 		menuBarAplicacionPrincipal.add(mUsuario);
 		
 		//Item Usuario
 		
-		miUsuario = new JMenuItem("Usuario");
+		miUsuario = new JMenuItem("Perfil");
+		miUsuario.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/perfil.png")));
 		mUsuario.add(miUsuario);
 		
 		//Separador entre usuario y el item about
@@ -366,25 +376,21 @@ public class AplicacionPrincipal {
 		separatorUA = new JSeparator();
 		mUsuario.add(separatorUA);
 		
-		//Item About
-		
-		miAbout = new JMenuItem("About");
-		mUsuario.add(miAbout);
-		
-		//Separador entre el item about y el item Configuracion
-		
-		separatorAC = new JSeparator();
-		mUsuario.add(separatorAC);
-		
 		//Item configuracion
 		
 		miConfiguracion = new JMenuItem("Configuración");
+		miConfiguracion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/settings.png")));
 		mUsuario.add(miConfiguracion);
 		
 		//Item ayuda
 
-		miAyuda = new JMenuItem("Ayuda");
-		mUsuario.add(miAyuda);
+		miCerrarSesion = new JMenuItem("Cerrar sesion");
+		miCerrarSesion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/logout.png")));
+		mUsuario.add(miCerrarSesion);
+		
+		mAyuda = new JMenu("");
+		mAyuda.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/information.png")));
+		menuBarAplicacionPrincipal.add(mAyuda);
 		
 	}
 	/**
@@ -395,7 +401,7 @@ public class AplicacionPrincipal {
 	 */
 	public JFrame getJFrame() {
 		
-		return this.frame;
+		return this.frmAplicacinPrincipalDe;
 		
 	}
 }
