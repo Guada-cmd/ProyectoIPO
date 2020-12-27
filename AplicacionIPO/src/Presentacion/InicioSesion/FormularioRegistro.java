@@ -25,6 +25,7 @@ import java.awt.Frame;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -103,6 +104,8 @@ public class FormularioRegistro extends JFrame {
 	//Atributo que permite las operaciones con la base de datos
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	
+	private JOptionPane dialogo_contrasenas_distintas;
 
 	
 	
@@ -333,12 +336,19 @@ public class FormularioRegistro extends JFrame {
 				
 				//Datos dialogo error en el registro
 				
-				dialogo_campos_incompletos.setBackground(new Color(255, 255, 255));
-				dialogo_campos_incompletos.setLayout(null);
-				dialogo_campos_incompletos.setFont(new Font("Segoe UI", Font.BOLD, 14));
-				JOptionPane.showMessageDialog(VentanaInicio.frame_registro, "Termine de completar los campos que faltan.");
 				
-				if (lblComprobarUsuario.getText().equals("Usuario en uso")) {
+				JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
+				labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+				
+
+				
+				dialogo_campos_incompletos.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
+				
+				if (lblComprobarUsuario.getText().equals("Usuario en uso") ) {
+					txtNombreUsuario.setBorder(bordeRojo);
+				}
+				
+				if (txtNombreUsuario.getText().equals("") ) {
 					txtNombreUsuario.setBorder(bordeRojo);
 				}
 				
@@ -390,10 +400,14 @@ public class FormularioRegistro extends JFrame {
 						
 						//Datos dialogo exito en el registro
 						
-						dialogo_exito.setBackground(new Color(255, 255, 255));
-						dialogo_exito.setLayout(null);
-						dialogo_exito.setFont(new Font("Segoe UI", Font.BOLD, 14));
-						dialogo_exito.showMessageDialog(VentanaInicio.frame_registro, "Registro finalizado con exito.");
+					
+						
+						JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente.");
+						labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+						
+		
+						
+						dialogo_exito.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
 						
 						
 					}
@@ -403,24 +417,32 @@ public class FormularioRegistro extends JFrame {
 						
 						//Datos dialogo error en el registro
 						
-						dialogo_fallo.setBackground(new Color(255, 255, 255));
-						dialogo_fallo.setLayout(null);
-						dialogo_fallo.setFont(new Font("Segoe UI", Font.BOLD, 14));
-						dialogo_fallo.showMessageDialog(VentanaInicio.frame_registro, "No se han podido registrar los datos.");
+				
+						
+						JLabel labelDialogoRegistroErrorMensaje = new JLabel("No se han podido registrar los datos.");
+						labelDialogoRegistroErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+						
+		
+						
+						dialogo_fallo.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroErrorMensaje, "Error registro.", 0);
 						
 					}
 					
 				}
 				else {
 					
-					JOptionPane dialogo_contrasenas_distintas = new JOptionPane();
+					dialogo_contrasenas_distintas = new JOptionPane();
 					
 					//Datos dialogo error en el registro
 					
-					dialogo_contrasenas_distintas.setBackground(new Color(255, 255, 255));
-					dialogo_contrasenas_distintas.setLayout(null);
-					dialogo_contrasenas_distintas.setFont(new Font("Segoe UI", Font.BOLD, 14));
-					dialogo_contrasenas_distintas.showMessageDialog(VentanaInicio.frame_registro, "Las contraseñas no coinciden.");
+				
+					JLabel labelDialogoContrasenasMensaje = new JLabel("Las contraseñas no coinciden.");
+					labelDialogoContrasenasMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+					
+	
+					
+					dialogo_contrasenas_distintas.showMessageDialog(VentanaInicio.frame_registro, labelDialogoContrasenasMensaje, "Contraseñas no válidas.", 0);
+					
 					
 					pwdfContrasena.setBorder(bordeRojo);
 					pwdfConfirmarContrasena.setBorder(bordeRojo);
@@ -831,6 +853,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Bordes Nombre usuario
 		
+		
 		if (txtNombreUsuario.getText() != null) {
 			
 			int comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText());
@@ -839,13 +862,11 @@ public class FormularioRegistro extends JFrame {
 				lblComprobarUsuario.setText("Usuario en uso");
 				txtNombreUsuario.setBorder(bordeRojo);
 			}
-			else {
+			else if (comprobar_usuario_registrado_sistema != 0 && txtNombreUsuario.getText().equals("") == false) {
 				txtNombreUsuario.setBorder(bordeVerde);
 			}
 		}
-		else {
-			txtNombreUsuario.setBorder(bordeRojo);
-		}
+		
 		
 			
 		//Bordes contrasena
