@@ -357,6 +357,9 @@ public class VentanaInicio {
 		panelRegistrarse.add(lblTextoRegistro2);
 
 		btnRegistrase = new JButton("Registrarse");
+		btnRegistrase.setFocusPainted(false);
+		btnRegistrase.setFocusTraversalKeysEnabled(false);
+		btnRegistrase.setFocusable(false);
 		btnRegistrase.setBackground(new Color(255, 255, 255));
 		btnRegistrase.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistrase.setForeground(new Color(51, 51, 51));
