@@ -130,8 +130,6 @@ public class FormularioRegistro extends JFrame {
 	 */
 	public FormularioRegistro() {
 		
-		setTitle("Ventana Formulario Registro.");
-		
 		inicializarDatosFormularioRegistro();
 		
 		//Inicializacion de los datos con respecto a los dos primeros campos agrupados
@@ -209,9 +207,7 @@ public class FormularioRegistro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			if (VentanaInicio.frame_registro != null) {
-				
 				VentanaInicio.frame_registro.dispose();
-				
 			}
 			
 		}
@@ -229,6 +225,7 @@ public class FormularioRegistro extends JFrame {
 				pwdfContrasena.setEchoChar((char)0);
 				pwdfConfirmarContrasena.setEchoChar((char)0);
 				chckbxHideShow.setIcon(image_icon_show_password);
+				
 			}
 			else {
 				
@@ -299,51 +296,79 @@ public class FormularioRegistro extends JFrame {
 	}
 	/**
 	 * 
+	 * Descripcion: metodo que determina si en el campo del correo por lo menos el usuario ha introducido el caracter @
+	 * 
+	 * @return una variable boolean que determina si el correo introducido por el usuario es correcto
+	 */
+	private boolean comprobarCorreoElectronico() {
+		
+		boolean correo_correcto = false;
+		String comprobar_correo = txtCorreoElectronico.getText();
+		
+		for(int i = 0; i<comprobar_correo.length(); i++) {
+			if(comprobar_correo.charAt(i) == '@') {
+				correo_correcto = true;
+			}
+		}
+		
+		return correo_correcto;
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para saber si ya hay un usuario con ese nombre registrado en el sistema
+	 * 
+	 * @return el valor que si es 0 significa que el usuario ya esta registrado en el sistema
+	 */
+	private int ComprobacionUsuarioRegistrado() {
+		
+		int comprobar_usuario_registrado_sistema = -1;
+		
+		if (txtNombreUsuario.getText() != null) {
+			comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText().toString());
+			if(comprobar_usuario_registrado_sistema == 0) {
+				lblComprobarUsuario.setText("Usuario en uso");
+				txtNombreUsuario.setBorder(bordeRojo);
+			}
+		}
+		
+		return comprobar_usuario_registrado_sistema;
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que faltan campos por completar
+	 * 
+	 */
+	private void dialogoCamposIncompletos() {
+		
+		//Datos dialogo aviso en el registro
+		
+		JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
+		labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		//Mensaje
+		
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
+		
+	}
+	/**
+	 * 
 	 * Descripcion: Al pulsar el boton finalizar se guardan los datos y se finaliza el registro
 	 *
 	 */
 	private class BtnFinalizarRegistroActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
+			boolean comprobar_correo = comprobarCorreoElectronico();
+			int comprobar_usuario_registrado_sistema = ComprobacionUsuarioRegistrado();
 			int validacion = 0;
-			int comprobar_usuario_registrado_sistema = -1;
-			
-			String comprobar_correo = txtCorreoElectronico.getText();
-			boolean correo_correcto = false;
-			
-			for(int i = 0; i<comprobar_correo.length(); i++) {
-				if(comprobar_correo.charAt(i) == '@') {
-					correo_correcto = true;
-				}
-			}
-			
-			if (txtNombreUsuario.getText() != null) {
-				
-				comprobar_usuario_registrado_sistema = metodos_gestor_usuario.buscarUsuarioRegistrado(txtNombreUsuario.getText().toString());
-				
-				if(comprobar_usuario_registrado_sistema == 0) {
-					lblComprobarUsuario.setText("Usuario en uso");
-					txtNombreUsuario.setBorder(bordeRojo);
-				}
-			}
 			
 			
+			if (txtCorreoElectronico.getText().equals("") || comprobar_usuario_registrado_sistema == 0 || comprobar_correo == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
+				
+				dialogoCamposIncompletos();
+				
 			
-			if (txtCorreoElectronico.getText().equals("") || comprobar_usuario_registrado_sistema == 0 || correo_correcto == false || txtNombreUsuario.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("") || pwdfContrasena.getText().equals("") || pwdfConfirmarContrasena.getText().equals("")) {
-				
-
-				JOptionPane dialogo_campos_incompletos = new JOptionPane();
-				
-				//Datos dialogo error en el registro
-				
-				
-				JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
-				labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-				
-
-				
-				dialogo_campos_incompletos.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
-				
 				if (lblComprobarUsuario.getText().equals("Usuario en uso") ) {
 					txtNombreUsuario.setBorder(bordeRojo);
 				}
@@ -369,89 +394,98 @@ public class FormularioRegistro extends JFrame {
 					
 					txtCorreoElectronico.setBorder(bordeVerde);
 					
-					//Codigo que permite insertar los datos en la base de datos
-					
-					if (dcFechaNacimiento.getDate() == null) {
-						
-						validacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
-						
-					} else {
-						
-						String cadena_formato_fecha = dcFechaNacimiento.getDate().getDay()+"-"+dcFechaNacimiento.getDate().getMonth()+"-"+dcFechaNacimiento.getDate().getYear();					
-						
-						validacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
-
-					}
-					
+					validacion = insertarDatosUsuario();
 					
 					//Para cerrar la ventana del formulario y no se puedan introducir mas datos
 					
-					if (VentanaInicio.frame_registro != null) {
-						
-						VentanaInicio.frame_registro.dispose();
-						
+					if (VentanaInicio.frame_registro != null) {	
+						VentanaInicio.frame_registro.dispose();	
 					}
 					
 					//Mostrar cuadros de dialogos correspondientes
 					
 					if(validacion > 0) {
-						
-						JOptionPane dialogo_exito = new JOptionPane();
-						
-						//Datos dialogo exito en el registro
-						
-					
-						
-						JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente.");
-						labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-						
-		
-						
-						dialogo_exito.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
-						
-						
+						dialogoRegistroExitoso();
 					}
 					else {
-						
-						JOptionPane dialogo_fallo = new JOptionPane();
-						
-						//Datos dialogo error en el registro
-						
-				
-						
-						JLabel labelDialogoRegistroErrorMensaje = new JLabel("No se han podido registrar los datos.");
-						labelDialogoRegistroErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-						
-		
-						
-						dialogo_fallo.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroErrorMensaje, "Error registro.", 0);
-						
+						dialogoErrorRegistro();
 					}
-					
 				}
 				else {
-					
-					
-					JOptionPane dialogo_contrasenas_distintas = new JOptionPane();
-					
-					//Datos dialogo error en el registro
-					
-				
-					JLabel labelDialogoContrasenasMensaje = new JLabel("Las contraseñas no coinciden.");
-					labelDialogoContrasenasMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-					
-	
-					
-					dialogo_contrasenas_distintas.showMessageDialog(VentanaInicio.frame_registro, labelDialogoContrasenasMensaje, "Contraseñas no válidas.", 0);
-					
-					
-					pwdfContrasena.setBorder(bordeRojo);
-					pwdfConfirmarContrasena.setBorder(bordeRojo);
-					
+					dialogoContrasenasDistintas();
 				}
 			}
-			
 		}
+	}
+	/**
+	 * 
+	 * Descripcion: metodo que permite insertar un nuevo usuario en la base de datos para registrarlo
+	 * 
+	 * @return un entero para saber si la operacion ha salido bien
+	 */
+	private int insertarDatosUsuario() {
+		
+		int comprobacion = 0;
+		String cadena_formato_fecha = null;
+		
+		//Codigo que permite insertar los datos en la base de datos
+		
+		if (dcFechaNacimiento.getDate() == null) {
+			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
+		} else {
+			cadena_formato_fecha = dcFechaNacimiento.getDate().getDay()+"-"+dcFechaNacimiento.getDate().getMonth()+"-"+dcFechaNacimiento.getDate().getYear();					
+			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
+		}
+		
+		return comprobacion;
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos han sigo registrados correctamente
+	 * 
+	 */
+	private void dialogoRegistroExitoso() {
+				
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
+			
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos no han sigo registrados
+	 * 
+	 */
+	private void dialogoErrorRegistro() {
+		
+		//Datos dialogo error registrar datos
+		
+		JLabel labelDialogoRegistroErrorMensaje = new JLabel("No se han podido registrar los datos.");
+		labelDialogoRegistroErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroErrorMensaje, "Error registro.", 0);
+			
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que las contrasenas no coinciden
+	 * 
+	 */
+	private void dialogoContrasenasDistintas() {
+		
+		//Datos dialogo error contrasena
+			
+		JLabel labelDialogoContrasenasMensaje = new JLabel("Las contraseñas no coinciden.");
+		labelDialogoContrasenasMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoContrasenasMensaje, "Contraseñas no válidas.", 0);
+		
+		pwdfContrasena.setBorder(bordeRojo);
+		pwdfConfirmarContrasena.setBorder(bordeRojo);
+			
 	}
 	/**
 	 * 
@@ -460,6 +494,7 @@ public class FormularioRegistro extends JFrame {
 	 */
 	private void inicializarDatosFormularioRegistro() {
 		
+		setTitle("Ventana Formulario Registro.");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistro.class.getResource("/recursos/Form.png")));
 		
@@ -567,6 +602,8 @@ public class FormularioRegistro extends JFrame {
 		lblComprobarUsuario = new JLabel("");
 		lblComprobarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblComprobarUsuario = new GridBagConstraints();
+		gbc_lblComprobarUsuario.anchor = GridBagConstraints.WEST;
+		gbc_lblComprobarUsuario.gridwidth = 2;
 		gbc_lblComprobarUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_lblComprobarUsuario.gridx = 3;
 		gbc_lblComprobarUsuario.gridy = 4;
@@ -865,11 +902,10 @@ public class FormularioRegistro extends JFrame {
 			}
 			else if (comprobar_usuario_registrado_sistema != 0 && txtNombreUsuario.getText().equals("") == false) {
 				txtNombreUsuario.setBorder(bordeVerde);
+				lblComprobarUsuario.setText("Usuario disponible");
 			}
 		}
 		
-		
-			
 		//Bordes contrasena
 		
 		if (pwdfContrasena.getText().equals("")) {
@@ -887,16 +923,9 @@ public class FormularioRegistro extends JFrame {
 		
 		//Bordes correo
 		
-		String comprobar_correo = txtCorreoElectronico.getText();
-		boolean correo_correcto = false;
+		boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
 		
-		for(int i = 0; i<comprobar_correo.length(); i++) {
-			if(comprobar_correo.charAt(i) == '@') {
-				correo_correcto = true;
-			}
-		}
-        
-		if (txtCorreoElectronico.getText().equals("") || correo_correcto == false) {
+		if (txtCorreoElectronico.getText().equals("") || correo_correcto_comprobacion == false) {
 			txtCorreoElectronico.setBorder(bordeRojo);
 		}
 		else {
@@ -904,5 +933,4 @@ public class FormularioRegistro extends JFrame {
 		}
 		
 	}
-	
 }
