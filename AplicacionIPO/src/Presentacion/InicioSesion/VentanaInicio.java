@@ -208,10 +208,12 @@ public class VentanaInicio {
 		public void actionPerformed(ActionEvent e) {
 			
 			//Se activan la etiqueta y el campo de contrasena
+			
 			lblContrasena.setEnabled(true);
 			pwdfContrasena.setEnabled(true);
 			
 			//Pasamos el foco (cursor) al campo contrasena
+			
  			pwdfContrasena.requestFocus();
 			
 		}
@@ -227,9 +229,11 @@ public class VentanaInicio {
 		public void actionPerformed(ActionEvent e) {
 			
 			//Aparece un panel con el formulario registro
+			
 			frame_registro = new FormularioRegistro();
 			
 			//Para situarlo en el centro de la pantalla
+			
 			frame_registro.setLocationRelativeTo(null);
 			frame_registro.setVisible(true);
 			
@@ -244,7 +248,6 @@ public class VentanaInicio {
 	private class BtnEntrarActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-			JOptionPane dialogo_campos_incorrectos;
 			int datos_sistema_usuario = -1;
 			String datos_sistema_contrasena = null;
 			
@@ -254,17 +257,11 @@ public class VentanaInicio {
 				
 				if(datos_sistema_usuario == 0) {
 					
-					txtUsuario.setBorder(bordeVerde);
 					datos_sistema_contrasena = metodos_gestor_usuario_login.iniciarSesionSistema(txtUsuario.getText().toString());
-					//pwdfContrasena.setText(datos_sistema_contrasena);
-					
-					//System.out.println(datos_sistema_contrasena);
-					//System.out.println(pwdfContrasena.getText());
-					
+
 					if(datos_sistema_contrasena.equals(pwdfContrasena.getText())) {
-						
-						pwdfContrasena.setBorder(bordeVerde);
-						
+
+						dialogoExitoInicioSesion();
 					
 						//Se crea un frame con la aplicacion principal
 					
@@ -276,33 +273,54 @@ public class VentanaInicio {
 						frmVentanaDeLogin.dispose();
 					}
 					else {
-						pwdfContrasena.setBorder(bordeRojo);
+						dialogoFalloInicioSesion();
 					}
 				}
 				else {
-					
-					txtUsuario.setBorder(bordeRojo);
-					
+					dialogoFalloInicioSesion();
 				}
-			}
-					
+			}	
 			else {
-				
-				txtUsuario.setBorder(bordeRojo);
-				pwdfContrasena.setBorder(bordeRojo);
-				
-				dialogo_campos_incorrectos = new JOptionPane();
-				
-				//Datos dialogo error en los datos inicio sesion
-				
-				dialogo_campos_incorrectos.setBackground(new Color(255, 255, 255));
-				dialogo_campos_incorrectos.setLayout(null);
-				dialogo_campos_incorrectos.setFont(new Font("Segoe UI", Font.BOLD, 14));
-				JOptionPane.showMessageDialog(frmVentanaDeLogin, "Los datos del usuario y la contraseña no coinciden.");
-				
+				dialogoFalloInicioSesion();
 			}
 		}
 
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa de que el usuario ha iniciado sesion correctamente
+	 * 
+	 */
+	private void dialogoExitoInicioSesion() {
+		
+		txtUsuario.setBorder(bordeVerde);
+		pwdfContrasena.setBorder(bordeVerde);
+		
+		//Datos dialogo error datos ventana login
+		
+		JLabel labelDialogoInicioSesionExitoMensaje = new JLabel("La sesión ha sido iniciada correctamente.");
+		labelDialogoInicioSesionExitoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoInicioSesionExitoMensaje, "Exito Inicio Sesión.", 1);
+			
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa de que el nombre de usuario y la contrasena no coinciden
+	 * 
+	 */
+	private void dialogoFalloInicioSesion() {
+		
+		txtUsuario.setBorder(bordeRojo);
+		pwdfContrasena.setBorder(bordeRojo);
+		
+		//Datos dialogo error datos ventana login
+		
+		JLabel labelDialogoInicioSesionErrorMensaje = new JLabel("El nombre de usuario y la contraseña no coinciden.");
+		labelDialogoInicioSesionErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoInicioSesionErrorMensaje, "Fallo Inicio Sesión.", 0);
+			
 	}
 	/**
 	 * 
