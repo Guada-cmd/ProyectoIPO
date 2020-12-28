@@ -58,6 +58,7 @@ public class VentanaInicio {
 	private JLabel lblTextoRegistro2;
 	private JButton btnRegistrase;
 	private JCheckBox chckbxPasswordLogin;
+	private JButton btnIdiomaAplicacion;
 	
 	private AplicacionPrincipal frame_principal;
 	public static FormularioRegistro frame_registro;
@@ -81,7 +82,7 @@ public class VentanaInicio {
 	//Instancia para comprobar si el usuario esta registrado en el sistema
 	
 	private gestorUsuario metodos_gestor_usuario_login = new gestorUsuario();
-	private JButton btnIdiomaAplicacion;
+	
 
 	/**
 	 * Launch the application.
