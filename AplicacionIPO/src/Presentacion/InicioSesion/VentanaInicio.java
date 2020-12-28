@@ -81,6 +81,7 @@ public class VentanaInicio {
 	//Instancia para comprobar si el usuario esta registrado en el sistema
 	
 	private gestorUsuario metodos_gestor_usuario_login = new gestorUsuario();
+	private JButton btnIdiomaAplicacion;
 
 	/**
 	 * Launch the application.
@@ -299,7 +300,7 @@ public class VentanaInicio {
 		//Datos dialogo error datos ventana login
 		
 		JLabel labelDialogoInicioSesionExitoMensaje = new JLabel("La sesión ha sido iniciada correctamente.");
-		labelDialogoInicioSesionExitoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		labelDialogoInicioSesionExitoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		
 		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoInicioSesionExitoMensaje, "Exito Inicio Sesión.", 1);
 			
@@ -317,7 +318,7 @@ public class VentanaInicio {
 		//Datos dialogo error datos ventana login
 		
 		JLabel labelDialogoInicioSesionErrorMensaje = new JLabel("El nombre de usuario y la contraseña no coinciden.");
-		labelDialogoInicioSesionErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		labelDialogoInicioSesionErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		
 		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoInicioSesionErrorMensaje, "Fallo Inicio Sesión.", 0);
 			
@@ -336,7 +337,7 @@ public class VentanaInicio {
 		frmVentanaDeLogin.setTitle("Ventana de Login");
 		frmVentanaDeLogin.setResizable(false);
 		frmVentanaDeLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/recursos/logo_aplicacion.png")));
-		frmVentanaDeLogin.setBounds(225, 225, 798, 287);
+		frmVentanaDeLogin.setBounds(225, 225, 810, 287);
 		frmVentanaDeLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmVentanaDeLogin.getContentPane().setLayout(null);
 		
@@ -397,7 +398,7 @@ public class VentanaInicio {
 		
 		JPanel panelEntrar = new JPanel();
 		panelEntrar.setBackground(new Color(255, 255, 255));
-		panelEntrar.setBounds(299, 0, 499, 259);
+		panelEntrar.setBounds(299, 0, 507, 259);
 		frmVentanaDeLogin.getContentPane().add(panelEntrar);
 		panelEntrar.setLayout(null);
 		
@@ -445,6 +446,16 @@ public class VentanaInicio {
 		chckbxPasswordLogin.setBackground(new Color(255, 255, 255));
 		chckbxPasswordLogin.setBounds(445, 144, 35, 13);
 		panelEntrar.add(chckbxPasswordLogin);
+		
+		btnIdiomaAplicacion = new JButton("");
+		btnIdiomaAplicacion.setFocusPainted(false);
+		btnIdiomaAplicacion.setFocusable(false);
+		btnIdiomaAplicacion.setFocusTraversalKeysEnabled(false);
+		btnIdiomaAplicacion.setIcon(new ImageIcon(VentanaInicio.class.getResource("/recursos/translation.png")));
+		btnIdiomaAplicacion.setBorder(null);
+		btnIdiomaAplicacion.setBackground(new Color(255, 255, 255));
+		btnIdiomaAplicacion.setBounds(399, 21, 56, 31);
+		panelEntrar.add(btnIdiomaAplicacion);
 			
 	}
 }
