@@ -38,6 +38,7 @@ import javax.swing.UIManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -433,7 +434,7 @@ public class FormularioRegistro extends JFrame {
 		if (dcFechaNacimiento.getDate() == null) {
 			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
 		} else {
-			cadena_formato_fecha = dcFechaNacimiento.getDate().getDay()+"-"+dcFechaNacimiento.getDate().getMonth()+"-"+dcFechaNacimiento.getDate().getYear();					
+			cadena_formato_fecha = dcFechaNacimiento.getCalendar().get(Calendar.DAY_OF_MONTH)+"/"+ dcFechaNacimiento.getCalendar().get(Calendar.MONTH)+"/"+ dcFechaNacimiento.getCalendar().get(Calendar.YEAR);	
 			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
 		}
 		
