@@ -16,12 +16,14 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
 
+import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.rutas.MiPanelGestorRutas;
 import Presentacion.rutas.MiPanelRutasSenderistas;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -58,6 +60,10 @@ public class AplicacionPrincipal {
 	private JTextArea MarcadorReservas;
 	private JTextArea MarcadorRutas;
 	private JMenu mAyuda;
+	
+	//Variable para cerrar sesion
+	
+	private VentanaInicio frame_ventana_inicio;
 
 
 	/**
@@ -114,11 +120,52 @@ public class AplicacionPrincipal {
 		
 		miUsuario.addActionListener(new NavegacionPanelesActionListener());
 		miConfiguracion.addActionListener(new NavegacionPanelesActionListener());
+		miCerrarSesion.addActionListener(new CerrarSesionActionListener());
 		
 		btnReservas.addActionListener(new MarcadorReservasActionListener());
 		btnActividades.addActionListener(new MarcadorActividadesActionListener());
 		btnRutas.addActionListener(new MarcadorRutasActionListener());
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar sesion y volver a la pantalla de Login
+	 *
+	 */
+	private class CerrarSesionActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			frame_ventana_inicio = new VentanaInicio();
+			int opcion_cerrar_sesion = -1;
+			
+			opcion_cerrar_sesion = dialogoCerrarSesion();
+			
+			if(opcion_cerrar_sesion == 0) {
+				getJFrame().dispose();
+				frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+			}
 		
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrar la sesion
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar sesion
+	 */
+	private int dialogoCerrarSesion() {
+		
+		//Mensaje de cerrar sesion
+		
+		JLabel labelDialogoCerrarSesionMensaje = new JLabel("¿Está seguro que desea cerrar sesión?");
+		labelDialogoCerrarSesionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(getJFrame(), labelDialogoCerrarSesionMensaje, "Cerrar Sesión.", 0, 1, null, botones_list, null);
+	
 	}
 	/**
 	 * 
@@ -382,7 +429,7 @@ public class AplicacionPrincipal {
 		miConfiguracion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/settings.png")));
 		mUsuario.add(miConfiguracion);
 		
-		//Item ayuda
+		//Item cerrar sesion
 
 		miCerrarSesion = new JMenuItem("Cerrar sesion");
 		miCerrarSesion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/logout.png")));

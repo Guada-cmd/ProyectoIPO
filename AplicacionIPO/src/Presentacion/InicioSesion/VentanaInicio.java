@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -458,5 +459,10 @@ public class VentanaInicio {
 		btnIdiomaAplicacion.setBounds(399, 21, 56, 31);
 		panelEntrar.add(btnIdiomaAplicacion);
 			
+	}
+
+	public Window getJFrameVentanaInicio() {
+		
+		return this.frmVentanaDeLogin;
 	}
 }
