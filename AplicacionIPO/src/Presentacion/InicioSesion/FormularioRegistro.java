@@ -37,6 +37,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -106,10 +108,7 @@ public class FormularioRegistro extends JFrame {
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	
-	
 
-	
-	
 	/**
 	 * Launch the application.
 	 */
@@ -130,6 +129,7 @@ public class FormularioRegistro extends JFrame {
 	 * Create the frame.
 	 */
 	public FormularioRegistro() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		inicializarDatosFormularioRegistro();
 		
@@ -201,16 +201,45 @@ public class FormularioRegistro extends JFrame {
 	}
 	/**
 	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrarel registro
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar el registro
+	 */
+	private int  dialogoCerrarRegistro() {
+		
+		int opcion = -1;
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarRegistroMensaje = new JLabel("¿Está seguro que desea cerrar el registro? Los datos no seran guardados.");
+		labelDialogoCerrarRegistroMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		if (VentanaInicio.frame_registro != null) {
+			opcion = JOptionPane.showOptionDialog(VentanaInicio.frame_registro, labelDialogoCerrarRegistroMensaje, "Aviso de cierre registro.", 0, 2, null, botones_list, null);
+		}
+		
+		return opcion;
+	}
+	/**
+	 * 
 	 * Descripcion: Cancelar el resgistro y salirse si el usuario lo desea
 	 *
 	 */
 	private class BtnCancelarRegistroActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
-			if (VentanaInicio.frame_registro != null) {
-				VentanaInicio.frame_registro.dispose();
-			}
+			int opcion_registro = -1;
 			
+			if (VentanaInicio.frame_registro != null) {
+				opcion_registro = dialogoCerrarRegistro();
+				if(opcion_registro == 0) {
+					VentanaInicio.frame_registro.dispose();
+				}
+			}
 		}
 	}
 	/**
@@ -501,7 +530,6 @@ public class FormularioRegistro extends JFrame {
 		
 		setFont(new Font("Segoe UI", Font.BOLD, 16));
 		setBounds(new Rectangle(50, 50, 500, 650));
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));

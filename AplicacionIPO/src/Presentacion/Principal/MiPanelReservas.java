@@ -9,6 +9,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class MiPanelReservas extends JPanel {
 	private JLabel lblNewLabel;
@@ -17,6 +18,7 @@ public class MiPanelReservas extends JPanel {
 	 * Create the panel.
 	 */
 	public MiPanelReservas() {
+		setBackground(new Color(255, 255, 255));
 		setLayout(new BorderLayout(0, 0));
 		
 		lblNewLabel = new JLabel("Reservas");
@@ -24,6 +26,7 @@ public class MiPanelReservas extends JPanel {
 		add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panelReservas = new JPanel();
+		panelReservas.setBackground(new Color(255, 255, 255));
 		add(panelReservas, BorderLayout.CENTER);
 		
 		

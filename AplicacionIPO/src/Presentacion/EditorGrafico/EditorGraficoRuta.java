@@ -4,16 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Presentacion.InicioSesion.FormularioRegistro;
+import Presentacion.InicioSesion.VentanaInicio;
+import Presentacion.Principal.AplicacionPrincipal;
 
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -42,6 +46,8 @@ import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Font;
 
 public class EditorGraficoRuta extends JFrame {
@@ -155,9 +161,75 @@ public class EditorGraficoRuta extends JFrame {
 		//Inicializacion de los datos de mi area de dibujo personalizada
 		inicializarDatosAreaDibujoPersonalizada();
 		
+		//Cerrar editor grafico
+		cerrarEditorRutas();
 		
 		asociacionOyentesEditorGrafico();
 		
+		centrarEditorRutas();
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para centrar el editor de rutas
+	 * 
+	 */
+	private void centrarEditorRutas() {
+		
+		setLocationRelativeTo(null);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar el editor de rutas
+	 * 
+	 */
+	private void cerrarEditorRutas() {
+		
+		try {
+			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+			addWindowListener(new cerrarEditorGraficoWindowAdapter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar el editor al pulsar la cruz
+	 *
+	 */
+	private class cerrarEditorGraficoWindowAdapter extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			
+			int confirmar_cerrar_editor = dialogoCerrarEditor();
+			
+			if (confirmar_cerrar_editor == 0) {
+				dispose();
+			}
+			
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrar el editor
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar el editor
+	 */
+	private int dialogoCerrarEditor() {
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea cerrar editor? Los datos no seran guardados.");
+		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(this.frame, labelDialogoCerrarAplicacionMensaje, "Aviso de cierre editor grafico.", 0, 2, null, botones_list, null);
+	
 	}
 	/**
 	 * 

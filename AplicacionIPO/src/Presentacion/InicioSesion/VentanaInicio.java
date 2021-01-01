@@ -39,6 +39,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -114,14 +116,63 @@ public class VentanaInicio {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		//Se puede cambiar luego
-		
+			
 		inicializarDatosFrameVentanaInicio();
 		inicializarDatosPanelRegistroVentanaInicio();
 		inicializarDatosPanelLoginVentanaInicio();
+		cerrarAplicacion();
 		
 		asociacionOyentes();
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar la aplicacion
+	 * 
+	 */
+	private void cerrarAplicacion() {
+		
+		try {
+			getJFrameVentanaInicio().addWindowListener(new cerrarAplicacionWindowAdapter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar la aplicacion al pulsar la cruz
+	 *
+	 */
+	private class cerrarAplicacionWindowAdapter extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			
+			int confirmar_cerrar_aplicacion_todo = dialogoCerrarAplicacion();
+			
+			if (confirmar_cerrar_aplicacion_todo == 0) {
+				System.exit(0);
+			}
+			
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrar la aplicacion del todo
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar la aplicacion del todo
+	 */
+	private int dialogoCerrarAplicacion() {
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea cerrar la aplicacion?");
+		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(getJFrameVentanaInicio(), labelDialogoCerrarAplicacionMensaje, "Aviso de cierre aplicacion.", 0, 1, null, botones_list, null);
 	
 	}
 	/**
@@ -340,7 +391,7 @@ public class VentanaInicio {
 		frmVentanaDeLogin.setResizable(false);
 		frmVentanaDeLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/recursos/logo_aplicacion.png")));
 		frmVentanaDeLogin.setBounds(225, 225, 810, 287);
-		frmVentanaDeLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmVentanaDeLogin.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frmVentanaDeLogin.getContentPane().setLayout(null);
 		
 	}

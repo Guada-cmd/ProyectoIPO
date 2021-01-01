@@ -35,6 +35,9 @@ import javax.swing.JTextArea;
 import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.ImageIcon;
 
 public class AplicacionPrincipal {
@@ -60,10 +63,16 @@ public class AplicacionPrincipal {
 	private JTextArea MarcadorReservas;
 	private JTextArea MarcadorRutas;
 	private JMenu mAyuda;
+	private JMenuItem miManual;
 	
 	//Variable para cerrar sesion
 	
 	private VentanaInicio frame_ventana_inicio;
+	
+	//Variable para abrir manual
+	
+	private ManualAyuda frame_ayuda_usuario = new ManualAyuda();
+	
 
 
 	/**
@@ -88,30 +97,55 @@ public class AplicacionPrincipal {
 	public AplicacionPrincipal() {
 		
 		initialize();
+		
+		centrarAplicacionPrincipal();
+		
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo para centrar la aplicacion principal
+	 * 
+	 */
+	private void centrarAplicacionPrincipal() {
+		
 		this.getJFrame().setLocationRelativeTo(null);
 		
 	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		
+
 		inicializarDatosAplicacionPrincipal();
 		
 		//Inicializacion del Panel Principal de la aplicacion
+		
 		inicializarPanelPrincipal();
 		
 		//Inicializacion del Panel con los botones que permiten navegar en la aplicacion
+		
 		inicializarPanelBotones();
 		
 		//Inicializacion de la barra de menu y sus items
+		
 		inicializarDatosBarraMenuAplicacionPrincipal();
 		
+		//Cerrar Aplicacion
+		
+		cerrarAplicacionPrincipal();
+		
 		//Oyentes de la aplicacion principal
+		
 		asociacionOyentesAplicacionPrincipal();
 		
 	}
+	/**
+	 * 
+	 * Descripcion: metodo con los oyentes de la aplicacion principal
+	 * 
+	 */
 	private void asociacionOyentesAplicacionPrincipal() {
 		
 		btnReservas.addActionListener(new NavegacionPanelesActionListener());
@@ -121,11 +155,79 @@ public class AplicacionPrincipal {
 		miUsuario.addActionListener(new NavegacionPanelesActionListener());
 		miConfiguracion.addActionListener(new NavegacionPanelesActionListener());
 		miCerrarSesion.addActionListener(new CerrarSesionActionListener());
+		miManual.addActionListener(new AbrirManualAyudaActionListener());
 		
 		btnReservas.addActionListener(new MarcadorReservasActionListener());
 		btnActividades.addActionListener(new MarcadorActividadesActionListener());
 		btnRutas.addActionListener(new MarcadorRutasActionListener());
 	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar la aplicacion
+	 * 
+	 */
+	private void cerrarAplicacionPrincipal() {
+		
+		
+		try {
+			getJFrame().setDefaultCloseOperation(getJFrame().DO_NOTHING_ON_CLOSE);
+			getJFrame().addWindowListener(new cerrarAplicacionPrincipalWindowAdapter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite cerrar la aplicacion al pulsar la cruz
+	 *
+	 */
+	private class cerrarAplicacionPrincipalWindowAdapter extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
+			
+			frame_ventana_inicio = new VentanaInicio();
+			int confirmar_cerrar_aplicacion = dialogoCerrarAplicacionPrincipal();
+			
+			if (confirmar_cerrar_aplicacion == 0) {
+				getJFrame().dispose();
+				frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+			}
+			
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrar la aplicacion principal
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar la aplicacion
+	 */
+	private int dialogoCerrarAplicacionPrincipal() {
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea cerrar la aplicacion?");
+		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(getJFrame(), labelDialogoCerrarAplicacionMensaje, "Aviso de cierre aplicacion principal.", 0, 1, null, botones_list, null);
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite abrir el manual ayuda
+	 *
+	 */
+	private class AbrirManualAyudaActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			frame_ayuda_usuario.getJFrameManualAyuda().setVisible(true);
+		
+		}
 	}
 	/**
 	 * 
@@ -435,9 +537,17 @@ public class AplicacionPrincipal {
 		miCerrarSesion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/logout.png")));
 		mUsuario.add(miCerrarSesion);
 		
+		//Menu ayuda
+		
 		mAyuda = new JMenu("");
 		mAyuda.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/information.png")));
 		menuBarAplicacionPrincipal.add(mAyuda);
+		
+		//Item manual
+		
+		miManual = new JMenuItem("Manual");
+		miManual.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/big-manual-book.png")));
+		mAyuda.add(miManual);
 		
 	}
 	/**
