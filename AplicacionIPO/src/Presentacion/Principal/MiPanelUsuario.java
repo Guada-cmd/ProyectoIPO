@@ -9,6 +9,9 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+
+import Presentacion.InicioSesion.VentanaInicio;
+
 import javax.swing.border.EtchedBorder;
 
 import java.awt.CardLayout;
@@ -40,6 +43,7 @@ public class MiPanelUsuario extends JPanel {
 	private JLabel lblInformacionUsuarioTelefono_2;
 	private JLabel lblInformacionUsuarioTelefono_1;
 	private JLabel lblltimoAccesso;
+	private JLabel lblUserBD;
 
 	/**
 	 * Create the panel.
@@ -53,11 +57,21 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Inicializacion de los datos respecto a la parte de edicion de datos de la configuracion
 		inicializarDatosInformacionUsuario();
+		
+		inicializarDatosUsuarioBD();
 				
 		//Oyentes del panel configuracion
 		asociacionOyentesInformacionUsuario();
 		
 	}
+	private void inicializarDatosUsuarioBD() {
+		
+		if(VentanaInicio.usuario_sistema != null) {
+			lblUserBD.setText(VentanaInicio.usuario_sistema);
+		}
+	
+	}
+	
 	/**
 	 * 
 	 * Descripcion: metodo que contiene los eventos del panel de configuracion
@@ -148,13 +162,23 @@ public class MiPanelUsuario extends JPanel {
 		add(lblHoraUltimoAcceso, gbc_lblHoraUltimoAcceso);
 		
 		lblNombreUsuario = new JLabel("Usuario:");
-		lblNombreUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblNombreUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNombreUsuario = new GridBagConstraints();
 		gbc_lblNombreUsuario.anchor = GridBagConstraints.EAST;
 		gbc_lblNombreUsuario.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNombreUsuario.gridx = 4;
 		gbc_lblNombreUsuario.gridy = 6;
 		add(lblNombreUsuario, gbc_lblNombreUsuario);
+		
+		lblUserBD = new JLabel("");
+		lblUserBD.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblUserBD = new GridBagConstraints();
+		gbc_lblUserBD.anchor = GridBagConstraints.WEST;
+		gbc_lblUserBD.gridwidth = 2;
+		gbc_lblUserBD.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUserBD.gridx = 5;
+		gbc_lblUserBD.gridy = 6;
+		add(lblUserBD, gbc_lblUserBD);
 		
 		//Datos relacionados con el nombre
 		

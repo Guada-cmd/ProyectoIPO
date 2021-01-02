@@ -27,6 +27,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import Dominio.Usuario;
 import Persistencia.gestorUsuario;
 import Presentacion.Principal.AplicacionPrincipal;
 
@@ -85,6 +86,10 @@ public class VentanaInicio {
 	//Instancia para comprobar si el usuario esta registrado en el sistema
 	
 	private gestorUsuario metodos_gestor_usuario_login = new gestorUsuario();
+	
+	//Objeto usuario
+	
+	public static String usuario_sistema;
 	
 
 	/**
@@ -312,6 +317,10 @@ public class VentanaInicio {
 				if(datos_sistema_usuario == 0) {
 					
 					datos_sistema_contrasena = metodos_gestor_usuario_login.iniciarSesionSistema(txtUsuario.getText().toString());
+					
+					//Creamos al usuario que va a utilizar en estos momentos el sistema
+					
+					usuario_sistema = txtUsuario.getText();
 
 					if(datos_sistema_contrasena.equals(pwdfContrasena.getText())) {
 
@@ -321,7 +330,7 @@ public class VentanaInicio {
 					
 						frame_principal = new AplicacionPrincipal();
 						frame_principal.getJFrame().setVisible(true);
-					
+						
 						//Se destruye la ventana actual (atributo a nivel de clase)
 					
 						frmVentanaDeLogin.dispose();

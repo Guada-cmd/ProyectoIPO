@@ -28,6 +28,12 @@ public class Usuario {
 		
 	}
 	
+	public Usuario(String nombre_usuario) {
+		
+		this.nombre_usuario = nombre_usuario;
+		
+	}
+	
 	public String getNombre() {
 		return this.nombre;
 	}
