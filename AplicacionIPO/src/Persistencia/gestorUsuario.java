@@ -127,4 +127,30 @@ public class gestorUsuario {
 		
 		return contrasena;
 	}
+	public String buscarDatoUsuario(String parametro, String nombre_usuario) {
+		
+		String buscar_dato = null;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();  
+			String sentencia_usuario_busaqueda = "select "+parametro+" from Usuario WHERE NombreUsuario = '"+nombre_usuario+"'";
+			prepared_statement = connection.prepareStatement(sentencia_usuario_busaqueda);
+			resultado_consulta = prepared_statement.executeQuery();
+			
+			if(resultado_consulta.next()) {
+				
+				buscar_dato = resultado_consulta.getString(parametro);
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return buscar_dato;
+	}
 }

@@ -30,6 +30,12 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Dominio.Perfil;
+import Dominio.Usuario;
+import Persistencia.gestorPerfil;
+import Persistencia.gestorUsuario;
+
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import java.awt.Toolkit;
@@ -73,7 +79,18 @@ public class AplicacionPrincipal {
 	
 	private ManualAyuda frame_ayuda_usuario = new ManualAyuda();
 	
-
+	//Para la base de datos
+	
+	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
+	
+	//Objeto atributo que permite guardar los datos del usuario que actualmente esta en el sistema
+	
+	private Usuario usuario_actual;
+	
+	//Objeto con los datos del perfil de usuario que se inicializaron por defecto
+	
+	private Perfil perfil_usuario;
 
 	/**
 	 * Launch the application.
@@ -313,8 +330,38 @@ public class AplicacionPrincipal {
 				MarcadorActividades.setVisible(false);
 				MarcadorRutas.setVisible(false);
 				
+				
+				//METODO QUE CON SET ACTUALIZA LOS DATOS
+				
+				
+				
 			}
 		}
+	}
+	private void inicializarDatosUsuarioBD() {
+		
+		if(VentanaInicio.usuario_sistema != null) {
+			
+			String nombre_usuarioDB = VentanaInicio.usuario_sistema;
+			String nombreDB = metodos_gestor_usuario.buscarDatoUsuario("Nombre",  VentanaInicio.usuario_sistema);
+			String apellidoDB = metodos_gestor_usuario.buscarDatoUsuario("Apellidos",  VentanaInicio.usuario_sistema);
+			String telefonoDB = metodos_gestor_usuario.buscarDatoUsuario("Telefono",  VentanaInicio.usuario_sistema);
+			String correo_electronicoDB = metodos_gestor_usuario.buscarDatoUsuario("Correo",  VentanaInicio.usuario_sistema);
+			
+			usuario_actual = new Usuario (nombre_usuarioDB, nombreDB, apellidoDB, telefonoDB, correo_electronicoDB);
+			
+			String nombre_usuario_perfilDB = nombre_usuarioDB;
+			String idiomasDB = metodos_gestor_perfil.buscarDatoPerfilUsuario("Idiomas", VentanaInicio.usuario_sistema);
+			String disponibilidadDB = metodos_gestor_perfil.buscarDatoPerfilUsuario("Disponibilidad", VentanaInicio.usuario_sistema);
+			String formacion = metodos_gestor_perfil.buscarDatoPerfilUsuario("Formacion", VentanaInicio.usuario_sistema);
+			
+			perfil_usuario = new Perfil (nombre_usuario_perfilDB, idiomasDB, disponibilidadDB, formacion);
+			
+			pnlUsuario = new MiPanelUsuario(usuario_actual, perfil_usuario);
+			pnlContenidoAplicacionPrincipal.add(pnlUsuario, "Perfil");
+			
+		}
+	
 	}
 	/**
 	 * 
@@ -358,8 +405,8 @@ public class AplicacionPrincipal {
 		
 		//Panel que da acceso a la informacion del usuario
 		
-		pnlUsuario = new MiPanelUsuario();
-		pnlContenidoAplicacionPrincipal.add(pnlUsuario, "Perfil");
+		inicializarDatosUsuarioBD();
+		
 		
 		//Panel que da acceso al gestor de la configuracion para editar la informacion
 		

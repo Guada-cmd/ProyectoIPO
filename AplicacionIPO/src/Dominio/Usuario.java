@@ -2,6 +2,7 @@ package Dominio;
 
 import java.util.Date;
 
+
 public class Usuario {
 	
 	private String nombre;
@@ -25,6 +26,16 @@ public class Usuario {
 		this.telefono = telefono;
 		this.correo_electronico = correo_electronico;
 		this.fecha_nacimiento = fecha_nacimiento;
+		
+	}
+	
+	public Usuario (String nombre_usuario, String nombre, String apellidos, String telefono, String correo_electronico) {
+		
+		this.nombre_usuario = nombre_usuario;
+		this.nombre = nombre;
+		this.apellidos = apellidos; 
+		this.telefono = telefono;
+		this.correo_electronico = correo_electronico;
 		
 	}
 	
