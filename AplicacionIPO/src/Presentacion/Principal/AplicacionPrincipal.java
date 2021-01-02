@@ -157,10 +157,35 @@ public class AplicacionPrincipal {
 		miCerrarSesion.addActionListener(new CerrarSesionActionListener());
 		miManual.addActionListener(new AbrirManualAyudaActionListener());
 		
-		btnReservas.addActionListener(new MarcadorReservasActionListener());
-		btnActividades.addActionListener(new MarcadorActividadesActionListener());
-		btnRutas.addActionListener(new MarcadorRutasActionListener());
+		btnReservas.addActionListener(new MarcadorUbicacionActionListener());
+		btnActividades.addActionListener(new MarcadorUbicacionActionListener());
+		btnRutas.addActionListener(new MarcadorUbicacionActionListener());
 	
+	}
+	/**
+	 * 
+	 * Descripcion: Permite indicar en que panel estas
+	 *
+	 */
+	private class MarcadorUbicacionActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			if (e.getSource() == btnReservas) {
+				MarcadorReservas.setVisible(true);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(false);
+			}
+			else if (e.getSource() == btnActividades) {
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(true);
+				MarcadorRutas.setVisible(false);
+			}
+			else if (e.getSource() == btnRutas) {
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(true);
+			}
+		}
 	}
 	/**
 	 * 
@@ -271,48 +296,6 @@ public class AplicacionPrincipal {
 	}
 	/**
 	 * 
-	 * Descripcion: Permite indicar en que panel estas
-	 *
-	 */
-	private class MarcadorRutasActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			MarcadorReservas.setVisible(false);
-			MarcadorActividades.setVisible(false);
-			MarcadorRutas.setVisible(true);
-			
-		}
-	}
-	/**
-	 * 
-	 * Descripcion: Permite indicar en que panel estas
-	 *
-	 */
-	private class MarcadorActividadesActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			MarcadorReservas.setVisible(false);
-			MarcadorActividades.setVisible(true);
-			MarcadorRutas.setVisible(false);
-			
-		}
-	}
-	/**
-	 * 
-	 * Descripcion: Permite indicar en que panel estas
-	 *
-	 */
-	private class MarcadorReservasActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			MarcadorReservas.setVisible(true);
-			MarcadorActividades.setVisible(false);
-			MarcadorRutas.setVisible(false);
-			
-		}
-	}
-	/**
-	 * 
 	 * Descripcion: Permite navegar entre los paneles al pulsar un boton
 	 *
 	 */
@@ -324,7 +307,13 @@ public class AplicacionPrincipal {
 			cardLayoutPanel.show(pnlContenidoAplicacionPrincipal, e.getActionCommand());
 			
 			
-			
+			if(e.getSource() == miUsuario || e.getSource() == miConfiguracion || e.getSource() == miCerrarSesion || e.getSource() == miManual) {
+				
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(false);
+				
+			}
 		}
 	}
 	/**
@@ -427,6 +416,7 @@ public class AplicacionPrincipal {
 		btnReservas.setForeground(new Color(255, 255, 255));
 		
 		GridBagConstraints gbc_btnReservas = new GridBagConstraints();
+		gbc_btnReservas.gridwidth = 2;
 		gbc_btnReservas.anchor = GridBagConstraints.WEST;
 		gbc_btnReservas.insets = new Insets(0, 0, 5, 5);
 		gbc_btnReservas.fill = GridBagConstraints.VERTICAL;
@@ -458,6 +448,7 @@ public class AplicacionPrincipal {
 		btnActividades.setForeground(new Color(255, 255, 255));
 		
 		GridBagConstraints gbc_btnActividades = new GridBagConstraints();
+		gbc_btnActividades.gridwidth = 2;
 		gbc_btnActividades.anchor = GridBagConstraints.WEST;
 		gbc_btnActividades.insets = new Insets(0, 0, 5, 5);
 		gbc_btnActividades.fill = GridBagConstraints.VERTICAL;
@@ -488,6 +479,7 @@ public class AplicacionPrincipal {
 		btnRutas.setForeground(new Color(255, 255, 255));
 		
 		GridBagConstraints gbc_btnRutas = new GridBagConstraints();
+		gbc_btnRutas.gridwidth = 2;
 		gbc_btnRutas.anchor = GridBagConstraints.WEST;
 		gbc_btnRutas.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRutas.gridx = 1;
