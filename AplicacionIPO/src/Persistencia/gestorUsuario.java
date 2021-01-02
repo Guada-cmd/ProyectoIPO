@@ -40,21 +40,21 @@ public class gestorUsuario {
 		return usuario_nombre;
 	}
 	
-	public int insertarUsuario(String nombre, String apellidos, String nombre_usuario, String contrasena, String tipo_usuario, String telefono, String correo_electronico, String fecha_nacimiento) {
+	public int insertarUsuario(String nombre_usuario, String nombre, String apellidos, String contrasena, String tipo_usuario, String telefono, String correo_electronico, String fecha_nacimiento) {
 		
 		int resultado = 0;
 		Connection connection = null;
 		
-		String sentencia_insertar_usuario = "insert into Usuario (Nombre, Apellidos, NombreUsuario, Contrasena, Tipo, Telefono, Correo, FechaNacimiento) values(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sentencia_insertar_usuario = "insert into Usuario (NombreUsuario, Nombre, Apellidos, Contrasena, Tipo, Telefono, Correo, FechaNacimiento) values(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			
 			connection = BrokerBD.conectarBD();
 			prepared_statement = connection.prepareStatement(sentencia_insertar_usuario);
 			
-			prepared_statement.setString(1, nombre);
-			prepared_statement.setString(2, apellidos);
-			prepared_statement.setString(3, nombre_usuario);
+			prepared_statement.setString(1, nombre_usuario);
+			prepared_statement.setString(2, nombre);
+			prepared_statement.setString(3, apellidos);
 			prepared_statement.setString(4, contrasena);
 			prepared_statement.setString(5, tipo_usuario);
 			prepared_statement.setString(6, telefono);

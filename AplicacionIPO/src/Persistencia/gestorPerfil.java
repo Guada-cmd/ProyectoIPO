@@ -18,7 +18,7 @@ public class gestorPerfil {
 		int resultado = 0;
 		Connection connection = null;
 		
-		String sentencia_insertar_perfil = "insert into Perfil (IDUsuario, Idiomas, Disponibilidad, Formacion) values(?, ?, ?, ?)";
+		String sentencia_insertar_perfil = "insert into Perfil (UserName, Idiomas, Disponibilidad, Formacion) values(?, ?, ?, ?)";
 		
 		try {
 			
@@ -29,7 +29,6 @@ public class gestorPerfil {
 			
 			//System.out.println(id_usuario);
 			
-			//prepared_statement_perfil.setInt(0, id_usuario);
 			prepared_statement_perfil.setString(1, nombre_usuario);
 			prepared_statement_perfil.setString(2, idiomas);
 			prepared_statement_perfil.setString(3, disponibilidad);

@@ -438,9 +438,8 @@ public class FormularioRegistro extends JFrame {
 					if(validacion > 0) {
 						dialogoRegistroExitoso();
 						
-						String nombre = metodos_gestor_usuario.buscarUsuarioRegistradoID(txtNombreUsuario.getText().toString());
-						System.out.println(nombre);
-						metodos_gestor_perfil.insertarPerfilUsuario(txtNombreUsuario.getText().toString(), "Ninguno".toString(), "No".toString(), "Otro".toString());
+						String nombre_usuario = metodos_gestor_usuario.buscarUsuarioRegistradoID(txtNombreUsuario.getText().toString());
+						metodos_gestor_perfil.insertarPerfilUsuario(nombre_usuario, "Ninguno".toString(), "No".toString(), "Otro".toString());
 					}
 					else {
 						dialogoErrorRegistro();
@@ -466,10 +465,10 @@ public class FormularioRegistro extends JFrame {
 		//Codigo que permite insertar los datos en la base de datos
 		
 		if (dcFechaNacimiento.getDate() == null) {
-			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
+			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombreUsuario.getText().toString(), txtNombre.getText().toString(), txtApellido.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), null);
 		} else {
 			cadena_formato_fecha = dcFechaNacimiento.getCalendar().get(Calendar.DAY_OF_MONTH)+"/"+ dcFechaNacimiento.getCalendar().get(Calendar.MONTH)+"/"+ dcFechaNacimiento.getCalendar().get(Calendar.YEAR);	
-			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
+			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombreUsuario.getText().toString(), txtNombre.getText().toString(), txtApellido.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
 		}
 		
 	
