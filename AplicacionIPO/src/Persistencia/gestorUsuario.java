@@ -3,7 +3,6 @@ package Persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Date;
 
 public class gestorUsuario {
 	
@@ -13,6 +12,33 @@ public class gestorUsuario {
 	public static String sql;
 	public static int comprobacion_resultado;
 	
+
+	public String buscarUsuarioRegistradoID(String nombre_usuario) {
+		
+		String usuario_nombre = null;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			String sentencia_buscar_usuario = "select NombreUsuario from Usuario WHERE NombreUsuario = '"+nombre_usuario+"'";
+			prepared_statement = connection.prepareStatement(sentencia_buscar_usuario);
+			resultado_consulta = prepared_statement.executeQuery();
+			
+			if(resultado_consulta.next()) {
+				
+				usuario_nombre = resultado_consulta.getString("NombreUsuario");
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return usuario_nombre;
+	}
 	
 	public int insertarUsuario(String nombre, String apellidos, String nombre_usuario, String contrasena, String tipo_usuario, String telefono, String correo_electronico, String fecha_nacimiento) {
 		

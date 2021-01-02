@@ -53,6 +53,7 @@ import com.toedter.components.JSpinField;
 
 import javax.swing.JFormattedTextField;
 
+import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
 
 public class FormularioRegistro extends JFrame {
@@ -107,7 +108,7 @@ public class FormularioRegistro extends JFrame {
 	//Atributo que permite las operaciones con la base de datos
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
-	
+	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
 
 	/**
 	 * Launch the application.
@@ -436,6 +437,10 @@ public class FormularioRegistro extends JFrame {
 					
 					if(validacion > 0) {
 						dialogoRegistroExitoso();
+						
+						String nombre = metodos_gestor_usuario.buscarUsuarioRegistradoID(txtNombreUsuario.getText().toString());
+						System.out.println(nombre);
+						metodos_gestor_perfil.insertarPerfilUsuario(txtNombreUsuario.getText().toString(), "Ninguno".toString(), "No".toString(), "Otro".toString());
 					}
 					else {
 						dialogoErrorRegistro();
@@ -467,6 +472,7 @@ public class FormularioRegistro extends JFrame {
 			comprobacion = metodos_gestor_usuario.insertarUsuario(txtNombre.getText().toString(), txtApellido.getText().toString(), txtNombreUsuario.getText().toString(), pwdfContrasena.getText().toString(), (String)cmbTipoUsuario.getSelectedItem(), ftxtTelefono.getText(), txtCorreoElectronico.getText().toString(), cadena_formato_fecha);
 		}
 		
+	
 		return comprobacion;
 	}
 	/**
