@@ -438,8 +438,8 @@ public class FormularioRegistro extends JFrame {
 					if(validacion > 0) {
 						dialogoRegistroExitoso();
 						
-						String nombre_usuario = metodos_gestor_usuario.buscarUsuarioRegistradoID(txtNombreUsuario.getText().toString());
-						metodos_gestor_perfil.insertarPerfilUsuario(nombre_usuario, "Ninguno".toString(), "No".toString(), "Otro".toString());
+						//Insertar datos por defecto
+						metodos_gestor_perfil.insertarPerfilUsuario(txtNombreUsuario.getText().toString(), "Ninguno".toString(), "No".toString(), "Otro".toString());
 					}
 					else {
 						dialogoErrorRegistro();

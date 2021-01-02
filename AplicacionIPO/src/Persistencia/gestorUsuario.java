@@ -12,34 +12,20 @@ public class gestorUsuario {
 	public static String sql;
 	public static int comprobacion_resultado;
 	
-
-	public String buscarUsuarioRegistradoID(String nombre_usuario) {
-		
-		String usuario_nombre = null;
-		Connection connection = null;
-		
-		try {
-			
-			connection = BrokerBD.conectarBD();
-			String sentencia_buscar_usuario = "select NombreUsuario from Usuario WHERE NombreUsuario = '"+nombre_usuario+"'";
-			prepared_statement = connection.prepareStatement(sentencia_buscar_usuario);
-			resultado_consulta = prepared_statement.executeQuery();
-			
-			if(resultado_consulta.next()) {
-				
-				usuario_nombre = resultado_consulta.getString("NombreUsuario");
-				
-			}
-			
-			connection.close();
-			
-		}catch (Exception e) {
-			System.out.println(e);
-		}
-		
-		return usuario_nombre;
-	}
-	
+	/**
+	 * 
+	 * Descripcion: mediante los parametros de entrada que el usuario introduce en la parte de presentacion de la aplicacion, se insertan esos parametros en la base de datos
+	 * 
+	 * @param nombre_usuario
+	 * @param nombre
+	 * @param apellidos
+	 * @param contrasena
+	 * @param tipo_usuario
+	 * @param telefono
+	 * @param correo_electronico
+	 * @param fecha_nacimiento
+	 * @return un entero para saber si la operacion realizada ha salido correctamente
+	 */
 	public int insertarUsuario(String nombre_usuario, String nombre, String apellidos, String contrasena, String tipo_usuario, String telefono, String correo_electronico, String fecha_nacimiento) {
 		
 		int resultado = 0;
@@ -74,6 +60,13 @@ public class gestorUsuario {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: un usuario no se puede registrar en el sistema con un nombre que ya esta en la base de datos, este metodo permite hacer dicha comprobacion
+	 * 
+	 * @param nombre_usuario
+	 * @return un entero para saber si ya hay un usuario con ese nombre en el sistema
+	 */
 	public int buscarUsuarioRegistrado(String nombre_usuario) {
 		
 		int usuario_registrado = -1;
@@ -101,6 +94,13 @@ public class gestorUsuario {
 		return usuario_registrado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: dado un nombre de usuario se obtiene su contrasena 
+	 * 
+	 * @param nombre_usuario
+	 * @return la contrasena del usuario registrado en el sistema
+	 */
 	public String iniciarSesionSistema(String nombre_usuario) {
 		
 		String contrasena = null;
@@ -127,5 +127,4 @@ public class gestorUsuario {
 		
 		return contrasena;
 	}
-
 }

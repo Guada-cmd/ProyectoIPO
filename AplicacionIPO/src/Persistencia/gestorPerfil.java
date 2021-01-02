@@ -13,6 +13,16 @@ public class gestorPerfil {
 	public static String sql_perfil;
 	public static int comprobacion_resultado_perfil;
 	
+	/**
+	 * 
+	 * Descripcion: metodo que inserta por defecto esos datos a un usuario que se registra 
+	 * 
+	 * @param nombre_usuario
+	 * @param idiomas
+	 * @param disponibilidad
+	 * @param formacion
+	 * @return un entero para saber si la operacion ha salido correctamente
+	 */
 	public int insertarPerfilUsuario(String nombre_usuario, String idiomas, String disponibilidad, String formacion) {
 		
 		int resultado = 0;
@@ -24,11 +34,7 @@ public class gestorPerfil {
 			
 			connection = BrokerBD.conectarBD();
 			prepared_statement_perfil = connection.prepareStatement(sentencia_insertar_perfil);
-			
-			//id_usuario = buscarUsuarioRegistradoID(nombre_usuario);
-			
-			//System.out.println(id_usuario);
-			
+					
 			prepared_statement_perfil.setString(1, nombre_usuario);
 			prepared_statement_perfil.setString(2, idiomas);
 			prepared_statement_perfil.setString(3, disponibilidad);
@@ -43,7 +49,6 @@ public class gestorPerfil {
 			System.out.println(e);
 			
 		}
-		System.out.println(resultado);
 		return resultado;
 	}
 }	
