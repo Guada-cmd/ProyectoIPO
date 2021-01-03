@@ -52,7 +52,7 @@ public class MiPanelAniadirRutas extends JPanel {
 	 */
 	public MiPanelAniadirRutas() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{52, 154, 147, 61, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{80, 154, 147, 61, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{66, 43, 31, 23, 24, 27, 22, 27, 27, 29, 14, 34, 37, 42, 41, 71, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -212,7 +212,6 @@ public class MiPanelAniadirRutas extends JPanel {
 		
 		scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 2;
 		gbc_scrollPane.gridwidth = 4;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
