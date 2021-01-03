@@ -54,10 +54,14 @@ public class MiPanelRutasSenderistas extends JPanel {
 		table = new JTable();
 		table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		
-		ModeloDinamicoTabla table_d = new ModeloDinamicoTabla();
-		table.setModel(table_d);
+		DefaultTableModel model = new DefaultTableModel();
 		
-		insertData(table_d);
+		model.addColumn("Nombre");
+		model.addColumn("Fecha");
+
+		table.setModel(model);
+		
+		insertData(model);
 		
 		scrollPane.setViewportView(table);
 		
@@ -74,9 +78,9 @@ public class MiPanelRutasSenderistas extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				gestorRutas r = new gestorRutas();
-				r.buscarRuta();
-				System.out.println(r.buscarRuta());
+				//gestorRutas r = new gestorRutas();
+				//r.buscarRuta();
+				//System.out.println(r.numeroFilasTablaRutas());
 			}
 		});
 		btnNewButton.setBounds(248, 15, 85, 21);
@@ -84,11 +88,24 @@ public class MiPanelRutasSenderistas extends JPanel {
 		
 	}
 	
-	public void insertData(ModeloDinamicoTabla modeloTabla) {
+	public void insertData(DefaultTableModel model) {
 		
-		System.out.println(r.buscarRuta());
+		//System.out.println(r.numeroFilasTablaRutas());
 		
+		String [] fila = new String [2];
+		String a = "";
+		int e = r.numeroFilasTablaRutas();
 		
+		for(int i = 1; i<=e; i++) {
+			
+			//a = a + (r.crearTableRuta("Nombre", i));
 		
+			fila[0] = r.crearTableRuta("Nombre", i);
+			fila[1] = r.crearTableRuta("Fecha", i);
+			
+			model.addRow(fila);
+			
+		}
+		System.out.println(a);
 	}
 }
