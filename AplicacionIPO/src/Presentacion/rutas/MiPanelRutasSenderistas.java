@@ -2,6 +2,7 @@ package Presentacion.rutas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,17 +15,22 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Persistencia.gestorRutas;
 import Presentacion.EditorGrafico.EditorGraficoRuta;
+import javax.swing.SwingConstants;
 
 public class MiPanelRutasSenderistas extends JPanel {
-
-	private JTextField txtBarraBusqueda;
 	private JLabel lblBarraBusqueda;
-	private JLabel lblTituloPanelRutas;
-	private JScrollPane scrollPane;
-	private JTable table;
 	
 	private ArrayList<Ruta> List_rutas_ofertadas = new ArrayList<Ruta>();
+	private JScrollPane scrollPaneFoto;
+	private JLabel lblFotoRutaSeleccionada;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JTable table;
+	private JButton btnNewButton;
+	
+	gestorRutas r = new gestorRutas();
 
 	/**
 	 * Create the panel.
@@ -33,39 +39,56 @@ public class MiPanelRutasSenderistas extends JPanel {
 		
 		setLayout(null);
 		
-		txtBarraBusqueda = new JTextField();
-		txtBarraBusqueda.setBounds(60, 84, 339, 27);
-		add(txtBarraBusqueda);
-		txtBarraBusqueda.setColumns(10);
-		
 		lblBarraBusqueda = new JLabel("");
 		lblBarraBusqueda.setBounds(521, 98, 45, 13);
 		add(lblBarraBusqueda);
 		
-		lblTituloPanelRutas = new JLabel("Rutas gratuitas ofertadas.");
-		lblTituloPanelRutas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		lblTituloPanelRutas.setBounds(60, 45, 183, 20);
-		add(lblTituloPanelRutas);
+		scrollPaneFoto = new JScrollPane();
+		scrollPaneFoto.setBounds(59, 46, 274, 175);
+		add(scrollPaneFoto);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 214, 877, 198);
+		scrollPane.setBounds(59, 242, 730, 170);
 		add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Foto", "Equipamiento", "Descripcion", "Dificultad", "Num. m\u00E1ximo", "N\u00FAm. m\u00EDnimo", "Punto Encuentro", "Monitor/es", "Hora Final", "Hora Inicio"
-			}
-		));
+		table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		
+		ModeloDinamicoTabla table_d = new ModeloDinamicoTabla();
+		table.setModel(table_d);
+		
+		insertData(table_d);
+		
 		scrollPane.setViewportView(table);
 		
-		inicializarDatosTablaRutas();
-	}
-	private void inicializarDatosTablaRutas() {
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(356, 46, 433, 175);
+		add(scrollPane_1);
 		
-		Ruta ruta = new Ruta();
+		lblFotoRutaSeleccionada = new JLabel("");
+		lblFotoRutaSeleccionada.setBounds(59, 59, 272, 173);
+		add(lblFotoRutaSeleccionada);
+		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				gestorRutas r = new gestorRutas();
+				r.buscarRuta();
+				System.out.println(r.buscarRuta());
+			}
+		});
+		btnNewButton.setBounds(248, 15, 85, 21);
+		add(btnNewButton);
+		
+	}
+	
+	public void insertData(ModeloDinamicoTabla modeloTabla) {
+		
+		System.out.println(r.buscarRuta());
+		
+		
 		
 	}
 }
