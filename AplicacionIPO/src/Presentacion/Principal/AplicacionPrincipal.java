@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
@@ -70,6 +71,8 @@ public class AplicacionPrincipal {
 	private JTextArea MarcadorRutas;
 	private JMenu mAyuda;
 	private JMenuItem miManual;
+	private JButton btnEditarActividad;
+	private JButton btnCrearRuta;
 	
 	//Variable para cerrar sesion
 	
@@ -91,6 +94,23 @@ public class AplicacionPrincipal {
 	//Objeto con los datos del perfil de usuario que se inicializaron por defecto
 	
 	private Perfil perfil_usuario;
+	private JButton btnParcelas;
+	private JButton btnCabanas;
+	private JButton btnExplorarReservas;
+	
+	private GridBagConstraints gbc_btnReservas = new GridBagConstraints();
+	private GridBagConstraints gbc_btnCabanas = new GridBagConstraints();
+	private GridBagConstraints gbc_btnParcelas = new GridBagConstraints();
+	private GridBagConstraints gbc_btnExplorarReservas = new GridBagConstraints();
+	
+	private GridBagConstraints gbc_btnActividades = new GridBagConstraints();
+	private GridBagConstraints gbc_btnEditarActividad = new GridBagConstraints();
+	
+	private GridBagConstraints gbc_btnCrearRuta = new GridBagConstraints();
+	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -188,21 +208,219 @@ public class AplicacionPrincipal {
 		public void actionPerformed(ActionEvent e) {
 			
 			if (e.getSource() == btnReservas) {
-				MarcadorReservas.setVisible(true);
-				MarcadorActividades.setVisible(false);
-				MarcadorRutas.setVisible(false);
+				
+						
+				colocarLayout(0);
+							
+				//MarcadorReservas.setVisible(true);
+				//MarcadorActividades.setVisible(false);
+				//MarcadorRutas.setVisible(false);
 			}
 			else if (e.getSource() == btnActividades) {
-				MarcadorReservas.setVisible(false);
-				MarcadorActividades.setVisible(true);
-				MarcadorRutas.setVisible(false);
+				
+				//MarcadorReservas.setVisible(false);
+				//MarcadorActividades.setVisible(true);
+				//MarcadorRutas.setVisible(false);
+				
+				btnParcelas.setVisible(false);
+				btnCabanas.setVisible(false);
+				btnExplorarReservas.setVisible(false);
+				
+				colocarLayout(1);
+				
 			}
 			else if (e.getSource() == btnRutas) {
-				MarcadorReservas.setVisible(false);
-				MarcadorActividades.setVisible(false);
-				MarcadorRutas.setVisible(true);
+				
+				//MarcadorReservas.setVisible(false);
+				//MarcadorActividades.setVisible(false);
+				//MarcadorRutas.setVisible(true);
+				
+				
+				colocarLayout(2);
 			}
 		}
+	}
+	private void colocarLayout(int var) {
+		
+		switch(var) {
+		
+			case 0:
+				
+				btnParcelas.setVisible(true);
+				btnCabanas.setVisible(true);
+				btnExplorarReservas.setVisible(true);
+				btnEditarActividad.setVisible(false);
+				btnCrearRuta.setVisible(false);
+				
+				//Colocar Layout reservas
+				
+				gbc_btnReservas.gridwidth = 2;
+				gbc_btnReservas.gridx = 1;
+				gbc_btnReservas.gridy = 1;
+				pnlBotones.add(btnReservas, gbc_btnReservas);
+						
+				gbc_btnActividades.gridwidth = 2;
+				gbc_btnActividades.gridx = 1;
+				gbc_btnActividades.gridy = 5;
+				pnlBotones.add(btnActividades, gbc_btnActividades);
+				
+				gbc_btnRutas.gridwidth = 2;
+				gbc_btnRutas.gridx = 1;
+				gbc_btnRutas.gridy = 6;
+				pnlBotones.add(btnRutas, gbc_btnRutas);
+				
+				//Rama reservas
+				
+				gbc_btnCabanas.gridwidth = 2;
+				gbc_btnCabanas.gridx = 1;
+				gbc_btnCabanas.gridy = 2;
+				pnlBotones.add(btnCabanas, gbc_btnCabanas);
+				
+				gbc_btnParcelas.gridwidth = 2;
+				gbc_btnParcelas.gridx = 1;
+				gbc_btnParcelas.gridy = 3;
+				pnlBotones.add(btnParcelas, gbc_btnParcelas);
+				
+				gbc_btnExplorarReservas.gridwidth = 2;
+				gbc_btnExplorarReservas.gridx = 1;
+				gbc_btnExplorarReservas.gridy = 4;
+				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
+				
+				//Rama actividades
+				
+				gbc_btnEditarActividad.gridwidth = 2;
+				gbc_btnEditarActividad.gridx = 1;
+				gbc_btnEditarActividad.gridy = 7;
+				pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
+				
+				//Rama ruta
+				
+				gbc_btnCrearRuta.gridwidth = 2;
+				gbc_btnCrearRuta.gridx = 1;
+				gbc_btnCrearRuta.gridy = 8;
+				pnlBotones.add(btnCrearRuta, gbc_btnCrearRuta);
+				
+				break;
+				
+			case 1:
+				
+				btnParcelas.setVisible(false);
+				btnCabanas.setVisible(false);
+				btnExplorarReservas.setVisible(false);
+				btnEditarActividad.setVisible(true);
+				btnCrearRuta.setVisible(false);
+				
+				//Colocar Layout reservas
+				
+				gbc_btnReservas.gridwidth = 2;
+				gbc_btnReservas.gridx = 1;
+				gbc_btnReservas.gridy = 1;
+				pnlBotones.add(btnReservas, gbc_btnReservas);
+						
+				gbc_btnActividades.gridwidth = 2;
+				gbc_btnActividades.gridx = 1;
+				gbc_btnActividades.gridy = 2;
+				pnlBotones.add(btnActividades, gbc_btnActividades);
+				
+				gbc_btnRutas.gridwidth = 2;
+				gbc_btnRutas.gridx = 1;
+				gbc_btnRutas.gridy = 4;
+				pnlBotones.add(btnRutas, gbc_btnRutas);
+				
+				//Rama reservas
+				
+				gbc_btnCabanas.gridwidth = 2;
+				gbc_btnCabanas.gridx = 1;
+				gbc_btnCabanas.gridy = 6;
+				pnlBotones.add(btnCabanas, gbc_btnCabanas);
+				
+				gbc_btnParcelas.gridwidth = 2;
+				gbc_btnParcelas.gridx = 1;
+				gbc_btnParcelas.gridy = 7;
+				pnlBotones.add(btnParcelas, gbc_btnParcelas);
+				
+				gbc_btnExplorarReservas.gridwidth = 2;
+				gbc_btnExplorarReservas.gridx = 1;
+				gbc_btnExplorarReservas.gridy = 8;
+				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
+				
+				//Rama actividades
+				
+				gbc_btnEditarActividad.gridwidth = 2;
+				gbc_btnEditarActividad.gridx = 1;
+				gbc_btnEditarActividad.gridy = 3;
+				pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
+				
+				//Rama ruta
+				
+				gbc_btnCrearRuta.gridwidth = 2;
+				gbc_btnCrearRuta.gridx = 1;
+				gbc_btnCrearRuta.gridy = 5;
+				pnlBotones.add(btnCrearRuta, gbc_btnCrearRuta);
+				
+				break;
+				
+			case 2:
+				
+				btnParcelas.setVisible(false);
+				btnCabanas.setVisible(false);
+				btnExplorarReservas.setVisible(false);
+				btnEditarActividad.setVisible(false);
+				btnCrearRuta.setVisible(true);
+				
+				//Colocar Layout reservas
+				
+				gbc_btnReservas.gridwidth = 2;
+				gbc_btnReservas.gridx = 1;
+				gbc_btnReservas.gridy = 1;
+				pnlBotones.add(btnReservas, gbc_btnReservas);
+						
+				gbc_btnActividades.gridwidth = 2;
+				gbc_btnActividades.gridx = 1;
+				gbc_btnActividades.gridy = 2;
+				pnlBotones.add(btnActividades, gbc_btnActividades);
+				
+				gbc_btnRutas.gridwidth = 2;
+				gbc_btnRutas.gridx = 1;
+				gbc_btnRutas.gridy = 3;
+				pnlBotones.add(btnRutas, gbc_btnRutas);
+				
+				//Rama reservas
+				
+				gbc_btnCabanas.gridwidth = 2;
+				gbc_btnCabanas.gridx = 1;
+				gbc_btnCabanas.gridy = 6;
+				pnlBotones.add(btnCabanas, gbc_btnCabanas);
+				
+				gbc_btnParcelas.gridwidth = 2;
+				gbc_btnParcelas.gridx = 1;
+				gbc_btnParcelas.gridy = 7;
+				pnlBotones.add(btnParcelas, gbc_btnParcelas);
+				
+				gbc_btnExplorarReservas.gridwidth = 2;
+				gbc_btnExplorarReservas.gridx = 1;
+				gbc_btnExplorarReservas.gridy = 8;
+				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
+				
+				//Rama actividades
+				
+				gbc_btnEditarActividad.gridwidth = 2;
+				gbc_btnEditarActividad.gridx = 1;
+				gbc_btnEditarActividad.gridy = 5;
+				pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
+				
+				//Rama ruta
+				
+				gbc_btnCrearRuta.gridwidth = 2;
+				gbc_btnCrearRuta.gridx = 1;
+				gbc_btnCrearRuta.gridy = 4;
+				pnlBotones.add(btnCrearRuta, gbc_btnCrearRuta);
+				
+				break;
+			
+		}
+		
+		
 	}
 	/**
 	 * 
@@ -431,9 +649,9 @@ public class AplicacionPrincipal {
 		frmAplicacinPrincipalDe.getContentPane().add(pnlBotones, BorderLayout.WEST);
 		GridBagLayout gbl_pnlBotones = new GridBagLayout();
 		gbl_pnlBotones.columnWidths = new int[]{9, 85, 21, 0};
-		gbl_pnlBotones.rowHeights = new int[]{51, 36, 41, 36, 19, 23, 0};
+		gbl_pnlBotones.rowHeights = new int[]{51, 36, 34, 38, 32, 33, 36, 40, 32, 0, 0};
 		gbl_pnlBotones.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlBotones.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlBotones.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnlBotones.setLayout(gbl_pnlBotones);
 		
 		pnlBotones.setBackground(new Color(51, 51, 51));
@@ -462,10 +680,9 @@ public class AplicacionPrincipal {
 		btnReservas.setBackground(new Color(51, 51, 51));
 		btnReservas.setForeground(new Color(255, 255, 255));
 		
-		GridBagConstraints gbc_btnReservas = new GridBagConstraints();
 		gbc_btnReservas.gridwidth = 2;
 		gbc_btnReservas.anchor = GridBagConstraints.WEST;
-		gbc_btnReservas.insets = new Insets(0, 0, 5, 5);
+		gbc_btnReservas.insets = new Insets(0, 0, 5, 0);
 		gbc_btnReservas.fill = GridBagConstraints.VERTICAL;
 		gbc_btnReservas.gridx = 1;
 		gbc_btnReservas.gridy = 1;
@@ -483,6 +700,67 @@ public class AplicacionPrincipal {
 		gbc_MarcadorActividades.gridy = 2;
 		pnlBotones.add(MarcadorActividades, gbc_MarcadorActividades);
 		
+		MarcadorRutas = new JTextArea();
+		MarcadorRutas.setVisible(false);
+		
+		btnParcelas = new JButton("Parcelas");
+		btnParcelas.setVisible(false);
+		btnParcelas.setForeground(Color.WHITE);
+		btnParcelas.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnParcelas.setFocusable(false);
+		btnParcelas.setFocusTraversalKeysEnabled(false);
+		btnParcelas.setFocusPainted(false);
+		btnParcelas.setBorder(null);
+		btnParcelas.setBackground(new Color(51, 51, 51));
+		
+		gbc_btnParcelas.anchor = GridBagConstraints.WEST;
+		gbc_btnParcelas.insets = new Insets(0, 0, 5, 5);
+		gbc_btnParcelas.gridx = 1;
+		gbc_btnParcelas.gridy = 4;
+		pnlBotones.add(btnParcelas, gbc_btnParcelas);
+		
+		MarcadorRutas.setFocusable(false);
+		MarcadorRutas.setFocusTraversalKeysEnabled(false);
+		MarcadorRutas.setEditable(false);
+		GridBagConstraints gbc_MarcadorRutas = new GridBagConstraints();
+		gbc_MarcadorRutas.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorRutas.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorRutas.gridx = 0;
+		gbc_MarcadorRutas.gridy = 3;
+		pnlBotones.add(MarcadorRutas, gbc_MarcadorRutas);
+		
+		btnCabanas = new JButton("Cabañas");
+		btnCabanas.setVisible(false);
+		btnCabanas.setForeground(Color.WHITE);
+		btnCabanas.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnCabanas.setFocusable(false);
+		btnCabanas.setFocusTraversalKeysEnabled(false);
+		btnCabanas.setFocusPainted(false);
+		btnCabanas.setBorder(null);
+		btnCabanas.setBackground(new Color(51, 51, 51));
+		
+		gbc_btnCabanas.anchor = GridBagConstraints.WEST;
+		gbc_btnCabanas.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCabanas.gridx = 1;
+		gbc_btnCabanas.gridy = 5;
+		pnlBotones.add(btnCabanas, gbc_btnCabanas);
+		
+		btnExplorarReservas = new JButton("Mis reservas");
+		btnExplorarReservas.setVisible(false);
+		btnExplorarReservas.setForeground(Color.WHITE);
+		btnExplorarReservas.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnExplorarReservas.setFocusable(false);
+		btnExplorarReservas.setFocusTraversalKeysEnabled(false);
+		btnExplorarReservas.setFocusPainted(false);
+		btnExplorarReservas.setBorder(null);
+		btnExplorarReservas.setBackground(new Color(51, 51, 51));
+		
+		gbc_btnExplorarReservas.anchor = GridBagConstraints.WEST;
+		gbc_btnExplorarReservas.insets = new Insets(0, 0, 5, 5);
+		gbc_btnExplorarReservas.gridx = 1;
+		gbc_btnExplorarReservas.gridy = 6;
+		pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
+		
 		//Boton Actividades
 		
 		btnActividades = new JButton("Actividades");
@@ -494,26 +772,30 @@ public class AplicacionPrincipal {
 		btnActividades.setBackground(new Color(51, 51, 51));
 		btnActividades.setForeground(new Color(255, 255, 255));
 		
-		GridBagConstraints gbc_btnActividades = new GridBagConstraints();
 		gbc_btnActividades.gridwidth = 2;
 		gbc_btnActividades.anchor = GridBagConstraints.WEST;
-		gbc_btnActividades.insets = new Insets(0, 0, 5, 5);
+		gbc_btnActividades.insets = new Insets(0, 0, 5, 0);
 		gbc_btnActividades.fill = GridBagConstraints.VERTICAL;
 		gbc_btnActividades.gridx = 1;
 		gbc_btnActividades.gridy = 2;
 		pnlBotones.add(btnActividades, gbc_btnActividades);
 		
-		MarcadorRutas = new JTextArea();
-		MarcadorRutas.setVisible(false);
-		MarcadorRutas.setFocusable(false);
-		MarcadorRutas.setFocusTraversalKeysEnabled(false);
-		MarcadorRutas.setEditable(false);
-		GridBagConstraints gbc_MarcadorRutas = new GridBagConstraints();
-		gbc_MarcadorRutas.insets = new Insets(0, 0, 5, 5);
-		gbc_MarcadorRutas.fill = GridBagConstraints.BOTH;
-		gbc_MarcadorRutas.gridx = 0;
-		gbc_MarcadorRutas.gridy = 3;
-		pnlBotones.add(MarcadorRutas, gbc_MarcadorRutas);
+		btnEditarActividad = new JButton("Editar Act.");
+		btnEditarActividad.setVisible(false);
+		btnEditarActividad.setForeground(Color.WHITE);
+		btnEditarActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnEditarActividad.setFocusable(false);
+		btnEditarActividad.setFocusTraversalKeysEnabled(false);
+		btnEditarActividad.setFocusPainted(false);
+		btnEditarActividad.setBorder(null);
+		btnEditarActividad.setBackground(new Color(51, 51, 51));
+				
+		gbc_btnEditarActividad.gridwidth = 2;
+		gbc_btnEditarActividad.anchor = GridBagConstraints.WEST;
+		gbc_btnEditarActividad.insets = new Insets(0, 0, 5, 0);
+		gbc_btnEditarActividad.gridx = 1;
+		gbc_btnEditarActividad.gridy = 7;
+		pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
 		
 		btnRutas = new JButton("Rutas");
 		btnRutas.setFocusable(false);
@@ -525,14 +807,30 @@ public class AplicacionPrincipal {
 		btnRutas.setBackground(new Color(51, 51, 51));
 		btnRutas.setForeground(new Color(255, 255, 255));
 		
-		GridBagConstraints gbc_btnRutas = new GridBagConstraints();
 		gbc_btnRutas.gridwidth = 2;
 		gbc_btnRutas.anchor = GridBagConstraints.WEST;
-		gbc_btnRutas.insets = new Insets(0, 0, 5, 5);
+		gbc_btnRutas.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRutas.gridx = 1;
 		gbc_btnRutas.gridy = 3;
 		pnlBotones.add(btnRutas, gbc_btnRutas);
 		
+		btnCrearRuta = new JButton("Crear Ruta");
+		btnCrearRuta.setVisible(false);
+		btnCrearRuta.setForeground(Color.WHITE);
+		btnCrearRuta.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnCrearRuta.setFocusable(false);
+		btnCrearRuta.setFocusTraversalKeysEnabled(false);
+		btnCrearRuta.setFocusPainted(false);
+		btnCrearRuta.setBorder(null);
+		btnCrearRuta.setBackground(new Color(51, 51, 51));
+		
+		gbc_btnCrearRuta.anchor = GridBagConstraints.WEST;
+		gbc_btnCrearRuta.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCrearRuta.gridx = 1;
+		gbc_btnCrearRuta.gridy = 8;
+		pnlBotones.add(btnCrearRuta, gbc_btnCrearRuta);
+		
+	
 	}
 	/**
 	 * 
