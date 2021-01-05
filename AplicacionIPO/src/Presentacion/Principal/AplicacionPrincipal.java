@@ -109,7 +109,11 @@ public class AplicacionPrincipal {
 	private GridBagConstraints gbc_btnCrearRuta = new GridBagConstraints();
 	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
 	
-	
+	private JTextArea MarcadorParcela;
+	private JTextArea MarcadorCabana;
+	private JTextArea MarcadorMisReservas;
+	private JTextArea MarcadorEditarAct;
+	private JTextArea MarcadorCrearRuta;
 	
 
 	/**
@@ -207,20 +211,34 @@ public class AplicacionPrincipal {
 	private class MarcadorUbicacionActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
+			
 			if (e.getSource() == btnReservas) {
 				
 						
 				colocarLayout(0);
 							
-				//MarcadorReservas.setVisible(true);
-				//MarcadorActividades.setVisible(false);
-				//MarcadorRutas.setVisible(false);
+				MarcadorReservas.setVisible(true);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(false);
+
+				MarcadorParcela.setVisible(false);
+				MarcadorCabana.setVisible(false);
+				MarcadorMisReservas.setVisible(false);
+				MarcadorEditarAct.setVisible(false);
+				MarcadorCrearRuta.setVisible(false);
+				
 			}
 			else if (e.getSource() == btnActividades) {
 				
-				//MarcadorReservas.setVisible(false);
-				//MarcadorActividades.setVisible(true);
-				//MarcadorRutas.setVisible(false);
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(true);
+				MarcadorRutas.setVisible(false);
+				
+				MarcadorParcela.setVisible(false);
+				MarcadorCabana.setVisible(false);
+				MarcadorMisReservas.setVisible(false);
+				MarcadorEditarAct.setVisible(false);
+				MarcadorCrearRuta.setVisible(false);
 				
 				btnParcelas.setVisible(false);
 				btnCabanas.setVisible(false);
@@ -231,9 +249,15 @@ public class AplicacionPrincipal {
 			}
 			else if (e.getSource() == btnRutas) {
 				
-				//MarcadorReservas.setVisible(false);
-				//MarcadorActividades.setVisible(false);
-				//MarcadorRutas.setVisible(true);
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(true);
+				
+				MarcadorParcela.setVisible(false);
+				MarcadorCabana.setVisible(false);
+				MarcadorMisReservas.setVisible(false);
+				MarcadorEditarAct.setVisible(false);
+				MarcadorCrearRuta.setVisible(false);
 				
 				
 				colocarLayout(2);
@@ -650,7 +674,7 @@ public class AplicacionPrincipal {
 		GridBagLayout gbl_pnlBotones = new GridBagLayout();
 		gbl_pnlBotones.columnWidths = new int[]{9, 85, 21, 0};
 		gbl_pnlBotones.rowHeights = new int[]{51, 36, 34, 38, 32, 33, 36, 40, 32, 0, 0};
-		gbl_pnlBotones.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlBotones.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlBotones.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		pnlBotones.setLayout(gbl_pnlBotones);
 		
@@ -705,6 +729,18 @@ public class AplicacionPrincipal {
 		
 		btnParcelas = new JButton("Parcelas");
 		btnParcelas.setVisible(false);
+		
+		MarcadorParcela = new JTextArea();
+		MarcadorParcela.setVisible(false);
+		MarcadorParcela.setFocusable(false);
+		MarcadorParcela.setFocusTraversalKeysEnabled(false);
+		MarcadorParcela.setEditable(false);
+		GridBagConstraints gbc_MarcadorParcela = new GridBagConstraints();
+		gbc_MarcadorParcela.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorParcela.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorParcela.gridx = 0;
+		gbc_MarcadorParcela.gridy = 4;
+		pnlBotones.add(MarcadorParcela, gbc_MarcadorParcela);
 		btnParcelas.setForeground(Color.WHITE);
 		btnParcelas.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnParcelas.setFocusable(false);
@@ -731,6 +767,18 @@ public class AplicacionPrincipal {
 		
 		btnCabanas = new JButton("Cabañas");
 		btnCabanas.setVisible(false);
+		
+		MarcadorCabana = new JTextArea();
+		MarcadorCabana.setVisible(false);
+		MarcadorCabana.setFocusable(false);
+		MarcadorCabana.setFocusTraversalKeysEnabled(false);
+		MarcadorCabana.setEditable(false);
+		GridBagConstraints gbc_MarcadorCabana = new GridBagConstraints();
+		gbc_MarcadorCabana.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorCabana.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorCabana.gridx = 0;
+		gbc_MarcadorCabana.gridy = 5;
+		pnlBotones.add(MarcadorCabana, gbc_MarcadorCabana);
 		btnCabanas.setForeground(Color.WHITE);
 		btnCabanas.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnCabanas.setFocusable(false);
@@ -747,6 +795,18 @@ public class AplicacionPrincipal {
 		
 		btnExplorarReservas = new JButton("Mis reservas");
 		btnExplorarReservas.setVisible(false);
+		
+		MarcadorMisReservas = new JTextArea();
+		MarcadorMisReservas.setVisible(false);
+		MarcadorMisReservas.setFocusable(false);
+		MarcadorMisReservas.setFocusTraversalKeysEnabled(false);
+		MarcadorMisReservas.setEditable(false);
+		GridBagConstraints gbc_MarcadorMisReservas = new GridBagConstraints();
+		gbc_MarcadorMisReservas.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorMisReservas.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorMisReservas.gridx = 0;
+		gbc_MarcadorMisReservas.gridy = 6;
+		pnlBotones.add(MarcadorMisReservas, gbc_MarcadorMisReservas);
 		btnExplorarReservas.setForeground(Color.WHITE);
 		btnExplorarReservas.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnExplorarReservas.setFocusable(false);
@@ -782,6 +842,18 @@ public class AplicacionPrincipal {
 		
 		btnEditarActividad = new JButton("Editar Act.");
 		btnEditarActividad.setVisible(false);
+		
+		MarcadorEditarAct = new JTextArea();
+		MarcadorEditarAct.setVisible(false);
+		MarcadorEditarAct.setFocusable(false);
+		MarcadorEditarAct.setFocusTraversalKeysEnabled(false);
+		MarcadorEditarAct.setEditable(false);
+		GridBagConstraints gbc_MarcadorEditarAct = new GridBagConstraints();
+		gbc_MarcadorEditarAct.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorEditarAct.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorEditarAct.gridx = 0;
+		gbc_MarcadorEditarAct.gridy = 7;
+		pnlBotones.add(MarcadorEditarAct, gbc_MarcadorEditarAct);
 		btnEditarActividad.setForeground(Color.WHITE);
 		btnEditarActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnEditarActividad.setFocusable(false);
@@ -816,6 +888,18 @@ public class AplicacionPrincipal {
 		
 		btnCrearRuta = new JButton("Crear Ruta");
 		btnCrearRuta.setVisible(false);
+		
+		MarcadorCrearRuta = new JTextArea();
+		MarcadorCrearRuta.setVisible(false);
+		MarcadorCrearRuta.setFocusable(false);
+		MarcadorCrearRuta.setFocusTraversalKeysEnabled(false);
+		MarcadorCrearRuta.setEditable(false);
+		GridBagConstraints gbc_MarcadorCrearRuta = new GridBagConstraints();
+		gbc_MarcadorCrearRuta.insets = new Insets(0, 0, 5, 5);
+		gbc_MarcadorCrearRuta.fill = GridBagConstraints.BOTH;
+		gbc_MarcadorCrearRuta.gridx = 0;
+		gbc_MarcadorCrearRuta.gridy = 8;
+		pnlBotones.add(MarcadorCrearRuta, gbc_MarcadorCrearRuta);
 		btnCrearRuta.setForeground(Color.WHITE);
 		btnCrearRuta.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnCrearRuta.setFocusable(false);
