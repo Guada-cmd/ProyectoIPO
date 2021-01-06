@@ -90,7 +90,7 @@ public class MiPanelActividad extends JPanel {
 		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(59, 85, 730, 155);
+		scrollPane.setBounds(59, 85, 730, 149);
 		add(scrollPane);
 		
 		table = new JTable();
