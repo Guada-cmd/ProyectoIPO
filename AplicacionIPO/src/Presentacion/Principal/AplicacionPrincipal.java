@@ -17,6 +17,7 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
 
+import Presentacion.Actividad.MiPanelActividad;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.rutas.MiPanelGestorRutas;
 import Presentacion.rutas.MiPanelRutasSenderistas;
@@ -471,12 +472,10 @@ public class AplicacionPrincipal {
 	private class cerrarAplicacionPrincipalWindowAdapter extends WindowAdapter {
 		public void windowClosing(WindowEvent e) {
 			
-			frame_ventana_inicio = new VentanaInicio();
 			int confirmar_cerrar_aplicacion = dialogoCerrarAplicacionPrincipal();
 			
 			if (confirmar_cerrar_aplicacion == 0) {
-				getJFrame().dispose();
-				frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+				System.exit(0);
 			}
 			
 		}
@@ -642,7 +641,7 @@ public class AplicacionPrincipal {
 		
 		//Panel que da acceso a las actividades
 		
-		pnlActividades = new MiPanelGestorRutas();
+		pnlActividades = new MiPanelActividad();
 		pnlContenidoAplicacionPrincipal.add(pnlActividades, "Actividades");
 		
 		//Panel que da acceso a la informacion del usuario

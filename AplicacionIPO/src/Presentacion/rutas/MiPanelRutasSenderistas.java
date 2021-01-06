@@ -147,9 +147,9 @@ public class MiPanelRutasSenderistas extends JPanel {
 			
 			//if(r.buscarFotoRuta(i) != null) {
 				
-				icon = new ImageIcon(r.buscarFotoRuta(6));
+				//icon = new ImageIcon(r.buscarFotoRuta(6));
 				
-				lblNewLabel_1.setIcon(icon);
+				//lblNewLabel_1.setIcon(icon);
 				
 			//} else{
 		    
