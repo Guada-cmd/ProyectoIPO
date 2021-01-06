@@ -30,6 +30,7 @@ import javax.swing.event.ListSelectionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Point;
 
 public class MiPanelActividad extends JPanel {
 	
@@ -49,6 +50,8 @@ public class MiPanelActividad extends JPanel {
 	private JLabel lblIconCalendar;
 	private JLabel lblHorarioDB;
 	private JLabel lblDescripcionDB;
+	private JLabel lblIconoUbicacion;
+	private JLabel lblUbicacionDB;
 
 	/**
 	 * Create the panel.
@@ -126,8 +129,19 @@ public class MiPanelActividad extends JPanel {
 		add(lblHorarioDB);
 		
 		lblDescripcionDB = new JLabel("");
-		lblDescripcionDB.setBounds(327, 278, 462, 24);
+		lblDescripcionDB.setBounds(327, 279, 462, 24);
 		add(lblDescripcionDB);
+		
+		lblIconoUbicacion = new JLabel("");
+		lblIconoUbicacion.setLocation(new Point(330, 335));
+		lblIconoUbicacion.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/ubicacion.png")));
+		lblIconoUbicacion.setVisible(false);
+		lblIconoUbicacion.setBounds(327, 326, 21, 24);
+		add(lblIconoUbicacion);
+		
+		lblUbicacionDB = new JLabel("");
+		lblUbicacionDB.setBounds(361, 326, 224, 24);
+		add(lblUbicacionDB);
 		
 	}
 	
@@ -188,13 +202,16 @@ public class MiPanelActividad extends JPanel {
 					String contenido = ""+table.getValueAt(n, 0);
 					String contenido1 = ""+table.getValueAt(n, 1);
 					String contenido2 = ""+r.buscarActividad("Descripcion", contenido);
+					String contenido3 = ""+r.buscarActividad("Area", contenido);
 					
 					//System.out.println(table.getValueAt(n, 1));
 					lblNombreActividadDB.setText(contenido);
 					lblHorarioDB.setText(contenido1);
 					lblDescripcionDB.setText(contenido2);
+					lblUbicacionDB.setText(contenido3);
 					
 					lblIconCalendar.setVisible(true);
+					lblIconoUbicacion.setVisible(true);
 					
 					//String contenido = "Nombre :"+ table.getValueAt(n, 0)+":\n"+"Raza: "+ table.getValueAt(n, 1)+"\n";
 					//contenido += (Boolean) modeloTabla.getValueAt(n, 3)?"Vacunado": "No Vacunado\n";NO NECESARIO
