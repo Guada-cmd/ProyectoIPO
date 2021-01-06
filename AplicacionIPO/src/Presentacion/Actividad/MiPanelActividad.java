@@ -3,6 +3,7 @@ package Presentacion.Actividad;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.Point;
 import java.awt.Cursor;
 import java.awt.Color;
@@ -74,11 +76,16 @@ public class MiPanelActividad extends JPanel {
 		add(lblBarraBusqueda);
 		
 		scrollPaneFoto = new JScrollPane();
-		scrollPaneFoto.setBounds(59, 257, 258, 175);
+		scrollPaneFoto.setVisible(false);
+		scrollPaneFoto.setBounds(59, 257, 248, 175);
 		add(scrollPaneFoto);
 		
 		lblFotoRutaSeleccionada = new JLabel("");
-		scrollPaneFoto.setViewportView(lblFotoRutaSeleccionada);
+		lblFotoRutaSeleccionada.setVisible(false);
+		
+		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+		//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/Piscina.jpg")));
+		scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
 		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		scrollPane = new JScrollPane();
@@ -170,12 +177,12 @@ public class MiPanelActividad extends JPanel {
 		
 		lblEquipamiento = new JLabel("Material necesario para la actividad:");
 		lblEquipamiento.setVisible(false);
-		lblEquipamiento.setBounds(327, 398, 204, 19);
+		lblEquipamiento.setBounds(327, 398, 224, 19);
 		add(lblEquipamiento);
 		
 		lblMaterialDB = new JLabel("");
 		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(537, 388, 121, 39);
+		lblMaterialDB.setBounds(529, 388, 129, 39);
 		add(lblMaterialDB);
 		
 		lblLupaIcono = new JLabel("");
@@ -246,6 +253,7 @@ public class MiPanelActividad extends JPanel {
 					String contenido4 = r.buscarActividad("MinimoActividad", contenido)+" - "+r.buscarActividad("MaximoActividad", contenido);
 					String contenido5 = r.buscarActividad("PrecioMes", contenido);
 					String contenido6 = r.buscarActividad("Material", contenido);
+					String contenido7 = r.buscarActividad("Foto", contenido);
 					
 					//System.out.println(table.getValueAt(n, 1));
 					lblNombreActividadDB.setText(contenido);
@@ -262,6 +270,14 @@ public class MiPanelActividad extends JPanel {
 					lblIconoGrupos.setVisible(true);
 					lblIconoDinero.setVisible(true);
 					lblEquipamiento.setVisible(true);
+					
+					scrollPaneFoto.setVisible(true);
+					
+					lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(contenido7)).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+					//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/Piscina.jpg")));
+					scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
+					lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+					lblFotoRutaSeleccionada.setVisible(true);
 			
 					
 					
