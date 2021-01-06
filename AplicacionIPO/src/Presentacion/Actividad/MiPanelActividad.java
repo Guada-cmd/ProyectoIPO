@@ -31,6 +31,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
+import java.awt.Cursor;
+import java.awt.Color;
 
 public class MiPanelActividad extends JPanel {
 	
@@ -46,17 +48,24 @@ public class MiPanelActividad extends JPanel {
 	private JLabel lblNewLabel;
 	private JTextField textField;
 	private JLabel lblNombreActividadDB;
-	private JLabel lblNewLabel_2;
 	private JLabel lblIconCalendar;
 	private JLabel lblHorarioDB;
 	private JLabel lblDescripcionDB;
 	private JLabel lblIconoUbicacion;
 	private JLabel lblUbicacionDB;
+	private JLabel lblIconoGrupos;
+	private JLabel lblGrupoDB;
+	private JLabel lblIconoDinero;
+	private JLabel lblDineroDB;
+	private JLabel lblEquipamiento;
+	private JLabel lblMaterialDB;
+	private JLabel lblLupaIcono;
 
 	/**
 	 * Create the panel.
 	 */
 	public MiPanelActividad() {
+		setBackground(new Color(255, 255, 255));
 		
 		setLayout(null);
 		
@@ -111,12 +120,8 @@ public class MiPanelActividad extends JPanel {
 		textField.setColumns(10);
 		
 		lblNombreActividadDB = new JLabel("");
-		lblNombreActividadDB.setBounds(327, 257, 192, 19);
+		lblNombreActividadDB.setBounds(327, 252, 192, 24);
 		add(lblNombreActividadDB);
-		
-		lblNewLabel_2 = new JLabel("*Todas las actividades se imparten durante los meses de Junio, Julio y Agosto");
-		lblNewLabel_2.setBounds(327, 413, 447, 19);
-		add(lblNewLabel_2);
 		
 		lblIconCalendar = new JLabel("");
 		lblIconCalendar.setVisible(false);
@@ -142,6 +147,41 @@ public class MiPanelActividad extends JPanel {
 		lblUbicacionDB = new JLabel("");
 		lblUbicacionDB.setBounds(361, 326, 224, 24);
 		add(lblUbicacionDB);
+		
+		lblIconoGrupos = new JLabel("");
+		lblIconoGrupos.setVisible(false);
+		lblIconoGrupos.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/grupo.png")));
+		lblIconoGrupos.setBounds(327, 352, 30, 19);
+		add(lblIconoGrupos);
+		
+		lblGrupoDB = new JLabel("");
+		lblGrupoDB.setBounds(362, 352, 234, 19);
+		add(lblGrupoDB);
+		
+		lblIconoDinero = new JLabel("");
+		lblIconoDinero.setVisible(false);
+		lblIconoDinero.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/dinero.png")));
+		lblIconoDinero.setBounds(327, 376, 30, 19);
+		add(lblIconoDinero);
+		
+		lblDineroDB = new JLabel("");
+		lblDineroDB.setBounds(362, 370, 157, 24);
+		add(lblDineroDB);
+		
+		lblEquipamiento = new JLabel("Material necesario para la actividad:");
+		lblEquipamiento.setVisible(false);
+		lblEquipamiento.setBounds(327, 398, 204, 19);
+		add(lblEquipamiento);
+		
+		lblMaterialDB = new JLabel("");
+		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		lblMaterialDB.setBounds(537, 388, 121, 39);
+		add(lblMaterialDB);
+		
+		lblLupaIcono = new JLabel("");
+		lblLupaIcono.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/lupa.png")));
+		lblLupaIcono.setBounds(303, 44, 38, 24);
+		add(lblLupaIcono);
 		
 	}
 	
@@ -203,15 +243,27 @@ public class MiPanelActividad extends JPanel {
 					String contenido1 = ""+table.getValueAt(n, 1);
 					String contenido2 = ""+r.buscarActividad("Descripcion", contenido);
 					String contenido3 = ""+r.buscarActividad("Area", contenido);
+					String contenido4 = r.buscarActividad("MinimoActividad", contenido)+" - "+r.buscarActividad("MaximoActividad", contenido);
+					String contenido5 = r.buscarActividad("PrecioMes", contenido);
+					String contenido6 = r.buscarActividad("Material", contenido);
 					
 					//System.out.println(table.getValueAt(n, 1));
 					lblNombreActividadDB.setText(contenido);
 					lblHorarioDB.setText(contenido1);
 					lblDescripcionDB.setText(contenido2);
 					lblUbicacionDB.setText(contenido3);
+					lblGrupoDB.setText(contenido4);
+					lblDineroDB.setText(contenido5);
+					lblMaterialDB.setText(contenido6);
+					
 					
 					lblIconCalendar.setVisible(true);
 					lblIconoUbicacion.setVisible(true);
+					lblIconoGrupos.setVisible(true);
+					lblIconoDinero.setVisible(true);
+					lblEquipamiento.setVisible(true);
+			
+					
 					
 					//String contenido = "Nombre :"+ table.getValueAt(n, 0)+":\n"+"Raza: "+ table.getValueAt(n, 1)+"\n";
 					//contenido += (Boolean) modeloTabla.getValueAt(n, 3)?"Vacunado": "No Vacunado\n";NO NECESARIO
