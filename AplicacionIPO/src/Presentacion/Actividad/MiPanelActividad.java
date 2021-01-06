@@ -21,6 +21,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import Persistencia.gestorActividad;
 import Presentacion.EditorGrafico.EditorGraficoRuta;
@@ -89,13 +90,20 @@ public class MiPanelActividad extends JPanel {
 		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(59, 78, 730, 151);
+		scrollPane.setBounds(59, 85, 730, 155);
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setSelectionBackground(new Color(255, 255, 240));
 	
 		table.setFocusable(false);
 		table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		
+		JTableHeader header = table.getTableHeader();
+		
+
+	    header.setBackground(new Color(51, 51, 51));
+	    header.setForeground(new Color(255, 255, 255));
 		
 		DefaultTableModel model = new DefaultTableModel();
 		
@@ -184,13 +192,13 @@ public class MiPanelActividad extends JPanel {
 		lblEquipamiento = new JLabel("Material necesario para la actividad:");
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEquipamiento.setVisible(false);
-		lblEquipamiento.setBounds(325, 402, 224, 24);
+		lblEquipamiento.setBounds(325, 402, 218, 24);
 		add(lblEquipamiento);
 		
 		lblMaterialDB = new JLabel("");
 		lblMaterialDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(535, 402, 122, 24);
+		lblMaterialDB.setBounds(527, 402, 130, 24);
 		add(lblMaterialDB);
 		
 		lblLupaIcono = new JLabel("");
