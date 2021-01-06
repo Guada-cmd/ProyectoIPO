@@ -182,7 +182,7 @@ public class MiPanelActividad extends JPanel {
 		
 		lblMaterialDB = new JLabel("");
 		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(529, 388, 129, 39);
+		lblMaterialDB.setBounds(536, 388, 122, 39);
 		add(lblMaterialDB);
 		
 		lblLupaIcono = new JLabel("");
