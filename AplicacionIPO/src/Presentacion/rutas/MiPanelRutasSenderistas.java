@@ -2,6 +2,8 @@ package Presentacion.rutas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -10,7 +12,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JDesktopPane;
+import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +37,7 @@ public class MiPanelRutasSenderistas extends JPanel {
 	private JLabel lblNewLabel;
 	private JTextField textField;
 	private JLabel lblNewLabel_1;
+	private JButton btnNewButton;
 
 	/**
 	 * Create the panel.
@@ -68,6 +74,7 @@ public class MiPanelRutasSenderistas extends JPanel {
 		model.addColumn("Hora Fin");
 		model.addColumn("Ofertada");
 		model.addColumn("Dificultad");
+		model.addColumn("Foto");
 
 		table.setModel(model);
 		
@@ -90,6 +97,30 @@ public class MiPanelRutasSenderistas extends JPanel {
 		lblNewLabel_1.setBounds(342, 285, 45, 13);
 		add(lblNewLabel_1);
 		
+		btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JFileChooser fileChooser = new JFileChooser();
+		        int result = fileChooser.showOpenDialog(null);
+		        
+		        if ( result == JFileChooser.APPROVE_OPTION ){
+		                String Ruta = fileChooser.getSelectedFile().getAbsolutePath();
+		                //jTextField1.setText(Ruta);
+		                if(r.guardarFotoRuta(Ruta)){
+		                    Icon icon = new ImageIcon(Ruta);
+		                    //jLabel2.setIcon(icon);
+		                    
+		                    System.out.println("BIEN");
+		                    //JOptionPane.showMessageDialog(this,"La imagen '" + fileChooser.getSelectedFile().getName()+"' se guardo en la Base de Datos Access...", result);
+		                }
+		        }
+				
+			}
+		});
+		btnNewButton.setBounds(476, 321, 85, 21);
+		add(btnNewButton);
+		
 	}
 	
 	public void insertData(DefaultTableModel model) {
@@ -99,6 +130,9 @@ public class MiPanelRutasSenderistas extends JPanel {
 		String [] fila = new String [6];
 		String a = "";
 		int e = r.numeroFilasTablaRutas();
+		
+		//Image image_ruta = null;
+		Icon icon;
 		
 		for(int i = 1; i<=e; i++) {
 			
@@ -110,6 +144,18 @@ public class MiPanelRutasSenderistas extends JPanel {
 			fila[3] = r.crearTableRuta("HoraFin", i);
 			fila[4] = r.crearTableRuta("Ofertada", i);
 			fila[5] = r.crearTableRuta("Dificultad", i);
+			
+			//if(r.buscarFotoRuta(i) != null) {
+				
+				icon = new ImageIcon(r.buscarFotoRuta(6));
+				
+				lblNewLabel_1.setIcon(icon);
+				
+			//} else{
+		    
+			//	JOptionPane.showMessageDialog(this,"No existe foto para ID ");
+		        
+		   // }
 			
 			
 			model.addRow(fila);
