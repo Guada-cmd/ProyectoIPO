@@ -129,7 +129,7 @@ public class MiPanelActividad extends JPanel {
 		add(lblHorarioDB);
 		
 		lblDescripcionDB = new JLabel("");
-		lblDescripcionDB.setBounds(327, 279, 462, 24);
+		lblDescripcionDB.setBounds(327, 272, 462, 33);
 		add(lblDescripcionDB);
 		
 		lblIconoUbicacion = new JLabel("");
