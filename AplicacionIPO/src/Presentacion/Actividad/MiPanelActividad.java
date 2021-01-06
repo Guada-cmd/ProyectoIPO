@@ -77,19 +77,19 @@ public class MiPanelActividad extends JPanel {
 		
 		scrollPaneFoto = new JScrollPane();
 		scrollPaneFoto.setVisible(false);
-		scrollPaneFoto.setBounds(59, 257, 248, 175);
+		scrollPaneFoto.setBounds(59, 250, 248, 171);
 		add(scrollPaneFoto);
 		
 		lblFotoRutaSeleccionada = new JLabel("");
 		lblFotoRutaSeleccionada.setVisible(false);
 		
-		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 175, Image.SCALE_SMOOTH)));
 		//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/Piscina.jpg")));
 		scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
 		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(59, 78, 730, 159);
+		scrollPane.setBounds(59, 78, 730, 151);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -127,32 +127,36 @@ public class MiPanelActividad extends JPanel {
 		textField.setColumns(10);
 		
 		lblNombreActividadDB = new JLabel("");
-		lblNombreActividadDB.setBounds(327, 252, 192, 24);
+		lblNombreActividadDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblNombreActividadDB.setBounds(327, 247, 192, 19);
 		add(lblNombreActividadDB);
 		
 		lblIconCalendar = new JLabel("");
 		lblIconCalendar.setVisible(false);
 		lblIconCalendar.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/calendar.png")));
-		lblIconCalendar.setBounds(329, 302, 30, 24);
+		lblIconCalendar.setBounds(327, 286, 21, 33);
 		add(lblIconCalendar);
 		
 		lblHorarioDB = new JLabel("");
-		lblHorarioDB.setBounds(362, 302, 204, 24);
+		lblHorarioDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblHorarioDB.setBounds(361, 286, 224, 33);
 		add(lblHorarioDB);
 		
 		lblDescripcionDB = new JLabel("");
-		lblDescripcionDB.setBounds(327, 272, 462, 33);
+		lblDescripcionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblDescripcionDB.setBounds(327, 266, 462, 24);
 		add(lblDescripcionDB);
 		
 		lblIconoUbicacion = new JLabel("");
 		lblIconoUbicacion.setLocation(new Point(330, 335));
 		lblIconoUbicacion.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/ubicacion.png")));
 		lblIconoUbicacion.setVisible(false);
-		lblIconoUbicacion.setBounds(327, 326, 21, 24);
+		lblIconoUbicacion.setBounds(327, 320, 21, 24);
 		add(lblIconoUbicacion);
 		
 		lblUbicacionDB = new JLabel("");
-		lblUbicacionDB.setBounds(361, 326, 224, 24);
+		lblUbicacionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblUbicacionDB.setBounds(361, 321, 224, 23);
 		add(lblUbicacionDB);
 		
 		lblIconoGrupos = new JLabel("");
@@ -162,27 +166,31 @@ public class MiPanelActividad extends JPanel {
 		add(lblIconoGrupos);
 		
 		lblGrupoDB = new JLabel("");
+		lblGrupoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblGrupoDB.setBounds(362, 352, 234, 19);
 		add(lblGrupoDB);
 		
 		lblIconoDinero = new JLabel("");
 		lblIconoDinero.setVisible(false);
 		lblIconoDinero.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/dinero.png")));
-		lblIconoDinero.setBounds(327, 376, 30, 19);
+		lblIconoDinero.setBounds(327, 381, 30, 17);
 		add(lblIconoDinero);
 		
 		lblDineroDB = new JLabel("");
-		lblDineroDB.setBounds(362, 370, 157, 24);
+		lblDineroDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblDineroDB.setBounds(362, 376, 157, 24);
 		add(lblDineroDB);
 		
 		lblEquipamiento = new JLabel("Material necesario para la actividad:");
+		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEquipamiento.setVisible(false);
-		lblEquipamiento.setBounds(327, 398, 224, 19);
+		lblEquipamiento.setBounds(325, 402, 224, 24);
 		add(lblEquipamiento);
 		
 		lblMaterialDB = new JLabel("");
+		lblMaterialDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(536, 388, 122, 39);
+		lblMaterialDB.setBounds(535, 402, 122, 24);
 		add(lblMaterialDB);
 		
 		lblLupaIcono = new JLabel("");
