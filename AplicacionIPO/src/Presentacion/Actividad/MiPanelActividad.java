@@ -289,12 +289,22 @@ public class MiPanelActividad extends JPanel {
 					
 					scrollPaneFoto.setVisible(true);
 					
-					lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(contenido7)).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
-					//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/Piscina.jpg")));
-					scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-					lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
-					lblFotoRutaSeleccionada.setVisible(true);
-			
+					if (contenido7 != null) {
+						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(contenido7)).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/noDisponible.jpg")));
+						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
+						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+						lblFotoRutaSeleccionada.setVisible(true);
+					}
+					else {
+						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/noDisponible.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/Actividad/noDisponible.jpg")));
+						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
+						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+						lblFotoRutaSeleccionada.setVisible(true);
+					}
+					
+					
 					
 					
 					//String contenido = "Nombre :"+ table.getValueAt(n, 0)+":\n"+"Raza: "+ table.getValueAt(n, 1)+"\n";
