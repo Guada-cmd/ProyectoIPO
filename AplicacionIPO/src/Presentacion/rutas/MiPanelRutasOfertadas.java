@@ -57,8 +57,8 @@ public class MiPanelRutasOfertadas extends JPanel {
 	private JLabel lblUbicacionRutaDB;
 	private JLabel lblIconoGruposRuta;
 	private JLabel lblGrupoRutaDB;
-	private JLabel lblIconoDinero;
-	private JLabel lblDineroDB;
+	private JLabel lblIconoDificultad;
+	private JLabel lblDificultadDB;
 	private JLabel lblEquipamiento;
 	private JLabel lblEquipaminetoDB;
 	private JLabel lblLupaIconoRuta;
@@ -78,8 +78,6 @@ public class MiPanelRutasOfertadas extends JPanel {
 		
 		lblFotoRutaSeleccionada = new JLabel("");
 		lblFotoRutaSeleccionada.setVisible(false);
-		
-		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 175, Image.SCALE_SMOOTH)));
 		//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/Piscina.jpg")));
 		scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
 		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
@@ -175,16 +173,16 @@ public class MiPanelRutasOfertadas extends JPanel {
 		lblGrupoRutaDB.setBounds(362, 352, 234, 19);
 		add(lblGrupoRutaDB);
 		
-		lblIconoDinero = new JLabel("");
-		lblIconoDinero.setVisible(false);
-		lblIconoDinero.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/dinero.png")));
-		lblIconoDinero.setBounds(327, 381, 30, 17);
-		add(lblIconoDinero);
+		lblIconoDificultad = new JLabel("");
+		lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/NoTiene.png")));
+		lblIconoDificultad.setVisible(false);
+		lblIconoDificultad.setBounds(327, 381, 30, 17);
+		add(lblIconoDificultad);
 		
-		lblDineroDB = new JLabel("");
-		lblDineroDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblDineroDB.setBounds(362, 376, 157, 24);
-		add(lblDineroDB);
+		lblDificultadDB = new JLabel("");
+		lblDificultadDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblDificultadDB.setBounds(362, 376, 157, 24);
+		add(lblDificultadDB);
 		
 		lblEquipamiento = new JLabel("Equipamineto necesario para la ruta:");
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -267,7 +265,7 @@ public class MiPanelRutasOfertadas extends JPanel {
 					String contenido2 = r.buscarRuta("Descripcion", contenido);
 					String contenido3 = r.buscarRuta("PuntoEncuentro", contenido);
 					String contenido4 = r.buscarRuta("Minimo", contenido)+" - "+r.buscarRuta("Maximo", contenido);
-					//String contenido5 = r.buscarActividad("PrecioMes", contenido);
+					String contenido5 = r.buscarRuta("Dificultad", contenido);
 					String contenido6 = r.buscarRuta("Equipamiento", contenido);
 					String contenido7 = r.buscarRuta("Foto", contenido);
 					
@@ -276,14 +274,28 @@ public class MiPanelRutasOfertadas extends JPanel {
 					lblDescripcionRutaDB.setText(contenido2);
 					lblUbicacionRutaDB.setText(contenido3);
 					lblGrupoRutaDB.setText(contenido4);
-					//lblDineroDB.setText(contenido5);
+					lblDificultadDB.setText(contenido5);
 					lblEquipaminetoDB.setText(contenido6);
+					
+					//System.out.println(contenido5);
+					if(contenido5.equals("No tiene")) {
+						lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/NoTiene.png")));
+					}
+					else if (contenido5.equals("Baja")) {
+						lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/baja.png")));
+					}
+					else if (contenido5.equals("Intermedio")) {
+						lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/Intermedio.png")));
+					}
+					else if (contenido5.equals("Experto")) {
+						lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/Experto.png")));
+					}
 					
 					
 					lblIconCalendarRuta.setVisible(true);
 					lblIconoUbicacionRuta.setVisible(true);
 					lblIconoGruposRuta.setVisible(true);
-					//lblIconoDinero.setVisible(true);
+					lblIconoDificultad.setVisible(true);
 					lblEquipamiento.setVisible(true);
 					
 					scrollPaneFoto.setVisible(true);
