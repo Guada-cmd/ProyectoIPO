@@ -83,128 +83,34 @@ public class gestorRutas {
 		return numero_filas;
 	}
 	
-	/* Guarda la imagen JPG en el campo OLE de Access */
-	/**
-	 * 
-	 * Descripcion: guarda la imagen con formato JPG en el campo de la tabla correspondiente (campo formato OLE) de Access
-	 * 
-	 * @param foto
-	 * @return
-	 */
-	public boolean guardarFotoRuta(String foto) {
+	public String buscarRuta(String parametro, String nombre_ruta) {
 		
-		boolean ok = false;
-	    FileInputStream file_stream = null;
-	    Connection connection = null;
-	    
-	    try {
-	        
-	    	connection = BrokerBD.conectarBD();
-	    	File file = new File(foto);
-	        file_stream = new FileInputStream(file);
-	        String sentencia_guardar_imagen_rutas = "INSERT INTO Rutas (Foto) values (?)";
-	        
-	        prepared_statement_rutas = connection.prepareStatement(sentencia_guardar_imagen_rutas);
-	        prepared_statement_rutas.setBinaryStream(1, file_stream,(int) file.length());
-	        prepared_statement_rutas.execute();
-	        prepared_statement_rutas.close();
-	        
-	        ok=true;
-	        
-	     } catch (FileNotFoundException ex) {
-	    	 System.out.println(ex);
-	     } catch (SQLException e) {
-	         System.out.println(e);
-	         
-	    } finally {
-	    	try {
-	    		file_stream.close();
-	    	} catch (IOException ex) {
-	    		System.out.println(ex);
-	        }
-	    }
-	    return ok;
+		String buscar_dato_ruta = null;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();  
+			String sentencia_dato_ruta = "select "+parametro+" from Rutas WHERE Nombre = '"+nombre_ruta+"'";
+			
+			prepared_statement_rutas = connection.prepareStatement(sentencia_dato_ruta);
+			resultado_consulta_rutas = prepared_statement_rutas.executeQuery();
+			
+			if(resultado_consulta_rutas.next()) {
+				
+				buscar_dato_ruta = resultado_consulta_rutas.getString(parametro);
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return buscar_dato_ruta;
 	}
 	
-	/**
-	 * 
-	 * Descripcion: Metodo  que dado un parametro "id" realiza una consulta y devuelve como resultado una imagen
-	 * 
-	 * @param id
-	 * @return
-	 */
-	 public Image buscarFotoRuta(int index ){
-		 
-		 Connection connection = null;
-		 int i = 0;
-			
-	      try{
-	    	  
-	    	 connection = BrokerBD.conectarBD(); 
-	    	 String sentencia_buscar_foto_ruta = "select Foto from Rutas WHERE IDRutas = '"+index+"'";
-	    	 prepared_statement_rutas = connection.prepareStatement(sentencia_buscar_foto_ruta);
-	    	 
-	    	 resultado_consulta_rutas = prepared_statement_rutas.executeQuery();
-	    	 
-	    	 //CAMBIAR POR UN IF
-	    	 
-	    	 if(resultado_consulta_rutas.next()) {
-	    		 
-	    		 //se lee la cadena de bytes de la base de datos
-	        	 
-		         byte[] b = resultado_consulta_rutas.getBytes("Foto");
-		            
-		         // esta cadena de bytes sera convertida en una imagen
-		            
-		         image_ruta = ConvertirImagen(b);
-	    		 
-	    	 }
-	    	 /**
-	         while(resultado_consulta_rutas.next()){
-	        	 
-	            //se lee la cadena de bytes de la base de datos
-	        	 
-	            byte[] b = resultado_consulta_rutas.getBytes("Foto");
-	            
-	            // esta cadena de bytes sera convertida en una imagen
-	            
-	            image_ruta = ConvertirImagen(b);
-	            i++;
-	         }
-	         **/
-	         resultado_consulta_rutas.close();
-	         
-	     } catch (IOException ex) {
-	    	 System.out.println(ex);
-	     }catch(SQLException e){
-	         System.out.println(e);
-	    }
-	    return image_ruta;
-	 }
-
-
-	/**
-	 * 
-	 * Descripcion: Metodo que dada una cadena de bytes la convierte en una imagen con extension jpeg
-	 * 
-	 * @param bytes
-	 * @return
-	 * @throws IOException
-	 */
-	private Image ConvertirImagen(byte[] bytes) throws IOException {
-		
-	    ByteArrayInputStream byte_array = new ByteArrayInputStream(bytes);
-	    Iterator readers = ImageIO.getImageReadersByFormatName("jpeg");
-	    
-	    ImageReader reader = (ImageReader) readers.next();
-	    Object source = byte_array;
-	    
-	    ImageInputStream image_input_stream = ImageIO.createImageInputStream(source);
-	    reader.setInput(image_input_stream, true);
-	    ImageReadParam image_read_param = reader.getDefaultReadParam();
-	    
-	    return reader.read(0, image_read_param);
-	 }
 }
 
 

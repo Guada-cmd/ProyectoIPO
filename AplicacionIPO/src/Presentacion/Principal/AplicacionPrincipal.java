@@ -19,8 +19,7 @@ import javax.swing.JSplitPane;
 
 import Presentacion.Actividad.MiPanelActividad;
 import Presentacion.InicioSesion.VentanaInicio;
-import Presentacion.rutas.MiPanelGestorRutas;
-import Presentacion.rutas.MiPanelRutasSenderistas;
+import Presentacion.rutas.MiPanelRutasOfertadas;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -654,7 +653,7 @@ public class AplicacionPrincipal {
 		pnlGestorConfiguracion = new MiPanelGestorConfiguracion();
 		pnlContenidoAplicacionPrincipal.add(pnlGestorConfiguracion, "Configuración");
 		
-		pnlRutas = new MiPanelGestorRutas();
+		pnlRutas = new MiPanelRutasOfertadas();
 		pnlContenidoAplicacionPrincipal.add(pnlRutas, "Rutas");
 		
 	}

@@ -1,4 +1,4 @@
-package Presentacion.Actividad;
+package Presentacion.rutas;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import Persistencia.gestorActividad;
+import Persistencia.gestorRutas;
 import Presentacion.EditorGrafico.EditorGraficoRuta;
 
 import javax.swing.SwingConstants;
@@ -37,44 +38,38 @@ import java.awt.Point;
 import java.awt.Cursor;
 import java.awt.Color;
 
-public class MiPanelActividad extends JPanel {
-	
-	private JLabel lblBarraBusqueda;
+public class MiPanelRutasOfertadas extends JPanel {
 	
 	private JScrollPane scrollPaneFoto;
 	private JLabel lblFotoRutaSeleccionada;
 	private JScrollPane scrollPane;
 	private JTable table;
 	
-	private gestorActividad r = new gestorActividad();
+	private gestorRutas r = new gestorRutas();
 	
-	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JLabel lblNombreActividadDB;
-	private JLabel lblIconCalendar;
-	private JLabel lblHorarioDB;
-	private JLabel lblDescripcionDB;
-	private JLabel lblIconoUbicacion;
-	private JLabel lblUbicacionDB;
-	private JLabel lblIconoGrupos;
-	private JLabel lblGrupoDB;
+	private JLabel lblBarraBusquedaRuta;
+	private JTextField txtBuscadorRuta;
+	private JLabel lblNombreRutaDB;
+	private JLabel lblIconCalendarRuta;
+	private JLabel lblHorarioRutaDB;
+	private JLabel lblDescripcionRutaDB;
+	private JLabel lblIconoUbicacionRuta;
+	private JLabel lblUbicacionRutaDB;
+	private JLabel lblIconoGruposRuta;
+	private JLabel lblGrupoRutaDB;
 	private JLabel lblIconoDinero;
 	private JLabel lblDineroDB;
 	private JLabel lblEquipamiento;
-	private JLabel lblMaterialDB;
-	private JLabel lblLupaIcono;
+	private JLabel lblEquipaminetoDB;
+	private JLabel lblLupaIconoRuta;
 
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelActividad() {
+	public MiPanelRutasOfertadas() {
 		setBackground(new Color(255, 255, 255));
 		
 		setLayout(null);
-		
-		lblBarraBusqueda = new JLabel("");
-		lblBarraBusqueda.setBounds(521, 98, 45, 13);
-		add(lblBarraBusqueda);
 		
 		scrollPaneFoto = new JScrollPane();
 		scrollPaneFoto.setVisible(false);
@@ -108,10 +103,12 @@ public class MiPanelActividad extends JPanel {
 		DefaultTableModel model = new DefaultTableModel();
 		
 		model.addColumn("Nombre");
-		model.addColumn("Horario");
-		model.addColumn("Destinada");
-		model.addColumn("Precio");
-	
+		model.addColumn("Fecha");
+		model.addColumn("Hora Inicio");
+		model.addColumn("Hora Fin");
+		model.addColumn("Ofertada");
+		model.addColumn("Dificultad");
+
 
 		table.setModel(model);
 		
@@ -124,63 +121,63 @@ public class MiPanelActividad extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		lblNewLabel = new JLabel("¿Desea buscar alguna actividad?");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblNewLabel.setBounds(59, 15, 234, 19);
-		add(lblNewLabel);
+		lblBarraBusquedaRuta = new JLabel("¿Desea buscar alguna ruta?");
+		lblBarraBusquedaRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblBarraBusquedaRuta.setBounds(59, 15, 234, 19);
+		add(lblBarraBusquedaRuta);
 		
-		textField = new JTextField();
-		textField.setBounds(59, 44, 234, 24);
-		add(textField);
-		textField.setColumns(10);
+		txtBuscadorRuta = new JTextField();
+		txtBuscadorRuta.setBounds(59, 44, 234, 24);
+		add(txtBuscadorRuta);
+		txtBuscadorRuta.setColumns(10);
 		
-		lblNombreActividadDB = new JLabel("");
-		lblNombreActividadDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblNombreActividadDB.setBounds(327, 247, 192, 19);
-		add(lblNombreActividadDB);
+		lblNombreRutaDB = new JLabel("");
+		lblNombreRutaDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblNombreRutaDB.setBounds(327, 247, 192, 19);
+		add(lblNombreRutaDB);
 		
-		lblIconCalendar = new JLabel("");
-		lblIconCalendar.setVisible(false);
-		lblIconCalendar.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/calendar.png")));
-		lblIconCalendar.setBounds(327, 286, 21, 33);
-		add(lblIconCalendar);
+		lblIconCalendarRuta = new JLabel("");
+		lblIconCalendarRuta.setVisible(false);
+		lblIconCalendarRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/calendar.png")));
+		lblIconCalendarRuta.setBounds(327, 286, 21, 33);
+		add(lblIconCalendarRuta);
 		
-		lblHorarioDB = new JLabel("");
-		lblHorarioDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblHorarioDB.setBounds(361, 286, 224, 33);
-		add(lblHorarioDB);
+		lblHorarioRutaDB = new JLabel("");
+		lblHorarioRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblHorarioRutaDB.setBounds(361, 286, 428, 33);
+		add(lblHorarioRutaDB);
 		
-		lblDescripcionDB = new JLabel("");
-		lblDescripcionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblDescripcionDB.setBounds(327, 266, 462, 24);
-		add(lblDescripcionDB);
+		lblDescripcionRutaDB = new JLabel("");
+		lblDescripcionRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblDescripcionRutaDB.setBounds(327, 266, 462, 24);
+		add(lblDescripcionRutaDB);
 		
-		lblIconoUbicacion = new JLabel("");
-		lblIconoUbicacion.setLocation(new Point(330, 335));
-		lblIconoUbicacion.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/ubicacion.png")));
-		lblIconoUbicacion.setVisible(false);
-		lblIconoUbicacion.setBounds(327, 320, 21, 24);
-		add(lblIconoUbicacion);
+		lblIconoUbicacionRuta = new JLabel("");
+		lblIconoUbicacionRuta.setLocation(new Point(330, 335));
+		lblIconoUbicacionRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/ubicacion.png")));
+		lblIconoUbicacionRuta.setVisible(false);
+		lblIconoUbicacionRuta.setBounds(327, 320, 21, 24);
+		add(lblIconoUbicacionRuta);
 		
-		lblUbicacionDB = new JLabel("");
-		lblUbicacionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblUbicacionDB.setBounds(361, 321, 224, 23);
-		add(lblUbicacionDB);
+		lblUbicacionRutaDB = new JLabel("");
+		lblUbicacionRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblUbicacionRutaDB.setBounds(361, 321, 224, 23);
+		add(lblUbicacionRutaDB);
 		
-		lblIconoGrupos = new JLabel("");
-		lblIconoGrupos.setVisible(false);
-		lblIconoGrupos.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/grupo.png")));
-		lblIconoGrupos.setBounds(327, 352, 30, 19);
-		add(lblIconoGrupos);
+		lblIconoGruposRuta = new JLabel("");
+		lblIconoGruposRuta.setVisible(false);
+		lblIconoGruposRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/grupo.png")));
+		lblIconoGruposRuta.setBounds(327, 352, 30, 19);
+		add(lblIconoGruposRuta);
 		
-		lblGrupoDB = new JLabel("");
-		lblGrupoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblGrupoDB.setBounds(362, 352, 234, 19);
-		add(lblGrupoDB);
+		lblGrupoRutaDB = new JLabel("");
+		lblGrupoRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblGrupoRutaDB.setBounds(362, 352, 234, 19);
+		add(lblGrupoRutaDB);
 		
 		lblIconoDinero = new JLabel("");
 		lblIconoDinero.setVisible(false);
-		lblIconoDinero.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/dinero.png")));
+		lblIconoDinero.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/dinero.png")));
 		lblIconoDinero.setBounds(327, 381, 30, 17);
 		add(lblIconoDinero);
 		
@@ -189,22 +186,22 @@ public class MiPanelActividad extends JPanel {
 		lblDineroDB.setBounds(362, 376, 157, 24);
 		add(lblDineroDB);
 		
-		lblEquipamiento = new JLabel("Material necesario para la actividad:");
+		lblEquipamiento = new JLabel("Equipamineto necesario para la ruta:");
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEquipamiento.setVisible(false);
 		lblEquipamiento.setBounds(325, 402, 218, 24);
 		add(lblEquipamiento);
 		
-		lblMaterialDB = new JLabel("");
-		lblMaterialDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(527, 402, 130, 24);
-		add(lblMaterialDB);
+		lblEquipaminetoDB = new JLabel("");
+		lblEquipaminetoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		lblEquipaminetoDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+		lblEquipaminetoDB.setBounds(533, 402, 124, 24);
+		add(lblEquipaminetoDB);
 		
-		lblLupaIcono = new JLabel("");
-		lblLupaIcono.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/lupa.png")));
-		lblLupaIcono.setBounds(303, 44, 38, 24);
-		add(lblLupaIcono);
+		lblLupaIconoRuta = new JLabel("");
+		lblLupaIconoRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/lupa.png")));
+		lblLupaIconoRuta.setBounds(303, 44, 38, 24);
+		add(lblLupaIconoRuta);
 		
 	}
 	
@@ -212,9 +209,9 @@ public class MiPanelActividad extends JPanel {
 		
 		//System.out.println(r.numeroFilasTablaRutas());
 		
-		String [] fila = new String [4];
+		String [] fila = new String [6];
 		String a = "";
-		int e = r.numeroFilasTablaActividad();
+		int e = r.numeroFilasTablaRutas();
 		
 		//Image image_ruta = null;
 		Icon icon;
@@ -223,10 +220,12 @@ public class MiPanelActividad extends JPanel {
 			
 			//a = a + (r.crearTableRuta("Nombre", i));
 			
-			fila[0] = r.crearTableActividad("Nombre", i);
-			fila[1] = r.crearTableActividad("Horario", i);
-			fila[2] = r.crearTableActividad("Destinada", i);
-			fila[3] = r.crearTableActividad("PrecioMes", i);
+			fila[0] = r.crearTableRuta("Nombre", i);
+			fila[1] = r.crearTableRuta("Fecha", i);
+			fila[2] = r.crearTableRuta("HoraInicio", i);
+			fila[3] = r.crearTableRuta("HoraFin", i);
+			fila[4] = r.crearTableRuta("Ofertada", i);
+			fila[5] = r.crearTableRuta("Dificultad", i);
 			
 		
 	
@@ -256,7 +255,7 @@ public class MiPanelActividad extends JPanel {
 			
 			if (!lsm.isSelectionEmpty()) {
 				int filaSeleccionada = lsm.getMinSelectionIndex() + 1;
-				lblNombreActividadDB.setText("Fila "+filaSeleccionada+" seleccionada");
+				lblNombreRutaDB.setText("Fila "+filaSeleccionada+" seleccionada");
 				//MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
 				int n= table.getSelectedRow();
 				
@@ -264,47 +263,47 @@ public class MiPanelActividad extends JPanel {
 					
 					String contenido = ""+table.getValueAt(n, 0);
 					String contenido1 = ""+table.getValueAt(n, 1);
-					String contenido2 = ""+r.buscarActividad("Descripcion", contenido);
-					String contenido3 = ""+r.buscarActividad("Area", contenido);
-					String contenido4 = r.buscarActividad("MinimoActividad", contenido)+" - "+r.buscarActividad("MaximoActividad", contenido);
-					String contenido5 = r.buscarActividad("PrecioMes", contenido);
-					String contenido6 = r.buscarActividad("Material", contenido);
-					String contenido7 = r.buscarActividad("Foto", contenido);
+					String contenidoHoras =  r.buscarRuta("HoraInicio", contenido)+" - "+r.buscarRuta("HoraFin", contenido);
+					String contenido2 = r.buscarRuta("Descripcion", contenido);
+					String contenido3 = r.buscarRuta("PuntoEncuentro", contenido);
+					String contenido4 = r.buscarRuta("Minimo", contenido)+" - "+r.buscarRuta("Maximo", contenido);
+					//String contenido5 = r.buscarActividad("PrecioMes", contenido);
+					String contenido6 = r.buscarRuta("Equipamiento", contenido);
+					String contenido7 = r.buscarRuta("Foto", contenido);
 					
-					//System.out.println(table.getValueAt(n, 1));
-					lblNombreActividadDB.setText(contenido);
-					lblHorarioDB.setText(contenido1);
-					lblDescripcionDB.setText(contenido2);
-					lblUbicacionDB.setText(contenido3);
-					lblGrupoDB.setText(contenido4);
-					lblDineroDB.setText(contenido5);
-					lblMaterialDB.setText(contenido6);
+					lblNombreRutaDB.setText(contenido);
+					lblHorarioRutaDB.setText(contenido1+" Duracion horas aprox. "+contenidoHoras);
+					lblDescripcionRutaDB.setText(contenido2);
+					lblUbicacionRutaDB.setText(contenido3);
+					lblGrupoRutaDB.setText(contenido4);
+					//lblDineroDB.setText(contenido5);
+					lblEquipaminetoDB.setText(contenido6);
 					
 					
-					lblIconCalendar.setVisible(true);
-					lblIconoUbicacion.setVisible(true);
-					lblIconoGrupos.setVisible(true);
-					lblIconoDinero.setVisible(true);
+					lblIconCalendarRuta.setVisible(true);
+					lblIconoUbicacionRuta.setVisible(true);
+					lblIconoGruposRuta.setVisible(true);
+					//lblIconoDinero.setVisible(true);
 					lblEquipamiento.setVisible(true);
 					
 					scrollPaneFoto.setVisible(true);
 					
+					
+					
 					if (contenido7 != null) {
 						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(contenido7)).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
 						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/noDisponible.jpg")));
-						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
-						lblFotoRutaSeleccionada.setVisible(true);
+						
 					}
 					else {
 						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/noDisponible.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
 						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/noDisponible.jpg")));
-						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
-						lblFotoRutaSeleccionada.setVisible(true);
+						
 					}
 					
-					
+					scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
+					lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
+					lblFotoRutaSeleccionada.setVisible(true);
 					
 					
 					//String contenido = "Nombre :"+ table.getValueAt(n, 0)+":\n"+"Raza: "+ table.getValueAt(n, 1)+"\n";
