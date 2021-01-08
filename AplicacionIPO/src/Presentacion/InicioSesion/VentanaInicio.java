@@ -63,7 +63,7 @@ public class VentanaInicio {
 	private JButton btnRegistrase;
 	private JCheckBox chckbxPasswordLogin;
 	private JButton btnIdiomaAplicacion;
-	
+
 	private AplicacionPrincipal frame_principal;
 	public static FormularioRegistro frame_registro;
 	
