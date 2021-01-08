@@ -10,8 +10,8 @@ import java.util.Vector;
 
 public class BrokerBD {
 	
-	private static final String url = "jdbc:ucanaccess://IPOCamping.accdb"; // Pruebas remoto
-	//private static final String url = "jdbc:ucanaccess://C:\\Users\\user8000\\git\\ProyectoIPO\\AplicacionIPO\\IPOCamping.accdb"; //Para el JAR
+	//private static final String url = "jdbc:ucanaccess://IPOCamping.accdb"; // Pruebas remoto
+	private static final String url = "jdbc:ucanaccess://C:\\Users\\user8000\\git\\ProyectoIPO\\AplicacionIPO\\IPOCamping.accdb"; //Para el JAR
 	protected static BrokerBD instancia;
 	
 	

@@ -59,12 +59,14 @@ public class MiPanelUsuario extends JPanel {
 	
 	private Usuario usuario_datos_configuracion;
 	private Perfil datos_perfil;
+	private JLabel lblUltimoAccesoDB;
 
 
 	/**
 	 * Create the panel.
 	 */
 	public MiPanelUsuario(Usuario usuario_datos_configuracion, Perfil datos_perfil) {
+		setBackground(new Color(255, 255, 255));
 		
 		this.usuario_datos_configuracion = usuario_datos_configuracion;
 		this.datos_perfil = datos_perfil;
@@ -99,6 +101,13 @@ public class MiPanelUsuario extends JPanel {
 			lblIdiomasDB.setText(datos_perfil.getIdiomas());
 			lblDisponibilidadDB.setText(datos_perfil.getDisponibilidad());
 			lblNivelEstudiosDB.setText(datos_perfil.getFormacion());
+			
+			if(datos_perfil.getUltimoAccesso() != null) {
+				lblUltimoAccesoDB.setText(datos_perfil.getUltimoAccesso());
+			}
+			else {
+				lblUltimoAccesoDB.setText("Ningun acceso registrado");
+			}
 			
 		}
 		
@@ -152,7 +161,7 @@ public class MiPanelUsuario extends JPanel {
 	private void inicializarDatosPanelInformacionUsuario() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{69, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{99, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{124, 17, 22, 19, 7, 34, 32, 39, 23, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -189,7 +198,8 @@ public class MiPanelUsuario extends JPanel {
 		//Componente scrollPane para la imagen del Usuario
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Foto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollPane.setBackground(new Color(255, 255, 255));
+		scrollPane.setBorder(null);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridwidth = 2;
 		gbc_scrollPane.gridheight = 5;
@@ -202,6 +212,7 @@ public class MiPanelUsuario extends JPanel {
 		//Etiqueta que permite seleccionar la foto
 		
 		lblInformacionUsuarioAvatar = new JLabel("");
+		lblInformacionUsuarioAvatar.setBackground(new Color(255, 255, 255));
 		lblInformacionUsuarioAvatar.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/Avatar.png")));
 		lblInformacionUsuarioAvatar.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
@@ -217,13 +228,23 @@ public class MiPanelUsuario extends JPanel {
 		add(lblltimoAccesso, gbc_lblltimoAccesso);
 		
 		lblHoraUltimoAcceso = new JLabel("Último accesso:");
-		lblHoraUltimoAcceso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblHoraUltimoAcceso.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblHoraUltimoAcceso = new GridBagConstraints();
 		gbc_lblHoraUltimoAcceso.anchor = GridBagConstraints.EAST;
 		gbc_lblHoraUltimoAcceso.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHoraUltimoAcceso.gridx = 4;
 		gbc_lblHoraUltimoAcceso.gridy = 5;
 		add(lblHoraUltimoAcceso, gbc_lblHoraUltimoAcceso);
+		
+		lblUltimoAccesoDB = new JLabel("");
+		lblUltimoAccesoDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblUltimoAccesoDB = new GridBagConstraints();
+		gbc_lblUltimoAccesoDB.anchor = GridBagConstraints.WEST;
+		gbc_lblUltimoAccesoDB.gridwidth = 4;
+		gbc_lblUltimoAccesoDB.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUltimoAccesoDB.gridx = 5;
+		gbc_lblUltimoAccesoDB.gridy = 5;
+		add(lblUltimoAccesoDB, gbc_lblUltimoAccesoDB);
 		
 		lblNombreUsuario = new JLabel("Usuario:");
 		lblNombreUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));

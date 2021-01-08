@@ -6,14 +6,22 @@ public class Perfil {
 	private String idiomas;
 	private String disponibilidad;
 	private String formacion;
+	private String ultimo_accesso;
 	
-	public Perfil (String nombre_usuario, String idiomas, String disponibilidad, String formacion) {
+	public Perfil (String nombre_usuario, String idiomas, String disponibilidad, String formacion, String ultimo_accesso) {
 	
 		this.nombre_usuario = nombre_usuario;
 		this.idiomas = idiomas;
 		this.disponibilidad = disponibilidad; 
 		this.formacion = formacion;
+		this.ultimo_accesso = ultimo_accesso;
 		
+	}
+	public String getUltimoAccesso() {
+		return this.ultimo_accesso;
+	}
+	public void setUltimoAccesso(String ua) {
+		this.ultimo_accesso = ua;
 	}
 	
 	public String getNombreUsuarioPerfil() {
