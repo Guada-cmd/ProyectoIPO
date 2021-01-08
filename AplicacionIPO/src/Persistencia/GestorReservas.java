@@ -32,13 +32,13 @@ public class GestorReservas {
 		}
 		return resultado;
 	}
-	public Vector<Vector<Object>> leerReservas(){
+	public Vector<Vector<Object>> leerReservas(String estado){
 		Vector<Vector<Object>> vector = new Vector<Vector<Object>>();
 		
 		try {
 			Connection connection = BrokerBD.conectarBD();
 			
-			PreparedStatement query = connection.prepareStatement("select * from Reservas where Estado = 'en proceso'");
+			PreparedStatement query = connection.prepareStatement("select * from Reservas where Estado = '"+ estado +"'");
 			
 			ResultSet res = query.executeQuery();
 			query.close();
