@@ -103,6 +103,8 @@ public class AplicacionPrincipal {
 	
 	private GridBagConstraints gbc_btnCrearRuta = new GridBagConstraints();
 	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
+	private GridBagConstraints gbc_MarcadorCrearRuta = new GridBagConstraints();
+	
 	private JTextArea MarcadorEditarAct;
 	private JTextArea MarcadorCrearRuta;
 	private JPanel pnlCrearRuta;
@@ -194,7 +196,7 @@ public class AplicacionPrincipal {
 		btnReservas.addActionListener(new MarcadorUbicacionActionListener());
 		btnActividades.addActionListener(new MarcadorUbicacionActionListener());
 		btnRutas.addActionListener(new MarcadorUbicacionActionListener());
-		
+		btnCrearRuta.addActionListener(new MarcadorUbicacionActionListener());
 	
 	}
 	/**
@@ -246,6 +248,16 @@ public class AplicacionPrincipal {
 				
 				
 				colocarLayout(2);
+			}
+			else if(e.getSource() == btnCrearRuta) {
+				
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(false);
+				
+				MarcadorEditarAct.setVisible(false);
+				MarcadorCrearRuta.setVisible(true);
+				
 			}
 		}
 	}
@@ -368,6 +380,13 @@ public class AplicacionPrincipal {
 				gbc_btnCrearRuta.gridx = 1;
 				gbc_btnCrearRuta.gridy = 4;
 				pnlBotones.add(btnCrearRuta, gbc_btnCrearRuta);
+				
+				gbc_MarcadorCrearRuta.insets = new Insets(0, 0, 5, 5);
+				gbc_MarcadorCrearRuta.fill = GridBagConstraints.BOTH;
+				gbc_MarcadorCrearRuta.gridx = 0;
+				gbc_MarcadorCrearRuta.gridy = 4;
+				pnlBotones.add(MarcadorCrearRuta, gbc_MarcadorCrearRuta);
+			
 				
 				break;
 			
@@ -498,6 +517,9 @@ public class AplicacionPrincipal {
 				MarcadorReservas.setVisible(false);
 				MarcadorActividades.setVisible(false);
 				MarcadorRutas.setVisible(false);
+				
+				MarcadorEditarAct.setVisible(false);
+				MarcadorCrearRuta.setVisible(false);
 				
 				
 				//METODO QUE CON SET ACTUALIZA LOS DATOS
@@ -741,7 +763,8 @@ public class AplicacionPrincipal {
 		MarcadorCrearRuta.setFocusable(false);
 		MarcadorCrearRuta.setFocusTraversalKeysEnabled(false);
 		MarcadorCrearRuta.setEditable(false);
-		GridBagConstraints gbc_MarcadorCrearRuta = new GridBagConstraints();
+		
+		
 		gbc_MarcadorCrearRuta.insets = new Insets(0, 0, 5, 5);
 		gbc_MarcadorCrearRuta.fill = GridBagConstraints.BOTH;
 		gbc_MarcadorCrearRuta.gridx = 0;
