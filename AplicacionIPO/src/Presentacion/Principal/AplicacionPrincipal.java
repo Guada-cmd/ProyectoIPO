@@ -94,24 +94,14 @@ public class AplicacionPrincipal {
 	//Objeto con los datos del perfil de usuario que se inicializaron por defecto
 	
 	private Perfil perfil_usuario;
-	private JButton btnParcelas;
-	private JButton btnCabanas;
-	private JButton btnExplorarReservas;
 	
 	private GridBagConstraints gbc_btnReservas = new GridBagConstraints();
-	private GridBagConstraints gbc_btnCabanas = new GridBagConstraints();
-	private GridBagConstraints gbc_btnParcelas = new GridBagConstraints();
-	private GridBagConstraints gbc_btnExplorarReservas = new GridBagConstraints();
 	
 	private GridBagConstraints gbc_btnActividades = new GridBagConstraints();
 	private GridBagConstraints gbc_btnEditarActividad = new GridBagConstraints();
 	
 	private GridBagConstraints gbc_btnCrearRuta = new GridBagConstraints();
 	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
-	
-	private JTextArea MarcadorParcela;
-	private JTextArea MarcadorCabana;
-	private JTextArea MarcadorMisReservas;
 	private JTextArea MarcadorEditarAct;
 	private JTextArea MarcadorCrearRuta;
 	
@@ -221,9 +211,7 @@ public class AplicacionPrincipal {
 				MarcadorActividades.setVisible(false);
 				MarcadorRutas.setVisible(false);
 
-				MarcadorParcela.setVisible(false);
-				MarcadorCabana.setVisible(false);
-				MarcadorMisReservas.setVisible(false);
+			
 				MarcadorEditarAct.setVisible(false);
 				MarcadorCrearRuta.setVisible(false);
 				
@@ -234,15 +222,10 @@ public class AplicacionPrincipal {
 				MarcadorActividades.setVisible(true);
 				MarcadorRutas.setVisible(false);
 				
-				MarcadorParcela.setVisible(false);
-				MarcadorCabana.setVisible(false);
-				MarcadorMisReservas.setVisible(false);
+			
 				MarcadorEditarAct.setVisible(false);
 				MarcadorCrearRuta.setVisible(false);
-				
-				btnParcelas.setVisible(false);
-				btnCabanas.setVisible(false);
-				btnExplorarReservas.setVisible(false);
+			
 				
 				colocarLayout(1);
 				
@@ -253,9 +236,7 @@ public class AplicacionPrincipal {
 				MarcadorActividades.setVisible(false);
 				MarcadorRutas.setVisible(true);
 				
-				MarcadorParcela.setVisible(false);
-				MarcadorCabana.setVisible(false);
-				MarcadorMisReservas.setVisible(false);
+				
 				MarcadorEditarAct.setVisible(false);
 				MarcadorCrearRuta.setVisible(false);
 				
@@ -269,10 +250,7 @@ public class AplicacionPrincipal {
 		switch(var) {
 		
 			case 0:
-				
-				btnParcelas.setVisible(true);
-				btnCabanas.setVisible(true);
-				btnExplorarReservas.setVisible(true);
+			
 				btnEditarActividad.setVisible(false);
 				btnCrearRuta.setVisible(false);
 				
@@ -285,31 +263,15 @@ public class AplicacionPrincipal {
 						
 				gbc_btnActividades.gridwidth = 2;
 				gbc_btnActividades.gridx = 1;
-				gbc_btnActividades.gridy = 5;
+				gbc_btnActividades.gridy = 2;
 				pnlBotones.add(btnActividades, gbc_btnActividades);
 				
 				gbc_btnRutas.gridwidth = 2;
 				gbc_btnRutas.gridx = 1;
-				gbc_btnRutas.gridy = 6;
+				gbc_btnRutas.gridy = 3;
 				pnlBotones.add(btnRutas, gbc_btnRutas);
 				
-				//Rama reservas
-				
-				gbc_btnCabanas.gridwidth = 2;
-				gbc_btnCabanas.gridx = 1;
-				gbc_btnCabanas.gridy = 2;
-				pnlBotones.add(btnCabanas, gbc_btnCabanas);
-				
-				gbc_btnParcelas.gridwidth = 2;
-				gbc_btnParcelas.gridx = 1;
-				gbc_btnParcelas.gridy = 3;
-				pnlBotones.add(btnParcelas, gbc_btnParcelas);
-				
-				gbc_btnExplorarReservas.gridwidth = 2;
-				gbc_btnExplorarReservas.gridx = 1;
-				gbc_btnExplorarReservas.gridy = 4;
-				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
-				
+			
 				//Rama actividades
 				
 				gbc_btnEditarActividad.gridwidth = 2;
@@ -328,9 +290,7 @@ public class AplicacionPrincipal {
 				
 			case 1:
 				
-				btnParcelas.setVisible(false);
-				btnCabanas.setVisible(false);
-				btnExplorarReservas.setVisible(false);
+		
 				btnEditarActividad.setVisible(true);
 				btnCrearRuta.setVisible(false);
 				
@@ -351,23 +311,6 @@ public class AplicacionPrincipal {
 				gbc_btnRutas.gridy = 4;
 				pnlBotones.add(btnRutas, gbc_btnRutas);
 				
-				//Rama reservas
-				
-				gbc_btnCabanas.gridwidth = 2;
-				gbc_btnCabanas.gridx = 1;
-				gbc_btnCabanas.gridy = 6;
-				pnlBotones.add(btnCabanas, gbc_btnCabanas);
-				
-				gbc_btnParcelas.gridwidth = 2;
-				gbc_btnParcelas.gridx = 1;
-				gbc_btnParcelas.gridy = 7;
-				pnlBotones.add(btnParcelas, gbc_btnParcelas);
-				
-				gbc_btnExplorarReservas.gridwidth = 2;
-				gbc_btnExplorarReservas.gridx = 1;
-				gbc_btnExplorarReservas.gridy = 8;
-				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
-				
 				//Rama actividades
 				
 				gbc_btnEditarActividad.gridwidth = 2;
@@ -386,9 +329,7 @@ public class AplicacionPrincipal {
 				
 			case 2:
 				
-				btnParcelas.setVisible(false);
-				btnCabanas.setVisible(false);
-				btnExplorarReservas.setVisible(false);
+				
 				btnEditarActividad.setVisible(false);
 				btnCrearRuta.setVisible(true);
 				
@@ -409,23 +350,7 @@ public class AplicacionPrincipal {
 				gbc_btnRutas.gridy = 3;
 				pnlBotones.add(btnRutas, gbc_btnRutas);
 				
-				//Rama reservas
-				
-				gbc_btnCabanas.gridwidth = 2;
-				gbc_btnCabanas.gridx = 1;
-				gbc_btnCabanas.gridy = 6;
-				pnlBotones.add(btnCabanas, gbc_btnCabanas);
-				
-				gbc_btnParcelas.gridwidth = 2;
-				gbc_btnParcelas.gridx = 1;
-				gbc_btnParcelas.gridy = 7;
-				pnlBotones.add(btnParcelas, gbc_btnParcelas);
-				
-				gbc_btnExplorarReservas.gridwidth = 2;
-				gbc_btnExplorarReservas.gridx = 1;
-				gbc_btnExplorarReservas.gridy = 8;
-				pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
-				
+		
 				//Rama actividades
 				
 				gbc_btnEditarActividad.gridwidth = 2;
@@ -725,34 +650,6 @@ public class AplicacionPrincipal {
 		MarcadorRutas = new JTextArea();
 		MarcadorRutas.setVisible(false);
 		
-		btnParcelas = new JButton("Parcelas");
-		btnParcelas.setVisible(false);
-		
-		MarcadorParcela = new JTextArea();
-		MarcadorParcela.setVisible(false);
-		MarcadorParcela.setFocusable(false);
-		MarcadorParcela.setFocusTraversalKeysEnabled(false);
-		MarcadorParcela.setEditable(false);
-		GridBagConstraints gbc_MarcadorParcela = new GridBagConstraints();
-		gbc_MarcadorParcela.insets = new Insets(0, 0, 5, 5);
-		gbc_MarcadorParcela.fill = GridBagConstraints.BOTH;
-		gbc_MarcadorParcela.gridx = 0;
-		gbc_MarcadorParcela.gridy = 4;
-		pnlBotones.add(MarcadorParcela, gbc_MarcadorParcela);
-		btnParcelas.setForeground(Color.WHITE);
-		btnParcelas.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnParcelas.setFocusable(false);
-		btnParcelas.setFocusTraversalKeysEnabled(false);
-		btnParcelas.setFocusPainted(false);
-		btnParcelas.setBorder(null);
-		btnParcelas.setBackground(new Color(51, 51, 51));
-		
-		gbc_btnParcelas.anchor = GridBagConstraints.WEST;
-		gbc_btnParcelas.insets = new Insets(0, 0, 5, 5);
-		gbc_btnParcelas.gridx = 1;
-		gbc_btnParcelas.gridy = 4;
-		pnlBotones.add(btnParcelas, gbc_btnParcelas);
-		
 		MarcadorRutas.setFocusable(false);
 		MarcadorRutas.setFocusTraversalKeysEnabled(false);
 		MarcadorRutas.setEditable(false);
@@ -762,62 +659,6 @@ public class AplicacionPrincipal {
 		gbc_MarcadorRutas.gridx = 0;
 		gbc_MarcadorRutas.gridy = 3;
 		pnlBotones.add(MarcadorRutas, gbc_MarcadorRutas);
-		
-		btnCabanas = new JButton("Cabañas");
-		btnCabanas.setVisible(false);
-		
-		MarcadorCabana = new JTextArea();
-		MarcadorCabana.setVisible(false);
-		MarcadorCabana.setFocusable(false);
-		MarcadorCabana.setFocusTraversalKeysEnabled(false);
-		MarcadorCabana.setEditable(false);
-		GridBagConstraints gbc_MarcadorCabana = new GridBagConstraints();
-		gbc_MarcadorCabana.insets = new Insets(0, 0, 5, 5);
-		gbc_MarcadorCabana.fill = GridBagConstraints.BOTH;
-		gbc_MarcadorCabana.gridx = 0;
-		gbc_MarcadorCabana.gridy = 5;
-		pnlBotones.add(MarcadorCabana, gbc_MarcadorCabana);
-		btnCabanas.setForeground(Color.WHITE);
-		btnCabanas.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnCabanas.setFocusable(false);
-		btnCabanas.setFocusTraversalKeysEnabled(false);
-		btnCabanas.setFocusPainted(false);
-		btnCabanas.setBorder(null);
-		btnCabanas.setBackground(new Color(51, 51, 51));
-		
-		gbc_btnCabanas.anchor = GridBagConstraints.WEST;
-		gbc_btnCabanas.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCabanas.gridx = 1;
-		gbc_btnCabanas.gridy = 5;
-		pnlBotones.add(btnCabanas, gbc_btnCabanas);
-		
-		btnExplorarReservas = new JButton("Mis reservas");
-		btnExplorarReservas.setVisible(false);
-		
-		MarcadorMisReservas = new JTextArea();
-		MarcadorMisReservas.setVisible(false);
-		MarcadorMisReservas.setFocusable(false);
-		MarcadorMisReservas.setFocusTraversalKeysEnabled(false);
-		MarcadorMisReservas.setEditable(false);
-		GridBagConstraints gbc_MarcadorMisReservas = new GridBagConstraints();
-		gbc_MarcadorMisReservas.insets = new Insets(0, 0, 5, 5);
-		gbc_MarcadorMisReservas.fill = GridBagConstraints.BOTH;
-		gbc_MarcadorMisReservas.gridx = 0;
-		gbc_MarcadorMisReservas.gridy = 6;
-		pnlBotones.add(MarcadorMisReservas, gbc_MarcadorMisReservas);
-		btnExplorarReservas.setForeground(Color.WHITE);
-		btnExplorarReservas.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnExplorarReservas.setFocusable(false);
-		btnExplorarReservas.setFocusTraversalKeysEnabled(false);
-		btnExplorarReservas.setFocusPainted(false);
-		btnExplorarReservas.setBorder(null);
-		btnExplorarReservas.setBackground(new Color(51, 51, 51));
-		
-		gbc_btnExplorarReservas.anchor = GridBagConstraints.WEST;
-		gbc_btnExplorarReservas.insets = new Insets(0, 0, 5, 5);
-		gbc_btnExplorarReservas.gridx = 1;
-		gbc_btnExplorarReservas.gridy = 6;
-		pnlBotones.add(btnExplorarReservas, gbc_btnExplorarReservas);
 		
 		//Boton Actividades
 		
