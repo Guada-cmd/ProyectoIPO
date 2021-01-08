@@ -161,8 +161,8 @@ public class MiPanelUsuario extends JPanel {
 	private void inicializarDatosPanelInformacionUsuario() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{99, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{124, 17, 22, 19, 7, 34, 32, 39, 23, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
+		gridBagLayout.columnWidths = new int[]{112, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{145, 17, 22, 19, 7, 34, 32, 39, 23, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
