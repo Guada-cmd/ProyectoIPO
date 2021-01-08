@@ -26,7 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 
 
-public class MiPanelAniadirRutas extends JPanel {
+public class MiPanelCrearRuta extends JPanel {
 	
 	private JButton btnEditorRutas;
 	private EditorGraficoRuta frame_editor_rutas;
@@ -50,7 +50,7 @@ public class MiPanelAniadirRutas extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelAniadirRutas() {
+	public MiPanelCrearRuta() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{80, 154, 147, 61, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{66, 43, 31, 23, 24, 27, 22, 27, 27, 29, 14, 34, 37, 42, 41, 71, 0, 0};

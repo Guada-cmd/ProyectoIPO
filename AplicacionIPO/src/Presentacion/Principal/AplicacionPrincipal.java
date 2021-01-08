@@ -19,6 +19,7 @@ import javax.swing.JSplitPane;
 
 import Presentacion.Actividad.MiPanelActividad;
 import Presentacion.InicioSesion.VentanaInicio;
+import Presentacion.rutas.MiPanelCrearRuta;
 import Presentacion.rutas.MiPanelRutasOfertadas;
 
 import javax.swing.JMenuBar;
@@ -104,6 +105,7 @@ public class AplicacionPrincipal {
 	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
 	private JTextArea MarcadorEditarAct;
 	private JTextArea MarcadorCrearRuta;
+	private JPanel pnlCrearRuta;
 	
 
 	/**
@@ -182,6 +184,7 @@ public class AplicacionPrincipal {
 		btnReservas.addActionListener(new NavegacionPanelesActionListener());
 		btnActividades.addActionListener(new NavegacionPanelesActionListener());
 		btnRutas.addActionListener(new NavegacionPanelesActionListener());
+		btnCrearRuta.addActionListener(new NavegacionPanelesActionListener());
 		
 		miUsuario.addActionListener(new NavegacionPanelesActionListener());
 		miConfiguracion.addActionListener(new NavegacionPanelesActionListener());
@@ -191,6 +194,7 @@ public class AplicacionPrincipal {
 		btnReservas.addActionListener(new MarcadorUbicacionActionListener());
 		btnActividades.addActionListener(new MarcadorUbicacionActionListener());
 		btnRutas.addActionListener(new MarcadorUbicacionActionListener());
+		
 	
 	}
 	/**
@@ -581,6 +585,10 @@ public class AplicacionPrincipal {
 		pnlRutas = new MiPanelRutasOfertadas();
 		pnlContenidoAplicacionPrincipal.add(pnlRutas, "Rutas");
 		
+		
+		pnlCrearRuta = new MiPanelCrearRuta();
+		pnlContenidoAplicacionPrincipal.add(pnlCrearRuta, "Crear Ruta");
+	
 	}
 	/**
 	 * 
