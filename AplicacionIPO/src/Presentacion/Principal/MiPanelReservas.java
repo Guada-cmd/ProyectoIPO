@@ -100,7 +100,7 @@ public class MiPanelReservas extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			Reserva ventanaReservas = new Reserva();
 			ventanaReservas.getJFrame().setVisible(true);
-			((CardLayout)ventanaReservas.getJFrame().getLayout()).show(ventanaReservas.getPanelParcelas(), arg0.getActionCommand());
+			ventanaReservas.showParcelasPane();
 			ventanaReservas.mostrarParcelas();
 		}
 	}
@@ -108,7 +108,7 @@ public class MiPanelReservas extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			Reserva ventanaReservas = new Reserva();
 			ventanaReservas.getJFrame().setVisible(true);
-			((CardLayout)ventanaReservas.getJFrame().getLayout()).show(ventanaReservas.getPanelCabana(), arg0.getActionCommand());
+			ventanaReservas.showCabanasPane();
 			ventanaReservas.mostrarCabañas();
 		}
 	}
@@ -116,7 +116,7 @@ public class MiPanelReservas extends JPanel {
 		public void actionPerformed(ActionEvent arg0) {
 			Reserva ventanaReservas = new Reserva();
 			ventanaReservas.getJFrame().setVisible(true);
-			((CardLayout)ventanaReservas.getJFrame().getLayout()).show(ventanaReservas.getPanelExplorar(), arg0.getActionCommand());
+			ventanaReservas.showExplorarPane();
 			ventanaReservas.mostrarReservas(false);
 		}
 	}

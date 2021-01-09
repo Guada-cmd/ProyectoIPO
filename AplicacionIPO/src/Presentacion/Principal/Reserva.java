@@ -40,6 +40,8 @@ import java.awt.event.InputMethodEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Reserva {
 
@@ -80,6 +82,11 @@ public class Reserva {
 	private final JCheckBox chckbxMostrarReservasFinalizadas = new JCheckBox("Mostrar reservas finalizadas");
 	private Vector<Vector<Object>> reservas;
 	private final JTextField textNombre = new JTextField();
+	
+	private final String PANE_PARCELAS = "paneParcelas";
+	private final String PANE_CABANAS = "paneCabanas";
+	private final String PANE_EXPLORAR = "paneExplorar";
+	private final String PANE_REGISTRO = "paneRegistro";
 	/**
 	 * Launch the application.
 	 */
@@ -113,7 +120,7 @@ public class Reserva {
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
 		
-		frame.getContentPane().add(panelParcela, "panelParcela");
+		frame.getContentPane().add(panelParcela, PANE_PARCELAS);
 		GridBagLayout gbl_panelParcela = new GridBagLayout();
 		gbl_panelParcela.columnWidths = new int[]{93, 238, 75, 0};
 		gbl_panelParcela.rowHeights = new int[]{19, 96, 101, 21, 0};
@@ -192,7 +199,7 @@ public class Reserva {
 		panelParcela.add(btnEjecutarParcela, gbc_btnEjecutarParcela);
 		
 		
-		frame.getContentPane().add(panelCabana, "name_434732751873000");
+		frame.getContentPane().add(panelCabana, PANE_CABANAS);
 		GridBagLayout gbl_panelCabana = new GridBagLayout();
 		gbl_panelCabana.columnWidths = new int[]{92, 6, 251, 75, 0};
 		gbl_panelCabana.rowHeights = new int[]{109, 115, 21, 0};
@@ -253,7 +260,7 @@ public class Reserva {
 		panelCabana.add(btnEjecutarCabana, gbc_btnEjecutarCabana);
 		
 		
-		frame.getContentPane().add(panelRegistro, "name_434734742935100");
+		frame.getContentPane().add(panelRegistro, PANE_REGISTRO);
 		GridBagLayout gbl_panelRegistro = new GridBagLayout();
 		gbl_panelRegistro.columnWidths = new int[]{75, 38, 100, 176, 0};
 		gbl_panelRegistro.rowHeights = new int[]{13, 19, 20, 13, 141, 21, 0};
@@ -343,7 +350,7 @@ public class Reserva {
 		
 		
 		
-		frame.getContentPane().add(panelExplorar, "name_436833961265900");
+		frame.getContentPane().add(panelExplorar, PANE_EXPLORAR);
 		GridBagLayout gbl_panelExplorar = new GridBagLayout();
 		gbl_panelExplorar.columnWidths = new int[]{247, 16, 155, 0};
 		gbl_panelExplorar.rowHeights = new int[]{21, 230, 0};
@@ -376,6 +383,8 @@ public class Reserva {
 		tableReservas.getColumnModel().getColumn(6).setPreferredWidth(93);
 		
 		textBuscador = new JTextField();
+		textBuscador.addActionListener(new TextBuscadorActionListener());
+		textBuscador.addFocusListener(new TextBuscadorFocusListener());
 		textBuscador.setText("Introduzca aqu\u00ED la b\u00FAsqueda deseada...");
 		GridBagConstraints gbc_textBuscador = new GridBagConstraints();
 		gbc_textBuscador.fill = GridBagConstraints.HORIZONTAL;
@@ -413,14 +422,14 @@ public class Reserva {
 
 	private class BtnEjecutarParcelaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			((CardLayout)frame.getLayout()).show(panelRegistro, arg0.getActionCommand());
+			((CardLayout)frame.getLayout()).show(panelRegistro, PANE_REGISTRO);
 			
 			
 		}
 	}
 	private class BtnEjecutarCabanaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			((CardLayout)frame.getLayout()).show(panelRegistro, arg0.getActionCommand());
+			((CardLayout)frame.getLayout()).show(panelRegistro, PANE_REGISTRO);
 		}
 	}
 	private class ComboTipoParcelaActionListener implements ActionListener {
@@ -438,7 +447,7 @@ public class Reserva {
 	}
 	private class ListSelectorCabanaListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
-			idEstancia = listSelectorParcela.getSelectedIndex();
+			idEstancia = listSelectorCabana.getSelectedIndex();
 			textInformacionCabana.setText((String) vEstancias.get(listSelectorCabana.getSelectedIndex()).get(3));
 			lblPrecioCabana.setText((String)vEstancias.get(listSelectorCabana.getSelectedIndex()).get(4));
 			btnEjecutarCabana.setEnabled(true);
@@ -467,6 +476,35 @@ public class Reserva {
 	private class ChckbxMostrarReservasFinalizadasActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			mostrarReservas(chckbxMostrarReservasFinalizadas.isSelected());
+		}
+	}
+	private class TextBuscadorFocusListener extends FocusAdapter {
+		@Override
+		public void focusGained(FocusEvent e) {
+			textBuscador.setText("");
+		}
+	}
+	private class TextBuscadorActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			DefaultTableModel modelo = new DefaultTableModel();
+			tableReservas.setModel(modelo);
+			for (int i = 0; i < reservas.size(); i++) {
+				if(comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(0)) || 
+					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(1)) || 
+					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(2)) || 
+					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(3)) ||
+					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(4))){
+					Object[] linea = {reservas.elementAt(i).elementAt(0),
+							reservas.elementAt(i).elementAt(3),
+							reservas.elementAt(i).elementAt(2),
+							reservas.elementAt(i).elementAt(4),
+							reservas.elementAt(i).elementAt(1),
+							reservas.elementAt(i).elementAt(5),
+							(((String)reservas.elementAt(i).elementAt(5)).equals("en proceso"))?true:false};
+					modelo.addRow(linea);
+				}
+			}
+			
 		}
 	}
 	public void mostrarParcelas() {
@@ -532,5 +570,27 @@ public class Reserva {
 	}
 	public JPanel getPanelExplorar(){
 		return this.panelExplorar;
+	}
+	public void showParcelasPane() {
+		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
+		 cl.show(frame.getContentPane(), PANE_PARCELAS);
+	}
+	public void showCabanasPane() {
+		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
+		 cl.show(frame.getContentPane(), PANE_CABANAS);
+	}
+	public void showExplorarPane() {
+		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
+		 cl.show(frame.getContentPane(), PANE_EXPLORAR);
+	}
+	public void showRegistroPane() {
+		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
+		 cl.show(frame.getContentPane(), PANE_REGISTRO);
+	}
+	public boolean comprobarSubstring(String sub, String string) {
+		if(string.indexOf(sub) !=-1) {
+			return true;
+		}else
+			return false;
 	}
 }
