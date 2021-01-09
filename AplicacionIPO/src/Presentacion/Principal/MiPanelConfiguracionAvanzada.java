@@ -451,18 +451,28 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		btnDarBajaCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int validar_eliminacion = metodos_gestor_usuario.eliminarUsuario(usuario_datos_configuracion.getNombreUsuario());	
+				int confirmar_decision = dialogoRealizarOperacion();
 				
-				if(validar_eliminacion!= -1) {
+				if(confirmar_decision == 0) {
 					
-					dialogoEliminacionUsuario();
-					AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
-					//System.exit(0);
+					int validar_eliminacion = metodos_gestor_usuario.eliminarUsuario(usuario_datos_configuracion.getNombreUsuario());	
 					
+					if(validar_eliminacion!= -1) {
+						
+						dialogoEliminacionUsuario();
+						AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+						//System.exit(0);
+						
+						
+					}
+					else {
+						errorElimianarUsuario();
+					}
 					
 				}
 				
-				errorElimianarUsuario();
+				
+				
 				//ERROR O EXITO
 				
 			}
@@ -479,6 +489,20 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 
 		
+	}
+	private int dialogoRealizarOperacion() {
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea eliminar su cuenta?");
+		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(null, labelDialogoCerrarAplicacionMensaje, "Aviso de cierre aplicacion principal.", 0, 2, null, botones_list, null);
+	
 	}
 	private void dialogoCamposIncompletos() {
 	
