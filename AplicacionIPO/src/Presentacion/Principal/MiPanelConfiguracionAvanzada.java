@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
+import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.VentanaInicio;
 
 import javax.swing.border.Border;
@@ -72,6 +73,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
 	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
 	private Border bordeNaranja = BorderFactory.createLineBorder(colorNaranja);
+	private JButton btnGuardarNuevaContrasena;
+	
+	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 
 	/**
 	 * Create the panel.
@@ -169,6 +173,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 					lblDisponibilidad.setEnabled(true);
 					
 					btnGuardarNuevosDatos.setEnabled(true);
+					btnGuardarNuevaContrasena.setEnabled(true);
 			
 				}
 			
@@ -237,6 +242,61 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_pswfConfirmarContrasenaCA.gridx = 3;
 		gbc_pswfConfirmarContrasenaCA.gridy = 5;
 		add(pswfConfirmarContrasenaCA, gbc_pswfConfirmarContrasenaCA);
+		
+		btnGuardarNuevaContrasena = new JButton("Guardar");
+		btnGuardarNuevaContrasena.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if( pswfContrasenaCA.getText().isEmpty() ||  pswfConfirmarContrasenaCA.getText().isEmpty()) {
+					
+					pswfContrasenaCA.setBorder(bordeRojo);
+					pswfConfirmarContrasenaCA.setBorder(bordeRojo);
+					
+				}else {
+					
+					if(pswfContrasenaCA.getText().equals(pswfConfirmarContrasenaCA.getText())) {
+				
+						pswfContrasenaCA.setBorder(bordeVerde);
+						pswfConfirmarContrasenaCA.setBorder(bordeVerde);
+				
+						//CAMBIAMOS EN BASE DE DATOS
+						
+						int h = metodos_gestor_usuario.updateUsuarioPass(usuario_datos_configuracion.getNombreUsuario(), pswfContrasenaCA.getText().toString());
+						
+						if(h != -1) {
+							
+							System.out.println("NLKSXCDKNLC BIEEEEEEEEEEEEEEEEEEEEEE");
+						}
+					
+						//ERROR O EXITO
+				
+					}
+					else {
+						
+						//MENSAJE CONTRASENAS NO IGUALES
+						
+						pswfContrasenaCA.setBorder(bordeRojo);
+						pswfConfirmarContrasenaCA.setBorder(bordeRojo);
+		
+
+					}
+					
+				}
+			}
+			
+				
+
+		});
+		btnGuardarNuevaContrasena.setForeground(Color.WHITE);
+		btnGuardarNuevaContrasena.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnGuardarNuevaContrasena.setEnabled(false);
+		btnGuardarNuevaContrasena.setBackground(new Color(51, 51, 51));
+		GridBagConstraints gbc_btnGuardarNuevaContrasena = new GridBagConstraints();
+		gbc_btnGuardarNuevaContrasena.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGuardarNuevaContrasena.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGuardarNuevaContrasena.gridx = 4;
+		gbc_btnGuardarNuevaContrasena.gridy = 6;
+		add(btnGuardarNuevaContrasena, gbc_btnGuardarNuevaContrasena);
 		
 		lblDatosEmpleados = new JLabel("Informacion para empleados");
 		lblDatosEmpleados.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -335,8 +395,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 					
 					txtEditarIdiomas.setBorder(bordeRojo);
 					
-						
 				}
+				
 			}
 		});
 		btnGuardarNuevosDatos.setEnabled(false);
@@ -347,7 +407,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_btnGuardarNuevosDatos.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGuardarNuevosDatos.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGuardarNuevosDatos.gridx = 4;
-		gbc_btnGuardarNuevosDatos.gridy = 13;
+		gbc_btnGuardarNuevosDatos.gridy = 12;
 		add(btnGuardarNuevosDatos, gbc_btnGuardarNuevosDatos);
 		
 		btnDarBajaCuenta = new JButton("Darse de baja");

@@ -60,6 +60,34 @@ public class gestorUsuario {
 		return resultado;
 	}
 	
+	public int updateUsuarioPass(String nombre_usuario, String nueva_pass) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_update_pass = "update Usuario SET Contrasena = ? WHERE NombreUsuario = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement = connection.prepareStatement(sentencia_update_pass);
+			
+			prepared_statement.setString(1, nueva_pass);
+			prepared_statement.setString(2, nombre_usuario);
+			
+			resultado = prepared_statement.executeUpdate();
+			prepared_statement.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+	
 	/**
 	 * 
 	 * Descripcion: un usuario no se puede registrar en el sistema con un nombre que ya esta en la base de datos, este metodo permite hacer dicha comprobacion
