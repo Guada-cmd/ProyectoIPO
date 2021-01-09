@@ -334,6 +334,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		chckbxPasswordEdit.setIcon(new ImageIcon(MiPanelConfiguracionAvanzada.class.getResource("/recursos/hide_eye.png")));
 		chckbxPasswordEdit.setBackground(Color.WHITE);
 		GridBagConstraints gbc_chckbxPasswordEdit = new GridBagConstraints();
+		gbc_chckbxPasswordEdit.anchor = GridBagConstraints.WEST;
 		gbc_chckbxPasswordEdit.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxPasswordEdit.gridx = 5;
 		gbc_chckbxPasswordEdit.gridy = 5;

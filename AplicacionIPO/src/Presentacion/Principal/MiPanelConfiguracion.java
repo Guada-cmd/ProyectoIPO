@@ -41,16 +41,15 @@ public class MiPanelConfiguracion extends JPanel {
 	
 	private Usuario usuario_datos_configuracion;
 	private Perfil datos_perfil;
+	
 	private JButton btnCambiarFoto;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JButton btnNewButton;
+	private JTextField txtUpdateApellidos;
+	private JTextField textUpdateNombre;
+	private JTextField txtUpdateCorreo;
+	private JLabel lblDatosNombre;
+	private JLabel lblDatosApellidos;
+	private JLabel lblDatosCorreo;
+	private JButton btnGuardarUpdateDatos;
 	private JCheckBox chckbxPermitirEdicion;
 
 
@@ -109,19 +108,7 @@ public class MiPanelConfiguracion extends JPanel {
 		}
 		
 	}
-	private String comprobarTelefono(String cadena_telefono) {
-		
-		String cadena_comprobada = cadena_telefono;
-		
-		for(int i = 0; i<cadena_comprobada.length(); i++) {
-			if (cadena_comprobada.charAt(i) == '*') {
-				cadena_comprobada = "Ninguno";
-			}
-		}
-		
-		return cadena_comprobada;
-		
-	}
+	
 	/**
 	 * 
 	 * Descripcion: metodo que contiene los eventos del panel de configuracion
@@ -138,8 +125,8 @@ public class MiPanelConfiguracion extends JPanel {
 	private void inicializarDatosPanelInformacionUsuario() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{112, 84, 61, 53, 61, 0, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{216, 17, 22, 19, 7, 34, 32, 39, 30, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
+		gridBagLayout.columnWidths = new int[]{112, 84, 61, 53, 40, 57, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{224, 17, 22, 19, 7, 34, 32, 32, 30, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -195,82 +182,112 @@ public class MiPanelConfiguracion extends JPanel {
 		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
 		
 		chckbxPermitirEdicion = new JCheckBox("");
+		chckbxPermitirEdicion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			
+				if(chckbxPermitirEdicion.isSelected()) {
+					
+					textUpdateNombre.setEnabled(true);
+					txtUpdateApellidos.setEnabled(true);
+					txtUpdateCorreo.setEnabled(true);
+					
+					lblDatosNombre.setEnabled(true);
+					lblDatosApellidos.setEnabled(true);
+					lblDatosCorreo.setEnabled(true);
+					
+					btnGuardarUpdateDatos.setEnabled(true);
+				
+			
+				}
+				
+			}
+		});
+		chckbxPermitirEdicion.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/pencil.png")));
 		chckbxPermitirEdicion.setBackground(Color.WHITE);
 		GridBagConstraints gbc_chckbxPermitirEdicion = new GridBagConstraints();
+		gbc_chckbxPermitirEdicion.anchor = GridBagConstraints.EAST;
 		gbc_chckbxPermitirEdicion.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxPermitirEdicion.gridx = 5;
 		gbc_chckbxPermitirEdicion.gridy = 3;
 		add(chckbxPermitirEdicion, gbc_chckbxPermitirEdicion);
 		
-		lblNewLabel = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel.gridx = 5;
-		gbc_lblNewLabel.gridy = 4;
-		add(lblNewLabel, gbc_lblNewLabel);
+		lblDatosNombre = new JLabel("Nombre:");
+		lblDatosNombre.setEnabled(false);
+		lblDatosNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDatosNombre = new GridBagConstraints();
+		gbc_lblDatosNombre.gridwidth = 2;
+		gbc_lblDatosNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDatosNombre.anchor = GridBagConstraints.EAST;
+		gbc_lblDatosNombre.gridx = 4;
+		gbc_lblDatosNombre.gridy = 5;
+		add(lblDatosNombre, gbc_lblDatosNombre);
 		
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 6;
-		gbc_textField_1.gridy = 4;
-		add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		textUpdateNombre = new JTextField();
+		textUpdateNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		textUpdateNombre.setEnabled(false);
+		GridBagConstraints gbc_textUpdateNombre = new GridBagConstraints();
+		gbc_textUpdateNombre.insets = new Insets(0, 0, 5, 5);
+		gbc_textUpdateNombre.fill = GridBagConstraints.BOTH;
+		gbc_textUpdateNombre.gridx = 6;
+		gbc_textUpdateNombre.gridy = 5;
+		add(textUpdateNombre, gbc_textUpdateNombre);
+		textUpdateNombre.setColumns(10);
 		
-		lblNewLabel_1 = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.gridx = 5;
-		gbc_lblNewLabel_1.gridy = 5;
-		add(lblNewLabel_1, gbc_lblNewLabel_1);
+		lblDatosApellidos = new JLabel("Apellidos:");
+		lblDatosApellidos.setEnabled(false);
+		lblDatosApellidos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDatosApellidos = new GridBagConstraints();
+		gbc_lblDatosApellidos.gridwidth = 2;
+		gbc_lblDatosApellidos.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDatosApellidos.anchor = GridBagConstraints.EAST;
+		gbc_lblDatosApellidos.gridx = 4;
+		gbc_lblDatosApellidos.gridy = 6;
+		add(lblDatosApellidos, gbc_lblDatosApellidos);
 		
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 6;
-		gbc_textField.gridy = 5;
-		add(textField, gbc_textField);
-		textField.setColumns(10);
+		txtUpdateApellidos = new JTextField();
+		GridBagConstraints gbc_txtUpdateApellidos = new GridBagConstraints();
+		gbc_txtUpdateApellidos.insets = new Insets(0, 0, 5, 5);
+		gbc_txtUpdateApellidos.fill = GridBagConstraints.BOTH;
+		gbc_txtUpdateApellidos.gridx = 6;
+		gbc_txtUpdateApellidos.gridy = 6;
+		add(txtUpdateApellidos, gbc_txtUpdateApellidos);
+		txtUpdateApellidos.setColumns(10);
 		
-		lblNewLabel_2 = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_2.gridx = 5;
-		gbc_lblNewLabel_2.gridy = 7;
-		add(lblNewLabel_2, gbc_lblNewLabel_2);
+		lblDatosCorreo = new JLabel("Correo:");
+		lblDatosCorreo.setEnabled(false);
+		lblDatosCorreo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblDatosCorreo = new GridBagConstraints();
+		gbc_lblDatosCorreo.gridwidth = 2;
+		gbc_lblDatosCorreo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDatosCorreo.anchor = GridBagConstraints.EAST;
+		gbc_lblDatosCorreo.gridx = 4;
+		gbc_lblDatosCorreo.gridy = 8;
+		add(lblDatosCorreo, gbc_lblDatosCorreo);
 		
-		textField_3 = new JTextField();
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 6;
-		gbc_textField_3.gridy = 7;
-		add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
-		
-		lblNewLabel_3 = new JLabel("New label");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_3.gridx = 5;
-		gbc_lblNewLabel_3.gridy = 8;
-		add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
-		textField_2 = new JTextField();
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 6;
-		gbc_textField_2.gridy = 8;
-		add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		txtUpdateCorreo = new JTextField();
+		txtUpdateCorreo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		txtUpdateCorreo.setEnabled(false);
+		GridBagConstraints gbc_txtUpdateCorreo = new GridBagConstraints();
+		gbc_txtUpdateCorreo.insets = new Insets(0, 0, 5, 5);
+		gbc_txtUpdateCorreo.fill = GridBagConstraints.BOTH;
+		gbc_txtUpdateCorreo.gridx = 6;
+		gbc_txtUpdateCorreo.gridy = 8;
+		add(txtUpdateCorreo, gbc_txtUpdateCorreo);
+		txtUpdateCorreo.setColumns(10);
 		
 		btnCambiarFoto = new JButton("Cargar...");
+		btnCambiarFoto.setBorder(null);
+		btnCambiarFoto.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/add-picture.png")));
+		btnCambiarFoto.setFocusPainted(false);
+		btnCambiarFoto.setFocusTraversalKeysEnabled(false);
+		btnCambiarFoto.setFocusable(false);
+		btnCambiarFoto.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		
+	
+		btnCambiarFoto.setForeground(new Color(51, 51, 51));
+		btnCambiarFoto.setBackground(new Color(255, 255, 255));
+		
 		GridBagConstraints gbc_btnCambiarFoto = new GridBagConstraints();
 		gbc_btnCambiarFoto.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCambiarFoto.gridwidth = 2;
@@ -279,12 +296,23 @@ public class MiPanelConfiguracion extends JPanel {
 		gbc_btnCambiarFoto.gridy = 9;
 		add(btnCambiarFoto, gbc_btnCambiarFoto);
 		
-		btnNewButton = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 9;
-		add(btnNewButton, gbc_btnNewButton);
+		btnGuardarUpdateDatos = new JButton("Guardar");
+		btnGuardarUpdateDatos.setFocusable(false);
+		btnGuardarUpdateDatos.setFocusPainted(false);
+		btnGuardarUpdateDatos.setFocusTraversalKeysEnabled(false);
+		btnGuardarUpdateDatos.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnGuardarUpdateDatos.setEnabled(false);
+		
+		btnGuardarUpdateDatos.setForeground(new Color(255, 255, 255));
+		btnGuardarUpdateDatos.setBackground(new Color(51, 51, 51));
+		
+		GridBagConstraints gbc_btnGuardarUpdateDatos = new GridBagConstraints();
+		gbc_btnGuardarUpdateDatos.fill = GridBagConstraints.VERTICAL;
+		gbc_btnGuardarUpdateDatos.anchor = GridBagConstraints.EAST;
+		gbc_btnGuardarUpdateDatos.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGuardarUpdateDatos.gridx = 6;
+		gbc_btnGuardarUpdateDatos.gridy = 9;
+		add(btnGuardarUpdateDatos, gbc_btnGuardarUpdateDatos);
 		
 	}
 
