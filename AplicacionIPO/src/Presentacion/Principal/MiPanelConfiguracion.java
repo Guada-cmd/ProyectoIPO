@@ -325,19 +325,9 @@ public class MiPanelConfiguracion extends JPanel {
 				
 				if (textUpdateNombre.getText() != null || txtUpdateApellidos.getText() != null || txtUpdateCorreo.getText() != null) {
 					
-					if(textUpdateNombre.getText().isEmpty() == false) {
+				
 					
-						textUpdateNombre.setBorder(bordeVerde);
-					
-						validar_nuevo_nombre = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Nombre", textUpdateNombre.getText().toString());
-					
-						if(validar_nuevo_nombre == -1) {
-						
-							errorConfiguracionDialogo();
-						
-						}
-					
-						else if(txtUpdateApellidos.getText().isEmpty() == false) {
+						if(txtUpdateApellidos.getText().isEmpty() == false) {
 						
 							txtUpdateApellidos.setBorder(bordeVerde);
 						
@@ -350,9 +340,9 @@ public class MiPanelConfiguracion extends JPanel {
 							}
 					
 						}
-					
-						else if(txtUpdateCorreo.getText().isEmpty() == false) {
 						
+						else if(txtUpdateCorreo.getText().isEmpty() == false) {
+							
 							boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
 						
 							if (correo_correcto_comprobacion == false) {
@@ -376,18 +366,31 @@ public class MiPanelConfiguracion extends JPanel {
 							
 							}
 						
-						
-					
 						}
+						
+						else if(textUpdateNombre.getText().isEmpty() == false) {
+							
+							textUpdateNombre.setBorder(bordeVerde);
+						
+							validar_nuevo_nombre = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Nombre", textUpdateNombre.getText().toString());
+						
+							if(validar_nuevo_nombre == -1) {
+							
+								errorConfiguracionDialogo();
+							
+							}
+					
+						
 					dialogoRegistroExitoso();
 					}
+					else if (textUpdateNombre.getText().equals("") && txtUpdateApellidos.getText().equals("") && txtUpdateCorreo.getText().equals("")) {
+							
+							
+							dialogoNoDatos();
+							
+						}
 				}
-				else if (textUpdateNombre.getText().equals("") && txtUpdateApellidos.getText().equals("") && txtUpdateCorreo.getText().equals("")) {
-					
-					
-					dialogoNoDatos();
-					
-				}
+				
 			
 			
 			}
