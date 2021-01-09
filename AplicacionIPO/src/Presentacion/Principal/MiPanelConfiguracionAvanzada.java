@@ -76,6 +76,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private JButton btnGuardarNuevaContrasena;
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	
 
 	/**
 	 * Create the panel.
@@ -261,13 +262,18 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 				
 						//CAMBIAMOS EN BASE DE DATOS
 						
-						int h = metodos_gestor_usuario.updateUsuarioPass(usuario_datos_configuracion.getNombreUsuario(), pswfContrasenaCA.getText().toString());
+						int validar_nueva_pass = metodos_gestor_usuario.updateUsuarioPass(usuario_datos_configuracion.getNombreUsuario(), pswfContrasenaCA.getText().toString());
 						
-						if(h != -1) {
+						if(validar_nueva_pass != -1) {
 							
-							System.out.println("NLKSXCDKNLC BIEEEEEEEEEEEEEEEEEEEEEE");
+							dialogoRegistroExitoso();
+							AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+							//System.exit(0);
+							
+							
 						}
-					
+						
+						errorUpdate();
 						//ERROR O EXITO
 				
 					}
@@ -275,8 +281,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 						
 						//MENSAJE CONTRASENAS NO IGUALES
 						
-						pswfContrasenaCA.setBorder(bordeRojo);
-						pswfConfirmarContrasenaCA.setBorder(bordeRojo);
+						 dialogoContrasenasDistintas();
+						
+						
 		
 
 					}
@@ -287,6 +294,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 				
 
 		});
+		
 		btnGuardarNuevaContrasena.setForeground(Color.WHITE);
 		btnGuardarNuevaContrasena.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnGuardarNuevaContrasena.setEnabled(false);
@@ -435,6 +443,38 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 	JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
 	
-}
-
+	}
+	private void dialogoRegistroExitoso() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente y el sistema se va a reiniciar.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
+			
+	}
+	private void errorUpdate() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos no han sido registrados correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos no guardados.", 0);
+			
+	}
+	private void dialogoContrasenasDistintas() {
+		
+		//Datos dialogo error contrasena
+			
+		JLabel labelDialogoContrasenasMensaje = new JLabel("Las contraseñas no coinciden.");
+		labelDialogoContrasenasMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoContrasenasMensaje, "Contraseñas no válidas.", 0);
+		
+		pswfContrasenaCA.setBorder(bordeRojo);
+		pswfConfirmarContrasenaCA.setBorder(bordeRojo);
+			
+	}
 }

@@ -50,7 +50,7 @@ import javax.swing.ImageIcon;
 
 public class AplicacionPrincipal {
 
-	private JFrame frmAplicacinPrincipalDe;
+	public static JFrame frmAplicacinPrincipalDe;
 	private JMenuBar menuBarAplicacionPrincipal;
 	private JMenu mUsuario;
 	private JMenuItem miUsuario;
