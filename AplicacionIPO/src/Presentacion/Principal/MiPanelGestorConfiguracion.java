@@ -2,15 +2,24 @@ package Presentacion.Principal;
 
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
+import Dominio.Perfil;
+import Dominio.Usuario;
+import Presentacion.InicioSesion.VentanaInicio;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Color;
 
 public class MiPanelGestorConfiguracion extends JPanel {
 	
@@ -19,11 +28,21 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	private JPanel pnlGestorConfiguracion;
 	private JPanel pnlConfiguracion;
 	private JPanel pnlConfiguracionAvanzada;
+	
+	
+	private Usuario usuario_datos_configuracion;
+	private Perfil datos_perfil;
 
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelGestorConfiguracion() {
+	public MiPanelGestorConfiguracion(Usuario usuario_datos_configuracion, Perfil datos_perfil) {
+		setBackground(new Color(255, 255, 255));
+		
+		
+		this.usuario_datos_configuracion = usuario_datos_configuracion;
+		this.datos_perfil = datos_perfil;
+		
 		
 		inicializarDatosPanelGestorConfiguracion();
 		
@@ -76,9 +95,9 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		btnConfiguracionAvanzada.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		btnConfiguracionAvanzada.setHorizontalAlignment(SwingConstants.RIGHT);
 		GridBagConstraints gbc_btnConfiguracionAvanzada = new GridBagConstraints();
-		gbc_btnConfiguracionAvanzada.insets = new Insets(0, 0, 5, 5);
+		gbc_btnConfiguracionAvanzada.insets = new Insets(0, 0, 0, 5);
 		gbc_btnConfiguracionAvanzada.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnConfiguracionAvanzada.gridx = 13;
+		gbc_btnConfiguracionAvanzada.gridx = 11;
 		gbc_btnConfiguracionAvanzada.gridy = 0;
 		pnlBotones.add(btnConfiguracionAvanzada, gbc_btnConfiguracionAvanzada);
 		
@@ -93,19 +112,32 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		//Panel gestor
 		
 		pnlGestorConfiguracion = new JPanel();
+		pnlGestorConfiguracion.setBackground(new Color(255, 255, 255));
 		add(pnlGestorConfiguracion, BorderLayout.WEST);
 		pnlGestorConfiguracion.setLayout(new CardLayout(0, 0));
 		
 		//Panel con la configuracion editable del Usuario
 		
 		pnlConfiguracion = new MiPanelConfiguracion();
+		GridBagLayout gridBagLayout = (GridBagLayout) pnlConfiguracion.getLayout();
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 303, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		pnlGestorConfiguracion.add(pnlConfiguracion, "Configuración");
 		
 		//Panel con la configuracion avanzada editable del Usuario
 		
-		pnlConfiguracionAvanzada = new MiPanelConfiguracionAvanzada();
-		pnlGestorConfiguracion.add(pnlConfiguracionAvanzada, "Configuracion Avanzada");
+		inicializarDatosConfiguracionAvanzadaBD();
+	
 		
+	}
+	private void inicializarDatosConfiguracionAvanzadaBD() {
+		
+		if(VentanaInicio.usuario_sistema != null) {
+		
+			pnlConfiguracionAvanzada = new MiPanelConfiguracionAvanzada(usuario_datos_configuracion, datos_perfil);
+			pnlGestorConfiguracion.add(pnlConfiguracionAvanzada, "Configuracion Avanzada");
+			
+		}
+	
 	}
 	/**
 	 * 
@@ -117,12 +149,13 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		//Panel que contiene el boton
 		
 		pnlBotones = new JPanel();
+		pnlBotones.setBackground(new Color(255, 255, 255));
 		add(pnlBotones, BorderLayout.SOUTH);
 		GridBagLayout gbl_pnlBotones = new GridBagLayout();
 		gbl_pnlBotones.columnWidths = new int[]{434, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 62, 0};
-		gbl_pnlBotones.rowHeights = new int[]{25, 19, 0};
+		gbl_pnlBotones.rowHeights = new int[]{19, 0};
 		gbl_pnlBotones.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlBotones.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlBotones.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlBotones.setLayout(gbl_pnlBotones);
 		
 	}

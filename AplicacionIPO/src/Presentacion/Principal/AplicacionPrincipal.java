@@ -602,8 +602,7 @@ public class AplicacionPrincipal {
 		
 		//Panel que da acceso al gestor de la configuracion para editar la informacion
 		
-		pnlGestorConfiguracion = new MiPanelGestorConfiguracion();
-		pnlContenidoAplicacionPrincipal.add(pnlGestorConfiguracion, "Configuración");
+		inicializarDatosConfiguracionBD();
 		
 		pnlRutas = new MiPanelRutasOfertadas();
 		pnlContenidoAplicacionPrincipal.add(pnlRutas, "Rutas");
@@ -611,6 +610,17 @@ public class AplicacionPrincipal {
 		
 		pnlCrearRuta = new MiPanelCrearRuta();
 		pnlContenidoAplicacionPrincipal.add(pnlCrearRuta, "Crear Ruta");
+	
+	}
+	private void inicializarDatosConfiguracionBD() {
+		
+		if(VentanaInicio.usuario_sistema != null) {
+			
+			pnlGestorConfiguracion = new MiPanelGestorConfiguracion(usuario_actual, perfil_usuario);
+			pnlContenidoAplicacionPrincipal.add(pnlGestorConfiguracion, "Configuración");
+			
+			
+		}
 	
 	}
 	/**

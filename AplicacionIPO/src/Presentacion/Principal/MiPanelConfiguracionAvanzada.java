@@ -2,6 +2,7 @@ package Presentacion.Principal;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -9,6 +10,12 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
+
+import Dominio.Perfil;
+import Dominio.Usuario;
+import Presentacion.InicioSesion.VentanaInicio;
+
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 import java.awt.CardLayout;
@@ -19,26 +26,62 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
+import javax.swing.JCheckBox;
 
 public class MiPanelConfiguracionAvanzada extends JPanel {
+	
+	private JCheckBox chckbxPermitirEdicion;
 	
 	private JLabel lblContrasenaCA;
 	private JLabel lblConfirmarContrasenaCA;
 	private JLabel lblEdicionDatosConfiguracion;
-	private JButton btnPermitirEdicionCA;
+	private JLabel lblDatosEmpleados;
+	private JLabel lblEditarIdiomas;
+	private JLabel lblEditarFormacion;
+	private JLabel lblDisponibilidad;
+	private JLabel lblPanelDeConfiguracin;
+	
 	private JPasswordField pswfContrasenaCA;
 	private JPasswordField pswfConfirmarContrasenaCA;
-	private JButton btnDarBajaCuente;
-	private JLabel lblDatosEmpleados;
+	
+	private JButton btnDarBajaCuenta;
+	private JButton btnGuardarNuevosDatos;
+	
+	private JTextField txtEditarIdiomas;
+	
+	private JComboBox cmbEditarFormacion;
+	private JComboBox cmbEditarDisponibilidad;
+	
+
+	private Usuario usuario_datos_configuracion;
+	private Perfil datos_perfil;
+	
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (255,255,210);	
+	private Color colorVerde = new Color(0, 143, 57);
+	private Color colorNaranja = new Color(255, 128, 0);
+	
+	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
+	
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
+	private Border bordeNaranja = BorderFactory.createLineBorder(colorNaranja);
 
 	/**
 	 * Create the panel.
 	 */
-	public MiPanelConfiguracionAvanzada() {
+	public MiPanelConfiguracionAvanzada(Usuario usuario_datos_configuracion, Perfil datos_perfil) {
+		setBackground(new Color(255, 255, 255));
+		
+		this.usuario_datos_configuracion = usuario_datos_configuracion;
+		this.datos_perfil = datos_perfil;
+		
 		
 		inicializarDatosPanelConfiguracionAvanzada();
 		
@@ -52,6 +95,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		//Oyentes del panel configuracion
 		asociacionOyentesConfiguracionAvanzada();
 		
+		//System.out.println(usuario_datos_configuracion.getNombre());
+		
 	}
 	/**
 	 * 
@@ -60,24 +105,6 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 */
 	private void asociacionOyentesConfiguracionAvanzada() {
 		
-		btnPermitirEdicionCA.addActionListener(new BtnPermitirEditarActionListener());
-		
-	}
-	/**
-	 * 
-	 * Descripcion: Oyente que habilita los campos para editar los datos
-	 *
-	 */
-	private class BtnPermitirEditarActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			lblContrasenaCA.setEnabled(true);
-			pswfContrasenaCA.setEnabled(true);
-			
-			lblConfirmarContrasenaCA.setEnabled(true);
-			pswfConfirmarContrasenaCA.setEnabled(true);
-			
-		}
 	}
 	/**
 	 * 
@@ -87,8 +114,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private void inicializarDatosPanelConfiguracionAvanzada() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{47, 44, 156, 70, 67, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{70, 31, 27, 47, 34, 39, 43, 25, 33, 30, 29, 28, 49, 32, 34, 42, 27, 27, 41, 0, 0};
+		gridBagLayout.columnWidths = new int[]{65, 77, 156, 70, 67, 108, 108, 0, 0};
+		gridBagLayout.rowHeights = new int[]{189, 31, 27, 47, 34, 36, 37, 25, 33, 30, 29, 28, 16, 32, 23, 42, 27, 27, 41, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -105,6 +132,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_lblEdicionDatosConfiguracion.gridy = 0;
 		add(lblEdicionDatosConfiguracion, gbc_lblEdicionDatosConfiguracion);
 		
+		
 	}
 	/**
 	 * 
@@ -113,19 +141,6 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 */
 	private void inicializarBotonEdicionConfiguracionAvanzada() {
 		
-		//Boton que permite habilitar los campos para editar
-		
-		btnPermitirEdicionCA = new JButton("Edicion...");
-		btnPermitirEdicionCA.setForeground(UIManager.getColor("Button.disabledForeground"));
-		btnPermitirEdicionCA.setBackground(UIManager.getColor("Button.darkShadow"));
-		btnPermitirEdicionCA.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_btnPermitirEdicionCA = new GridBagConstraints();
-		gbc_btnPermitirEdicionCA.fill = GridBagConstraints.BOTH;
-		gbc_btnPermitirEdicionCA.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPermitirEdicionCA.gridx = 2;
-		gbc_btnPermitirEdicionCA.gridy = 2;
-		add(btnPermitirEdicionCA, gbc_btnPermitirEdicionCA);
-		
 	}
 	/**
 	 * 
@@ -133,6 +148,51 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 * 
 	 */
 	private void inicializarDatosEdicionConfiguracionAvanzada() {
+		
+		chckbxPermitirEdicion = new JCheckBox("");
+		chckbxPermitirEdicion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(chckbxPermitirEdicion.isSelected()) {
+					
+					pswfContrasenaCA.setEnabled(true);
+					pswfConfirmarContrasenaCA.setEnabled(true);
+					lblContrasenaCA.setEnabled(true);
+					lblConfirmarContrasenaCA.setEnabled(true);
+					
+					
+					txtEditarIdiomas.setEnabled(true);
+					cmbEditarFormacion.setEnabled(true);
+					cmbEditarDisponibilidad.setEnabled(true);
+					lblEditarIdiomas.setEnabled(true);
+					lblEditarFormacion.setEnabled(true);
+					lblDisponibilidad.setEnabled(true);
+					
+					btnGuardarNuevosDatos.setEnabled(true);
+			
+				}
+			
+				
+			}
+		});
+		
+		lblPanelDeConfiguracin = new JLabel("Panel de configuración avanzada");
+		lblPanelDeConfiguracin.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		GridBagConstraints gbc_lblPanelDeConfiguracin = new GridBagConstraints();
+		gbc_lblPanelDeConfiguracin.anchor = GridBagConstraints.WEST;
+		gbc_lblPanelDeConfiguracin.gridwidth = 3;
+		gbc_lblPanelDeConfiguracin.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPanelDeConfiguracin.gridx = 2;
+		gbc_lblPanelDeConfiguracin.gridy = 2;
+		add(lblPanelDeConfiguracin, gbc_lblPanelDeConfiguracin);
+		chckbxPermitirEdicion.setIcon(new ImageIcon(MiPanelConfiguracionAvanzada.class.getResource("/recursos/pencil.png")));
+		chckbxPermitirEdicion.setBackground(Color.WHITE);
+		GridBagConstraints gbc_chckbxPermitirEdicion = new GridBagConstraints();
+		gbc_chckbxPermitirEdicion.anchor = GridBagConstraints.EAST;
+		gbc_chckbxPermitirEdicion.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxPermitirEdicion.gridx = 2;
+		gbc_chckbxPermitirEdicion.gridy = 3;
+		add(chckbxPermitirEdicion, gbc_chckbxPermitirEdicion);
 		
 		//Datos relacionados con la contrasena
 		
@@ -179,23 +239,142 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(pswfConfirmarContrasenaCA, gbc_pswfConfirmarContrasenaCA);
 		
 		lblDatosEmpleados = new JLabel("Informacion para empleados");
-		lblDatosEmpleados.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblDatosEmpleados.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblDatosEmpleados = new GridBagConstraints();
+		gbc_lblDatosEmpleados.anchor = GridBagConstraints.WEST;
 		gbc_lblDatosEmpleados.gridwidth = 2;
 		gbc_lblDatosEmpleados.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDatosEmpleados.gridx = 2;
 		gbc_lblDatosEmpleados.gridy = 7;
 		add(lblDatosEmpleados, gbc_lblDatosEmpleados);
 		
-		btnDarBajaCuente = new JButton("Darse de baja");
-		btnDarBajaCuente.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GridBagConstraints gbc_btnDarBajaCuente = new GridBagConstraints();
-		gbc_btnDarBajaCuente.fill = GridBagConstraints.BOTH;
-		gbc_btnDarBajaCuente.insets = new Insets(0, 0, 5, 5);
-		gbc_btnDarBajaCuente.gridx = 2;
-		gbc_btnDarBajaCuente.gridy = 12;
-		add(btnDarBajaCuente, gbc_btnDarBajaCuente);
+		lblEditarIdiomas = new JLabel("Idiomas:");
+		lblEditarIdiomas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEditarIdiomas.setEnabled(false);
+		GridBagConstraints gbc_lblEditarIdiomas = new GridBagConstraints();
+		gbc_lblEditarIdiomas.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEditarIdiomas.anchor = GridBagConstraints.EAST;
+		gbc_lblEditarIdiomas.gridx = 2;
+		gbc_lblEditarIdiomas.gridy = 9;
+		add(lblEditarIdiomas, gbc_lblEditarIdiomas);
+		
+		txtEditarIdiomas = new JTextField();
+		txtEditarIdiomas.setEnabled(false);
+		txtEditarIdiomas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_txtEditarIdiomas = new GridBagConstraints();
+		gbc_txtEditarIdiomas.gridwidth = 2;
+		gbc_txtEditarIdiomas.insets = new Insets(0, 0, 5, 5);
+		gbc_txtEditarIdiomas.fill = GridBagConstraints.BOTH;
+		gbc_txtEditarIdiomas.gridx = 3;
+		gbc_txtEditarIdiomas.gridy = 9;
+		add(txtEditarIdiomas, gbc_txtEditarIdiomas);
+		txtEditarIdiomas.setColumns(10);
+		
+		lblEditarFormacion = new JLabel("Formacion:");
+		lblEditarFormacion.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEditarFormacion.setEnabled(false);
+		GridBagConstraints gbc_lblEditarFormacion = new GridBagConstraints();
+		gbc_lblEditarFormacion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEditarFormacion.anchor = GridBagConstraints.EAST;
+		gbc_lblEditarFormacion.gridx = 2;
+		gbc_lblEditarFormacion.gridy = 10;
+		add(lblEditarFormacion, gbc_lblEditarFormacion);
+		
+		cmbEditarFormacion = new JComboBox();
+		cmbEditarFormacion.setEnabled(false);
+		cmbEditarFormacion.setModel(new DefaultComboBoxModel(new String[] {"ESO", "Bachillerato", "Grado Universitario", "Otros"}));
+		cmbEditarFormacion.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbEditarFormacion.setBackground(new Color(248, 248, 255));
+		GridBagConstraints gbc_cmbEditarFormacion = new GridBagConstraints();
+		gbc_cmbEditarFormacion.gridwidth = 2;
+		gbc_cmbEditarFormacion.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbEditarFormacion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbEditarFormacion.gridx = 3;
+		gbc_cmbEditarFormacion.gridy = 10;
+		add(cmbEditarFormacion, gbc_cmbEditarFormacion);
+		
+		lblDisponibilidad = new JLabel("Disponibilidad:");
+		lblDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblDisponibilidad.setEnabled(false);
+		GridBagConstraints gbc_lblDisponibilidad = new GridBagConstraints();
+		gbc_lblDisponibilidad.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDisponibilidad.anchor = GridBagConstraints.EAST;
+		gbc_lblDisponibilidad.gridx = 2;
+		gbc_lblDisponibilidad.gridy = 11;
+		add(lblDisponibilidad, gbc_lblDisponibilidad);
+		
+		cmbEditarDisponibilidad = new JComboBox();
+		cmbEditarDisponibilidad.setEnabled(false);
+		cmbEditarDisponibilidad.setModel(new DefaultComboBoxModel(new String[] {"No", "Si"}));
+		cmbEditarDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbEditarDisponibilidad.setBackground(new Color(248, 248, 255));
+		GridBagConstraints gbc_cmbEditarDisponibilidad = new GridBagConstraints();
+		gbc_cmbEditarDisponibilidad.gridwidth = 2;
+		gbc_cmbEditarDisponibilidad.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbEditarDisponibilidad.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbEditarDisponibilidad.gridx = 3;
+		gbc_cmbEditarDisponibilidad.gridy = 11;
+		add(cmbEditarDisponibilidad, gbc_cmbEditarDisponibilidad);
+		
+		btnGuardarNuevosDatos = new JButton("Guardar");
+		btnGuardarNuevosDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//boolean comprobar_correo = comprobarCorreoElectronico();
+				//int comprobar_usuario_registrado_sistema = ComprobacionUsuarioRegistrado();
+				//int validacion = 0;
+				
+				 
+					
+					//private JComboBox cmbEditarFormacion;
+					//private JComboBox cmbEditarDisponibilidad;
+				
+				if (txtEditarIdiomas.getText().isEmpty()) {
+					
+					dialogoCamposIncompletos();
+					
+					txtEditarIdiomas.setBorder(bordeRojo);
+					
+						
+				}
+			}
+		});
+		btnGuardarNuevosDatos.setEnabled(false);
+		btnGuardarNuevosDatos.setForeground(Color.WHITE);
+		btnGuardarNuevosDatos.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnGuardarNuevosDatos.setBackground(new Color(51, 51, 51));
+		GridBagConstraints gbc_btnGuardarNuevosDatos = new GridBagConstraints();
+		gbc_btnGuardarNuevosDatos.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnGuardarNuevosDatos.insets = new Insets(0, 0, 5, 5);
+		gbc_btnGuardarNuevosDatos.gridx = 4;
+		gbc_btnGuardarNuevosDatos.gridy = 13;
+		add(btnGuardarNuevosDatos, gbc_btnGuardarNuevosDatos);
+		
+		btnDarBajaCuenta = new JButton("Darse de baja");
+		btnDarBajaCuenta.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnDarBajaCuenta.setForeground(new Color(255, 255, 255));
+		btnDarBajaCuenta.setBackground(new Color(51, 51, 51));
+		GridBagConstraints gbc_btnDarBajaCuenta = new GridBagConstraints();
+		gbc_btnDarBajaCuenta.fill = GridBagConstraints.BOTH;
+		gbc_btnDarBajaCuenta.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDarBajaCuenta.gridx = 6;
+		gbc_btnDarBajaCuenta.gridy = 13;
+		add(btnDarBajaCuenta, gbc_btnDarBajaCuenta);
+		
+
 		
 	}
+	private void dialogoCamposIncompletos() {
+	
+	//Datos dialogo aviso en el registro
+	
+	JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
+	labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+	//Mensaje
+	
+	JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
+	
+}
 
 }
