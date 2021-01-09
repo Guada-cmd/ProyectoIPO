@@ -13,6 +13,7 @@ import javax.swing.border.TitledBorder;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
+import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.VentanaInicio;
 
@@ -76,6 +77,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private JButton btnGuardarNuevaContrasena;
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
 	
 
 	/**
@@ -404,6 +406,30 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 					txtEditarIdiomas.setBorder(bordeRojo);
 					
 				}
+				
+				else {
+					
+					txtEditarIdiomas.setBorder(bordeVerde);
+					
+					int validar_nuevo_perfil = metodos_gestor_perfil.updatePerfil(usuario_datos_configuracion.getNombreUsuario(), txtEditarIdiomas.getText().toString(), (String)cmbEditarDisponibilidad.getSelectedItem(), (String) cmbEditarFormacion.getSelectedItem());
+					
+					if(validar_nuevo_perfil != -1) {
+						
+						
+						dialogoRegistroExitoso();
+						AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+						//System.exit(0);
+						
+						
+					}
+					
+					errorUpdate();
+					//ERROR O EXITO
+			
+				}
+			
+					
+				
 				
 			}
 		});

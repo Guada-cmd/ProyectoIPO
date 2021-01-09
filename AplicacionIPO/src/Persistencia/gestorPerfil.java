@@ -52,6 +52,36 @@ public class gestorPerfil {
 		return resultado;
 	}
 	
+	public int updatePerfil(String nombre_usuario, String idiomas, String disponibilidad, String formacion) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_update_perfil = "update Perfil SET Idiomas = ?, Disponibilidad = ?, Formacion = ? WHERE UserName = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement_perfil = connection.prepareStatement(sentencia_update_perfil);
+			
+			prepared_statement_perfil.setString(1, idiomas);
+			prepared_statement_perfil.setString(2, disponibilidad);
+			prepared_statement_perfil.setString(3, formacion);
+			prepared_statement_perfil.setString(4, nombre_usuario);
+			
+			resultado = prepared_statement_perfil.executeUpdate();
+			prepared_statement_perfil.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+	
 	public String buscarDatoPerfilUsuario(String parametro, String nombre_usuario) {
 		
 		String buscar_dato_perfil = null;
