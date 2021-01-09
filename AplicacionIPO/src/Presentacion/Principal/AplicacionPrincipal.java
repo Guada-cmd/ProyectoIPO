@@ -521,11 +521,7 @@ public class AplicacionPrincipal {
 				MarcadorEditarAct.setVisible(false);
 				MarcadorCrearRuta.setVisible(false);
 				
-				
-				//METODO QUE CON SET ACTUALIZA LOS DATOS
-				
-				
-				
+		
 			}
 		}
 	}

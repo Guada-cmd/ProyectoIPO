@@ -32,6 +32,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	
 	private Usuario usuario_datos_configuracion;
 	private Perfil datos_perfil;
+	private JButton btnConfiguracionNormal;
 
 	/**
 	 * Create the panel.
@@ -66,6 +67,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	private void asociacionOyentesGestorConfiguracion() {
 		
 		btnConfiguracionAvanzada.addActionListener(new NavegacionPanelGestorConfiguracionActionListener());
+		btnConfiguracionNormal.addActionListener(new NavegacionPanelGestorConfiguracionActionListener());
 				
 	}
 	/**
@@ -78,7 +80,10 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			
 			CardLayout cardLayoutPanel = (CardLayout)(pnlGestorConfiguracion.getLayout());
+			pnlGestorConfiguracion.setVisible(true);
 			cardLayoutPanel.show(pnlGestorConfiguracion, e.getActionCommand());
+			
+			
 			
 		}
 	}
@@ -88,15 +93,38 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	 * 
 	 */
 	private void inicializarDatosBoton() {
+		{
+			btnConfiguracionNormal = new JButton("Configuración");
+			btnConfiguracionNormal.setFocusTraversalKeysEnabled(false);
+			btnConfiguracionNormal.setFocusPainted(false);
+			btnConfiguracionNormal.setFocusable(false);
+			GridBagConstraints gbc_btnConfiguracionNormal = new GridBagConstraints();
+			gbc_btnConfiguracionNormal.anchor = GridBagConstraints.EAST;
+			gbc_btnConfiguracionNormal.insets = new Insets(0, 0, 5, 5);
+			gbc_btnConfiguracionNormal.gridx = 0;
+			gbc_btnConfiguracionNormal.gridy = 0;
+			pnlBotones.add(btnConfiguracionNormal, gbc_btnConfiguracionNormal);
+			
+			btnConfiguracionNormal.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			btnConfiguracionNormal.setForeground(new Color(255, 255, 255));
+			btnConfiguracionNormal.setBackground(new Color(51, 51, 51));
+		}
 		
 		//Boton de la configuracion avanzada
 		
-		btnConfiguracionAvanzada = new JButton("Configuracion Avanzada");
-		btnConfiguracionAvanzada.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		btnConfiguracionAvanzada = new JButton("Avanzada");
+		btnConfiguracionAvanzada.setFocusable(false);
+		btnConfiguracionAvanzada.setFocusTraversalKeysEnabled(false);
+		btnConfiguracionAvanzada.setFocusPainted(false);
+		btnConfiguracionAvanzada.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnConfiguracionAvanzada.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+		btnConfiguracionAvanzada.setForeground(new Color(255, 255, 255));
+		btnConfiguracionAvanzada.setBackground(new Color(51, 51, 51));
+		
 		GridBagConstraints gbc_btnConfiguracionAvanzada = new GridBagConstraints();
-		gbc_btnConfiguracionAvanzada.insets = new Insets(0, 0, 0, 5);
-		gbc_btnConfiguracionAvanzada.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnConfiguracionAvanzada.insets = new Insets(0, 0, 5, 5);
+		gbc_btnConfiguracionAvanzada.anchor = GridBagConstraints.NORTH;
 		gbc_btnConfiguracionAvanzada.gridx = 1;
 		gbc_btnConfiguracionAvanzada.gridy = 0;
 		pnlBotones.add(btnConfiguracionAvanzada, gbc_btnConfiguracionAvanzada);
@@ -117,11 +145,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		pnlGestorConfiguracion.setLayout(new CardLayout(0, 0));
 		
 		//Panel con la configuracion editable del Usuario
-		
-		pnlConfiguracion = new MiPanelConfiguracion();
-		GridBagLayout gridBagLayout = (GridBagLayout) pnlConfiguracion.getLayout();
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 303, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		pnlGestorConfiguracion.add(pnlConfiguracion, "Configuración");
+	
 		
 		//Panel con la configuracion avanzada editable del Usuario
 		
@@ -132,9 +156,12 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	private void inicializarDatosConfiguracionAvanzadaBD() {
 		
 		if(VentanaInicio.usuario_sistema != null) {
+			
+			pnlConfiguracion = new MiPanelConfiguracion(usuario_datos_configuracion, datos_perfil);
+			pnlGestorConfiguracion.add(pnlConfiguracion, "Configuración");
 		
 			pnlConfiguracionAvanzada = new MiPanelConfiguracionAvanzada(usuario_datos_configuracion, datos_perfil);
-			pnlGestorConfiguracion.add(pnlConfiguracionAvanzada, "Configuracion Avanzada");
+			pnlGestorConfiguracion.add(pnlConfiguracionAvanzada, "Avanzada");
 			
 		}
 	
@@ -152,10 +179,10 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		pnlBotones.setBackground(new Color(255, 255, 255));
 		add(pnlBotones, BorderLayout.SOUTH);
 		GridBagLayout gbl_pnlBotones = new GridBagLayout();
-		gbl_pnlBotones.columnWidths = new int[]{434, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 62, 0};
-		gbl_pnlBotones.rowHeights = new int[]{19, 0};
+		gbl_pnlBotones.columnWidths = new int[]{178, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74, 62, 0};
+		gbl_pnlBotones.rowHeights = new int[]{19, 0, 0};
 		gbl_pnlBotones.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlBotones.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_pnlBotones.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		pnlBotones.setLayout(gbl_pnlBotones);
 		
 	}

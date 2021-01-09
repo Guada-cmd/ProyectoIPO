@@ -15,6 +15,7 @@ import Dominio.Perfil;
 import Dominio.Usuario;
 import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
+import Presentacion.InicioSesion.FormularioRegistro;
 import Presentacion.InicioSesion.VentanaInicio;
 
 import javax.swing.border.Border;
@@ -64,8 +65,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private Usuario usuario_datos_configuracion;
 	private Perfil datos_perfil;
 	
-	private Color colorBlanco = new Color (255,255,255);
-	private Color colorResaltado = new Color (255,255,210);	
+
 	private Color colorVerde = new Color(0, 143, 57);
 	private Color colorNaranja = new Color(255, 128, 0);
 	
@@ -73,11 +73,17 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
 	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
-	private Border bordeNaranja = BorderFactory.createLineBorder(colorNaranja);
+
 	private JButton btnGuardarNuevaContrasena;
 	
 	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
 	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
+	private JCheckBox chckbxPasswordEdit;
+	
+	//Creaccion imagenes ocultar o mostrar contrasena
+	
+	private ImageIcon image_icon_show_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/eye.png"));
+	private ImageIcon image_icon_hide_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png"));
 	
 
 	/**
@@ -103,6 +109,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		asociacionOyentesConfiguracionAvanzada();
 		
 		//System.out.println(usuario_datos_configuracion.getNombre());
+
 		
 	}
 	/**
@@ -121,8 +128,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	private void inicializarDatosPanelConfiguracionAvanzada() {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{65, 77, 156, 70, 67, 108, 108, 0, 0};
-		gridBagLayout.rowHeights = new int[]{189, 31, 27, 47, 34, 36, 37, 25, 33, 30, 29, 28, 16, 32, 23, 42, 27, 27, 41, 0, 0};
+		gridBagLayout.columnWidths = new int[]{84, 103, 156, 70, 139, 85, 108, 0, 0};
+		gridBagLayout.rowHeights = new int[]{189, 31, 27, 47, 34, 36, 37, 25, 33, 37, 29, 28, 16, 32, 23, 42, 27, 27, 41, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -148,6 +155,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 */
 	private void inicializarBotonEdicionConfiguracionAvanzada() {
 		
+
 	}
 	/**
 	 * 
@@ -247,6 +255,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(pswfConfirmarContrasenaCA, gbc_pswfConfirmarContrasenaCA);
 		
 		btnGuardarNuevaContrasena = new JButton("Guardar");
+		btnGuardarNuevaContrasena.setFocusable(false);
+		btnGuardarNuevaContrasena.setFocusTraversalKeysEnabled(false);
+		btnGuardarNuevaContrasena.setFocusPainted(false);
 		btnGuardarNuevaContrasena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -296,6 +307,37 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 				
 
 		});
+		
+		chckbxPasswordEdit = new JCheckBox("");
+		chckbxPasswordEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(chckbxPasswordEdit.isSelected()) {
+					
+					
+					pswfContrasenaCA.setEchoChar((char)0);
+					pswfConfirmarContrasenaCA.setEchoChar((char)0);
+					
+					chckbxPasswordEdit.setIcon(image_icon_show_password_login);
+					
+				}
+				else {
+					
+					chckbxPasswordEdit.setIcon(image_icon_hide_password_login);
+					pswfContrasenaCA.setEchoChar('*');
+					pswfConfirmarContrasenaCA.setEchoChar('*');
+				
+					
+				}
+			}
+		});
+		chckbxPasswordEdit.setIcon(new ImageIcon(MiPanelConfiguracionAvanzada.class.getResource("/recursos/hide_eye.png")));
+		chckbxPasswordEdit.setBackground(Color.WHITE);
+		GridBagConstraints gbc_chckbxPasswordEdit = new GridBagConstraints();
+		gbc_chckbxPasswordEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_chckbxPasswordEdit.gridx = 5;
+		gbc_chckbxPasswordEdit.gridy = 5;
+		add(chckbxPasswordEdit, gbc_chckbxPasswordEdit);
 		
 		btnGuardarNuevaContrasena.setForeground(Color.WHITE);
 		btnGuardarNuevaContrasena.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -387,6 +429,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(cmbEditarDisponibilidad, gbc_cmbEditarDisponibilidad);
 		
 		btnGuardarNuevosDatos = new JButton("Guardar");
+		btnGuardarNuevosDatos.setFocusable(false);
+		btnGuardarNuevosDatos.setFocusTraversalKeysEnabled(false);
+		btnGuardarNuevosDatos.setFocusPainted(false);
 		btnGuardarNuevosDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -448,6 +493,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(btnGuardarNuevosDatos, gbc_btnGuardarNuevosDatos);
 		
 		btnDarBajaCuenta = new JButton("Darse de baja");
+		btnDarBajaCuenta.setFocusPainted(false);
+		btnDarBajaCuenta.setFocusTraversalKeysEnabled(false);
+		btnDarBajaCuenta.setFocusable(false);
 		btnDarBajaCuenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
