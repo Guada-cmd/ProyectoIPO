@@ -59,7 +59,34 @@ public class gestorUsuario {
 		
 		return resultado;
 	}
-	
+
+	public int eliminarUsuario(String nombre_usuario) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_delete_usuario = "DELETE FROM Usuario WHERE NombreUsuario = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement = connection.prepareStatement(sentencia_delete_usuario);
+			
+			prepared_statement.setString(1, nombre_usuario);
+		
+			
+			resultado = prepared_statement.executeUpdate();
+			prepared_statement.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
 	public int updateUsuarioPass(String nombre_usuario, String nueva_pass) {
 		
 		int resultado = -1;

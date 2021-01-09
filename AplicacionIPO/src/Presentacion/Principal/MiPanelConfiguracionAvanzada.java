@@ -448,6 +448,25 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(btnGuardarNuevosDatos, gbc_btnGuardarNuevosDatos);
 		
 		btnDarBajaCuenta = new JButton("Darse de baja");
+		btnDarBajaCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int validar_eliminacion = metodos_gestor_usuario.eliminarUsuario(usuario_datos_configuracion.getNombreUsuario());	
+				
+				if(validar_eliminacion!= -1) {
+					
+					dialogoEliminacionUsuario();
+					AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+					//System.exit(0);
+					
+					
+				}
+				
+				errorElimianarUsuario();
+				//ERROR O EXITO
+				
+			}
+		});
 		btnDarBajaCuenta.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnDarBajaCuenta.setForeground(new Color(255, 255, 255));
 		btnDarBajaCuenta.setBackground(new Color(51, 51, 51));
@@ -455,7 +474,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_btnDarBajaCuenta.fill = GridBagConstraints.BOTH;
 		gbc_btnDarBajaCuenta.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDarBajaCuenta.gridx = 6;
-		gbc_btnDarBajaCuenta.gridy = 13;
+		gbc_btnDarBajaCuenta.gridy = 12;
 		add(btnDarBajaCuenta, gbc_btnDarBajaCuenta);
 		
 
@@ -504,6 +523,27 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		pswfContrasenaCA.setBorder(bordeRojo);
 		pswfConfirmarContrasenaCA.setBorder(bordeRojo);
+			
+	}
+	
+	private void dialogoEliminacionUsuario() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos se han ekiminado del sistema correctamente y el sistema se va a reiniciar.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Usuario eliminado.", 1);
+			
+	}
+	private void errorElimianarUsuario() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos no se han eliminado correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Usuario no eliminado.", 0);
 			
 	}
 }

@@ -97,7 +97,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		GridBagConstraints gbc_btnConfiguracionAvanzada = new GridBagConstraints();
 		gbc_btnConfiguracionAvanzada.insets = new Insets(0, 0, 0, 5);
 		gbc_btnConfiguracionAvanzada.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnConfiguracionAvanzada.gridx = 11;
+		gbc_btnConfiguracionAvanzada.gridx = 1;
 		gbc_btnConfiguracionAvanzada.gridy = 0;
 		pnlBotones.add(btnConfiguracionAvanzada, gbc_btnConfiguracionAvanzada);
 		
