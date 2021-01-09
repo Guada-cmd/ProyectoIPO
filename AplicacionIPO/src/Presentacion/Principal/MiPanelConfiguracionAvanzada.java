@@ -275,7 +275,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 							
 						}
 						
-						errorUpdate();
+						errorUpdateDialogo();
 						//ERROR O EXITO
 				
 					}
@@ -422,9 +422,12 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 						
 						
 					}
-					
-					errorUpdate();
-					//ERROR O EXITO
+					else {
+						
+						errorUpdateDialogo();
+						
+					}
+
 			
 				}
 			
@@ -480,7 +483,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
 			
 	}
-	private void errorUpdate() {
+	private void errorUpdateDialogo() {
 		
 		//Datos dialogo exito en el registro
 		
