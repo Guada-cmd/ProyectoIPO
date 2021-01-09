@@ -115,6 +115,34 @@ public class gestorUsuario {
 		return resultado;
 	}
 	
+	public int updateUsuarioParametro(String nombre_usuario, String nombre_parametro, String nuevo_parametro) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_update_parametro = "update Usuario SET "+nombre_parametro+" = ? WHERE NombreUsuario = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement = connection.prepareStatement(sentencia_update_parametro);
+			
+			prepared_statement.setString(1, nuevo_parametro);
+			prepared_statement.setString(2, nombre_usuario);
+			
+			resultado = prepared_statement.executeUpdate();
+			prepared_statement.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+	
 	/**
 	 * 
 	 * Descripcion: un usuario no se puede registrar en el sistema con un nombre que ya esta en la base de datos, este metodo permite hacer dicha comprobacion

@@ -26,6 +26,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Font;
@@ -67,7 +69,10 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 
 	private Color colorVerde = new Color(0, 143, 57);
-	private Color colorNaranja = new Color(255, 128, 0);
+
+	
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (255,255,210);	
 	
 	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
 	
@@ -84,6 +89,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 	private ImageIcon image_icon_show_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/eye.png"));
 	private ImageIcon image_icon_hide_password_login = new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png"));
+	
+	private VentanaInicio frame_ventana_inicio;
 	
 
 	/**
@@ -155,7 +162,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 */
 	private void inicializarBotonEdicionConfiguracionAvanzada() {
 		
-
+	
+	
+		
 	}
 	/**
 	 * 
@@ -279,8 +288,14 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 						
 						if(validar_nueva_pass != -1) {
 							
+							frame_ventana_inicio = new VentanaInicio();
+							
 							dialogoRegistroExitoso();
 							AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+							
+							frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+							
+							
 							//System.exit(0);
 							
 							
@@ -461,9 +476,14 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 					
 					if(validar_nuevo_perfil != -1) {
 						
+						frame_ventana_inicio = new VentanaInicio();
 						
 						dialogoRegistroExitoso();
 						AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+						
+						frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+						
+						
 						//System.exit(0);
 						
 						
@@ -539,6 +559,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 
 		
 	}
+
 	private int dialogoRealizarOperacion() {
 		
 		//Mensaje de cerrar aplicacion

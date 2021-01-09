@@ -2,6 +2,7 @@ package Presentacion.Principal;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -12,8 +13,10 @@ import javax.swing.border.TitledBorder;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
+import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.VentanaInicio;
 
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
 import java.awt.CardLayout;
@@ -24,6 +27,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
@@ -51,6 +56,18 @@ public class MiPanelConfiguracion extends JPanel {
 	private JLabel lblDatosCorreo;
 	private JButton btnGuardarUpdateDatos;
 	private JCheckBox chckbxPermitirEdicion;
+	
+	private Color colorVerde = new Color(0, 143, 57);
+	
+	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	
+	private VentanaInicio frame_ventana_inicio;
+
+	
+	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
+	
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
 
 
 	/**
@@ -126,7 +143,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{112, 84, 61, 53, 40, 57, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{224, 17, 22, 19, 7, 34, 32, 32, 30, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
+		gridBagLayout.rowHeights = new int[]{224, 17, 22, 19, 7, 34, 32, 32, 33, 21, 20, 20, 16, 22, 15, 29, 28, 63, 44, 34, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -246,6 +263,7 @@ public class MiPanelConfiguracion extends JPanel {
 		add(lblDatosApellidos, gbc_lblDatosApellidos);
 		
 		txtUpdateApellidos = new JTextField();
+		txtUpdateApellidos.setEnabled(false);
 		GridBagConstraints gbc_txtUpdateApellidos = new GridBagConstraints();
 		gbc_txtUpdateApellidos.insets = new Insets(0, 0, 5, 5);
 		gbc_txtUpdateApellidos.fill = GridBagConstraints.BOTH;
@@ -297,6 +315,83 @@ public class MiPanelConfiguracion extends JPanel {
 		add(btnCambiarFoto, gbc_btnCambiarFoto);
 		
 		btnGuardarUpdateDatos = new JButton("Guardar");
+		btnGuardarUpdateDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int validar_nuevo_nombre = -1;
+				int validar_nuevo_apellido = -1;
+				int validar_nuevo_correo = -1;
+				
+				
+				if (textUpdateNombre.getText() != null || txtUpdateApellidos.getText() != null || txtUpdateCorreo.getText() != null) {
+					
+					if(textUpdateNombre.getText().isEmpty() == false) {
+					
+						textUpdateNombre.setBorder(bordeVerde);
+					
+						validar_nuevo_nombre = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Nombre", textUpdateNombre.getText().toString());
+					
+						if(validar_nuevo_nombre == -1) {
+						
+							errorConfiguracionDialogo();
+						
+						}
+					
+						else if(txtUpdateApellidos.getText().isEmpty() == false) {
+						
+							txtUpdateApellidos.setBorder(bordeVerde);
+						
+							validar_nuevo_apellido = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Apellidos", txtUpdateApellidos.getText().toString());
+						
+							if(validar_nuevo_apellido == -1) {
+							
+								errorConfiguracionDialogo();
+						
+							}
+					
+						}
+					
+						else if(txtUpdateCorreo.getText().isEmpty() == false) {
+						
+							boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
+						
+							if (correo_correcto_comprobacion == false) {
+							
+								txtUpdateCorreo.setBorder(bordeRojo);
+								dialogoCorreoIncorrecto();
+							
+							}
+							else {
+							
+								txtUpdateCorreo.setBorder(bordeVerde);
+							
+								validar_nuevo_correo = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Correo", txtUpdateCorreo.getText().toString());
+							
+								if(validar_nuevo_correo == -1) {
+								
+									errorConfiguracionDialogo();
+								
+							
+								}
+							
+							}
+						
+						
+					
+						}
+					dialogoRegistroExitoso();
+					}
+				}
+				else if (textUpdateNombre.getText().equals("") && txtUpdateApellidos.getText().equals("") && txtUpdateCorreo.getText().equals("")) {
+					
+					
+					dialogoNoDatos();
+					
+				}
+			
+			
+			}
+		});
 		btnGuardarUpdateDatos.setFocusable(false);
 		btnGuardarUpdateDatos.setFocusPainted(false);
 		btnGuardarUpdateDatos.setFocusTraversalKeysEnabled(false);
@@ -313,6 +408,62 @@ public class MiPanelConfiguracion extends JPanel {
 		gbc_btnGuardarUpdateDatos.gridx = 6;
 		gbc_btnGuardarUpdateDatos.gridy = 9;
 		add(btnGuardarUpdateDatos, gbc_btnGuardarUpdateDatos);
+		
+	}
+	private void dialogoRegistroExitoso() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
+			
+	}
+	private void dialogoNoDatos() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han introducido datos que actualizar.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos no introducidos.", 2);
+			
+	}
+	
+	private void errorConfiguracionDialogo() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han podido actualizar los datos.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Fallo de registro.", 0);
+			
+	}
+	
+	private void dialogoCorreoIncorrecto() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("El formato del dato correo no es correcto.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos incorrecto.", 0);
+			
+	}
+	private boolean comprobarCorreoElectronico() {
+		
+		boolean correo_correcto = false;
+		String comprobar_correo = txtUpdateCorreo.getText();
+		
+		for(int i = 0; i<comprobar_correo.length(); i++) {
+			if(comprobar_correo.charAt(i) == '@') {
+				correo_correcto = true;
+			}
+		}
+		
+		return correo_correcto;
 		
 	}
 
