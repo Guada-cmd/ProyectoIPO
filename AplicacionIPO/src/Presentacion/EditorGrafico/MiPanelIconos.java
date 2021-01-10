@@ -20,6 +20,11 @@ public class MiPanelIconos extends JPanel {
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
+	private JLabel lblTramos;
+	private JButton btnNewButton_6;
+	private JButton btnNewButton_7;
+	private JButton btnNewButton_8;
+	private JButton btnNewButton_9;
 
 	/**
 	 * Create the panel.
@@ -44,9 +49,9 @@ public class MiPanelIconos extends JPanel {
 		setBorder(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{24, 26, 0, -4, 0};
-		gridBagLayout.rowHeights = new int[]{40, 38, 33, 34, 35, 36, 33, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{40, 38, 33, 34, 35, 36, 33, 37, 34, 34, 33, 33, 31, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		lblTituloIconos = new JLabel("Iconos:");
@@ -113,10 +118,59 @@ public class MiPanelIconos extends JPanel {
 		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
 		gbc_btnNewButton_5.fill = GridBagConstraints.VERTICAL;
 		gbc_btnNewButton_5.gridwidth = 3;
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_5.gridx = 1;
 		gbc_btnNewButton_5.gridy = 6;
 		add(btnNewButton_5, gbc_btnNewButton_5);
+		
+		lblTramos = new JLabel("Tramos:");
+		lblTramos.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		GridBagConstraints gbc_lblTramos = new GridBagConstraints();
+		gbc_lblTramos.gridwidth = 3;
+		gbc_lblTramos.insets = new Insets(0, 0, 5, 0);
+		gbc_lblTramos.gridx = 1;
+		gbc_lblTramos.gridy = 7;
+		add(lblTramos, gbc_lblTramos);
+		
+		btnNewButton_6 = new JButton("");
+		btnNewButton_6.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/Rutas/NoTiene.png")));
+		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
+		gbc_btnNewButton_6.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_6.gridwidth = 3;
+		gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_6.gridx = 1;
+		gbc_btnNewButton_6.gridy = 8;
+		add(btnNewButton_6, gbc_btnNewButton_6);
+		
+		btnNewButton_7 = new JButton("");
+		btnNewButton_7.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/Rutas/baja.png")));
+		GridBagConstraints gbc_btnNewButton_7 = new GridBagConstraints();
+		gbc_btnNewButton_7.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_7.gridwidth = 3;
+		gbc_btnNewButton_7.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_7.gridx = 1;
+		gbc_btnNewButton_7.gridy = 9;
+		add(btnNewButton_7, gbc_btnNewButton_7);
+		
+		btnNewButton_8 = new JButton("");
+		btnNewButton_8.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/Rutas/Intermedio.png")));
+		GridBagConstraints gbc_btnNewButton_8 = new GridBagConstraints();
+		gbc_btnNewButton_8.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_8.gridwidth = 3;
+		gbc_btnNewButton_8.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_8.gridx = 1;
+		gbc_btnNewButton_8.gridy = 10;
+		add(btnNewButton_8, gbc_btnNewButton_8);
+		
+		btnNewButton_9 = new JButton("");
+		btnNewButton_9.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/Rutas/Experto.png")));
+		GridBagConstraints gbc_btnNewButton_9 = new GridBagConstraints();
+		gbc_btnNewButton_9.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_9.gridwidth = 3;
+		gbc_btnNewButton_9.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_9.gridx = 1;
+		gbc_btnNewButton_9.gridy = 11;
+		add(btnNewButton_9, gbc_btnNewButton_9);
 		
 	}
 	/**
