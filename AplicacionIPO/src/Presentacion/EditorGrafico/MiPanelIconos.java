@@ -17,6 +17,9 @@ public class MiPanelIconos extends JPanel {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
 
 	/**
 	 * Create the panel.
@@ -41,9 +44,9 @@ public class MiPanelIconos extends JPanel {
 		setBorder(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{24, 26, 0, -4, 0};
-		gridBagLayout.rowHeights = new int[]{40, 38, 33, 34, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{40, 38, 33, 34, 35, 36, 33, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		lblTituloIconos = new JLabel("Iconos:");
@@ -66,6 +69,7 @@ public class MiPanelIconos extends JPanel {
 		add(btnNewButton, gbc_btnNewButton);
 		
 		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/puentes.png")));
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.gridwidth = 3;
 		gbc_btnNewButton_1.fill = GridBagConstraints.VERTICAL;
@@ -75,13 +79,44 @@ public class MiPanelIconos extends JPanel {
 		add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("");
+		btnNewButton_2.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/rio.png")));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.gridwidth = 3;
 		gbc_btnNewButton_2.fill = GridBagConstraints.VERTICAL;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_2.gridx = 1;
 		gbc_btnNewButton_2.gridy = 3;
 		add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("");
+		btnNewButton_3.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/rest-area.png")));
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_3.gridwidth = 3;
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_3.gridx = 1;
+		gbc_btnNewButton_3.gridy = 4;
+		add(btnNewButton_3, gbc_btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("");
+		btnNewButton_4.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/noche.png")));
+		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+		gbc_btnNewButton_4.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_4.gridwidth = 3;
+		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButton_4.gridx = 1;
+		gbc_btnNewButton_4.gridy = 5;
+		add(btnNewButton_4, gbc_btnNewButton_4);
+		
+		btnNewButton_5 = new JButton("");
+		btnNewButton_5.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/pata.png")));
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_5.gridwidth = 3;
+		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_5.gridx = 1;
+		gbc_btnNewButton_5.gridy = 6;
+		add(btnNewButton_5, gbc_btnNewButton_5);
 		
 	}
 	/**
