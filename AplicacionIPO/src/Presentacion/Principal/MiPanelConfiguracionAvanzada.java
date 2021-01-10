@@ -624,7 +624,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		//Datos dialogo exito en el registro
 		
-		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos se han ekiminado del sistema correctamente y el sistema se va a reiniciar.");
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos se han eliminado del sistema correctamente y el sistema se va a reiniciar.");
 		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	
 		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Usuario eliminado.", 1);

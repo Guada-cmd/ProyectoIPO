@@ -48,7 +48,7 @@ public class MiPanelActividad extends JPanel {
 	
 	private gestorActividad r = new gestorActividad();
 	
-	private JLabel lblNewLabel;
+	private JLabel lblTituloActividad;
 	private JTextField textField;
 	private JLabel lblNombreActividadDB;
 	private JLabel lblIconCalendar;
@@ -124,10 +124,10 @@ public class MiPanelActividad extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		lblNewLabel = new JLabel("¿Desea buscar alguna actividad?");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblNewLabel.setBounds(59, 15, 234, 19);
-		add(lblNewLabel);
+		lblTituloActividad = new JLabel("¿Desea buscar alguna actividad?");
+		lblTituloActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblTituloActividad.setBounds(59, 15, 234, 19);
+		add(lblTituloActividad);
 		
 		textField = new JTextField();
 		textField.setBounds(59, 44, 234, 24);

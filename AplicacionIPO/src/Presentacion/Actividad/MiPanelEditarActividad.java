@@ -25,8 +25,11 @@ import javax.swing.table.JTableHeader;
 
 import Persistencia.gestorActividad;
 import Presentacion.EditorGrafico.EditorGraficoRuta;
+import Presentacion.InicioSesion.VentanaInicio;
+import Presentacion.Principal.AplicacionPrincipal;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -36,34 +39,55 @@ import java.io.IOException;
 import java.awt.Point;
 import java.awt.Cursor;
 import java.awt.Color;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 
 public class MiPanelEditarActividad extends JPanel {
 	
-	private JLabel lblBarraBusqueda;
 	
-	private JScrollPane scrollPaneFoto;
-	private JLabel lblFotoRutaSeleccionada;
 	private JScrollPane scrollPane;
+	
 	private JTable table;
 	
-	private gestorActividad r = new gestorActividad();
-	
+	private JLabel lblBarraBusqueda;
 	private JLabel lblNewLabel;
-	private JTextField textField;
-	private JLabel lblNombreActividadDB;
-	private JLabel lblIconCalendar;
-	private JLabel lblHorarioDB;
-	private JLabel lblDescripcionDB;
-	private JLabel lblIconoUbicacion;
-	private JLabel lblUbicacionDB;
-	private JLabel lblIconoGrupos;
-	private JLabel lblGrupoDB;
-	private JLabel lblIconoDinero;
-	private JLabel lblDineroDB;
-	private JLabel lblEquipamiento;
-	private JLabel lblMaterialDB;
 	private JLabel lblLupaIcono;
-	private JLabel lblNewLabel_1;
+	private JLabel lblTituloEditarActividad;
+	private JLabel lblEditarDatoPrecio;
+	private JLabel lblEditarDatoMaterial;
+	private JLabel lblEditarDatoArea;
+	
+	private JCheckBox chckbxPermitirEdicionActividad;
+	
+	private JComboBox cmbEditarMaterialActividad;
+	private JComboBox cmbEditarAreaActividad;
+	
+	private JTextField txtEditarPrecioActividad;
+	private JTextField textField;
+	
+	private JButton btnGuardarDatosActividad;
+	
+	
+	private JButton btnDarAltaActividad;
+	private JButton btnDarBajaActivida;
+	private JLabel lbldeseaDarDe;
+	private JLabel lbldeseaDarDe_2;
+	
+	private Color colorVerde = new Color(0, 143, 57);
+
+	
+	private Color colorBlanco = new Color (255,255,255);
+	private Color colorResaltado = new Color (255,255,210);	
+	
+	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
+	
+	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
+	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
+	
+	private gestorActividad r = new gestorActividad();
+	private JLabel lblActividadEditar;
 
 	/**
 	 * Create the panel.
@@ -76,19 +100,6 @@ public class MiPanelEditarActividad extends JPanel {
 		lblBarraBusqueda = new JLabel("");
 		lblBarraBusqueda.setBounds(521, 98, 45, 13);
 		add(lblBarraBusqueda);
-		
-		scrollPaneFoto = new JScrollPane();
-		scrollPaneFoto.setVisible(false);
-		scrollPaneFoto.setBounds(59, 250, 248, 171);
-		add(scrollPaneFoto);
-		
-		lblFotoRutaSeleccionada = new JLabel("");
-		lblFotoRutaSeleccionada.setVisible(false);
-		
-		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 175, Image.SCALE_SMOOTH)));
-		//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/Piscina.jpg")));
-		scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-		lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(59, 85, 730, 149);
@@ -135,81 +146,175 @@ public class MiPanelEditarActividad extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		lblNombreActividadDB = new JLabel("");
-		lblNombreActividadDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblNombreActividadDB.setBounds(327, 247, 192, 19);
-		add(lblNombreActividadDB);
-		
-		lblIconCalendar = new JLabel("");
-		lblIconCalendar.setVisible(false);
-		lblIconCalendar.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/calendar.png")));
-		lblIconCalendar.setBounds(327, 286, 21, 33);
-		add(lblIconCalendar);
-		
-		lblHorarioDB = new JLabel("");
-		lblHorarioDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblHorarioDB.setBounds(361, 286, 224, 33);
-		add(lblHorarioDB);
-		
-		lblDescripcionDB = new JLabel("");
-		lblDescripcionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblDescripcionDB.setBounds(327, 266, 462, 24);
-		add(lblDescripcionDB);
-		
-		lblIconoUbicacion = new JLabel("");
-		lblIconoUbicacion.setLocation(new Point(330, 335));
-		lblIconoUbicacion.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/ubicacion.png")));
-		lblIconoUbicacion.setVisible(false);
-		lblIconoUbicacion.setBounds(327, 320, 21, 24);
-		add(lblIconoUbicacion);
-		
-		lblUbicacionDB = new JLabel("");
-		lblUbicacionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblUbicacionDB.setBounds(361, 321, 224, 23);
-		add(lblUbicacionDB);
-		
-		lblIconoGrupos = new JLabel("");
-		lblIconoGrupos.setVisible(false);
-		lblIconoGrupos.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/grupo.png")));
-		lblIconoGrupos.setBounds(327, 352, 30, 19);
-		add(lblIconoGrupos);
-		
-		lblGrupoDB = new JLabel("");
-		lblGrupoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblGrupoDB.setBounds(362, 352, 234, 19);
-		add(lblGrupoDB);
-		
-		lblIconoDinero = new JLabel("");
-		lblIconoDinero.setVisible(false);
-		lblIconoDinero.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/dinero.png")));
-		lblIconoDinero.setBounds(327, 381, 30, 17);
-		add(lblIconoDinero);
-		
-		lblDineroDB = new JLabel("");
-		lblDineroDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblDineroDB.setBounds(362, 376, 157, 24);
-		add(lblDineroDB);
-		
-		lblEquipamiento = new JLabel("Material necesario para la actividad:");
-		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblEquipamiento.setVisible(false);
-		lblEquipamiento.setBounds(325, 402, 218, 24);
-		add(lblEquipamiento);
-		
-		lblMaterialDB = new JLabel("");
-		lblMaterialDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		lblMaterialDB.setBounds(527, 402, 130, 24);
-		add(lblMaterialDB);
-		
 		lblLupaIcono = new JLabel("");
 		lblLupaIcono.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/lupa.png")));
 		lblLupaIcono.setBounds(303, 44, 38, 24);
 		add(lblLupaIcono);
 		
-		lblNewLabel_1 = new JLabel("EDITAR");
-		lblNewLabel_1.setBounds(481, 49, 45, 13);
-		add(lblNewLabel_1);
+		lblTituloEditarActividad = new JLabel("Modificación datos:\r\n\r\n");
+		lblTituloEditarActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblTituloEditarActividad.setBounds(86, 239, 125, 32);
+		add(lblTituloEditarActividad);
+		
+		chckbxPermitirEdicionActividad = new JCheckBox("");
+		chckbxPermitirEdicionActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(chckbxPermitirEdicionActividad.isSelected()) {
+					
+					
+					cmbEditarMaterialActividad.setEnabled(true);
+					cmbEditarAreaActividad.setEnabled(true);
+					txtEditarPrecioActividad.setEnabled(true);
+					
+					btnGuardarDatosActividad.setEnabled(true);
+					
+					lblEditarDatoPrecio.setEnabled(true);
+					lblEditarDatoMaterial.setEnabled(true);
+					lblEditarDatoArea.setEnabled(true);
+					
+			
+				}
+				
+				
+			}
+		});
+		chckbxPermitirEdicionActividad.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/pencil.png")));
+		chckbxPermitirEdicionActividad.setBackground(Color.WHITE);
+		chckbxPermitirEdicionActividad.setBounds(59, 242, 21, 24);
+		add(chckbxPermitirEdicionActividad);
+		
+		lblEditarDatoPrecio = new JLabel("Precio:\r\n");
+		lblEditarDatoPrecio.setEnabled(false);
+		lblEditarDatoPrecio.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEditarDatoPrecio.setBounds(59, 368, 59, 19);
+		add(lblEditarDatoPrecio);
+		
+		lblEditarDatoMaterial = new JLabel("Material:");
+		lblEditarDatoMaterial.setEnabled(false);
+		lblEditarDatoMaterial.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEditarDatoMaterial.setBounds(59, 320, 59, 32);
+		add(lblEditarDatoMaterial);
+		
+		lblEditarDatoArea = new JLabel("Area:");
+		lblEditarDatoArea.setEnabled(false);
+		lblEditarDatoArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lblEditarDatoArea.setBounds(59, 286, 59, 24);
+		add(lblEditarDatoArea);
+		
+		cmbEditarMaterialActividad = new JComboBox();
+		cmbEditarMaterialActividad.setEnabled(false);
+		cmbEditarMaterialActividad.setModel(new DefaultComboBoxModel(new String[] {"Ninguno", "Bañador", "Ropa Tenis", "Equipación baloncesto", "Zapato deportivo", "Chandal"}));
+		cmbEditarMaterialActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbEditarMaterialActividad.setBackground(new Color(248, 248, 255));
+		cmbEditarMaterialActividad.setBounds(128, 324, 165, 24);
+		add(cmbEditarMaterialActividad);
+		
+		cmbEditarAreaActividad = new JComboBox();
+		cmbEditarAreaActividad.setEnabled(false);
+		cmbEditarAreaActividad.setModel(new DefaultComboBoxModel(new String[] {"Pistas", "Piscina", "Gimnasio", "Carpa", "Zona de práctica tiro con arco", "Patio zona alta"}));
+		cmbEditarAreaActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbEditarAreaActividad.setBackground(new Color(248, 248, 255));
+		cmbEditarAreaActividad.setBounds(128, 286, 165, 24);
+		add(cmbEditarAreaActividad);
+		
+		txtEditarPrecioActividad = new JTextField();
+		txtEditarPrecioActividad.setEnabled(false);
+		txtEditarPrecioActividad.setBounds(128, 368, 165, 24);
+		add(txtEditarPrecioActividad);
+		txtEditarPrecioActividad.setColumns(10);
+		
+		btnGuardarDatosActividad = new JButton("Actualizar");
+		btnGuardarDatosActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if (txtEditarPrecioActividad.getText().isEmpty()) {
+					
+					dialogoCamposIncompletos();
+					
+					txtEditarPrecioActividad.setBorder(bordeRojo);
+					
+				}
+				
+				else {
+					
+					txtEditarPrecioActividad.setBorder(bordeVerde);
+					
+					if(lblActividadEditar.getText() != null ) {
+						
+						int validar_nueva_actividad = r.updateActividad(lblActividadEditar.getText().toString(), txtEditarPrecioActividad.getText().toString(),
+								(String)cmbEditarAreaActividad.getSelectedItem(), (String)cmbEditarMaterialActividad.getSelectedItem());
+						
+								
+						
+						if(validar_nueva_actividad != -1) {
+							
+						
+							dialogoRegistroExitoso();
+							
+							
+							//System.exit(0);
+							
+							
+						}
+						else {
+							
+							errorUpdateDialogo();
+							
+						}
+						
+					}
+
+				}
+				
+			}
+		});
+		btnGuardarDatosActividad.setFocusable(false);
+		btnGuardarDatosActividad.setFocusPainted(false);
+		btnGuardarDatosActividad.setFocusTraversalKeysEnabled(false);
+		btnGuardarDatosActividad.setBounds(185, 413, 108, 24);
+		
+		btnGuardarDatosActividad.setEnabled(false);
+		btnGuardarDatosActividad.setForeground(Color.WHITE);
+		btnGuardarDatosActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnGuardarDatosActividad.setBackground(new Color(51, 51, 51));
+		
+		add(btnGuardarDatosActividad);
+		
+		btnDarAltaActividad = new JButton("Dar alta");
+		btnDarAltaActividad.setForeground(Color.WHITE);
+		btnDarAltaActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnDarAltaActividad.setFocusable(false);
+		btnDarAltaActividad.setFocusTraversalKeysEnabled(false);
+		btnDarAltaActividad.setFocusPainted(false);
+		btnDarAltaActividad.setBackground(new Color(51, 51, 51));
+		btnDarAltaActividad.setBounds(609, 305, 108, 24);
+		add(btnDarAltaActividad);
+		
+		btnDarBajaActivida = new JButton("Dar baja");
+		btnDarBajaActivida.setForeground(Color.WHITE);
+		btnDarBajaActivida.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnDarBajaActivida.setFocusable(false);
+		btnDarBajaActivida.setFocusTraversalKeysEnabled(false);
+		btnDarBajaActivida.setFocusPainted(false);
+		btnDarBajaActivida.setBackground(new Color(51, 51, 51));
+		btnDarBajaActivida.setBounds(609, 352, 108, 24);
+		add(btnDarBajaActivida);
+		
+		lbldeseaDarDe = new JLabel("¿Desea dar de alta alguna actividad?");
+		lbldeseaDarDe.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lbldeseaDarDe.setBounds(351, 308, 234, 19);
+		add(lbldeseaDarDe);
+		
+		lbldeseaDarDe_2 = new JLabel("¿Desea dar de baja alguna actividad?");
+		lbldeseaDarDe_2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		lbldeseaDarDe_2.setBounds(351, 352, 234, 24);
+		add(lbldeseaDarDe_2);
+		
+		lblActividadEditar = new JLabel("");
+		lblActividadEditar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblActividadEditar.setBounds(223, 244, 148, 27);
+		add(lblActividadEditar);
 		
 	}
 	
@@ -261,7 +366,7 @@ public class MiPanelEditarActividad extends JPanel {
 			
 			if (!lsm.isSelectionEmpty()) {
 				int filaSeleccionada = lsm.getMinSelectionIndex() + 1;
-				lblNombreActividadDB.setText("Fila "+filaSeleccionada+" seleccionada");
+				//lblNombreActividadDB.setText("Fila "+filaSeleccionada+" seleccionada");
 				//MiModeloTabla modeloTabla = (MiModeloTabla) table.getModel();
 				int n= table.getSelectedRow();
 				
@@ -274,43 +379,18 @@ public class MiPanelEditarActividad extends JPanel {
 					String contenido4 = r.buscarActividad("MinimoActividad", contenido)+" - "+r.buscarActividad("MaximoActividad", contenido);
 					String contenido5 = r.buscarActividad("PrecioMes", contenido);
 					String contenido6 = r.buscarActividad("Material", contenido);
-					String contenido7 = r.buscarActividad("Foto", contenido);
+				
 					
 					//System.out.println(table.getValueAt(n, 1));
-					lblNombreActividadDB.setText(contenido);
-					lblHorarioDB.setText(contenido1);
-					lblDescripcionDB.setText(contenido2);
-					lblUbicacionDB.setText(contenido3);
-					lblGrupoDB.setText(contenido4);
-					lblDineroDB.setText(contenido5);
-					lblMaterialDB.setText(contenido6);
+					lblActividadEditar.setText(contenido);
+					//lblHorarioDB.setText(contenido1);
+					//lblDescripcionDB.setText(contenido2);
+					//lblUbicacionDB.setText(contenido3);
+					//lblGrupoDB.setText(contenido4);
+					//lblDineroDB.setText(contenido5);
+					//lblMaterialDB.setText(contenido6);
 					
-					
-					lblIconCalendar.setVisible(true);
-					lblIconoUbicacion.setVisible(true);
-					lblIconoGrupos.setVisible(true);
-					lblIconoDinero.setVisible(true);
-					lblEquipamiento.setVisible(true);
-					
-					scrollPaneFoto.setVisible(true);
-					
-					if (contenido7 != null) {
-						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(contenido7)).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
-						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/noDisponible.jpg")));
-						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
-						lblFotoRutaSeleccionada.setVisible(true);
-					}
-					else {
-						lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/noDisponible.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
-						//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/noDisponible.jpg")));
-						scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
-						lblFotoRutaSeleccionada.setHorizontalAlignment(SwingConstants.CENTER);
-						lblFotoRutaSeleccionada.setVisible(true);
-					}
-					
-					
-					
+
 					
 					//String contenido = "Nombre :"+ table.getValueAt(n, 0)+":\n"+"Raza: "+ table.getValueAt(n, 1)+"\n";
 					//contenido += (Boolean) modeloTabla.getValueAt(n, 3)?"Vacunado": "No Vacunado\n";NO NECESARIO
@@ -320,4 +400,36 @@ public class MiPanelEditarActividad extends JPanel {
 			}
 		}
 	}
+	private void dialogoRegistroExitoso() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido actualizados correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
+			
+	}
+	private void errorUpdateDialogo() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos no han sido registrados correctamente.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos no guardados.", 0);
+			
+	}
+	private void dialogoCamposIncompletos() {
+		
+		//Datos dialogo aviso en el registro
+		
+		JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
+		labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		//Mensaje
+		
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
+		
+		}
 }

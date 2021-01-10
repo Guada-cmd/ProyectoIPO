@@ -15,6 +15,39 @@ public class gestorActividad {
 	public static int comprobacion_resultado_actividad;
 
 	
+	
+	public int updateActividad(String nombre_actividad, String precio_actividad, String area, String material) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_update_actividad = "update Actividad SET PrecioMes = ?, Area = ?, Material = ? WHERE Nombre = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement_actividad = connection.prepareStatement(sentencia_update_actividad);
+			
+			prepared_statement_actividad.setString(1, precio_actividad);
+			prepared_statement_actividad.setString(2, area);
+			prepared_statement_actividad.setString(3, material);
+			
+			
+			prepared_statement_actividad.setString(4, nombre_actividad);
+			
+			resultado = prepared_statement_actividad.executeUpdate();
+			prepared_statement_actividad.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+
 	public String crearTableActividad(String parametro, int index) {
 		
 		String buscar_dato_actividad = null;
