@@ -1,50 +1,34 @@
 package Presentacion.Actividad;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.imageio.ImageIO;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
-import javax.swing.JTextField;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JDesktopPane;
-import javax.swing.JFileChooser;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import Persistencia.gestorActividad;
-import Presentacion.EditorGrafico.EditorGraficoRuta;
 import Presentacion.InicioSesion.VentanaInicio;
-import Presentacion.Principal.AplicacionPrincipal;
-import Presentacion.rutas.FormularioRegistroRuta;
 
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.awt.Point;
-import java.awt.Cursor;
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-
+@SuppressWarnings("serial")
 public class MiPanelEditarActividad extends JPanel {
 	
 	

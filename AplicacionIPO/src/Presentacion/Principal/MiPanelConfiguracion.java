@@ -1,40 +1,29 @@
 package Presentacion.Principal;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
 import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.VentanaInicio;
-
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
-import java.awt.CardLayout;
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.UIManager;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
-import javax.swing.JCheckBox;
 
 public class MiPanelConfiguracion extends JPanel {
 	

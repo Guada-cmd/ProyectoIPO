@@ -1,26 +1,24 @@
 package Presentacion.Principal;
 
-import javax.swing.JPanel;
-import java.awt.CardLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
 import Presentacion.InicioSesion.VentanaInicio;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.Color;
-
+@SuppressWarnings("serial")
 public class MiPanelGestorConfiguracion extends JPanel {
 	
 	private JPanel pnlBotones;

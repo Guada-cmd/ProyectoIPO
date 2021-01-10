@@ -1,35 +1,22 @@
 package Presentacion.Principal;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.GridBagLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JTextField;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
 import Presentacion.InicioSesion.VentanaInicio;
 
-import javax.swing.border.EtchedBorder;
-
-import java.awt.CardLayout;
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import java.awt.Font;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.UIManager;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
-
+@SuppressWarnings("serial")
 public class MiPanelUsuario extends JPanel {
 	
 	private JScrollPane scrollPane;

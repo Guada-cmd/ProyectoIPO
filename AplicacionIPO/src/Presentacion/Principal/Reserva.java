@@ -1,47 +1,32 @@
 package Presentacion.Principal;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import java.awt.CardLayout;
-import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Persistencia.GestorEstancias;
 import Persistencia.GestorReservas;
-
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JTextPane;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.JEditorPane;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.util.Vector;
-import java.awt.event.ActionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTable;
-import javax.swing.JCheckBox;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class Reserva {
 
@@ -53,14 +38,14 @@ public class Reserva {
 	private JLabel lblSelectorParcela = new JLabel("Selector de parcela:");
 	private JList<String> listSelectorParcela = new JList<String>();
 	private JLabel lblPrecioNombreParcela = new JLabel("Precio:");
-	private JLabel lblPrecioParcela = new JLabel("0");
+	private JLabel lblPrecioParcela = new JLabel("");
 	private JButton btnEjecutarParcela = new JButton("Registrar");
 	private JPanel panelCabana = new JPanel();
 	private JLabel lblSelectorCabana = new JLabel("Selector de caba\u00F1a:");
 	private JList<String> listSelectorCabana = new JList<String>();
 	private JTextPane textInformacionCabana = new JTextPane();
 	private JLabel lblPrecioNombreCabana = new JLabel("Precio:");
-	private JLabel lblPrecioCabana = new JLabel("0");
+	private JLabel lblPrecioCabana = new JLabel("");
 	private JButton btnEjecutarCabana = new JButton("Registrar");
 	private JPanel panelRegistro = new JPanel();
 	private JLabel lblNombre = new JLabel("Nombre:");
@@ -86,6 +71,7 @@ public class Reserva {
 	private final JList<String> listReservas = new JList<String>();
 	private final JTextPane textInformacionReservas = new JTextPane();
 	private final JButton btnFinalizarReserva = new JButton("Finalizar reserva");
+	private final JLabel lblErrorRegistro = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -134,8 +120,9 @@ public class Reserva {
 		gbc_lblTipoParcela.gridx = 0;
 		gbc_lblTipoParcela.gridy = 0;
 		panelParcela.add(lblTipoParcela, gbc_lblTipoParcela);
-		comboTipoParcela.setModel(new DefaultComboBoxModel(new String[] {"pequeña", "mediana", "grande"}));
+		comboTipoParcela.setModel(new DefaultComboBoxModel<String>(new String[] {"pequeña", "mediana", "grande"}));
 		comboTipoParcela.addActionListener(new ComboTipoParcelaActionListener());
+		comboTipoParcela.setSelectedIndex(-1);;
 		
 		
 		GridBagConstraints gbc_comboTipoParcela = new GridBagConstraints();
@@ -153,7 +140,6 @@ public class Reserva {
 		gbc_lblSelectorParcela.gridx = 0;
 		gbc_lblSelectorParcela.gridy = 1;
 		panelParcela.add(lblSelectorParcela, gbc_lblSelectorParcela);
-		listSelectorParcela.addInputMethodListener(new ListSelectorParcelaInputMethodListener());
 		listSelectorParcela.addListSelectionListener(new ListSelectorParcelaListSelectionListener());
 		
 		
@@ -317,6 +303,7 @@ public class Reserva {
 		gbc_spinnerNPersonas.insets = new Insets(0, 0, 5, 5);
 		gbc_spinnerNPersonas.gridx = 1;
 		gbc_spinnerNPersonas.gridy = 2;
+		spinnerNPersonas.setModel(new SpinnerNumberModel(1, 1, null, 1));
 		panelRegistro.add(spinnerNPersonas, gbc_spinnerNPersonas);
 		
 		
@@ -336,6 +323,13 @@ public class Reserva {
 		gbc_editorInformacion.gridx = 0;
 		gbc_editorInformacion.gridy = 4;
 		panelRegistro.add(editorInformacion, gbc_editorInformacion);
+		
+		GridBagConstraints gbc_lblErrorRegistro = new GridBagConstraints();
+		gbc_lblErrorRegistro.gridwidth = 3;
+		gbc_lblErrorRegistro.insets = new Insets(0, 0, 0, 5);
+		gbc_lblErrorRegistro.gridx = 0;
+		gbc_lblErrorRegistro.gridy = 5;
+		panelRegistro.add(lblErrorRegistro, gbc_lblErrorRegistro);
 		
 		
 		GridBagConstraints gbc_btnRegistrar = new GridBagConstraints();
@@ -395,39 +389,43 @@ public class Reserva {
 	}
 	private class ComboTipoParcelaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			btnEjecutarParcela.setEnabled(false);
+			textInformacionParcela.setText("");
+			lblPrecioParcela.setText("");
 			mostrarParcelas();
 			comboTipoParcela.hidePopup();
 		}
 	}
 	private class ListSelectorParcelaListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {		
-			idEstancia = (int)listSelectorParcela.getSelectedIndex();
-			btnEjecutarParcela.setEnabled(true);
-			textInformacionParcela.setText((String) vEstancias.get(idEstancia).get(3));
-			lblPrecioParcela.setText((String)vEstancias.elementAt(idEstancia).elementAt(4));
+			if(listSelectorParcela.getSelectedIndex()!=-1) {
+				idEstancia = listSelectorParcela.getSelectedIndex();
+				btnEjecutarParcela.setEnabled(true);
+				textInformacionParcela.setText((String) vEstancias.get(idEstancia).get(3));
+				lblPrecioParcela.setText(String.valueOf(vEstancias.elementAt(idEstancia).elementAt(4)));
+			}
 		}
 	}
 	private class ListSelectorCabanaListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
-			idEstancia = listSelectorCabana.getSelectedIndex();
-			textInformacionCabana.setText((String) vEstancias.get(listSelectorCabana.getSelectedIndex()).get(3));
-			lblPrecioCabana.setText((String)vEstancias.get(listSelectorCabana.getSelectedIndex()).get(4));
-			btnEjecutarCabana.setEnabled(true);
+			if(listSelectorParcela.getSelectedIndex()!=-1) {
+				idEstancia = listSelectorCabana.getSelectedIndex();
+				textInformacionCabana.setText((String) vEstancias.get(listSelectorCabana.getSelectedIndex()).get(3));
+				lblPrecioCabana.setText((String)vEstancias.get(listSelectorCabana.getSelectedIndex()).get(4));
+				btnEjecutarCabana.setEnabled(true);
+			}
 		}
 	}
 	private class BtnRegistrarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			GestorReservas g = new GestorReservas();
-			GestorEstancias g2 = new GestorEstancias();
-			g.crearReserva((int)vEstancias.get(idEstancia).get(0), textNombre.getText(), textApellidos.getText(), spinnerNPersonas.getComponentCount(), editorInformacion.getText());
-			g2.setReservado((int)vEstancias.get(idEstancia).get(0));
-			frame.dispose();
-		}
-	}
-	private class ListSelectorParcelaInputMethodListener implements InputMethodListener {
-		public void caretPositionChanged(InputMethodEvent arg0) {
-		}
-		public void inputMethodTextChanged(InputMethodEvent arg0) {
+			if(!textNombre.getText().equals("") && !textApellidos.getText().equals("")) {	
+				GestorReservas g = new GestorReservas();
+				GestorEstancias g2 = new GestorEstancias();
+				g.crearReserva((int)vEstancias.get(idEstancia).get(0), textNombre.getText(), textApellidos.getText(), spinnerNPersonas.getComponentCount(), editorInformacion.getText());
+				g2.setReservado((int)vEstancias.get(idEstancia).get(0));
+				frame.dispose();
+			}else lblErrorRegistro.setText("Rellena los campos obligatorios");
+				
 		}
 	}
 	private class ListReservasListSelectionListener implements ListSelectionListener {

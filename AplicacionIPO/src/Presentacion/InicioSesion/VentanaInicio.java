@@ -1,43 +1,13 @@
 package Presentacion.InicioSesion;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
+import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.Window;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
-import java.awt.Font;
-import javax.swing.JSplitPane;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import Dominio.Usuario;
-import Persistencia.gestorUsuario;
-import Presentacion.Principal.AplicacionPrincipal;
-
-import com.jgoodies.forms.layout.FormSpecs;
-import java.awt.FlowLayout;
-import java.awt.Component;
-import java.awt.Rectangle;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
@@ -45,7 +15,18 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+
+import Persistencia.gestorUsuario;
+import Presentacion.Principal.AplicacionPrincipal;
 
 public class VentanaInicio {
 
@@ -322,7 +303,7 @@ public class VentanaInicio {
 					
 					usuario_sistema = txtUsuario.getText();
 
-					if(datos_sistema_contrasena.equals(pwdfContrasena.getText())) {
+					if(datos_sistema_contrasena.equals(String.valueOf(pwdfContrasena.getPassword()))) {
 
 						dialogoExitoInicioSesion();
 					

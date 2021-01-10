@@ -1,15 +1,25 @@
 package Presentacion.Principal;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.Border;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
@@ -18,27 +28,7 @@ import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.FormularioRegistro;
 import Presentacion.InicioSesion.VentanaInicio;
 
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-
-import java.awt.CardLayout;
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.UIManager;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import javax.swing.JCheckBox;
-
+@SuppressWarnings("serial")
 public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 	private JCheckBox chckbxPermitirEdicion;
@@ -60,8 +50,8 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	
 	private JTextField txtEditarIdiomas;
 	
-	private JComboBox cmbEditarFormacion;
-	private JComboBox cmbEditarDisponibilidad;
+	private JComboBox<String> cmbEditarFormacion;
+	private JComboBox<String> cmbEditarDisponibilidad;
 	
 
 	private Usuario usuario_datos_configuracion;
@@ -270,21 +260,21 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		btnGuardarNuevaContrasena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				if( pswfContrasenaCA.getText().isEmpty() ||  pswfConfirmarContrasenaCA.getText().isEmpty()) {
+				if(String.valueOf(pswfContrasenaCA.getPassword()).isEmpty() ||  String.valueOf(pswfConfirmarContrasenaCA.getPassword()).isEmpty()) {
 					
 					pswfContrasenaCA.setBorder(bordeRojo);
 					pswfConfirmarContrasenaCA.setBorder(bordeRojo);
 					
 				}else {
 					
-					if(pswfContrasenaCA.getText().equals(pswfConfirmarContrasenaCA.getText())) {
+					if(String.valueOf(pswfContrasenaCA.getPassword()).equals(String.valueOf(pswfConfirmarContrasenaCA.getPassword()))) {
 				
 						pswfContrasenaCA.setBorder(bordeVerde);
 						pswfConfirmarContrasenaCA.setBorder(bordeVerde);
 				
 						//CAMBIAMOS EN BASE DE DATOS
 						
-						int validar_nueva_pass = metodos_gestor_usuario.updateUsuarioPass(usuario_datos_configuracion.getNombreUsuario(), pswfContrasenaCA.getText().toString());
+						int validar_nueva_pass = metodos_gestor_usuario.updateUsuarioPass(usuario_datos_configuracion.getNombreUsuario(), String.valueOf(pswfContrasenaCA.getPassword()).toString());
 						
 						if(validar_nueva_pass != -1) {
 							
@@ -410,7 +400,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		cmbEditarFormacion = new JComboBox();
 		cmbEditarFormacion.setEnabled(false);
-		cmbEditarFormacion.setModel(new DefaultComboBoxModel(new String[] {"ESO", "Bachillerato", "Grado Universitario", "Otros"}));
+		cmbEditarFormacion.setModel(new DefaultComboBoxModel<String>(new String[] {"ESO", "Bachillerato", "Grado Universitario", "Otros"}));
 		cmbEditarFormacion.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		cmbEditarFormacion.setBackground(new Color(248, 248, 255));
 		GridBagConstraints gbc_cmbEditarFormacion = new GridBagConstraints();
@@ -431,9 +421,9 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_lblDisponibilidad.gridy = 11;
 		add(lblDisponibilidad, gbc_lblDisponibilidad);
 		
-		cmbEditarDisponibilidad = new JComboBox();
+		cmbEditarDisponibilidad = new JComboBox<String>();
 		cmbEditarDisponibilidad.setEnabled(false);
-		cmbEditarDisponibilidad.setModel(new DefaultComboBoxModel(new String[] {"No", "Si"}));
+		cmbEditarDisponibilidad.setModel(new DefaultComboBoxModel<String>(new String[] {"No", "Si"}));
 		cmbEditarDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		cmbEditarDisponibilidad.setBackground(new Color(248, 248, 255));
 		GridBagConstraints gbc_cmbEditarDisponibilidad = new GridBagConstraints();

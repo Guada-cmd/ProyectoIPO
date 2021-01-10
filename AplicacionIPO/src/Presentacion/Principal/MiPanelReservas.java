@@ -1,24 +1,19 @@
 package Presentacion.Principal;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-
-import javax.swing.SwingConstants;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import Presentacion.Principal.Reserva;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+@SuppressWarnings("serial")
 public class MiPanelReservas extends JPanel {
 	private JLabel lblNewLabel;
 
@@ -49,47 +44,41 @@ public class MiPanelReservas extends JPanel {
 		
 		JLabel lblReservarParcela = new JLabel("Para realizar reservas de parcelas:");
 		GridBagConstraints gbc_lblReservarParcela = new GridBagConstraints();
-		gbc_lblReservarParcela.fill = GridBagConstraints.VERTICAL;
 		gbc_lblReservarParcela.insets = new Insets(0, 0, 5, 5);
 		gbc_lblReservarParcela.gridx = 0;
 		gbc_lblReservarParcela.gridy = 0;
 		panelReservas.add(lblReservarParcela, gbc_lblReservarParcela);
 		GridBagConstraints gbc_btnParcela = new GridBagConstraints();
-		gbc_btnParcela.fill = GridBagConstraints.VERTICAL;
 		gbc_btnParcela.insets = new Insets(0, 0, 5, 0);
 		gbc_btnParcela.gridx = 1;
 		gbc_btnParcela.gridy = 0;
 		panelReservas.add(btnParcela, gbc_btnParcela);
 		
-		JLabel lblNewLabel_1 = new JLabel("Para realizar reservas de cabañas:");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 2;
-		panelReservas.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblReservarCabana = new JLabel("Para realizar reservas de cabañas:");
+		GridBagConstraints gbc_lblReservarCabana = new GridBagConstraints();
+		gbc_lblReservarCabana.insets = new Insets(0, 0, 5, 5);
+		gbc_lblReservarCabana.gridx = 0;
+		gbc_lblReservarCabana.gridy = 2;
+		panelReservas.add(lblReservarCabana, gbc_lblReservarCabana);
 		
 		JButton btnCabana = new JButton("Reservar cabaña ");
 		btnCabana.addActionListener(new BtnCabanaActionListener());
 		GridBagConstraints gbc_btnCabana = new GridBagConstraints();
-		gbc_btnCabana.fill = GridBagConstraints.VERTICAL;
 		gbc_btnCabana.insets = new Insets(0, 0, 5, 0);
 		gbc_btnCabana.gridx = 1;
 		gbc_btnCabana.gridy = 2;
 		panelReservas.add(btnCabana, gbc_btnCabana);
 		
-		JLabel lblNewLabel_2 = new JLabel("Para explorar y finalizar reservas:");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 0, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 4;
-		panelReservas.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JLabel lblExplorarReservas = new JLabel("Para explorar y finalizar reservas:");
+		GridBagConstraints gbc_lblExplorarReservas = new GridBagConstraints();
+		gbc_lblExplorarReservas.insets = new Insets(0, 0, 0, 5);
+		gbc_lblExplorarReservas.gridx = 0;
+		gbc_lblExplorarReservas.gridy = 4;
+		panelReservas.add(lblExplorarReservas, gbc_lblExplorarReservas);
 		
 		JButton btnExplorar = new JButton("Explorar reservas");
 		btnExplorar.addActionListener(new BtnExplorarActionListener());
 		GridBagConstraints gbc_btnExplorar = new GridBagConstraints();
-		gbc_btnExplorar.fill = GridBagConstraints.VERTICAL;
 		gbc_btnExplorar.gridx = 1;
 		gbc_btnExplorar.gridy = 4;
 		panelReservas.add(btnExplorar, gbc_btnExplorar);
