@@ -86,7 +86,8 @@ public class FormularioRegistroRuta extends JFrame {
 	private JComboBox cmbPuntoEncuentro;
 	private JComboBox cmbDificultad;
 	private JComboBox cmbEquipamiento;
-	
+	private JComboBox cmbHora;
+
 	private JSpinner spnMaximo;
 
 	private JDateChooser dcFechaRuta; 
@@ -108,7 +109,7 @@ public class FormularioRegistroRuta extends JFrame {
 	//Atributo que permite las operaciones con la base de datos
 	
 	private gestorRutas metodos_gestor_rutas = new gestorRutas();
-
+	
 	
 	/**
 	 * Launch the application.
@@ -161,7 +162,9 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		btnRegistroRutaTerminado.addActionListener(new BtnFinalizarRegistroActionListener());
 		btnRegistroRutaCancelado.addActionListener(new BtnCancelarRegistroActionListener());
+		
 		txtNombreRuta.addFocusListener(new TxtFormularioRegistroFocusListener());
+		txtDescripcionRuta.addFocusListener(new TxtFormularioRegistroFocusListener());
 			
 	}
 	/**
@@ -325,7 +328,7 @@ public class FormularioRegistroRuta extends JFrame {
 		if (dcFechaRuta.getDate() == null) {
 			
 			comprobacion = metodos_gestor_rutas.insertarRuta(txtNombreRuta.getText().toString(), "Fecha no disponible", 
-					"Hora Inicio no disponible", "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
+					(String)cmbHora.getSelectedItem(), "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
 					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString());
 			
 					
@@ -335,7 +338,7 @@ public class FormularioRegistroRuta extends JFrame {
 					dcFechaRuta.getCalendar().get(Calendar.YEAR);
 			
 			comprobacion = metodos_gestor_rutas.insertarRuta(txtNombreRuta.getText().toString(), cadena_formato_fecha, 
-					"Hora Inicio no disponible", "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
+					(String)cmbHora.getSelectedItem(), "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
 					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString());
 			
 		}
@@ -411,7 +414,7 @@ public class FormularioRegistroRuta extends JFrame {
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{145, 132, 73, 84, 113, 47, 0};
 		gbl_contentPane.rowHeights = new int[]{54, 29, 33, 30, 31, 30, 32, 36, 29, 31, 33, 32, 32, 32, 0, 32, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -624,6 +627,17 @@ public class FormularioRegistroRuta extends JFrame {
 		gbc_lblHoraInicio.gridx = 1;
 		gbc_lblHoraInicio.gridy = 9;
 		contentPane.add(lblHoraInicio, gbc_lblHoraInicio);
+		
+		cmbHora = new JComboBox();
+		cmbHora.setModel(new DefaultComboBoxModel(new String[] {"08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"}));
+		cmbHora.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		cmbHora.setBackground(new Color(248, 248, 255));
+		GridBagConstraints gbc_cmbHora = new GridBagConstraints();
+		gbc_cmbHora.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbHora.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbHora.gridx = 2;
+		gbc_cmbHora.gridy = 9;
+		contentPane.add(cmbHora, gbc_cmbHora);
 		
 		//Datos campos fecha de nacimiento
 		
