@@ -16,6 +16,7 @@ public class MiPanelIconos extends JPanel {
 	private JLabel lblTituloIconos;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
 
 	/**
 	 * Create the panel.
@@ -40,7 +41,7 @@ public class MiPanelIconos extends JPanel {
 		setBorder(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{24, 26, 0, -4, 0};
-		gridBagLayout.rowHeights = new int[]{40, 38, 33, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{40, 38, 33, 34, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
@@ -49,29 +50,38 @@ public class MiPanelIconos extends JPanel {
 		lblTituloIconos.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		GridBagConstraints gbc_lblTituloIconos = new GridBagConstraints();
 		gbc_lblTituloIconos.gridwidth = 3;
-		gbc_lblTituloIconos.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTituloIconos.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTituloIconos.gridx = 1;
 		gbc_lblTituloIconos.gridy = 0;
 		add(lblTituloIconos, gbc_lblTituloIconos);
 		
 		btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/flag.png")));
+		btnNewButton.setIcon(new ImageIcon(MiPanelIconos.class.getResource("/recursos/ubicacion.png")));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridwidth = 3;
 		gbc_btnNewButton.fill = GridBagConstraints.VERTICAL;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 1;
 		add(btnNewButton, gbc_btnNewButton);
 		
 		btnNewButton_1 = new JButton("");
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridwidth = 2;
+		gbc_btnNewButton_1.gridwidth = 3;
 		gbc_btnNewButton_1.fill = GridBagConstraints.VERTICAL;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 2;
 		add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		btnNewButton_2 = new JButton("");
+		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.gridwidth = 3;
+		gbc_btnNewButton_2.fill = GridBagConstraints.VERTICAL;
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton_2.gridx = 1;
+		gbc_btnNewButton_2.gridy = 3;
+		add(btnNewButton_2, gbc_btnNewButton_2);
 		
 	}
 	/**

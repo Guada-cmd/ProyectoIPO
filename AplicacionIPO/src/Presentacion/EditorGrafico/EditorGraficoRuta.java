@@ -113,6 +113,8 @@ public class EditorGraficoRuta extends JFrame {
 	private final int TRIANGULO = 3;
 	private final int CIRCULO = 4;
 	private final int TEXTO = 5;
+	
+	private ImageIcon imagenNueva;
 
 
 	/**
@@ -327,6 +329,9 @@ public class EditorGraficoRuta extends JFrame {
 		//Creaccion del boton Cargar Ruta
 		
 		btnCargarRuta = new JButton("Cargar ruta...");
+		btnCargarRuta.setFocusPainted(false);
+		btnCargarRuta.setFocusTraversalKeysEnabled(false);
+		btnCargarRuta.setFocusable(false);
 		
 		btnCargarRuta.setForeground(new Color(255, 255, 255));
 		btnCargarRuta.setBackground(new Color(51, 51, 51));
@@ -337,6 +342,9 @@ public class EditorGraficoRuta extends JFrame {
 		//Creaccion del boton que mostrara los iconos
 		
 		btnIconosRepresentativos = new JButton("Insertar iconos");
+		btnIconosRepresentativos.setFocusPainted(false);
+		btnIconosRepresentativos.setFocusTraversalKeysEnabled(false);
+		btnIconosRepresentativos.setFocusable(false);
 		
 		btnIconosRepresentativos.setForeground(new Color(255, 255, 255));
 		btnIconosRepresentativos.setBackground(new Color(51, 51, 51));
@@ -347,6 +355,9 @@ public class EditorGraficoRuta extends JFrame {
 		//Creaccion del boton que permitira insertar anotaciones
 		
 		btnAnotaciones = new JButton("Insertar anotaciones");
+		btnAnotaciones.setFocusPainted(false);
+		btnAnotaciones.setFocusTraversalKeysEnabled(false);
+		btnAnotaciones.setFocusable(false);
 		
 		btnAnotaciones.setForeground(new Color(255, 255, 255));
 		btnAnotaciones.setBackground(new Color(51, 51, 51));
@@ -357,8 +368,13 @@ public class EditorGraficoRuta extends JFrame {
 		//Creaccion del boton que limpiara el Edistor Grafico
 		
 		btnLimpiar = new JButton("Limpiar ");
+		btnLimpiar.setFocusPainted(false);
+		btnLimpiar.setFocusTraversalKeysEnabled(false);
+		btnLimpiar.setFocusable(false);
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 				
 			}
 		});
@@ -457,7 +473,6 @@ public class EditorGraficoRuta extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			
 			Image imagenEscalada, imagenOriginal;
-			ImageIcon imagenNueva;
 			File file;
 			int valorDevuelto = 0;
 			
