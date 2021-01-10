@@ -18,6 +18,7 @@ import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
 
 import Presentacion.Actividad.MiPanelActividad;
+import Presentacion.Actividad.MiPanelEditarActividad;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.rutas.MiPanelCrearRuta;
 import Presentacion.rutas.MiPanelRutasOfertadas;
@@ -103,11 +104,14 @@ public class AplicacionPrincipal {
 	
 	private GridBagConstraints gbc_btnCrearRuta = new GridBagConstraints();
 	private GridBagConstraints gbc_btnRutas = new GridBagConstraints();
+	
 	private GridBagConstraints gbc_MarcadorCrearRuta = new GridBagConstraints();
+	private GridBagConstraints gbc_MarcadorEditarAct = new GridBagConstraints();
 	
 	private JTextArea MarcadorEditarAct;
 	private JTextArea MarcadorCrearRuta;
 	private JPanel pnlCrearRuta;
+	private JPanel pnlEditarActividad;
 	
 
 	/**
@@ -186,6 +190,7 @@ public class AplicacionPrincipal {
 		btnReservas.addActionListener(new NavegacionPanelesActionListener());
 		btnActividades.addActionListener(new NavegacionPanelesActionListener());
 		btnRutas.addActionListener(new NavegacionPanelesActionListener());
+		btnEditarActividad.addActionListener(new NavegacionPanelesActionListener());
 		btnCrearRuta.addActionListener(new NavegacionPanelesActionListener());
 		
 		miUsuario.addActionListener(new NavegacionPanelesActionListener());
@@ -197,7 +202,8 @@ public class AplicacionPrincipal {
 		btnActividades.addActionListener(new MarcadorUbicacionActionListener());
 		btnRutas.addActionListener(new MarcadorUbicacionActionListener());
 		btnCrearRuta.addActionListener(new MarcadorUbicacionActionListener());
-	
+		btnEditarActividad.addActionListener(new MarcadorUbicacionActionListener());
+		
 	}
 	/**
 	 * 
@@ -257,6 +263,16 @@ public class AplicacionPrincipal {
 				
 				MarcadorEditarAct.setVisible(false);
 				MarcadorCrearRuta.setVisible(true);
+				
+			}
+			else if(e.getSource() == btnEditarActividad) {
+				
+				MarcadorReservas.setVisible(false);
+				MarcadorActividades.setVisible(false);
+				MarcadorRutas.setVisible(false);
+				
+				MarcadorEditarAct.setVisible(true);
+				MarcadorCrearRuta.setVisible(false);
 				
 			}
 		}
@@ -333,6 +349,12 @@ public class AplicacionPrincipal {
 				gbc_btnEditarActividad.gridx = 1;
 				gbc_btnEditarActividad.gridy = 3;
 				pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
+				
+				gbc_MarcadorEditarAct.insets = new Insets(0, 0, 5, 5);
+				gbc_MarcadorEditarAct.fill = GridBagConstraints.BOTH;
+				gbc_MarcadorEditarAct.gridx = 0;
+				gbc_MarcadorEditarAct.gridy = 3;
+				pnlBotones.add(MarcadorEditarAct, gbc_MarcadorEditarAct);
 				
 				//Rama ruta
 				
@@ -606,6 +628,11 @@ public class AplicacionPrincipal {
 		
 		pnlCrearRuta = new MiPanelCrearRuta();
 		pnlContenidoAplicacionPrincipal.add(pnlCrearRuta, "Crear Ruta");
+		
+		pnlEditarActividad = new MiPanelEditarActividad();
+		pnlContenidoAplicacionPrincipal.add(pnlEditarActividad, "Editar Act.");
+		
+		
 	
 	}
 	private void inicializarDatosConfiguracionBD() {
@@ -724,12 +751,15 @@ public class AplicacionPrincipal {
 		MarcadorEditarAct.setFocusable(false);
 		MarcadorEditarAct.setFocusTraversalKeysEnabled(false);
 		MarcadorEditarAct.setEditable(false);
-		GridBagConstraints gbc_MarcadorEditarAct = new GridBagConstraints();
+		
+	
+		gbc_MarcadorEditarAct = new GridBagConstraints();
 		gbc_MarcadorEditarAct.insets = new Insets(0, 0, 5, 5);
 		gbc_MarcadorEditarAct.fill = GridBagConstraints.BOTH;
 		gbc_MarcadorEditarAct.gridx = 0;
 		gbc_MarcadorEditarAct.gridy = 7;
 		pnlBotones.add(MarcadorEditarAct, gbc_MarcadorEditarAct);
+		
 		btnEditarActividad.setForeground(Color.WHITE);
 		btnEditarActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnEditarActividad.setFocusable(false);
