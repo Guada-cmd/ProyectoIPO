@@ -15,6 +15,60 @@ public class gestorActividad {
 	public static int comprobacion_resultado_actividad;
 
 	
+	public int eliminarActividad(String nombre_actividad) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_delete_actividad = "DELETE FROM Actividad WHERE Nombre = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement_actividad = connection.prepareStatement(sentencia_delete_actividad);
+			
+			prepared_statement_actividad.setString(1, nombre_actividad);
+		
+			
+			resultado = prepared_statement_actividad.executeUpdate();
+			prepared_statement_actividad.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+	
+	public int buscarNombreActividadRegistrado(String nombre_actividad) {
+		
+		int actividad_registrado = -1;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			String sentencia_buscar_actividad = "select Nombre from Actividad WHERE Nombre = '"+nombre_actividad+"'";
+			prepared_statement_actividad = connection.prepareStatement(sentencia_buscar_actividad);
+			resultado_consulta_actividad = prepared_statement_actividad.executeQuery();
+			
+			if(resultado_consulta_actividad.next()) {
+				
+				actividad_registrado = 0;
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return actividad_registrado;
+	}
 	
 	public int updateActividad(String nombre_actividad, String precio_actividad, String area, String material) {
 		
@@ -103,7 +157,6 @@ public class gestorActividad {
 		
 		return buscar_dato_actividad;
 	}
-	
 	
 	
 	public int numeroFilasTablaActividad() {

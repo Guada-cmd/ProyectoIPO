@@ -27,6 +27,7 @@ import Persistencia.gestorActividad;
 import Presentacion.EditorGrafico.EditorGraficoRuta;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.Principal.AplicacionPrincipal;
+import Presentacion.rutas.FormularioRegistroRuta;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -88,6 +89,8 @@ public class MiPanelEditarActividad extends JPanel {
 	
 	private gestorActividad r = new gestorActividad();
 	private JLabel lblActividadEditar;
+	
+	public static FormularioRegistroBajaActividad frame_registro_actividad_baja;
 
 	/**
 	 * Create the panel.
