@@ -295,6 +295,20 @@ public class MiPanelEditarActividad extends JPanel {
 		add(btnDarAltaActividad);
 		
 		btnDarBajaActivida = new JButton("Dar baja");
+		btnDarBajaActivida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//Aparece un panel con el formulario dar de baja actividad 
+				
+				frame_registro_actividad_baja = new FormularioRegistroBajaActividad();
+				
+				//Para situarlo en el centro de la pantalla
+				
+				frame_registro_actividad_baja.setLocationRelativeTo(null);
+				frame_registro_actividad_baja.setVisible(true);
+				
+			}
+		});
 		btnDarBajaActivida.setForeground(Color.WHITE);
 		btnDarBajaActivida.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnDarBajaActivida.setFocusable(false);

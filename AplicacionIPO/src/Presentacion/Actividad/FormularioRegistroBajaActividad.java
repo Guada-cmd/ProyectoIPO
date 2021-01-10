@@ -221,6 +221,13 @@ public class FormularioRegistroBajaActividad extends JFrame {
 				lblComprobarNombreActividadBaja.setText("Actividad disponible");
 				txtNombreActividadBaja.setBorder(bordeVerde);
 			}
+			else {
+				
+				txtNombreActividadBaja.setBorder(bordeRojo);
+				lblComprobarNombreActividadBaja.setText("No hay actividad con ese nombre");
+				
+			}
+	
 		}
 		
 		return comprobar_actividad_registrado;
@@ -471,7 +478,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		gbc_lblComprobarNombreActividadBaja.anchor = GridBagConstraints.WEST;
 		gbc_lblComprobarNombreActividadBaja.insets = new Insets(0, 0, 5, 5);
 		gbc_lblComprobarNombreActividadBaja.gridx = 2;
-		gbc_lblComprobarNombreActividadBaja.gridy = 4;
+		gbc_lblComprobarNombreActividadBaja.gridy = 3;
 		contentPane.add(lblComprobarNombreActividadBaja, gbc_lblComprobarNombreActividadBaja);
 		
 		//Datos boton Cancelar el registro
