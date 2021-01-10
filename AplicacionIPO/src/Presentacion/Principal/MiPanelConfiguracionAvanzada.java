@@ -366,7 +366,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_btnGuardarNuevaContrasena.gridy = 6;
 		add(btnGuardarNuevaContrasena, gbc_btnGuardarNuevaContrasena);
 		
-		lblDatosEmpleados = new JLabel("Informacion para empleados");
+		lblDatosEmpleados = new JLabel("Informacion adicional");
 		lblDatosEmpleados.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblDatosEmpleados = new GridBagConstraints();
 		gbc_lblDatosEmpleados.anchor = GridBagConstraints.WEST;

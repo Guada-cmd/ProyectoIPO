@@ -3,7 +3,7 @@ package Presentacion.rutas;
 import javax.swing.JPanel;
 
 import Presentacion.EditorGrafico.EditorGraficoRuta;
-
+import Presentacion.InicioSesion.FormularioRegistro;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -37,6 +37,8 @@ public class MiPanelCrearRuta extends JPanel {
 	private JLabel lblPaso1CrearRuta;
 	private JLabel lblPaso2CrearRuta;
 	private JButton btnCrearRutaFormulario;
+	
+	public static FormularioRegistroRuta frame_registro_rutas;
 	
 	/**
 	 * Create the panel.
@@ -82,6 +84,20 @@ public class MiPanelCrearRuta extends JPanel {
 		add(lblPaso1CrearRuta, gbc_lblPaso1CrearRuta);
 		
 		btnCrearRutaFormulario = new JButton("");
+		btnCrearRutaFormulario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//Aparece un panel con el formulario registro ruta
+				
+				 frame_registro_rutas = new FormularioRegistroRuta();
+				
+				//Para situarlo en el centro de la pantalla
+				
+				frame_registro_rutas.setLocationRelativeTo(null);
+				frame_registro_rutas.setVisible(true);
+				
+			}
+		});
 		btnCrearRutaFormulario.setBorder(null);
 		btnCrearRutaFormulario.setIcon(new ImageIcon(MiPanelCrearRuta.class.getResource("/recursos/formRuta.png")));
 		GridBagConstraints gbc_btnCrearRutaFormulario = new GridBagConstraints();

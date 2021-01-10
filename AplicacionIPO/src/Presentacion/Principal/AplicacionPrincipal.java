@@ -90,7 +90,7 @@ public class AplicacionPrincipal {
 	
 	//Objeto atributo que permite guardar los datos del usuario que actualmente esta en el sistema
 	
-	private Usuario usuario_actual;
+	public static Usuario usuario_actual;
 	
 	//Objeto con los datos del perfil de usuario que se inicializaron por defecto
 	

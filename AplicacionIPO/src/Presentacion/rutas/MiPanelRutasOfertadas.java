@@ -142,7 +142,7 @@ public class MiPanelRutasOfertadas extends JPanel {
 		
 		lblHorarioRutaDB = new JLabel("");
 		lblHorarioRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		lblHorarioRutaDB.setBounds(361, 286, 428, 33);
+		lblHorarioRutaDB.setBounds(361, 286, 489, 33);
 		add(lblHorarioRutaDB);
 		
 		lblDescripcionRutaDB = new JLabel("");
