@@ -47,13 +47,11 @@ public class Reserva {
 
 	private JFrame frame;
 	private JTextField textApellidos;
-	private JTextField textBuscador;
 	
 	private JLabel lblTipoParcela = new JLabel("Tipo de parcela:");
 	private JComboBox<String> comboTipoParcela = new JComboBox<String>();
 	private JLabel lblSelectorParcela = new JLabel("Selector de parcela:");
 	private JList<String> listSelectorParcela = new JList<String>();
-	private JTextPane textInformacionParcela = new JTextPane();
 	private JLabel lblPrecioNombreParcela = new JLabel("Precio:");
 	private JLabel lblPrecioParcela = new JLabel("0");
 	private JButton btnEjecutarParcela = new JButton("Registrar");
@@ -70,7 +68,6 @@ public class Reserva {
 	private JLabel lblNPersonas = new JLabel("Num. pers:");
 	private JSpinner spinnerNPersonas = new JSpinner();
 	private JLabel lblInformacionAdicional = new JLabel("Informaci\u00F3n adicional:");
-	private JLabel lblIconoBuscador = new JLabel("");
 	private JEditorPane editorInformacion = new JEditorPane();
 	private JButton btnRegistrar = new JButton("Realizar registro");
 	private JPanel panelExplorar = new JPanel();
@@ -78,8 +75,6 @@ public class Reserva {
 	
 	private Vector<Vector<Object>> vEstancias = new Vector<Vector<Object>>();
 	private int idEstancia;
-	private final JTable tableReservas = new JTable();
-	private final JCheckBox chckbxMostrarReservasFinalizadas = new JCheckBox("Mostrar reservas finalizadas");
 	private Vector<Vector<Object>> reservas;
 	private final JTextField textNombre = new JTextField();
 	
@@ -87,6 +82,10 @@ public class Reserva {
 	private final String PANE_CABANAS = "paneCabanas";
 	private final String PANE_EXPLORAR = "paneExplorar";
 	private final String PANE_REGISTRO = "paneRegistro";
+	private final JTextPane textInformacionParcela = new JTextPane();
+	private final JList<String> listReservas = new JList<String>();
+	private final JTextPane textInformacionReservas = new JTextPane();
+	private final JButton btnFinalizarReserva = new JButton("Finalizar reserva");
 	/**
 	 * Launch the application.
 	 */
@@ -124,7 +123,7 @@ public class Reserva {
 		GridBagLayout gbl_panelParcela = new GridBagLayout();
 		gbl_panelParcela.columnWidths = new int[]{93, 238, 75, 0};
 		gbl_panelParcela.rowHeights = new int[]{19, 96, 101, 21, 0};
-		gbl_panelParcela.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panelParcela.columnWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panelParcela.rowWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
 		panelParcela.setLayout(gbl_panelParcela);
 		
@@ -154,22 +153,21 @@ public class Reserva {
 		gbc_lblSelectorParcela.gridx = 0;
 		gbc_lblSelectorParcela.gridy = 1;
 		panelParcela.add(lblSelectorParcela, gbc_lblSelectorParcela);
+		listSelectorParcela.addInputMethodListener(new ListSelectorParcelaInputMethodListener());
 		listSelectorParcela.addListSelectionListener(new ListSelectorParcelaListSelectionListener());
 		
 		
 		GridBagConstraints gbc_listSelectorParcela = new GridBagConstraints();
 		gbc_listSelectorParcela.fill = GridBagConstraints.BOTH;
 		gbc_listSelectorParcela.insets = new Insets(0, 0, 5, 0);
-		gbc_listSelectorParcela.gridwidth = 2;
 		gbc_listSelectorParcela.gridx = 1;
 		gbc_listSelectorParcela.gridy = 1;
 		panelParcela.add(listSelectorParcela, gbc_listSelectorParcela);
 		
-		
 		GridBagConstraints gbc_textInformacionParcela = new GridBagConstraints();
-		gbc_textInformacionParcela.fill = GridBagConstraints.VERTICAL;
 		gbc_textInformacionParcela.gridwidth = 3;
-		gbc_textInformacionParcela.insets = new Insets(0, 0, 5, 0);
+		gbc_textInformacionParcela.insets = new Insets(0, 0, 5, 5);
+		gbc_textInformacionParcela.fill = GridBagConstraints.BOTH;
 		gbc_textInformacionParcela.gridx = 0;
 		gbc_textInformacionParcela.gridy = 2;
 		panelParcela.add(textInformacionParcela, gbc_textInformacionParcela);
@@ -353,96 +351,60 @@ public class Reserva {
 		frame.getContentPane().add(panelExplorar, PANE_EXPLORAR);
 		GridBagLayout gbl_panelExplorar = new GridBagLayout();
 		gbl_panelExplorar.columnWidths = new int[]{247, 16, 155, 0};
-		gbl_panelExplorar.rowHeights = new int[]{21, 230, 0};
-		gbl_panelExplorar.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelExplorar.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelExplorar.rowHeights = new int[]{156, 207, 0, 0};
+		gbl_panelExplorar.columnWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelExplorar.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
 		panelExplorar.setLayout(gbl_panelExplorar);
-		tableReservas.addInputMethodListener(new TableReservasInputMethodListener());
-		tableReservas.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"ID reserva", "Apellidos", "Nombre", "N Pers", "ID estancia", "Estado", "Finalizar reserva"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, Integer.class, Integer.class, String.class, Boolean.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		tableReservas.getColumnModel().getColumn(6).setResizable(false);
-		tableReservas.getColumnModel().getColumn(6).setPreferredWidth(93);
 		
-		textBuscador = new JTextField();
-		textBuscador.addActionListener(new TextBuscadorActionListener());
-		textBuscador.addFocusListener(new TextBuscadorFocusListener());
-		textBuscador.setText("Introduzca aqu\u00ED la b\u00FAsqueda deseada...");
-		GridBagConstraints gbc_textBuscador = new GridBagConstraints();
-		gbc_textBuscador.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textBuscador.insets = new Insets(0, 0, 5, 5);
-		gbc_textBuscador.gridx = 0;
-		gbc_textBuscador.gridy = 0;
-		panelExplorar.add(textBuscador, gbc_textBuscador);
-		textBuscador.setColumns(10);
-		lblIconoBuscador.setIcon(new ImageIcon(Reserva.class.getResource("/recursos/lupa.png")));
+		GridBagConstraints gbc_listReservas = new GridBagConstraints();
+		gbc_listReservas.insets = new Insets(0, 0, 5, 0);
+		gbc_listReservas.gridwidth = 3;
+		gbc_listReservas.fill = GridBagConstraints.BOTH;
+		gbc_listReservas.gridx = 0;
+		gbc_listReservas.gridy = 0;
+		listReservas.addListSelectionListener(new ListReservasListSelectionListener());
+		panelExplorar.add(listReservas, gbc_listReservas);
 		
+		GridBagConstraints gbc_textInformacionReservas = new GridBagConstraints();
+		gbc_textInformacionReservas.insets = new Insets(0, 0, 5, 0);
+		gbc_textInformacionReservas.gridwidth = 3;
+		gbc_textInformacionReservas.fill = GridBagConstraints.BOTH;
+		gbc_textInformacionReservas.gridx = 0;
+		gbc_textInformacionReservas.gridy = 1;
+		panelExplorar.add(textInformacionReservas, gbc_textInformacionReservas);
 		
-		lblIconoBuscador.setVerticalAlignment(SwingConstants.BOTTOM);
-		GridBagConstraints gbc_lblIconoBuscador = new GridBagConstraints();
-		gbc_lblIconoBuscador.anchor = GridBagConstraints.WEST;
-		gbc_lblIconoBuscador.insets = new Insets(0, 0, 5, 5);
-		gbc_lblIconoBuscador.gridx = 1;
-		gbc_lblIconoBuscador.gridy = 0;
-		panelExplorar.add(lblIconoBuscador, gbc_lblIconoBuscador);
-		chckbxMostrarReservasFinalizadas.addActionListener(new ChckbxMostrarReservasFinalizadasActionListener());
-		
-		GridBagConstraints gbc_chckbxMostrarReservasFinalizadas = new GridBagConstraints();
-		gbc_chckbxMostrarReservasFinalizadas.anchor = GridBagConstraints.NORTHWEST;
-		gbc_chckbxMostrarReservasFinalizadas.insets = new Insets(0, 0, 5, 0);
-		gbc_chckbxMostrarReservasFinalizadas.gridx = 2;
-		gbc_chckbxMostrarReservasFinalizadas.gridy = 0;
-		panelExplorar.add(chckbxMostrarReservasFinalizadas, gbc_chckbxMostrarReservasFinalizadas);
-		
-		GridBagConstraints gbc_tableReservas = new GridBagConstraints();
-		gbc_tableReservas.fill = GridBagConstraints.BOTH;
-		gbc_tableReservas.gridwidth = 3;
-		gbc_tableReservas.gridx = 0;
-		gbc_tableReservas.gridy = 1;
-		panelExplorar.add(tableReservas, gbc_tableReservas);
+		GridBagConstraints gbc_btnFinalizarReserva = new GridBagConstraints();
+		gbc_btnFinalizarReserva.gridx = 2;
+		gbc_btnFinalizarReserva.gridy = 2;
+		btnFinalizarReserva.addActionListener(new BtnEliminarReservaActionListener());
+		btnFinalizarReserva.setEnabled(false);
+		panelExplorar.add(btnFinalizarReserva, gbc_btnFinalizarReserva);
 	}
 
 	private class BtnEjecutarParcelaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			((CardLayout)frame.getLayout()).show(panelRegistro, PANE_REGISTRO);
+			showRegistroPane();
 			
 			
 		}
 	}
 	private class BtnEjecutarCabanaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			((CardLayout)frame.getLayout()).show(panelRegistro, PANE_REGISTRO);
+			showRegistroPane();
 		}
 	}
 	private class ComboTipoParcelaActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			mostrarParcelas();
+			comboTipoParcela.hidePopup();
 		}
 	}
 	private class ListSelectorParcelaListSelectionListener implements ListSelectionListener {
-		public void valueChanged(ListSelectionEvent arg0) {
-			idEstancia = listSelectorParcela.getSelectedIndex();
-			textInformacionParcela.setText((String) vEstancias.get(listSelectorParcela.getSelectedIndex()).get(3));
-			lblPrecioParcela.setText((String)vEstancias.get(listSelectorParcela.getSelectedIndex()).get(4));
+		public void valueChanged(ListSelectionEvent arg0) {		
+			idEstancia = (int)listSelectorParcela.getSelectedIndex();
 			btnEjecutarParcela.setEnabled(true);
+			textInformacionParcela.setText((String) vEstancias.get(idEstancia).get(3));
+			lblPrecioParcela.setText((String)vEstancias.elementAt(idEstancia).elementAt(4));
 		}
 	}
 	private class ListSelectorCabanaListSelectionListener implements ListSelectionListener {
@@ -459,52 +421,39 @@ public class Reserva {
 			GestorEstancias g2 = new GestorEstancias();
 			g.crearReserva((int)vEstancias.get(idEstancia).get(0), textNombre.getText(), textApellidos.getText(), spinnerNPersonas.getComponentCount(), editorInformacion.getText());
 			g2.setReservado((int)vEstancias.get(idEstancia).get(0));
+			frame.dispose();
 		}
 	}
-	private class TableReservasInputMethodListener implements InputMethodListener {
-		public void inputMethodTextChanged(InputMethodEvent arg0) {
-			if((String) reservas.elementAt(tableReservas.getSelectedRow()).elementAt(5) == "en proceso") {
-				GestorReservas g = new GestorReservas();
-				GestorEstancias g2= new GestorEstancias();
-				g.cambiarEstadoReserva((int)reservas.elementAt(tableReservas.getSelectedRow()).elementAt(0));
-				mostrarReservas(chckbxMostrarReservasFinalizadas.isSelected());
-			}
-		}
+	private class ListSelectorParcelaInputMethodListener implements InputMethodListener {
 		public void caretPositionChanged(InputMethodEvent arg0) {
 		}
-	}
-	private class ChckbxMostrarReservasFinalizadasActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			mostrarReservas(chckbxMostrarReservasFinalizadas.isSelected());
+		public void inputMethodTextChanged(InputMethodEvent arg0) {
 		}
 	}
-	private class TextBuscadorFocusListener extends FocusAdapter {
-		@Override
-		public void focusGained(FocusEvent e) {
-			textBuscador.setText("");
-		}
-	}
-	private class TextBuscadorActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent arg0) {
-			DefaultTableModel modelo = new DefaultTableModel();
-			tableReservas.setModel(modelo);
-			for (int i = 0; i < reservas.size(); i++) {
-				if(comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(0)) || 
-					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(1)) || 
-					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(2)) || 
-					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(3)) ||
-					comprobarSubstring(textBuscador.getText(),(String)reservas.elementAt(i).elementAt(4))){
-					Object[] linea = {reservas.elementAt(i).elementAt(0),
-							reservas.elementAt(i).elementAt(3),
-							reservas.elementAt(i).elementAt(2),
-							reservas.elementAt(i).elementAt(4),
-							reservas.elementAt(i).elementAt(1),
-							reservas.elementAt(i).elementAt(5),
-							(((String)reservas.elementAt(i).elementAt(5)).equals("en proceso"))?true:false};
-					modelo.addRow(linea);
-				}
-			}
+	private class ListReservasListSelectionListener implements ListSelectionListener {
+		public void valueChanged(ListSelectionEvent arg0) {
 			
+			int index = listReservas.getSelectedIndex();
+			textInformacionReservas.setText("ID Reserva: " + reservas.elementAt(index).elementAt(0) +
+					"\nNombre: "+ reservas.elementAt(index).elementAt(1) + " " + reservas.elementAt(index).elementAt(2)+
+					"\nNúmero de personas: " + reservas.elementAt(index).elementAt(3) +
+					"\nID estancia: "+ reservas.elementAt(index).elementAt(4) +
+					"\nEstado: " + reservas.elementAt(index).elementAt(5) +
+					"\nInformación adicional: " + reservas.elementAt(index).elementAt(6));
+			if(reservas.elementAt(index).elementAt(5).equals("en proceso"))
+				btnFinalizarReserva.setEnabled(true);
+			else
+				btnFinalizarReserva.setEnabled(false);
+				
+		}
+	}
+	private class BtnEliminarReservaActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			GestorReservas g = new GestorReservas();
+			GestorEstancias g2 = new GestorEstancias();
+			g.cambiarEstadoReserva((int)reservas.elementAt(listReservas.getSelectedIndex()).elementAt(0));
+			g2.setNoReservado((int)reservas.elementAt(listReservas.getSelectedIndex()).elementAt(4));
+			frame.dispose();
 		}
 	}
 	public void mostrarParcelas() {
@@ -526,50 +475,17 @@ public class Reserva {
 		}
 	}
 	
-	public void mostrarReservas(boolean mostrarReservasFinalizadas) {
+	public void mostrarReservas() {
 		GestorReservas g = new GestorReservas();
 		reservas = g.leerReservas("en proceso");
-		DefaultTableModel modelo = new DefaultTableModel();
-		tableReservas.setModel(modelo);
-		for (int i = 0; i < reservas.size(); i++) {
-			Object[] linea = {reservas.elementAt(i).elementAt(0),
-					reservas.elementAt(i).elementAt(3),
-					reservas.elementAt(i).elementAt(2),
-					reservas.elementAt(i).elementAt(4),
-					reservas.elementAt(i).elementAt(1),
-					reservas.elementAt(i).elementAt(5),
-					false};
-			modelo.addRow(linea);
-		}
-		
-		if(mostrarReservasFinalizadas) {
-			Vector<Vector<Object>> reservasFinalizadas = g.leerReservas("finalizada");
-			reservas.addAll(reservasFinalizadas);
-			for (int i = 0; i < reservasFinalizadas.size(); i++) {
-				Object[] linea = {reservasFinalizadas.elementAt(i).elementAt(0),
-						reservasFinalizadas.elementAt(i).elementAt(3),
-						reservasFinalizadas.elementAt(i).elementAt(2),
-						reservasFinalizadas.elementAt(i).elementAt(4),
-						reservasFinalizadas.elementAt(i).elementAt(1),
-						reservasFinalizadas.elementAt(i).elementAt(5),
-						true};
-				modelo.addRow(linea);
-			}
-		}
-		
+		DefaultListModel<String> modelo = new DefaultListModel<String>();
+		listReservas.setModel(modelo);
+		reservas.addAll(g.leerReservas("finalizada"));
+		for (int i = 0; i < reservas.size(); i++) 
+			modelo.addElement("Reserva " + reservas.elementAt(i).elementAt(0) + ": " + reservas.elementAt(i).elementAt(1) + " " + reservas.elementAt(i).elementAt(2) + ", reserva " + reservas.elementAt(i).elementAt(5));
 	}
-	
 	public JFrame getJFrame() {
-		return this.frame;
-	}
-	public JPanel getPanelParcelas(){
-		return this.panelParcela;
-	}
-	public JPanel getPanelCabana(){
-		return this.panelCabana;
-	}
-	public JPanel getPanelExplorar(){
-		return this.panelExplorar;
+		return frame;
 	}
 	public void showParcelasPane() {
 		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());

@@ -16,10 +16,7 @@ public class GestorEstancias {
 			
 			PreparedStatement query = connection.prepareStatement("select * from Estancias where Tamaño = '"+ size +"' and Reservado='no'");
 			
-			ResultSet res = query.executeQuery();
-			query.close();
-			connection.close();
-			
+			ResultSet res = query.executeQuery();		
 			
 			while(res.next()) {
 				Vector<Object> aux = new Vector<Object>();
@@ -28,6 +25,9 @@ public class GestorEstancias {
 				
 				vector.add(aux);
 			}
+			
+			query.close();
+			connection.close();
 		}catch (Exception e) {
 			
 			System.out.println(e);
@@ -46,8 +46,7 @@ public class GestorEstancias {
 			PreparedStatement query = connection.prepareStatement("select * from Estancias where Tipo='cabaña' and Reservado='no'");
 			
 			ResultSet res = query.executeQuery();
-			query.close();
-			connection.close();
+
 			
 			
 			while(res.next()) {
@@ -57,6 +56,8 @@ public class GestorEstancias {
 				
 				vector.add(aux);
 			}
+			query.close();
+			connection.close();
 		}catch (Exception e) {
 			
 			System.out.println(e);
@@ -72,7 +73,7 @@ public class GestorEstancias {
 		try {
 			Connection connection = BrokerBD.conectarBD();
 			
-			PreparedStatement query = connection.prepareStatement("update Estancias set Reservado='si' where IDEstancia = "+ id);
+			PreparedStatement query = connection.prepareStatement("update Estancias set Reservado='si' where IDEstancias = "+ id);
 
 			resultado = query.executeUpdate();
 			query.close();
@@ -91,7 +92,7 @@ public class GestorEstancias {
 		try {
 			Connection connection = BrokerBD.conectarBD();
 			
-			PreparedStatement query = connection.prepareStatement("update Estancias set Reservado='no' where IDEstancia = "+ id);
+			PreparedStatement query = connection.prepareStatement("update Estancias set Reservado='no' where IDEstancias = "+ id);
 
 			resultado = query.executeUpdate();
 			query.close();

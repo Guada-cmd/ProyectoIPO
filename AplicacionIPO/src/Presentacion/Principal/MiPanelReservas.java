@@ -117,7 +117,7 @@ public class MiPanelReservas extends JPanel {
 			Reserva ventanaReservas = new Reserva();
 			ventanaReservas.getJFrame().setVisible(true);
 			ventanaReservas.showExplorarPane();
-			ventanaReservas.mostrarReservas(false);
+			ventanaReservas.mostrarReservas();
 		}
 	}
 }

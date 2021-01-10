@@ -41,8 +41,7 @@ public class GestorReservas {
 			PreparedStatement query = connection.prepareStatement("select * from Reservas where Estado = '"+ estado +"'");
 			
 			ResultSet res = query.executeQuery();
-			query.close();
-			connection.close();
+
 			
 			
 			while(res.next()) {
@@ -52,6 +51,8 @@ public class GestorReservas {
 				
 				vector.add(aux);
 			}
+			query.close();
+			connection.close();
 		}catch (Exception e) {
 			
 			System.out.println(e);
@@ -67,7 +68,7 @@ public class GestorReservas {
 		try {
 			Connection connection = BrokerBD.conectarBD();
 			
-			PreparedStatement query = connection.prepareStatement("update Reservas set Estado='finalizada' where IDReserva = "+ id);
+			PreparedStatement query = connection.prepareStatement("update Reservas set Estado='finalizada' where IDReservas = "+ id);
 
 			resultado = query.executeUpdate();
 			query.close();
