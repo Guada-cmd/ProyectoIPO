@@ -91,6 +91,7 @@ public class MiPanelEditarActividad extends JPanel {
 	private JLabel lblActividadEditar;
 	
 	public static FormularioRegistroBajaActividad frame_registro_actividad_baja;
+	public static FormularioRegistroAltaActividad frame_registro_actividad_alta;
 
 	/**
 	 * Create the panel.
@@ -285,6 +286,19 @@ public class MiPanelEditarActividad extends JPanel {
 		add(btnGuardarDatosActividad);
 		
 		btnDarAltaActividad = new JButton("Dar alta");
+		btnDarAltaActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//Aparece un panel con el formulario dar de alta actividad 
+				
+				frame_registro_actividad_alta = new FormularioRegistroAltaActividad();
+				
+				//Para situarlo en el centro de la pantalla
+				
+				frame_registro_actividad_alta.setLocationRelativeTo(null);
+				frame_registro_actividad_alta.setVisible(true);
+			}
+		});
 		btnDarAltaActividad.setForeground(Color.WHITE);
 		btnDarAltaActividad.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnDarAltaActividad.setFocusable(false);

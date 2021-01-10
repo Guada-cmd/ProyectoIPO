@@ -13,7 +13,45 @@ public class gestorActividad {
 	public static ResultSet resultado_consulta_actividad;
 	public static String sql_actividad;
 	public static int comprobacion_resultado_actividad;
-
+	
+	
+	public int insertarActividad(String nombre_actividad, String Horario, int min, int max, String destinada, 
+			String precio_mes, String area, String descripcion, String material) {
+		
+		int resultado = 0;
+		Connection connection = null;
+		
+		String sentencia_insertar_actividad = 
+				"insert into Actividad (Nombre, Horario, MinimoActividad, MaximoActividad, Destinada, PrecioMes, Area, Descripcion, Material) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement_actividad = connection.prepareStatement(sentencia_insertar_actividad);
+			
+			prepared_statement_actividad.setString(1, nombre_actividad);
+			prepared_statement_actividad.setString(2, Horario);
+			prepared_statement_actividad.setInt(3, min);
+			prepared_statement_actividad.setInt(4, max);
+			prepared_statement_actividad.setString(5, destinada);
+			prepared_statement_actividad.setString(6, precio_mes);
+			prepared_statement_actividad.setString(7, area);
+			prepared_statement_actividad.setString(8, descripcion);
+			prepared_statement_actividad.setString(9, material);
+			
+			resultado = prepared_statement_actividad.executeUpdate();
+			prepared_statement_actividad.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
 	
 	public int eliminarActividad(String nombre_actividad) {
 		
