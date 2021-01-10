@@ -256,7 +256,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 			
 			
 			int comprobar_actividad_nombre = ComprobacionNombreActividadRegistrado();
-			int validacion = 0;
+			
 			
 			
 			if (txtNombreActividadBaja.getText().equals("")) {
@@ -287,7 +287,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 					
 					eliminarDatosActividad();
 					
-					
+					MiPanelEditarActividad.frame_registro_actividad_baja.dispose();
 					
 				}			
 			}
