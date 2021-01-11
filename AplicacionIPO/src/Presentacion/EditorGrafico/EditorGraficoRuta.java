@@ -267,7 +267,7 @@ public class EditorGraficoRuta extends JFrame {
 		cursorIntermedio = toolkit.createCustomCursor(imagCursorIntermedio,new Point(0,0),"CURSOR_INTERMEDIO");
 		cursorExperto = toolkit.createCustomCursor(imagCursorExperto,new Point(0,0),"CURSOR_EXPERTO");
 		
-		
+
 	}
 	/**
 	 * 
@@ -689,6 +689,7 @@ public class EditorGraficoRuta extends JFrame {
 						break;
 						
 					case TEXTO:
+						
 						
 						txtTexto.setBounds(x, y, 200,30);
 						txtTexto.setVisible(true);
