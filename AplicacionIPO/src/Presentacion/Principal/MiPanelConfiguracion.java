@@ -179,6 +179,10 @@ public class MiPanelConfiguracion extends JPanel {
 					dialogoNoDatos();
 				}
 			}	
+			frame_ventana_inicio = new VentanaInicio();
+			dialogoActualizacionExitosa();
+			AplicacionPrincipal.frmAplicacinPrincipalDe.dispose();
+			frame_ventana_inicio.getJFrameVentanaInicio().setVisible(true);
 		}
 	}
 	/**
@@ -504,6 +508,16 @@ public class MiPanelConfiguracion extends JPanel {
 				}
 			}
 		}
+	}
+	private void dialogoActualizacionExitosa() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido registrados correctamente y el sistema se va a reiniciar.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos guardados.", 1);
+			
 	}
 	
 }

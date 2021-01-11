@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class BrokerBD {
 	
 	//private static final String url = "jdbc:ucanaccess://IPOCamping.accdb"; // Pruebas remoto
-	//private static final String url1 = "jdbc:ucanaccess://C:\\Users\\user8000\\git\\ProyectoIPO\\AplicacionIPO\\IPOCamping.accdb"; //Para el JAR
+	//private static final String url = "jdbc:ucanaccess://C:\\Users\\user8000\\git\\ProyectoIPO\\AplicacionIPO\\IPOCamping.accdb"; //Para el JAR
 	
 	public static String dbName = "IPOCamping.accdb";
 	public static String bd = System.getProperty("user.dir") + "\\" + dbName;
