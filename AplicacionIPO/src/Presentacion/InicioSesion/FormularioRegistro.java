@@ -131,7 +131,7 @@ public class FormularioRegistro extends JFrame {
 	 * Create the frame.
 	 */
 	public FormularioRegistro() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		inicializarDatosFormularioRegistro();
 		
