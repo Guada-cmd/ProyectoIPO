@@ -416,13 +416,13 @@ public class VentanaInicio {
 		lblTituloCrearCuenta = new JLabel(Messages.getString("VentanaInicio.lblTituloCrearCuenta.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTituloCrearCuenta.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblTituloCrearCuenta.setForeground(new Color(255, 255, 255));
-		lblTituloCrearCuenta.setBounds(new Rectangle(70, 50, 146, 47));
+		lblTituloCrearCuenta.setBounds(new Rectangle(80, 65, 146, 47));
 		panelRegistrarse.add(lblTituloCrearCuenta);
 		
 		lblTextoRegistro1 = new JLabel(Messages.getString("VentanaInicio.lblTextoRegistro1.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTextoRegistro1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblTextoRegistro1.setForeground(new Color(255, 255, 255));
-		lblTextoRegistro1.setBounds(45, 92, 220, 31);
+		lblTextoRegistro1.setBounds(47, 111, 220, 31);
 		panelRegistrarse.add(lblTextoRegistro1);
 
 		btnRegistrase = new JButton("VentanaInicio.btnRegistrase.text"); //$NON-NLS-1$
