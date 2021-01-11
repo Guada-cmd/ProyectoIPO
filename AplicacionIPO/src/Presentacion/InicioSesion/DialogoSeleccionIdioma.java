@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Dominio.Idioma;
+
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.ImageIcon;
@@ -86,10 +89,10 @@ public class DialogoSeleccionIdioma extends JDialog {
 					
 					if(rdbtnIngles.isSelected()) {
 						
-						MessagesAppInter.setIdioma("inglés");
+						Idioma.idioma = "en";
 					}
 					else {
-						MessagesAppInter.setIdioma("español");
+						Idioma.idioma = "es";
 					}
 					VentanaInicio ventana_inicio = new VentanaInicio();
 					ventana_inicio.getJFrameVentanaInicio().setVisible(true);
