@@ -185,8 +185,20 @@ public class VentanaInicio {
 		//Evento para ocultar o mostrar contrasena
 		
 		chckbxPasswordLogin.addActionListener(new CheckBoxShowHideActionListener());
+		btnIdiomaAplicacion.addActionListener(new TraducirActionListener());
 		
 	}
+	private class TraducirActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			frmVentanaDeLogin.dispose();
+			
+			DialogoSeleccionIdioma panel_idiomas = new DialogoSeleccionIdioma();
+			panel_idiomas.setLocationRelativeTo(null);
+			panel_idiomas.setVisible(true);
+			
+		}
+	}	
 	/**
 	 * 
 	 * Descripcion: Permite ocultar o mostrar la contrasena en la ventana de login
