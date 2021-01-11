@@ -321,6 +321,7 @@ public class VentanaInicio {
 					
 						//Se crea un frame con la aplicacion principal
 					
+						
 						frame_principal = new AplicacionPrincipal();
 						frame_principal.getJFrame().setVisible(true);
 						

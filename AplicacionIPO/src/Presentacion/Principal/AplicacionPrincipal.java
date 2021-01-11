@@ -610,12 +610,12 @@ public class AplicacionPrincipal {
 		//Panel que da acceso a las reservas
 		
 		pnlReservas = new MiPanelReservas();
-		pnlContenidoAplicacionPrincipal.add(pnlReservas, "Reservas");
+		pnlContenidoAplicacionPrincipal.add(pnlReservas, Messages.getString("AplicacionPrincipal.btnReservas.text"));
 		
 		//Panel que da acceso a las actividades
 		
 		pnlActividades = new MiPanelActividad();
-		pnlContenidoAplicacionPrincipal.add(pnlActividades, "Actividades");
+		pnlContenidoAplicacionPrincipal.add(pnlActividades,  Messages.getString("AplicacionPrincipal.btnActividades.text"));
 		
 		//Panel que da acceso a la informacion del usuario
 		
@@ -627,14 +627,14 @@ public class AplicacionPrincipal {
 		inicializarDatosConfiguracionBD();
 		
 		pnlRutas = new MiPanelRutasOfertadas();
-		pnlContenidoAplicacionPrincipal.add(pnlRutas, "Rutas");
+		pnlContenidoAplicacionPrincipal.add(pnlRutas,  Messages.getString("AplicacionPrincipal.btnRutas.text"));
 		
 		
 		pnlCrearRuta = new MiPanelCrearRuta();
-		pnlContenidoAplicacionPrincipal.add(pnlCrearRuta, "Crear Ruta");
+		pnlContenidoAplicacionPrincipal.add(pnlCrearRuta,  Messages.getString("AplicacionPrincipal.btnCrearRuta.text"));
 		
 		pnlEditarActividad = new MiPanelEditarActividad();
-		pnlContenidoAplicacionPrincipal.add(pnlEditarActividad, "Editar Act.");
+		pnlContenidoAplicacionPrincipal.add(pnlEditarActividad,  Messages.getString("AplicacionPrincipal.btnEditarActividad.text"));
 		
 		
 	
