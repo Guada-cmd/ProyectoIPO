@@ -65,6 +65,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import com.toedter.components.JLocaleChooser;
 import javax.swing.SpinnerNumberModel;
+import Traductor.Messages;
 
 public class FormularioRegistroRuta extends JFrame {
 
@@ -400,7 +401,7 @@ public class FormularioRegistroRuta extends JFrame {
 	 */
 	private void inicializarDatosFormularioRegistro() {
 		
-		setTitle("Ventana Formulario Ruta.");
+		setTitle(Messages.getString("FormularioRegistroRuta.this.title")); //$NON-NLS-1$
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistroRuta.class.getResource("/recursos/Form.png")));
 		
@@ -409,7 +410,7 @@ public class FormularioRegistroRuta extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		contentPane.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.setBorder(new TitledBorder(null, Messages.getString("FormularioRegistroRuta.contentPane.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{145, 132, 73, 84, 113, 47, 0};
@@ -437,7 +438,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos campos Nombre de Usuario
 		
-		lblNombreRuta = new JLabel("Nombre ruta:");
+		lblNombreRuta = new JLabel(Messages.getString("FormularioRegistroRuta.lblNombreRuta.text")); //$NON-NLS-1$
 		lblNombreRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombreRuta = new GridBagConstraints();
 		gbc_lblNombreRuta.anchor = GridBagConstraints.EAST;
@@ -455,7 +456,7 @@ public class FormularioRegistroRuta extends JFrame {
 		contentPane.add(txtNombreRuta, gbc_txtNombreRuta);
 		txtNombreRuta.setColumns(10);
 		
-		lblComprobarNombreRuta = new JLabel("");
+		lblComprobarNombreRuta = new JLabel(Messages.getString("FormularioRegistroRuta.lblComprobarNombreRuta.text")); //$NON-NLS-1$
 		lblComprobarNombreRuta.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblComprobarNombreRuta = new GridBagConstraints();
 		gbc_lblComprobarNombreRuta.gridwidth = 2;
@@ -467,7 +468,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos campos Apellido
 		
-		lblDescripcionRuta = new JLabel("Descripción:");
+		lblDescripcionRuta = new JLabel(Messages.getString("FormularioRegistroRuta.lblDescripcionRuta.text")); //$NON-NLS-1$
 		lblDescripcionRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDescripcionRuta = new GridBagConstraints();
 		gbc_lblDescripcionRuta.anchor = GridBagConstraints.EAST;
@@ -496,7 +497,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		// Datos campos contrasenas
 		
-		lblDificultad = new JLabel("Dificultad:");
+		lblDificultad = new JLabel(Messages.getString("FormularioRegistroRuta.lblDificultad.text")); //$NON-NLS-1$
 		lblDificultad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDificultad = new GridBagConstraints();
 		gbc_lblDificultad.anchor = GridBagConstraints.EAST;
@@ -519,7 +520,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos campos de confirmacion contrasenas
 		
-		lblEquipamiento = new JLabel("Equipamiento:");
+		lblEquipamiento = new JLabel(Messages.getString("FormularioRegistroRuta.lblEquipamiento.text")); //$NON-NLS-1$
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblEquipamiento = new GridBagConstraints();
 		gbc_lblEquipamiento.anchor = GridBagConstraints.EAST;
@@ -541,7 +542,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos seleccion tipo de Usuario aplicacion
 		
-		lblEncuentro = new JLabel("Punto encuentro:\r\n");
+		lblEncuentro = new JLabel(Messages.getString("FormularioRegistroRuta.lblEncuentro.text")); //$NON-NLS-1$
 		lblEncuentro.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblEncuentro = new GridBagConstraints();
 		gbc_lblEncuentro.anchor = GridBagConstraints.EAST;
@@ -582,7 +583,7 @@ public class FormularioRegistroRuta extends JFrame {
 			e.printStackTrace();
 		}
 		
-		lblMximo = new JLabel("Máximo:");
+		lblMximo = new JLabel(Messages.getString("FormularioRegistroRuta.lblMximo.text")); //$NON-NLS-1$
 		lblMximo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblMximo = new GridBagConstraints();
 		gbc_lblMximo.anchor = GridBagConstraints.EAST;
@@ -619,7 +620,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos campos Telefono
 		
-		lblHoraInicio = new JLabel("Hora inicio:");
+		lblHoraInicio = new JLabel(Messages.getString("FormularioRegistroRuta.lblHoraInicio.text")); //$NON-NLS-1$
 		lblHoraInicio.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblHoraInicio = new GridBagConstraints();
 		gbc_lblHoraInicio.anchor = GridBagConstraints.EAST;
@@ -641,7 +642,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos campos fecha de nacimiento
 		
-		lblFechaRuta = new JLabel("Fecha Ruta:");
+		lblFechaRuta = new JLabel(Messages.getString("FormularioRegistroRuta.lblFechaRuta.text")); //$NON-NLS-1$
 		lblFechaRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblFechaRuta = new GridBagConstraints();
 		gbc_lblFechaRuta.anchor = GridBagConstraints.EAST;
@@ -660,7 +661,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos boton Cancelar el registro
 		
-		btnRegistroRutaCancelado = new JButton("Cancelar");
+		btnRegistroRutaCancelado = new JButton(Messages.getString("FormularioRegistroRuta.btnRegistroRutaCancelado.text")); //$NON-NLS-1$
 		btnRegistroRutaCancelado.setForeground(Color.WHITE);
 		btnRegistroRutaCancelado.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistroRutaCancelado.setBackground(new Color(51, 51, 51));
@@ -672,7 +673,7 @@ public class FormularioRegistroRuta extends JFrame {
 		
 		//Datos boton Finalizar el registro
 		
-		btnRegistroRutaTerminado = new JButton("Guardar");
+		btnRegistroRutaTerminado = new JButton(Messages.getString("FormularioRegistroRuta.btnRegistroRutaTerminado.text")); //$NON-NLS-1$
 		btnRegistroRutaTerminado.setForeground(new Color(255, 255, 255));
 		btnRegistroRutaTerminado.setBackground(new Color(51, 51, 51));
 		btnRegistroRutaTerminado.setFont(new Font("Segoe UI", Font.BOLD, 14));

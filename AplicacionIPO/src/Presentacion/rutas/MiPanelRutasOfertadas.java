@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.awt.Point;
 import java.awt.Cursor;
 import java.awt.Color;
+import Traductor.Messages;
 
 public class MiPanelRutasOfertadas extends JPanel {
 	
@@ -76,7 +77,7 @@ public class MiPanelRutasOfertadas extends JPanel {
 		scrollPaneFoto.setBounds(59, 250, 248, 171);
 		add(scrollPaneFoto);
 		
-		lblFotoRutaSeleccionada = new JLabel("");
+		lblFotoRutaSeleccionada = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblFotoRutaSeleccionada.text")); //$NON-NLS-1$
 		lblFotoRutaSeleccionada.setVisible(false);
 		//lblFotoRutaSeleccionada.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Actividad/Piscina.jpg")));
 		scrollPaneFoto.setColumnHeaderView(lblFotoRutaSeleccionada);
@@ -119,7 +120,7 @@ public class MiPanelRutasOfertadas extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		lblBarraBusquedaRuta = new JLabel("¿Desea buscar alguna ruta?");
+		lblBarraBusquedaRuta = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblBarraBusquedaRuta.text")); //$NON-NLS-1$
 		lblBarraBusquedaRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblBarraBusquedaRuta.setBounds(59, 15, 234, 19);
 		add(lblBarraBusquedaRuta);
@@ -129,74 +130,74 @@ public class MiPanelRutasOfertadas extends JPanel {
 		add(txtBuscadorRuta);
 		txtBuscadorRuta.setColumns(10);
 		
-		lblNombreRutaDB = new JLabel("");
+		lblNombreRutaDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblNombreRutaDB.text")); //$NON-NLS-1$
 		lblNombreRutaDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNombreRutaDB.setBounds(327, 247, 192, 19);
 		add(lblNombreRutaDB);
 		
-		lblIconCalendarRuta = new JLabel("");
+		lblIconCalendarRuta = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblIconCalendarRuta.text")); //$NON-NLS-1$
 		lblIconCalendarRuta.setVisible(false);
 		lblIconCalendarRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/calendar.png")));
 		lblIconCalendarRuta.setBounds(327, 286, 21, 33);
 		add(lblIconCalendarRuta);
 		
-		lblHorarioRutaDB = new JLabel("");
+		lblHorarioRutaDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblHorarioRutaDB.text")); //$NON-NLS-1$
 		lblHorarioRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblHorarioRutaDB.setBounds(361, 286, 489, 33);
 		add(lblHorarioRutaDB);
 		
-		lblDescripcionRutaDB = new JLabel("");
+		lblDescripcionRutaDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblDescripcionRutaDB.text")); //$NON-NLS-1$
 		lblDescripcionRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcionRutaDB.setBounds(327, 266, 462, 24);
 		add(lblDescripcionRutaDB);
 		
-		lblIconoUbicacionRuta = new JLabel("");
+		lblIconoUbicacionRuta = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblIconoUbicacionRuta.text")); //$NON-NLS-1$
 		lblIconoUbicacionRuta.setLocation(new Point(330, 335));
 		lblIconoUbicacionRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/ubicacion.png")));
 		lblIconoUbicacionRuta.setVisible(false);
 		lblIconoUbicacionRuta.setBounds(327, 320, 21, 24);
 		add(lblIconoUbicacionRuta);
 		
-		lblUbicacionRutaDB = new JLabel("");
+		lblUbicacionRutaDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblUbicacionRutaDB.text")); //$NON-NLS-1$
 		lblUbicacionRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblUbicacionRutaDB.setBounds(361, 321, 224, 23);
 		add(lblUbicacionRutaDB);
 		
-		lblIconoGruposRuta = new JLabel("");
+		lblIconoGruposRuta = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblIconoGruposRuta.text")); //$NON-NLS-1$
 		lblIconoGruposRuta.setVisible(false);
 		lblIconoGruposRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/grupo.png")));
 		lblIconoGruposRuta.setBounds(327, 352, 30, 19);
 		add(lblIconoGruposRuta);
 		
-		lblGrupoRutaDB = new JLabel("");
+		lblGrupoRutaDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblGrupoRutaDB.text")); //$NON-NLS-1$
 		lblGrupoRutaDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblGrupoRutaDB.setBounds(362, 352, 234, 19);
 		add(lblGrupoRutaDB);
 		
-		lblIconoDificultad = new JLabel("");
+		lblIconoDificultad = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblIconoDificultad.text")); //$NON-NLS-1$
 		lblIconoDificultad.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/Rutas/NoTiene.png")));
 		lblIconoDificultad.setVisible(false);
 		lblIconoDificultad.setBounds(327, 381, 30, 17);
 		add(lblIconoDificultad);
 		
-		lblDificultadDB = new JLabel("");
+		lblDificultadDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblDificultadDB.text")); //$NON-NLS-1$
 		lblDificultadDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDificultadDB.setBounds(362, 376, 157, 24);
 		add(lblDificultadDB);
 		
-		lblEquipamiento = new JLabel("Equipamineto necesario para la ruta:");
+		lblEquipamiento = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblEquipamiento.text")); //$NON-NLS-1$
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEquipamiento.setVisible(false);
 		lblEquipamiento.setBounds(325, 402, 218, 24);
 		add(lblEquipamiento);
 		
-		lblEquipaminetoDB = new JLabel("");
+		lblEquipaminetoDB = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblEquipaminetoDB.text")); //$NON-NLS-1$
 		lblEquipaminetoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblEquipaminetoDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		lblEquipaminetoDB.setBounds(533, 402, 124, 24);
 		add(lblEquipaminetoDB);
 		
-		lblLupaIconoRuta = new JLabel("");
+		lblLupaIconoRuta = new JLabel(Messages.getString("MiPanelRutasOfertadas.lblLupaIconoRuta.text")); //$NON-NLS-1$
 		lblLupaIconoRuta.setIcon(new ImageIcon(MiPanelRutasOfertadas.class.getResource("/recursos/lupa.png")));
 		lblLupaIconoRuta.setBounds(303, 44, 38, 24);
 		add(lblLupaIconoRuta);

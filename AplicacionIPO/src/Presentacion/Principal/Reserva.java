@@ -28,34 +28,35 @@ import Persistencia.GestorEstancias;
 import Persistencia.GestorReservas;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Toolkit;
+import Traductor.Messages;
 
 public class Reserva {
 
-	private JFrame frame;
+	private JFrame frmReservas;
 	private JTextField textApellidos;
 	
-	private JLabel lblTipoParcela = new JLabel("Tipo de parcela:");
+	private JLabel lblTipoParcela = new JLabel(Messages.getString("Reserva.lblTipoParcela.text")); //$NON-NLS-1$
 	private JComboBox<String> comboTipoParcela = new JComboBox<String>();
-	private JLabel lblSelectorParcela = new JLabel("Selector de parcela:");
+	private JLabel lblSelectorParcela = new JLabel(Messages.getString("Reserva.lblSelectorParcela.text")); //$NON-NLS-1$
 	private JList<String> listSelectorParcela = new JList<String>();
-	private JLabel lblPrecioNombreParcela = new JLabel("Precio:");
-	private JLabel lblPrecioParcela = new JLabel("");
-	private JButton btnEjecutarParcela = new JButton("Registrar");
+	private JLabel lblPrecioNombreParcela = new JLabel(Messages.getString("Reserva.lblPrecioNombreParcela.text")); //$NON-NLS-1$
+	private JLabel lblPrecioParcela = new JLabel(Messages.getString("Reserva.lblPrecioParcela.text")); //$NON-NLS-1$
+	private JButton btnEjecutarParcela = new JButton(Messages.getString("Reserva.btnEjecutarParcela.text")); //$NON-NLS-1$
 	private JPanel panelCabana = new JPanel();
-	private JLabel lblSelectorCabana = new JLabel("Selector de caba\u00F1a:");
+	private JLabel lblSelectorCabana = new JLabel(Messages.getString("Reserva.lblSelectorCabana.text")); //$NON-NLS-1$
 	private JList<String> listSelectorCabana = new JList<String>();
 	private JTextPane textInformacionCabana = new JTextPane();
-	private JLabel lblPrecioNombreCabana = new JLabel("Precio:");
-	private JLabel lblPrecioCabana = new JLabel("");
-	private JButton btnEjecutarCabana = new JButton("Registrar");
+	private JLabel lblPrecioNombreCabana = new JLabel(Messages.getString("Reserva.lblPrecioNombreCabana.text")); //$NON-NLS-1$
+	private JLabel lblPrecioCabana = new JLabel(Messages.getString("Reserva.lblPrecioCabana.text")); //$NON-NLS-1$
+	private JButton btnEjecutarCabana = new JButton(Messages.getString("Reserva.btnEjecutarCabana.text")); //$NON-NLS-1$
 	private JPanel panelRegistro = new JPanel();
-	private JLabel lblNombre = new JLabel("Nombre:");
-	private JLabel lblApellidos = new JLabel("Apellidos:");
-	private JLabel lblNPersonas = new JLabel("Num. pers:");
+	private JLabel lblNombre = new JLabel(Messages.getString("Reserva.lblNombre.text")); //$NON-NLS-1$
+	private JLabel lblApellidos = new JLabel(Messages.getString("Reserva.lblApellidos.text")); //$NON-NLS-1$
+	private JLabel lblNPersonas = new JLabel(Messages.getString("Reserva.lblNPersonas.text")); //$NON-NLS-1$
 	private JSpinner spinnerNPersonas = new JSpinner();
-	private JLabel lblInformacionAdicional = new JLabel("Informaci\u00F3n adicional:");
+	private JLabel lblInformacionAdicional = new JLabel(Messages.getString("Reserva.lblInformacionAdicional.text")); //$NON-NLS-1$
 	private JEditorPane editorInformacion = new JEditorPane();
-	private JButton btnRegistrar = new JButton("Realizar registro");
+	private JButton btnRegistrar = new JButton(Messages.getString("Reserva.btnRegistrar.text")); //$NON-NLS-1$
 	private JPanel panelExplorar = new JPanel();
 	private JPanel panelParcela = new JPanel();
 	
@@ -71,8 +72,8 @@ public class Reserva {
 	private final JTextPane textInformacionParcela = new JTextPane();
 	private final JList<String> listReservas = new JList<String>();
 	private final JTextPane textInformacionReservas = new JTextPane();
-	private final JButton btnFinalizarReserva = new JButton("Finalizar reserva");
-	private final JLabel lblErrorRegistro = new JLabel("");
+	private final JButton btnFinalizarReserva = new JButton(Messages.getString("Reserva.btnFinalizarReserva.text")); //$NON-NLS-1$
+	private final JLabel lblErrorRegistro = new JLabel(Messages.getString("Reserva.lblErrorRegistro.text")); //$NON-NLS-1$
 	/**
 	 * Launch the application.
 	 */
@@ -81,7 +82,7 @@ public class Reserva {
 			public void run() {
 				try {
 					Reserva window = new Reserva();
-					window.frame.setVisible(true);
+					window.frmReservas.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,13 +102,14 @@ public class Reserva {
 	 */
 	private void initialize() {
 		textNombre.setColumns(10);
-		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Reserva.class.getResource("/recursos/wooden-house.png")));
-		frame.setBounds(100, 100, 450, 300);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frmReservas = new JFrame();
+		frmReservas.setTitle(Messages.getString("Reserva.frmReservas.title")); //$NON-NLS-1$
+		frmReservas.setIconImage(Toolkit.getDefaultToolkit().getImage(Reserva.class.getResource("/recursos/wooden-house.png")));
+		frmReservas.setBounds(100, 100, 450, 300);
+		frmReservas.getContentPane().setLayout(new CardLayout(0, 0));
 		
 		
-		frame.getContentPane().add(panelParcela, PANE_PARCELAS);
+		frmReservas.getContentPane().add(panelParcela, PANE_PARCELAS);
 		GridBagLayout gbl_panelParcela = new GridBagLayout();
 		gbl_panelParcela.columnWidths = new int[]{93, 238, 75, 0};
 		gbl_panelParcela.rowHeights = new int[]{19, 96, 101, 21, 0};
@@ -185,7 +187,7 @@ public class Reserva {
 		panelParcela.add(btnEjecutarParcela, gbc_btnEjecutarParcela);
 		
 		
-		frame.getContentPane().add(panelCabana, PANE_CABANAS);
+		frmReservas.getContentPane().add(panelCabana, PANE_CABANAS);
 		GridBagLayout gbl_panelCabana = new GridBagLayout();
 		gbl_panelCabana.columnWidths = new int[]{92, 6, 251, 75, 0};
 		gbl_panelCabana.rowHeights = new int[]{109, 115, 21, 0};
@@ -246,7 +248,7 @@ public class Reserva {
 		panelCabana.add(btnEjecutarCabana, gbc_btnEjecutarCabana);
 		
 		
-		frame.getContentPane().add(panelRegistro, PANE_REGISTRO);
+		frmReservas.getContentPane().add(panelRegistro, PANE_REGISTRO);
 		GridBagLayout gbl_panelRegistro = new GridBagLayout();
 		gbl_panelRegistro.columnWidths = new int[]{75, 38, 100, 176, 0};
 		gbl_panelRegistro.rowHeights = new int[]{13, 19, 20, 13, 141, 21, 0};
@@ -344,7 +346,7 @@ public class Reserva {
 		
 		
 		
-		frame.getContentPane().add(panelExplorar, PANE_EXPLORAR);
+		frmReservas.getContentPane().add(panelExplorar, PANE_EXPLORAR);
 		GridBagLayout gbl_panelExplorar = new GridBagLayout();
 		gbl_panelExplorar.columnWidths = new int[]{247, 16, 155, 0};
 		gbl_panelExplorar.rowHeights = new int[]{156, 207, 0, 0};
@@ -425,7 +427,7 @@ public class Reserva {
 				GestorEstancias g2 = new GestorEstancias();
 				g.crearReserva((int)vEstancias.get(idEstancia).get(0), textNombre.getText(), textApellidos.getText(), spinnerNPersonas.getComponentCount(), editorInformacion.getText());
 				g2.setReservado((int)vEstancias.get(idEstancia).get(0));
-				frame.dispose();
+				frmReservas.dispose();
 			}else lblErrorRegistro.setText("Rellena los campos obligatorios");
 				
 		}
@@ -453,7 +455,7 @@ public class Reserva {
 			GestorEstancias g2 = new GestorEstancias();
 			g.cambiarEstadoReserva((int)reservas.elementAt(listReservas.getSelectedIndex()).elementAt(0));
 			g2.setNoReservado((int)reservas.elementAt(listReservas.getSelectedIndex()).elementAt(4));
-			frame.dispose();
+			frmReservas.dispose();
 		}
 	}
 	public void mostrarParcelas() {
@@ -485,23 +487,23 @@ public class Reserva {
 			modelo.addElement("Reserva " + reservas.elementAt(i).elementAt(0) + ": " + reservas.elementAt(i).elementAt(1) + " " + reservas.elementAt(i).elementAt(2) + ", reserva " + reservas.elementAt(i).elementAt(5));
 	}
 	public JFrame getJFrame() {
-		return frame;
+		return frmReservas;
 	}
 	public void showParcelasPane() {
-		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
-		 cl.show(frame.getContentPane(), PANE_PARCELAS);
+		 CardLayout cl = (CardLayout)(frmReservas.getContentPane().getLayout());
+		 cl.show(frmReservas.getContentPane(), PANE_PARCELAS);
 	}
 	public void showCabanasPane() {
-		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
-		 cl.show(frame.getContentPane(), PANE_CABANAS);
+		 CardLayout cl = (CardLayout)(frmReservas.getContentPane().getLayout());
+		 cl.show(frmReservas.getContentPane(), PANE_CABANAS);
 	}
 	public void showExplorarPane() {
-		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
-		 cl.show(frame.getContentPane(), PANE_EXPLORAR);
+		 CardLayout cl = (CardLayout)(frmReservas.getContentPane().getLayout());
+		 cl.show(frmReservas.getContentPane(), PANE_EXPLORAR);
 	}
 	public void showRegistroPane() {
-		 CardLayout cl = (CardLayout)(frame.getContentPane().getLayout());
-		 cl.show(frame.getContentPane(), PANE_REGISTRO);
+		 CardLayout cl = (CardLayout)(frmReservas.getContentPane().getLayout());
+		 cl.show(frmReservas.getContentPane(), PANE_REGISTRO);
 	}
 	public boolean comprobarSubstring(String sub, String string) {
 		if(string.indexOf(sub) !=-1) {

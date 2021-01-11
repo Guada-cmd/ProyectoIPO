@@ -35,9 +35,11 @@ import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
 import Presentacion.Actividad.MiPanelActividad;
 import Presentacion.Actividad.MiPanelEditarActividad;
+import Presentacion.InicioSesion.DialogoSeleccionIdioma;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.rutas.MiPanelCrearRuta;
 import Presentacion.rutas.MiPanelRutasOfertadas;
+import Traductor.Messages;
 
 public class AplicacionPrincipal {
 
@@ -102,6 +104,7 @@ public class AplicacionPrincipal {
 	private JTextArea MarcadorCrearRuta;
 	private JPanel pnlCrearRuta;
 	private JPanel pnlEditarActividad;
+	private JButton btnIdiomaAplicacion;
 	
 
 	/**
@@ -538,6 +541,15 @@ public class AplicacionPrincipal {
 			}
 		}
 	}
+	private class BtnIdiomaAplicacionActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			frmAplicacinPrincipalDe.dispose();
+			
+			DialogoSeleccionIdioma panel_idiomas = new DialogoSeleccionIdioma("principal");
+			panel_idiomas.setLocationRelativeTo(null);
+			panel_idiomas.setVisible(true);
+		}
+	}
 	private void inicializarDatosUsuarioBD() {
 		
 		if(VentanaInicio.usuario_sistema != null) {
@@ -573,7 +585,7 @@ public class AplicacionPrincipal {
 	private void inicializarDatosAplicacionPrincipal() {
 		
 		frmAplicacinPrincipalDe = new JFrame();
-		frmAplicacinPrincipalDe.setTitle("Aplicación principal.");
+		frmAplicacinPrincipalDe.setTitle(Messages.getString("AplicacionPrincipal.frmAplicacinPrincipalDe.title")); //$NON-NLS-1$
 		frmAplicacinPrincipalDe.setResizable(false);
 		frmAplicacinPrincipalDe.setIconImage(Toolkit.getDefaultToolkit().getImage(AplicacionPrincipal.class.getResource("/recursos/iconoAplicacion.png")));
 		frmAplicacinPrincipalDe.setVisible(true);
@@ -673,7 +685,7 @@ public class AplicacionPrincipal {
 		
 		//Boton Reservas
 		
-		btnReservas = new JButton("Reservas");
+		btnReservas = new JButton(Messages.getString("AplicacionPrincipal.btnReservas.text")); //$NON-NLS-1$
 		btnReservas.setFocusable(false);
 		btnReservas.setFocusTraversalKeysEnabled(false);
 		btnReservas.setFocusPainted(false);
@@ -718,7 +730,7 @@ public class AplicacionPrincipal {
 		
 		//Boton Actividades
 		
-		btnActividades = new JButton("Actividades");
+		btnActividades = new JButton(Messages.getString("AplicacionPrincipal.btnActividades.text")); //$NON-NLS-1$
 		btnActividades.setFocusPainted(false);
 		btnActividades.setFocusTraversalKeysEnabled(false);
 		btnActividades.setFocusable(false);
@@ -735,7 +747,7 @@ public class AplicacionPrincipal {
 		gbc_btnActividades.gridy = 2;
 		pnlBotones.add(btnActividades, gbc_btnActividades);
 		
-		btnEditarActividad = new JButton("Editar Act.");
+		btnEditarActividad = new JButton(Messages.getString("AplicacionPrincipal.btnEditarActividad.text")); //$NON-NLS-1$
 		btnEditarActividad.setVisible(false);
 		
 		MarcadorEditarAct = new JTextArea();
@@ -767,7 +779,7 @@ public class AplicacionPrincipal {
 		gbc_btnEditarActividad.gridy = 7;
 		pnlBotones.add(btnEditarActividad, gbc_btnEditarActividad);
 		
-		btnRutas = new JButton("Rutas");
+		btnRutas = new JButton(Messages.getString("AplicacionPrincipal.btnRutas.text")); //$NON-NLS-1$
 		btnRutas.setFocusable(false);
 		btnRutas.setFocusTraversalKeysEnabled(false);
 		btnRutas.setFocusPainted(false);
@@ -784,7 +796,7 @@ public class AplicacionPrincipal {
 		gbc_btnRutas.gridy = 3;
 		pnlBotones.add(btnRutas, gbc_btnRutas);
 		
-		btnCrearRuta = new JButton("Crear Ruta");
+		btnCrearRuta = new JButton(Messages.getString("AplicacionPrincipal.btnCrearRuta.text")); //$NON-NLS-1$
 		btnCrearRuta.setVisible(false);
 		
 		MarcadorCrearRuta = new JTextArea();
@@ -830,13 +842,13 @@ public class AplicacionPrincipal {
 		
 		//Menu Usuario
 		
-		mUsuario = new JMenu("");
+		mUsuario = new JMenu(Messages.getString("AplicacionPrincipal.mUsuario.text")); //$NON-NLS-1$
 		mUsuario.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/profile-user.png")));
 		menuBarAplicacionPrincipal.add(mUsuario);
 		
 		//Item Usuario
 		
-		miUsuario = new JMenuItem("Perfil");
+		miUsuario = new JMenuItem(Messages.getString("AplicacionPrincipal.miUsuario.text")); //$NON-NLS-1$
 		miUsuario.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/perfil.png")));
 		mUsuario.add(miUsuario);
 		
@@ -847,27 +859,37 @@ public class AplicacionPrincipal {
 		
 		//Item configuracion
 		
-		miConfiguracion = new JMenuItem("Configuración");
+		miConfiguracion = new JMenuItem(Messages.getString("AplicacionPrincipal.miConfiguracion.text")); //$NON-NLS-1$
 		miConfiguracion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/settings.png")));
 		mUsuario.add(miConfiguracion);
 		
 		//Item cerrar sesion
 
-		miCerrarSesion = new JMenuItem("Cerrar sesion");
+		miCerrarSesion = new JMenuItem(Messages.getString("AplicacionPrincipal.miCerrarSesion.text")); //$NON-NLS-1$
 		miCerrarSesion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/logout.png")));
 		mUsuario.add(miCerrarSesion);
 		
 		//Menu ayuda
 		
-		mAyuda = new JMenu("");
+		mAyuda = new JMenu(Messages.getString("AplicacionPrincipal.mAyuda.text")); //$NON-NLS-1$
 		mAyuda.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/information.png")));
 		menuBarAplicacionPrincipal.add(mAyuda);
 		
 		//Item manual
 		
-		miManual = new JMenuItem("Manual");
+		miManual = new JMenuItem(Messages.getString("AplicacionPrincipal.miManual.text")); //$NON-NLS-1$
 		miManual.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/big-manual-book.png")));
 		mAyuda.add(miManual);
+		
+		btnIdiomaAplicacion = new JButton(" ");
+		btnIdiomaAplicacion.addActionListener(new BtnIdiomaAplicacionActionListener());
+		btnIdiomaAplicacion.setIcon(new ImageIcon(AplicacionPrincipal.class.getResource("/recursos/translation.png")));
+		btnIdiomaAplicacion.setFocusable(false);
+		btnIdiomaAplicacion.setFocusTraversalKeysEnabled(false);
+		btnIdiomaAplicacion.setFocusPainted(false);
+		btnIdiomaAplicacion.setBorder(null);
+		btnIdiomaAplicacion.setBackground(Color.WHITE);
+		menuBarAplicacionPrincipal.add(btnIdiomaAplicacion);
 		
 	}
 	/**

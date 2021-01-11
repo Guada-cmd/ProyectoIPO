@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import Dominio.Perfil;
 import Dominio.Usuario;
 import Presentacion.InicioSesion.VentanaInicio;
+import Traductor.Messages;
 
 @SuppressWarnings("serial")
 public class MiPanelGestorConfiguracion extends JPanel {
@@ -92,7 +93,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 	 */
 	private void inicializarDatosBoton() {
 		{
-			btnConfiguracionNormal = new JButton("Configuración");
+			btnConfiguracionNormal = new JButton(Messages.getString("MiPanelGestorConfiguracion.btnConfiguracionNormal.text")); //$NON-NLS-1$
 			btnConfiguracionNormal.setFocusTraversalKeysEnabled(false);
 			btnConfiguracionNormal.setFocusPainted(false);
 			btnConfiguracionNormal.setFocusable(false);
@@ -110,7 +111,7 @@ public class MiPanelGestorConfiguracion extends JPanel {
 		
 		//Boton de la configuracion avanzada
 		
-		btnConfiguracionAvanzada = new JButton("Avanzada");
+		btnConfiguracionAvanzada = new JButton(Messages.getString("MiPanelGestorConfiguracion.btnConfiguracionAvanzada.text")); //$NON-NLS-1$
 		btnConfiguracionAvanzada.setFocusable(false);
 		btnConfiguracionAvanzada.setFocusTraversalKeysEnabled(false);
 		btnConfiguracionAvanzada.setFocusPainted(false);

@@ -27,6 +27,7 @@ import javax.swing.table.JTableHeader;
 
 import Persistencia.gestorActividad;
 import Presentacion.InicioSesion.VentanaInicio;
+import Traductor.Messages;
 
 @SuppressWarnings("serial")
 public class MiPanelEditarActividad extends JPanel {
@@ -85,7 +86,7 @@ public class MiPanelEditarActividad extends JPanel {
 		
 		setLayout(null);
 		
-		lblBarraBusqueda = new JLabel("");
+		lblBarraBusqueda = new JLabel(Messages.getString("MiPanelEditarActividad.lblBarraBusqueda.text")); //$NON-NLS-1$
 		lblBarraBusqueda.setBounds(521, 98, 45, 13);
 		add(lblBarraBusqueda);
 		
@@ -124,7 +125,7 @@ public class MiPanelEditarActividad extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		lblNewLabel = new JLabel("¿Desea buscar alguna actividad?");
+		lblNewLabel = new JLabel(Messages.getString("MiPanelEditarActividad.lblNewLabel.text")); //$NON-NLS-1$
 		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblNewLabel.setBounds(59, 15, 234, 19);
 		add(lblNewLabel);
@@ -134,17 +135,17 @@ public class MiPanelEditarActividad extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		lblLupaIcono = new JLabel("");
+		lblLupaIcono = new JLabel(Messages.getString("MiPanelEditarActividad.lblLupaIcono.text")); //$NON-NLS-1$
 		lblLupaIcono.setIcon(new ImageIcon(MiPanelEditarActividad.class.getResource("/recursos/lupa.png")));
 		lblLupaIcono.setBounds(303, 44, 38, 24);
 		add(lblLupaIcono);
 		
-		lblTituloEditarActividad = new JLabel("Modificación datos:\r\n\r\n");
+		lblTituloEditarActividad = new JLabel(Messages.getString("MiPanelEditarActividad.lblTituloEditarActividad.text")); //$NON-NLS-1$
 		lblTituloEditarActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblTituloEditarActividad.setBounds(86, 239, 125, 32);
 		add(lblTituloEditarActividad);
 		
-		chckbxPermitirEdicionActividad = new JCheckBox("");
+		chckbxPermitirEdicionActividad = new JCheckBox(Messages.getString("MiPanelEditarActividad.chckbxPermitirEdicionActividad.text")); //$NON-NLS-1$
 		chckbxPermitirEdicionActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -172,19 +173,19 @@ public class MiPanelEditarActividad extends JPanel {
 		chckbxPermitirEdicionActividad.setBounds(59, 242, 21, 24);
 		add(chckbxPermitirEdicionActividad);
 		
-		lblEditarDatoPrecio = new JLabel("Precio:\r\n");
+		lblEditarDatoPrecio = new JLabel(Messages.getString("MiPanelEditarActividad.lblEditarDatoPrecio.text")); //$NON-NLS-1$
 		lblEditarDatoPrecio.setEnabled(false);
 		lblEditarDatoPrecio.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEditarDatoPrecio.setBounds(59, 368, 59, 19);
 		add(lblEditarDatoPrecio);
 		
-		lblEditarDatoMaterial = new JLabel("Material:");
+		lblEditarDatoMaterial = new JLabel(Messages.getString("MiPanelEditarActividad.lblEditarDatoMaterial.text")); //$NON-NLS-1$
 		lblEditarDatoMaterial.setEnabled(false);
 		lblEditarDatoMaterial.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEditarDatoMaterial.setBounds(59, 320, 59, 32);
 		add(lblEditarDatoMaterial);
 		
-		lblEditarDatoArea = new JLabel("Area:");
+		lblEditarDatoArea = new JLabel(Messages.getString("MiPanelEditarActividad.lblEditarDatoArea.text")); //$NON-NLS-1$
 		lblEditarDatoArea.setEnabled(false);
 		lblEditarDatoArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEditarDatoArea.setBounds(59, 286, 59, 24);
@@ -212,7 +213,7 @@ public class MiPanelEditarActividad extends JPanel {
 		add(txtEditarPrecioActividad);
 		txtEditarPrecioActividad.setColumns(10);
 		
-		btnGuardarDatosActividad = new JButton("Actualizar");
+		btnGuardarDatosActividad = new JButton(Messages.getString("MiPanelEditarActividad.btnGuardarDatosActividad.text")); //$NON-NLS-1$
 		btnGuardarDatosActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -269,7 +270,7 @@ public class MiPanelEditarActividad extends JPanel {
 		
 		add(btnGuardarDatosActividad);
 		
-		btnDarAltaActividad = new JButton("Dar alta");
+		btnDarAltaActividad = new JButton(Messages.getString("MiPanelEditarActividad.btnDarAltaActividad.text")); //$NON-NLS-1$
 		btnDarAltaActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -292,7 +293,7 @@ public class MiPanelEditarActividad extends JPanel {
 		btnDarAltaActividad.setBounds(609, 305, 108, 24);
 		add(btnDarAltaActividad);
 		
-		btnDarBajaActivida = new JButton("Dar baja");
+		btnDarBajaActivida = new JButton(Messages.getString("MiPanelEditarActividad.btnDarBajaActivida.text")); //$NON-NLS-1$
 		btnDarBajaActivida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -316,17 +317,17 @@ public class MiPanelEditarActividad extends JPanel {
 		btnDarBajaActivida.setBounds(609, 352, 108, 24);
 		add(btnDarBajaActivida);
 		
-		lbldeseaDarDe = new JLabel("¿Desea dar de alta alguna actividad?");
+		lbldeseaDarDe = new JLabel(Messages.getString("MiPanelEditarActividad.lbldeseaDarDe.text")); //$NON-NLS-1$
 		lbldeseaDarDe.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lbldeseaDarDe.setBounds(351, 308, 234, 19);
 		add(lbldeseaDarDe);
 		
-		lbldeseaDarDe_2 = new JLabel("¿Desea dar de baja alguna actividad?");
+		lbldeseaDarDe_2 = new JLabel(Messages.getString("MiPanelEditarActividad.lbldeseaDarDe_2.text")); //$NON-NLS-1$
 		lbldeseaDarDe_2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lbldeseaDarDe_2.setBounds(351, 352, 234, 24);
 		add(lbldeseaDarDe_2);
 		
-		lblActividadEditar = new JLabel("");
+		lblActividadEditar = new JLabel(Messages.getString("MiPanelEditarActividad.lblActividadEditar.text")); //$NON-NLS-1$
 		lblActividadEditar.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblActividadEditar.setBounds(223, 244, 148, 27);
 		add(lblActividadEditar);

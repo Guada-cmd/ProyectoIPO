@@ -27,6 +27,7 @@ import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
 import Presentacion.InicioSesion.FormularioRegistro;
 import Presentacion.InicioSesion.VentanaInicio;
+import Traductor.Messages;
 
 @SuppressWarnings("serial")
 public class MiPanelConfiguracionAvanzada extends JPanel {
@@ -133,7 +134,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		//Etiqueta que sirve de titulo
 		
-		lblEdicionDatosConfiguracion = new JLabel("Configuraciones avanzada de los datos del Usuario");
+		lblEdicionDatosConfiguracion = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblEdicionDatosConfiguracion.text")); //$NON-NLS-1$
 		lblEdicionDatosConfiguracion.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEdicionDatosConfiguracion = new GridBagConstraints();
 		gbc_lblEdicionDatosConfiguracion.anchor = GridBagConstraints.WEST;
@@ -163,7 +164,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 	 */
 	private void inicializarDatosEdicionConfiguracionAvanzada() {
 		
-		chckbxPermitirEdicion = new JCheckBox("");
+		chckbxPermitirEdicion = new JCheckBox(Messages.getString("MiPanelConfiguracionAvanzada.chckbxPermitirEdicion.text")); //$NON-NLS-1$
 		chckbxPermitirEdicion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -191,7 +192,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 			}
 		});
 		
-		lblPanelDeConfiguracin = new JLabel("Panel de configuración avanzada");
+		lblPanelDeConfiguracin = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblPanelDeConfiguracin.text")); //$NON-NLS-1$
 		lblPanelDeConfiguracin.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblPanelDeConfiguracin = new GridBagConstraints();
 		gbc_lblPanelDeConfiguracin.anchor = GridBagConstraints.WEST;
@@ -211,7 +212,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		//Datos relacionados con la contrasena
 		
-		lblContrasenaCA = new JLabel("Contraseña:");
+		lblContrasenaCA = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblContrasenaCA.text")); //$NON-NLS-1$
 		lblContrasenaCA.setEnabled(false);
 		lblContrasenaCA.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblContrasenaCA = new GridBagConstraints();
@@ -233,7 +234,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		
 		//Datos relacionados con la confirmacion contrasena
 		
-		lblConfirmarContrasenaCA = new JLabel("Confirmar contraseña:");
+		lblConfirmarContrasenaCA = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblConfirmarContrasenaCA.text")); //$NON-NLS-1$
 		lblConfirmarContrasenaCA.setEnabled(false);
 		lblConfirmarContrasenaCA.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblConfirmarContrasenaCA = new GridBagConstraints();
@@ -253,7 +254,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_pswfConfirmarContrasenaCA.gridy = 5;
 		add(pswfConfirmarContrasenaCA, gbc_pswfConfirmarContrasenaCA);
 		
-		btnGuardarNuevaContrasena = new JButton("Guardar");
+		btnGuardarNuevaContrasena = new JButton(Messages.getString("MiPanelConfiguracionAvanzada.btnGuardarNuevaContrasena.text")); //$NON-NLS-1$
 		btnGuardarNuevaContrasena.setFocusable(false);
 		btnGuardarNuevaContrasena.setFocusTraversalKeysEnabled(false);
 		btnGuardarNuevaContrasena.setFocusPainted(false);
@@ -313,7 +314,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 
 		});
 		
-		chckbxPasswordEdit = new JCheckBox("");
+		chckbxPasswordEdit = new JCheckBox(Messages.getString("MiPanelConfiguracionAvanzada.chckbxPasswordEdit.text")); //$NON-NLS-1$
 		chckbxPasswordEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -356,7 +357,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_btnGuardarNuevaContrasena.gridy = 6;
 		add(btnGuardarNuevaContrasena, gbc_btnGuardarNuevaContrasena);
 		
-		lblDatosEmpleados = new JLabel("Informacion adicional");
+		lblDatosEmpleados = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblDatosEmpleados.text")); //$NON-NLS-1$
 		lblDatosEmpleados.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblDatosEmpleados = new GridBagConstraints();
 		gbc_lblDatosEmpleados.anchor = GridBagConstraints.WEST;
@@ -366,7 +367,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_lblDatosEmpleados.gridy = 7;
 		add(lblDatosEmpleados, gbc_lblDatosEmpleados);
 		
-		lblEditarIdiomas = new JLabel("Idiomas:");
+		lblEditarIdiomas = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblEditarIdiomas.text")); //$NON-NLS-1$
 		lblEditarIdiomas.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEditarIdiomas.setEnabled(false);
 		GridBagConstraints gbc_lblEditarIdiomas = new GridBagConstraints();
@@ -388,7 +389,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		add(txtEditarIdiomas, gbc_txtEditarIdiomas);
 		txtEditarIdiomas.setColumns(10);
 		
-		lblEditarFormacion = new JLabel("Formacion:");
+		lblEditarFormacion = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblEditarFormacion.text")); //$NON-NLS-1$
 		lblEditarFormacion.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblEditarFormacion.setEnabled(false);
 		GridBagConstraints gbc_lblEditarFormacion = new GridBagConstraints();
@@ -411,7 +412,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_cmbEditarFormacion.gridy = 10;
 		add(cmbEditarFormacion, gbc_cmbEditarFormacion);
 		
-		lblDisponibilidad = new JLabel("Disponibilidad:");
+		lblDisponibilidad = new JLabel(Messages.getString("MiPanelConfiguracionAvanzada.lblDisponibilidad.text")); //$NON-NLS-1$
 		lblDisponibilidad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblDisponibilidad.setEnabled(false);
 		GridBagConstraints gbc_lblDisponibilidad = new GridBagConstraints();
@@ -434,7 +435,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_cmbEditarDisponibilidad.gridy = 11;
 		add(cmbEditarDisponibilidad, gbc_cmbEditarDisponibilidad);
 		
-		btnGuardarNuevosDatos = new JButton("Guardar");
+		btnGuardarNuevosDatos = new JButton(Messages.getString("MiPanelConfiguracionAvanzada.btnGuardarNuevosDatos.text")); //$NON-NLS-1$
 		btnGuardarNuevosDatos.setFocusable(false);
 		btnGuardarNuevosDatos.setFocusTraversalKeysEnabled(false);
 		btnGuardarNuevosDatos.setFocusPainted(false);
@@ -503,7 +504,7 @@ public class MiPanelConfiguracionAvanzada extends JPanel {
 		gbc_btnGuardarNuevosDatos.gridy = 12;
 		add(btnGuardarNuevosDatos, gbc_btnGuardarNuevosDatos);
 		
-		btnDarBajaCuenta = new JButton("Darse de baja");
+		btnDarBajaCuenta = new JButton(Messages.getString("MiPanelConfiguracionAvanzada.btnDarBajaCuenta.text")); //$NON-NLS-1$
 		btnDarBajaCuenta.setFocusPainted(false);
 		btnDarBajaCuenta.setFocusTraversalKeysEnabled(false);
 		btnDarBajaCuenta.setFocusable(false);

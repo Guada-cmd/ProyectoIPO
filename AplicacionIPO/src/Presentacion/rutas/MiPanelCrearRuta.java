@@ -26,6 +26,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.ImageIcon;
+import Traductor.Messages;
 
 
 public class MiPanelCrearRuta extends JPanel {
@@ -53,7 +54,7 @@ public class MiPanelCrearRuta extends JPanel {
 		setLayout(gridBagLayout);
 		
 
-		lblTituloParaCrearRuta = new JLabel("¿Quiere crear una ruta personalizada?");
+		lblTituloParaCrearRuta = new JLabel(Messages.getString("MiPanelCrearRuta.lblTituloParaCrearRuta.text")); //$NON-NLS-1$
 		lblTituloParaCrearRuta.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblTituloParaCrearRuta = new GridBagConstraints();
 		gbc_lblTituloParaCrearRuta.anchor = GridBagConstraints.WEST;
@@ -63,7 +64,7 @@ public class MiPanelCrearRuta extends JPanel {
 		gbc_lblTituloParaCrearRuta.gridy = 1;
 		add(lblTituloParaCrearRuta, gbc_lblTituloParaCrearRuta);
 		
-		lblPasosCrearRuta = new JLabel("Si desea crear una ruta personalizada solo tiene que seguir dos pasos:");
+		lblPasosCrearRuta = new JLabel(Messages.getString("MiPanelCrearRuta.lblPasosCrearRuta.text")); //$NON-NLS-1$
 		lblPasosCrearRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPasosCrearRuta = new GridBagConstraints();
 		gbc_lblPasosCrearRuta.gridwidth = 2;
@@ -73,7 +74,7 @@ public class MiPanelCrearRuta extends JPanel {
 		gbc_lblPasosCrearRuta.gridy = 2;
 		add(lblPasosCrearRuta, gbc_lblPasosCrearRuta);
 		
-		lblPaso1CrearRuta = new JLabel("1.- Rellenar un formulario con los datos de la ruta pulsando en el sigiente enlace:\r\n");
+		lblPaso1CrearRuta = new JLabel(Messages.getString("MiPanelCrearRuta.lblPaso1CrearRuta.text")); //$NON-NLS-1$
 		lblPaso1CrearRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPaso1CrearRuta = new GridBagConstraints();
 		gbc_lblPaso1CrearRuta.gridwidth = 2;
@@ -83,7 +84,7 @@ public class MiPanelCrearRuta extends JPanel {
 		gbc_lblPaso1CrearRuta.gridy = 4;
 		add(lblPaso1CrearRuta, gbc_lblPaso1CrearRuta);
 		
-		btnCrearRutaFormulario = new JButton("");
+		btnCrearRutaFormulario = new JButton(Messages.getString("MiPanelCrearRuta.btnCrearRutaFormulario.text")); //$NON-NLS-1$
 		btnCrearRutaFormulario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -115,7 +116,7 @@ public class MiPanelCrearRuta extends JPanel {
 		
 		btnCrearRutaFormulario.setForeground(new Color(51, 51, 51));
 		
-		lblPaso2CrearRuta = new JLabel("2.- Añadir una foto con el editor ofrecido por la aplicación, pulsando en el siguiente enlace:");
+		lblPaso2CrearRuta = new JLabel(Messages.getString("MiPanelCrearRuta.lblPaso2CrearRuta.text")); //$NON-NLS-1$
 		lblPaso2CrearRuta.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPaso2CrearRuta = new GridBagConstraints();
 		gbc_lblPaso2CrearRuta.anchor = GridBagConstraints.WEST;
@@ -125,7 +126,7 @@ public class MiPanelCrearRuta extends JPanel {
 		gbc_lblPaso2CrearRuta.gridy = 8;
 		add(lblPaso2CrearRuta, gbc_lblPaso2CrearRuta);
 		
-		btnEditorRutas = new JButton("");
+		btnEditorRutas = new JButton(Messages.getString("MiPanelCrearRuta.btnEditorRutas.text")); //$NON-NLS-1$
 		btnEditorRutas.setBorder(null);
 		btnEditorRutas.setIcon(new ImageIcon(MiPanelCrearRuta.class.getResource("/recursos/edit-picture.png")));
 		btnEditorRutas.setFont(new Font("Segoe UI", Font.PLAIN, 14));

@@ -68,6 +68,7 @@ import javax.swing.SpinnerDateModel;
 import com.toedter.components.JLocaleChooser;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EtchedBorder;
+import Traductor.Messages;
 
 public class FormularioRegistroBajaActividad extends JFrame {
 
@@ -321,7 +322,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	 */
 	private void inicializarDatosBotones() {
 		
-		lblComprobarNombreActividadBaja = new JLabel("");
+		lblComprobarNombreActividadBaja = new JLabel(Messages.getString("FormularioRegistroBajaActividad.lblComprobarNombreActividadBaja.text")); //$NON-NLS-1$
 		lblComprobarNombreActividadBaja.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblComprobarNombreActividadBaja = new GridBagConstraints();
 		gbc_lblComprobarNombreActividadBaja.gridwidth = 2;
@@ -333,7 +334,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		
 		//Datos boton Cancelar el registro
 		
-		btnRegistroRutaCancelado = new JButton("Cancelar");
+		btnRegistroRutaCancelado = new JButton(Messages.getString("FormularioRegistroBajaActividad.btnRegistroRutaCancelado.text")); //$NON-NLS-1$
 		btnRegistroRutaCancelado.setForeground(Color.WHITE);
 		btnRegistroRutaCancelado.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistroRutaCancelado.setBackground(new Color(51, 51, 51));
@@ -345,7 +346,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		
 		//Datos boton Finalizar el registro
 		
-		btnRegistroRutaTerminado = new JButton("Guardar");
+		btnRegistroRutaTerminado = new JButton(Messages.getString("FormularioRegistroBajaActividad.btnRegistroRutaTerminado.text")); //$NON-NLS-1$
 		btnRegistroRutaTerminado.setForeground(new Color(255, 255, 255));
 		btnRegistroRutaTerminado.setBackground(new Color(51, 51, 51));
 		btnRegistroRutaTerminado.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -368,7 +369,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		
 		//Datos campos Nombre de Usuario
 		
-		lblNombreActividadBaja = new JLabel("Nombre ruta:");
+		lblNombreActividadBaja = new JLabel(Messages.getString("FormularioRegistroBajaActividad.lblNombreActividadBaja.text")); //$NON-NLS-1$
 		lblNombreActividadBaja.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombreActividadBaja = new GridBagConstraints();
 		gbc_lblNombreActividadBaja.anchor = GridBagConstraints.EAST;
@@ -396,7 +397,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	private void inicializarDatosFormularioBaja() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Ventana Formulario Baja Actividad.");
+		setTitle(Messages.getString("FormularioRegistroBajaActividad.this.title")); //$NON-NLS-1$
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistroBajaActividad.class.getResource("/recursos/Form.png")));
 		
@@ -405,7 +406,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Formulario Baja", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), Messages.getString("FormularioRegistroBajaActividad.contentPane.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0))); //$NON-NLS-1$
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{99, 132, 73, 84, 193, 47, 0};

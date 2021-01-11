@@ -27,6 +27,7 @@ import javax.swing.border.Border;
 
 import Persistencia.gestorUsuario;
 import Presentacion.Principal.AplicacionPrincipal;
+import Traductor.Messages;
 
 public class VentanaInicio {
 
@@ -40,7 +41,6 @@ public class VentanaInicio {
 	private JButton btnEntrar;
 	private JLabel lblTituloCrearCuenta;
 	private JLabel lblTextoRegistro1;
-	private JLabel lblTextoRegistro2;
 	private JButton btnRegistrase;
 	private JCheckBox chckbxPasswordLogin;
 	private JButton btnIdiomaAplicacion;
@@ -193,7 +193,7 @@ public class VentanaInicio {
 			
 			frmVentanaDeLogin.dispose();
 				
-			DialogoSeleccionIdioma panel_idiomas = new DialogoSeleccionIdioma();
+			DialogoSeleccionIdioma panel_idiomas = new DialogoSeleccionIdioma("inicio");
 			panel_idiomas.setLocationRelativeTo(null);
 			panel_idiomas.setVisible(true);
 			
@@ -389,7 +389,7 @@ public class VentanaInicio {
 		//Datos frame
 		
 		frmVentanaDeLogin = new JFrame();
-		frmVentanaDeLogin.setTitle(MessagesAppInter.getString("VentanaInicio.frmVentanaDeLogin.title")); //$NON-NLS-1$
+		frmVentanaDeLogin.setTitle(Messages.getString("VentanaInicio.frmVentanaDeLogin.title")); //$NON-NLS-1$ //$NON-NLS-1$
 		frmVentanaDeLogin.setResizable(false);
 		frmVentanaDeLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/recursos/iconoAplicacion.png")));
 		frmVentanaDeLogin.setBounds(225, 225, 810, 287);
@@ -412,25 +412,20 @@ public class VentanaInicio {
 		frmVentanaDeLogin.getContentPane().add(panelRegistrarse);
 		panelRegistrarse.setLayout(null);
 		
-		lblTituloCrearCuenta = new JLabel(MessagesAppInter.getString("VentanaInicio.lblTituloCrearCuenta.text")); //$NON-NLS-1$
+		lblTituloCrearCuenta = new JLabel(Messages.getString("VentanaInicio.lblTituloCrearCuenta.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTituloCrearCuenta.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblTituloCrearCuenta.setForeground(new Color(255, 255, 255));
 		lblTituloCrearCuenta.setBounds(new Rectangle(70, 50, 146, 47));
 		panelRegistrarse.add(lblTituloCrearCuenta);
 		
-		lblTextoRegistro1 = new JLabel(MessagesAppInter.getString("VentanaInicio.lblTextoRegistro1.text")); //$NON-NLS-1$
+		lblTextoRegistro1 = new JLabel(Messages.getString("VentanaInicio.lblTextoRegistro1.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTextoRegistro1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblTextoRegistro1.setForeground(new Color(255, 255, 255));
 		lblTextoRegistro1.setBounds(45, 92, 220, 31);
 		panelRegistrarse.add(lblTextoRegistro1);
-		
-		lblTextoRegistro2 = new JLabel(MessagesAppInter.getString("VentanaInicio.lblTextoRegistro2.text")); //$NON-NLS-1$
-		lblTextoRegistro2.setForeground(Color.WHITE);
-		lblTextoRegistro2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		lblTextoRegistro2.setBounds(80, 122, 220, 31);
-		panelRegistrarse.add(lblTextoRegistro2);
 
-		btnRegistrase = new JButton(MessagesAppInter.getString("VentanaInicio.btnRegistrase.text")); //$NON-NLS-1$
+		btnRegistrase = new JButton("VentanaInicio.btnRegistrase.text"); //$NON-NLS-1$
+		btnRegistrase.setText(Messages.getString("VentanaInicio.btnRegistrase.text")); //$NON-NLS-1$
 		btnRegistrase.setFocusPainted(false);
 		btnRegistrase.setFocusTraversalKeysEnabled(false);
 		btnRegistrase.setFocusable(false);
@@ -467,28 +462,29 @@ public class VentanaInicio {
 		pwdfContrasena.setBounds(152, 136, 287, 31);
 		panelEntrar.add(pwdfContrasena);
 		
-		lblUsuario = new JLabel(MessagesAppInter.getString("VentanaInicio.lblUsuario.text")); //$NON-NLS-1$
+		lblUsuario = new JLabel(Messages.getString("VentanaInicio.lblUsuario.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblUsuario.setBounds(73, 99, 69, 13);
 		panelEntrar.add(lblUsuario);
 		
-		lblContrasena = new JLabel(MessagesAppInter.getString("VentanaInicio.lblContrasena.text")); //$NON-NLS-1$
+		lblContrasena = new JLabel(Messages.getString("VentanaInicio.lblContrasena.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblContrasena.setEnabled(false);
 		lblContrasena.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		lblContrasena.setBounds(50, 137, 95, 24);
 		panelEntrar.add(lblContrasena);
 		
-		lblTituloVentana = new JLabel(MessagesAppInter.getString("VentanaInicio.lblTituloVentana.text")); //$NON-NLS-1$
+		lblTituloVentana = new JLabel(Messages.getString("VentanaInicio.lblTituloVentana.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTituloVentana.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		lblTituloVentana.setBounds(30, 8, 70, 31);
 		panelEntrar.add(lblTituloVentana);
 		
-		lblTexto = new JLabel(MessagesAppInter.getString("VentanaInicio.lblTexto.text")); //$NON-NLS-1$
+		lblTexto = new JLabel(Messages.getString("VentanaInicio.lblTexto.text")); //$NON-NLS-1$ //$NON-NLS-1$
 		lblTexto.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		lblTexto.setBounds(31, 42, 389, 25);
 		panelEntrar.add(lblTexto);
 		
-		btnEntrar = new JButton(MessagesAppInter.getString("VentanaInicio.btnEntrar.text")); //$NON-NLS-1$
+		btnEntrar = new JButton("VentanaInicio.btnEntrar.text"); //$NON-NLS-1$
+		btnEntrar.setText(Messages.getString("VentanaInicio.btnEntrar.text")); //$NON-NLS-1$
 		btnEntrar.setEnabled(false);
 		btnEntrar.setForeground(new Color(255, 255, 255));
 		btnEntrar.setBackground(new Color(51, 51, 51));
@@ -496,13 +492,13 @@ public class VentanaInicio {
 		btnEntrar.setBounds(355, 192, 84, 31);
 		panelEntrar.add(btnEntrar);
 		
-		chckbxPasswordLogin = new JCheckBox("");
+		chckbxPasswordLogin = new JCheckBox(Messages.getString("VentanaInicio.chckbxPasswordLogin.text")); //$NON-NLS-1$
 		chckbxPasswordLogin.setIcon(new ImageIcon(VentanaInicio.class.getResource("/recursos/hide_eye.png")));
 		chckbxPasswordLogin.setBackground(new Color(255, 255, 255));
 		chckbxPasswordLogin.setBounds(445, 144, 35, 13);
 		panelEntrar.add(chckbxPasswordLogin);
 		
-		btnIdiomaAplicacion = new JButton("");
+		btnIdiomaAplicacion = new JButton(Messages.getString("VentanaInicio.btnIdiomaAplicacion.text")); //$NON-NLS-1$
 		btnIdiomaAplicacion.setFocusPainted(false);
 		btnIdiomaAplicacion.setFocusable(false);
 		btnIdiomaAplicacion.setFocusTraversalKeysEnabled(false);

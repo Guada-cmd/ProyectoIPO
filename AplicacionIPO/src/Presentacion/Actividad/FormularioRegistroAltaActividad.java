@@ -67,6 +67,7 @@ import javax.swing.SpinnerDateModel;
 import com.toedter.components.JLocaleChooser;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EtchedBorder;
+import Traductor.Messages;
 
 public class FormularioRegistroAltaActividad extends JFrame {
 
@@ -363,7 +364,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos boton Cancelar el registro
 		
-		btnRegistroRutaCancelado = new JButton("Cancelar");
+		btnRegistroRutaCancelado = new JButton(Messages.getString("FormularioRegistroAltaActividad.btnRegistroRutaCancelado.text")); //$NON-NLS-1$
 		btnRegistroRutaCancelado.setForeground(Color.WHITE);
 		btnRegistroRutaCancelado.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistroRutaCancelado.setBackground(new Color(51, 51, 51));
@@ -376,7 +377,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 			
 		//Datos boton Finalizar el registro
 		
-		btnRegistroRutaTerminado = new JButton("Guardar");
+		btnRegistroRutaTerminado = new JButton(Messages.getString("FormularioRegistroAltaActividad.btnRegistroRutaTerminado.text")); //$NON-NLS-1$
 		btnRegistroRutaTerminado.setForeground(new Color(255, 255, 255));
 		btnRegistroRutaTerminado.setBackground(new Color(51, 51, 51));
 		btnRegistroRutaTerminado.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -399,7 +400,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos campos Hora inicio
 		
-		lblHoraInicioActividad = new JLabel("Hora inicio:");
+		lblHoraInicioActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblHoraInicioActividad.text")); //$NON-NLS-1$
 		lblHoraInicioActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblHoraInicioActividad = new GridBagConstraints();
 		gbc_lblHoraInicioActividad.anchor = GridBagConstraints.EAST;
@@ -421,7 +422,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos campos Hora Fin
 		
-		lblHoraFinActividad = new JLabel("Hora fin:");
+		lblHoraFinActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblHoraFinActividad.text")); //$NON-NLS-1$
 		lblHoraFinActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblHoraFinActividad = new GridBagConstraints();
 		gbc_lblHoraFinActividad.anchor = GridBagConstraints.EAST;
@@ -443,7 +444,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		gbc_cmbHoraFinActividad.gridy = 11;
 		contentPane.add(cmbHoraFinActividad, gbc_cmbHoraFinActividad);
 		
-		lblDiaActividad = new JLabel("Día:");
+		lblDiaActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblDiaActividad.text")); //$NON-NLS-1$
 		lblDiaActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDiaActividad = new GridBagConstraints();
 		gbc_lblDiaActividad.insets = new Insets(0, 0, 5, 5);
@@ -473,7 +474,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 			
 		// Datos campos precio
 		
-		lblPrecioActividad = new JLabel("Precio/Mes:");
+		lblPrecioActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblPrecioActividad.text")); //$NON-NLS-1$
 		lblPrecioActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblPrecioActividad = new GridBagConstraints();
 		gbc_lblPrecioActividad.anchor = GridBagConstraints.EAST;
@@ -494,7 +495,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos campos Material
 		
-		lblMaterialActividad = new JLabel("Material:");
+		lblMaterialActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblMaterialActividad.text")); //$NON-NLS-1$
 		lblMaterialActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblMaterialActividad = new GridBagConstraints();
 		gbc_lblMaterialActividad.anchor = GridBagConstraints.EAST;
@@ -517,7 +518,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos Area
 		
-		lblAreaActividad = new JLabel("Area:");
+		lblAreaActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblAreaActividad.text")); //$NON-NLS-1$
 		lblAreaActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblAreaActividad = new GridBagConstraints();
 		gbc_lblAreaActividad.anchor = GridBagConstraints.EAST;
@@ -541,7 +542,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos destinada
 		
-		lblDirigida = new JLabel("Destinada:");
+		lblDirigida = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblDirigida.text")); //$NON-NLS-1$
 		lblDirigida.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDirigida = new GridBagConstraints();
 		gbc_lblDirigida.anchor = GridBagConstraints.EAST;
@@ -564,7 +565,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos maximo numero de personas
 		
-		lblMximoActividad = new JLabel("Máximo:");
+		lblMximoActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblMximoActividad.text")); //$NON-NLS-1$
 		lblMximoActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblMximoActividad = new GridBagConstraints();
 		gbc_lblMximoActividad.anchor = GridBagConstraints.EAST;
@@ -593,7 +594,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos campos Nombre de Actividad
 		
-		lblNombreActividad = new JLabel("Nombre actividad:");
+		lblNombreActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblNombreActividad.text")); //$NON-NLS-1$
 		lblNombreActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombreActividad = new GridBagConstraints();
 		gbc_lblNombreActividad.anchor = GridBagConstraints.EAST;
@@ -611,7 +612,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		contentPane.add(txtNombreActividad, gbc_txtNombreActividad);
 		txtNombreActividad.setColumns(10);
 		
-		lblComprobarNombreActividad = new JLabel("");
+		lblComprobarNombreActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblComprobarNombreActividad.text")); //$NON-NLS-1$
 		lblComprobarNombreActividad.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblComprobarNombreActividad = new GridBagConstraints();
 		gbc_lblComprobarNombreActividad.gridwidth = 2;
@@ -623,7 +624,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		//Datos campos Descripcion
 		
-		lblDescripcionActividad = new JLabel("Descripción:");
+		lblDescripcionActividad = new JLabel(Messages.getString("FormularioRegistroAltaActividad.lblDescripcionActividad.text")); //$NON-NLS-1$
 		lblDescripcionActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDescripcionActividad = new GridBagConstraints();
 		gbc_lblDescripcionActividad.anchor = GridBagConstraints.EAST;
@@ -652,7 +653,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Ventana Formulario Alta Actividad.");
+		setTitle(Messages.getString("FormularioRegistroAltaActividad.this.title")); //$NON-NLS-1$
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistroAltaActividad.class.getResource("/recursos/Form.png")));
 		
@@ -661,7 +662,7 @@ public class FormularioRegistroAltaActividad extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Formulario Alta", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), Messages.getString("FormularioRegistroAltaActividad.contentPane.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0))); //$NON-NLS-1$
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{83, 132, 127, 84, 113, 47, 0};

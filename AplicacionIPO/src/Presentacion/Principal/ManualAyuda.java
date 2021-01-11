@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import Traductor.Messages;
 
 public class ManualAyuda {
 
@@ -142,7 +143,7 @@ public class ManualAyuda {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		frmManualAplicacion.getContentPane().setLayout(gridBagLayout);
 		
-		lblNewLabel = new JLabel("Ayuda.");
+		lblNewLabel = new JLabel(Messages.getString("ManualAyuda.lblNewLabel.text")); //$NON-NLS-1$
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -163,12 +164,12 @@ public class ManualAyuda {
 		frmManualAplicacion.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		dtrpnElPropsitoDe = new JEditorPane();
-		dtrpnElPropsitoDe.setText("El propósito de este manual es servir de pequeña guía para el usuario que tenga duda acerca de alguna funcionalidad de la aplicación.\r\n\r\nGestión de la información del usuario.\r\n\r\nEl usuario registrado en la palicación podrá consultar sus datos registrados en el apartado Pérfil situado en la esquina superior derecha.\r\n\r\nSi el usuario considera necesario la modificación de algún dato podrá hacerlo en la configuración de su cuenta.\r\n\r\nGestión Reservas.\r\n\r\nLa principal funcionalidad de la aplicación es la gestión de reservas y el usuario podrá acceder a ella a través de su ventana correspondiente.\r\n\r\nActividades.\r\n\r\nLa aplicación ofrece las actividades que se podrán realizar en el campamente y un apartado para editar los datos de las mismas, ambos en sus apartados correspondientes.\r\n\r\nRutas.\r\n\r\nEl usuario tendrá a su disposición un número de rutas gratuitas. Para poder verlas es necesario ir a su panel correspondiente.\r\nSi se considera necesario, se podrá añadir una ruta personalizada através de un formulario disponible en esta aplicación");
+		dtrpnElPropsitoDe.setText(Messages.getString("ManualAyuda.dtrpnElPropsitoDe.text")); //$NON-NLS-1$
 		dtrpnElPropsitoDe.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		dtrpnElPropsitoDe.setEditable(false);
 		scrollPane.setViewportView(dtrpnElPropsitoDe);
 		frmManualAplicacion.setResizable(false);
-		frmManualAplicacion.setTitle("Manual Aplicación\r\n");
+		frmManualAplicacion.setTitle(Messages.getString("ManualAyuda.frmManualAplicacion.title")); //$NON-NLS-1$
 		frmManualAplicacion.setBounds(100, 100, 758, 435);
 		frmManualAplicacion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

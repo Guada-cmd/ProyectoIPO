@@ -55,6 +55,7 @@ import javax.swing.JFormattedTextField;
 
 import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
+import Traductor.Messages;
 
 public class FormularioRegistro extends JFrame {
 
@@ -530,7 +531,7 @@ public class FormularioRegistro extends JFrame {
 	 */
 	private void inicializarDatosFormularioRegistro() {
 		
-		setTitle("Ventana Formulario Registro.");
+		setTitle(Messages.getString("FormularioRegistro.this.title")); //$NON-NLS-1$
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistro.class.getResource("/recursos/Form.png")));
 		
@@ -539,7 +540,7 @@ public class FormularioRegistro extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		contentPane.setBorder(new TitledBorder(null, "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.setBorder(new TitledBorder(null, Messages.getString("FormularioRegistro.contentPane.borderTitle"), TitledBorder.LEADING, TitledBorder.TOP, null, null)); //$NON-NLS-1$
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{48, 167, 52, 80, 129, 47, 0};
@@ -567,7 +568,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos Nombre
 		
-		lblNombre = new JLabel("Nombre:");
+		lblNombre = new JLabel(Messages.getString("FormularioRegistro.lblNombre.text")); //$NON-NLS-1$
 		lblNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.anchor = GridBagConstraints.EAST;
@@ -587,7 +588,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos Apellido
 		
-		lblApellidos = new JLabel("Apellidos:");
+		lblApellidos = new JLabel(Messages.getString("FormularioRegistro.lblApellidos.text")); //$NON-NLS-1$
 		lblApellidos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblApellidos = new GridBagConstraints();
 		gbc_lblApellidos.anchor = GridBagConstraints.EAST;
@@ -616,7 +617,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos Nombre de Usuario
 		
-		lblNombreUsuario = new JLabel("Nombre de usuario:");
+		lblNombreUsuario = new JLabel(Messages.getString("FormularioRegistro.lblNombreUsuario.text")); //$NON-NLS-1$
 		lblNombreUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombreUsuario = new GridBagConstraints();
 		gbc_lblNombreUsuario.anchor = GridBagConstraints.EAST;
@@ -634,7 +635,7 @@ public class FormularioRegistro extends JFrame {
 		contentPane.add(txtNombreUsuario, gbc_txtNombreUsuario);
 		txtNombreUsuario.setColumns(10);
 		
-		lblComprobarUsuario = new JLabel("");
+		lblComprobarUsuario = new JLabel(Messages.getString("FormularioRegistro.lblComprobarUsuario.text")); //$NON-NLS-1$
 		lblComprobarUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		GridBagConstraints gbc_lblComprobarUsuario = new GridBagConstraints();
 		gbc_lblComprobarUsuario.anchor = GridBagConstraints.WEST;
@@ -646,7 +647,7 @@ public class FormularioRegistro extends JFrame {
 		
 		// Datos campos contrasenas
 		
-		lblContrasena = new JLabel("Contraseña:");
+		lblContrasena = new JLabel(Messages.getString("FormularioRegistro.lblContrasena.text")); //$NON-NLS-1$
 		lblContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblContrasena = new GridBagConstraints();
 		gbc_lblContrasena.anchor = GridBagConstraints.EAST;
@@ -664,7 +665,7 @@ public class FormularioRegistro extends JFrame {
 		gbc_pwdfContrasena.gridy = 5;
 		contentPane.add(pwdfContrasena, gbc_pwdfContrasena);
 		
-		chckbxHideShow = new JCheckBox("");
+		chckbxHideShow = new JCheckBox(Messages.getString("FormularioRegistro.chckbxHideShow.text")); //$NON-NLS-1$
 		chckbxHideShow.setIcon(new ImageIcon(FormularioRegistro.class.getResource("/recursos/hide_eye.png")));
 		chckbxHideShow.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_chckbxHideShow = new GridBagConstraints();
@@ -677,7 +678,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos de confirmacion contrasenas
 		
-		lblConfirmarContrasena = new JLabel("Confirmar contraseña:");
+		lblConfirmarContrasena = new JLabel(Messages.getString("FormularioRegistro.lblConfirmarContrasena.text")); //$NON-NLS-1$
 		lblConfirmarContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblConfirmarContrasena = new GridBagConstraints();
 		gbc_lblConfirmarContrasena.anchor = GridBagConstraints.EAST;
@@ -695,7 +696,7 @@ public class FormularioRegistro extends JFrame {
 		gbc_pwdfConfirmarContrasena.gridy = 6;
 		contentPane.add(pwdfConfirmarContrasena, gbc_pwdfConfirmarContrasena);
 		
-		lblEstadoContrasena = new JLabel("");
+		lblEstadoContrasena = new JLabel(Messages.getString("FormularioRegistro.lblEstadoContrasena.text")); //$NON-NLS-1$
 		lblEstadoContrasena.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblEstadoContrasena = new GridBagConstraints();
 		gbc_lblEstadoContrasena.anchor = GridBagConstraints.WEST;
@@ -707,7 +708,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos seleccion tipo de Usuario aplicacion
 		
-		lblTipoUsuario = new JLabel("Tipo de usuario:");
+		lblTipoUsuario = new JLabel(Messages.getString("FormularioRegistro.lblTipoUsuario.text")); //$NON-NLS-1$
 		lblTipoUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblTipoUsuario = new GridBagConstraints();
 		gbc_lblTipoUsuario.anchor = GridBagConstraints.EAST;
@@ -738,7 +739,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos Telefono
 		
-		lblTelefono = new JLabel("Teléfono:");
+		lblTelefono = new JLabel(Messages.getString("FormularioRegistro.lblTelefono.text")); //$NON-NLS-1$
 		lblTelefono.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblTelefono = new GridBagConstraints();
 		gbc_lblTelefono.anchor = GridBagConstraints.EAST;
@@ -769,7 +770,7 @@ public class FormularioRegistro extends JFrame {
 		gbc_ftxtTelefono.gridy = 9;
 		contentPane.add(ftxtTelefono, gbc_ftxtTelefono);
 		
-		lblOpcional2 = new JLabel("(Opcional)");
+		lblOpcional2 = new JLabel(Messages.getString("FormularioRegistro.lblOpcional2.text")); //$NON-NLS-1$
 		lblOpcional2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblOpcional2 = new GridBagConstraints();
 		gbc_lblOpcional2.anchor = GridBagConstraints.WEST;
@@ -780,7 +781,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos correo electronico
 		
-		lblCorreoElectronico = new JLabel("Correo electrónico:");
+		lblCorreoElectronico = new JLabel(Messages.getString("FormularioRegistro.lblCorreoElectronico.text")); //$NON-NLS-1$
 		lblCorreoElectronico.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblCorreoElectronico = new GridBagConstraints();
 		gbc_lblCorreoElectronico.anchor = GridBagConstraints.EAST;
@@ -801,7 +802,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos campos fecha de nacimiento
 		
-		lblblFechaNacimiento = new JLabel("Fecha de Nacimiento:");
+		lblblFechaNacimiento = new JLabel(Messages.getString("FormularioRegistro.lblblFechaNacimiento.text")); //$NON-NLS-1$
 		lblblFechaNacimiento.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblblFechaNacimiento = new GridBagConstraints();
 		gbc_lblblFechaNacimiento.anchor = GridBagConstraints.EAST;
@@ -819,7 +820,7 @@ public class FormularioRegistro extends JFrame {
 		gbc_dcFechaNacimiento.gridy = 11;
 		contentPane.add(dcFechaNacimiento, gbc_dcFechaNacimiento);
 		
-		lblOpcional1 = new JLabel("(Opcional)");
+		lblOpcional1 = new JLabel(Messages.getString("FormularioRegistro.lblOpcional1.text")); //$NON-NLS-1$
 		lblOpcional1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblOpcional1 = new GridBagConstraints();
 		gbc_lblOpcional1.anchor = GridBagConstraints.WEST;
@@ -838,7 +839,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos primer chexk box
 		
-		chckbxS = new JCheckBox("Suscribirse a nuestro boletín de noticias.");
+		chckbxS = new JCheckBox(Messages.getString("FormularioRegistro.chckbxS.text")); //$NON-NLS-1$
 		chckbxS.setBackground(new Color(255, 255, 255));
 		chckbxS.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_chckbxS = new GridBagConstraints();
@@ -851,7 +852,7 @@ public class FormularioRegistro extends JFrame {
 		
 		// Datos segundo check box
 		
-		chckbxN = new JCheckBox("Recibir notificaciones al correo con ofertas.");
+		chckbxN = new JCheckBox(Messages.getString("FormularioRegistro.chckbxN.text")); //$NON-NLS-1$
 		chckbxN.setBackground(new Color(255, 255, 255));
 		chckbxN.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_chckbxN = new GridBagConstraints();
@@ -872,7 +873,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos boton Cancelar el registro
 		
-		btnRegistroCancelado = new JButton("Cancelar");
+		btnRegistroCancelado = new JButton(Messages.getString("FormularioRegistro.btnRegistroCancelado.text")); //$NON-NLS-1$
 		btnRegistroCancelado.setForeground(Color.WHITE);
 		btnRegistroCancelado.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		btnRegistroCancelado.setBackground(new Color(51, 51, 51));
@@ -884,7 +885,7 @@ public class FormularioRegistro extends JFrame {
 		
 		//Datos boton Finalizar el registro
 		
-		btnRegistroTerminado = new JButton("Guardar");
+		btnRegistroTerminado = new JButton(Messages.getString("FormularioRegistro.btnRegistroTerminado.text")); //$NON-NLS-1$
 		btnRegistroTerminado.setForeground(new Color(255, 255, 255));
 		btnRegistroTerminado.setBackground(new Color(51, 51, 51));
 		btnRegistroTerminado.setFont(new Font("Segoe UI", Font.BOLD, 14));

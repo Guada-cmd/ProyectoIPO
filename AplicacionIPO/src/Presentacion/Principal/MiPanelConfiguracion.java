@@ -33,6 +33,7 @@ import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
 import Presentacion.EditorGrafico.ImageFilter;
 import Presentacion.InicioSesion.VentanaInicio;
+import Traductor.Messages;
 
 public class MiPanelConfiguracion extends JPanel {
 	
@@ -250,7 +251,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Etiqueta que permite seleccionar la foto
 		
-		lblInformacionUsuarioAvatar = new JLabel("");
+		lblInformacionUsuarioAvatar = new JLabel(Messages.getString("MiPanelConfiguracion.lblInformacionUsuarioAvatar.text")); //$NON-NLS-1$
 		lblInformacionUsuarioAvatar.setBackground(new Color(255, 255, 255));
 		lblInformacionUsuarioAvatar.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/Avatar.png")));
 		lblInformacionUsuarioAvatar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -258,7 +259,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Boton foto
 		
-		btnCambiarFoto = new JButton("Cargar...");
+		btnCambiarFoto = new JButton(Messages.getString("MiPanelConfiguracion.btnCambiarFoto.text")); //$NON-NLS-1$
 		btnCambiarFoto.setBorder(null);
 		btnCambiarFoto.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/add-picture.png")));
 		btnCambiarFoto.setFocusPainted(false);
@@ -288,7 +289,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Etiqueta que sirve de titulo
 		
-		lblEdicionDatosInformacionUsuario = new JLabel("Editar información del Usuario");
+		lblEdicionDatosInformacionUsuario = new JLabel(Messages.getString("MiPanelConfiguracion.lblEdicionDatosInformacionUsuario.text")); //$NON-NLS-1$
 		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
 		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 4;
@@ -303,7 +304,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//ICONO LAPIZ EDITAR
 		
-		chckbxPermitirEdicion = new JCheckBox("");
+		chckbxPermitirEdicion = new JCheckBox(Messages.getString("MiPanelConfiguracion.chckbxPermitirEdicion.text")); //$NON-NLS-1$
 		chckbxPermitirEdicion.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/pencil.png")));
 		chckbxPermitirEdicion.setBackground(Color.WHITE);
 		GridBagConstraints gbc_chckbxPermitirEdicion = new GridBagConstraints();
@@ -315,7 +316,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Campos nombre
 		
-		lblDatosNombre = new JLabel("Nombre:");
+		lblDatosNombre = new JLabel(Messages.getString("MiPanelConfiguracion.lblDatosNombre.text")); //$NON-NLS-1$
 		lblDatosNombre.setEnabled(false);
 		lblDatosNombre.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDatosNombre = new GridBagConstraints();
@@ -339,7 +340,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Campo apellidos
 		
-		lblDatosApellidos = new JLabel("Apellidos:");
+		lblDatosApellidos = new JLabel(Messages.getString("MiPanelConfiguracion.lblDatosApellidos.text")); //$NON-NLS-1$
 		lblDatosApellidos.setEnabled(false);
 		lblDatosApellidos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDatosApellidos = new GridBagConstraints();
@@ -362,7 +363,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Campo correp
 		
-		lblDatosCorreo = new JLabel("Correo:");
+		lblDatosCorreo = new JLabel(Messages.getString("MiPanelConfiguracion.lblDatosCorreo.text")); //$NON-NLS-1$
 		lblDatosCorreo.setEnabled(false);
 		lblDatosCorreo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDatosCorreo = new GridBagConstraints();
@@ -386,7 +387,7 @@ public class MiPanelConfiguracion extends JPanel {
 		
 		//Boton guardar datos
 		
-		btnGuardarUpdateDatos = new JButton("Guardar");
+		btnGuardarUpdateDatos = new JButton(Messages.getString("MiPanelConfiguracion.btnGuardarUpdateDatos.text")); //$NON-NLS-1$
 		
 		btnGuardarUpdateDatos.setFocusable(false);
 		btnGuardarUpdateDatos.setFocusPainted(false);

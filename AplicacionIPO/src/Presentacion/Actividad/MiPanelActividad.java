@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.awt.Point;
 import java.awt.Cursor;
 import java.awt.Color;
+import Traductor.Messages;
 
 public class MiPanelActividad extends JPanel {
 	
@@ -72,7 +73,7 @@ public class MiPanelActividad extends JPanel {
 		
 		setLayout(null);
 		
-		lblBarraBusqueda = new JLabel("");
+		lblBarraBusqueda = new JLabel(Messages.getString("MiPanelActividad.lblBarraBusqueda.text")); //$NON-NLS-1$
 		lblBarraBusqueda.setBounds(521, 98, 45, 13);
 		add(lblBarraBusqueda);
 		
@@ -81,7 +82,7 @@ public class MiPanelActividad extends JPanel {
 		scrollPaneFoto.setBounds(59, 250, 248, 171);
 		add(scrollPaneFoto);
 		
-		lblFotoRutaSeleccionada = new JLabel("");
+		lblFotoRutaSeleccionada = new JLabel(Messages.getString("MiPanelActividad.lblFotoRutaSeleccionada.text")); //$NON-NLS-1$
 		lblFotoRutaSeleccionada.setVisible(false);
 		
 		lblFotoRutaSeleccionada.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Actividad/Piscina.jpg")).getImage().getScaledInstance(246, 175, Image.SCALE_SMOOTH)));
@@ -124,7 +125,7 @@ public class MiPanelActividad extends JPanel {
 		
 		scrollPane.setViewportView(table);
 		
-		lblTituloActividad = new JLabel("¿Desea buscar alguna actividad?");
+		lblTituloActividad = new JLabel(Messages.getString("MiPanelActividad.lblTituloActividad.text")); //$NON-NLS-1$
 		lblTituloActividad.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		lblTituloActividad.setBounds(59, 15, 234, 19);
 		add(lblTituloActividad);
@@ -134,74 +135,74 @@ public class MiPanelActividad extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 		
-		lblNombreActividadDB = new JLabel("");
+		lblNombreActividadDB = new JLabel(Messages.getString("MiPanelActividad.lblNombreActividadDB.text")); //$NON-NLS-1$
 		lblNombreActividadDB.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblNombreActividadDB.setBounds(327, 247, 192, 19);
 		add(lblNombreActividadDB);
 		
-		lblIconCalendar = new JLabel("");
+		lblIconCalendar = new JLabel(Messages.getString("MiPanelActividad.lblIconCalendar.text")); //$NON-NLS-1$
 		lblIconCalendar.setVisible(false);
 		lblIconCalendar.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/calendar.png")));
 		lblIconCalendar.setBounds(327, 286, 21, 33);
 		add(lblIconCalendar);
 		
-		lblHorarioDB = new JLabel("");
+		lblHorarioDB = new JLabel(Messages.getString("MiPanelActividad.lblHorarioDB.text")); //$NON-NLS-1$
 		lblHorarioDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblHorarioDB.setBounds(361, 286, 224, 33);
 		add(lblHorarioDB);
 		
-		lblDescripcionDB = new JLabel("");
+		lblDescripcionDB = new JLabel(Messages.getString("MiPanelActividad.lblDescripcionDB.text")); //$NON-NLS-1$
 		lblDescripcionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDescripcionDB.setBounds(327, 266, 462, 24);
 		add(lblDescripcionDB);
 		
-		lblIconoUbicacion = new JLabel("");
+		lblIconoUbicacion = new JLabel(Messages.getString("MiPanelActividad.lblIconoUbicacion.text")); //$NON-NLS-1$
 		lblIconoUbicacion.setLocation(new Point(330, 335));
 		lblIconoUbicacion.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/ubicacion.png")));
 		lblIconoUbicacion.setVisible(false);
 		lblIconoUbicacion.setBounds(327, 320, 21, 24);
 		add(lblIconoUbicacion);
 		
-		lblUbicacionDB = new JLabel("");
+		lblUbicacionDB = new JLabel(Messages.getString("MiPanelActividad.lblUbicacionDB.text")); //$NON-NLS-1$
 		lblUbicacionDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblUbicacionDB.setBounds(361, 321, 224, 23);
 		add(lblUbicacionDB);
 		
-		lblIconoGrupos = new JLabel("");
+		lblIconoGrupos = new JLabel(Messages.getString("MiPanelActividad.lblIconoGrupos.text")); //$NON-NLS-1$
 		lblIconoGrupos.setVisible(false);
 		lblIconoGrupos.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/grupo.png")));
 		lblIconoGrupos.setBounds(327, 352, 30, 19);
 		add(lblIconoGrupos);
 		
-		lblGrupoDB = new JLabel("");
+		lblGrupoDB = new JLabel(Messages.getString("MiPanelActividad.lblGrupoDB.text")); //$NON-NLS-1$
 		lblGrupoDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblGrupoDB.setBounds(362, 352, 234, 19);
 		add(lblGrupoDB);
 		
-		lblIconoDinero = new JLabel("");
+		lblIconoDinero = new JLabel(Messages.getString("MiPanelActividad.lblIconoDinero.text")); //$NON-NLS-1$
 		lblIconoDinero.setVisible(false);
 		lblIconoDinero.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/dinero.png")));
 		lblIconoDinero.setBounds(327, 381, 30, 17);
 		add(lblIconoDinero);
 		
-		lblDineroDB = new JLabel("");
+		lblDineroDB = new JLabel(Messages.getString("MiPanelActividad.lblDineroDB.text")); //$NON-NLS-1$
 		lblDineroDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblDineroDB.setBounds(362, 376, 157, 24);
 		add(lblDineroDB);
 		
-		lblEquipamiento = new JLabel("Material necesario para la actividad:");
+		lblEquipamiento = new JLabel(Messages.getString("MiPanelActividad.lblEquipamiento.text")); //$NON-NLS-1$
 		lblEquipamiento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEquipamiento.setVisible(false);
 		lblEquipamiento.setBounds(325, 402, 218, 24);
 		add(lblEquipamiento);
 		
-		lblMaterialDB = new JLabel("");
+		lblMaterialDB = new JLabel(Messages.getString("MiPanelActividad.lblMaterialDB.text")); //$NON-NLS-1$
 		lblMaterialDB.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		lblMaterialDB.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		lblMaterialDB.setBounds(527, 402, 130, 24);
 		add(lblMaterialDB);
 		
-		lblLupaIcono = new JLabel("");
+		lblLupaIcono = new JLabel(Messages.getString("MiPanelActividad.lblLupaIcono.text")); //$NON-NLS-1$
 		lblLupaIcono.setIcon(new ImageIcon(MiPanelActividad.class.getResource("/recursos/lupa.png")));
 		lblLupaIcono.setBounds(303, 44, 38, 24);
 		add(lblLupaIcono);

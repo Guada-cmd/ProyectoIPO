@@ -18,6 +18,7 @@ import Dominio.Perfil;
 import Dominio.Usuario;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.rutas.MiPanelRutasOfertadas;
+import Traductor.Messages;
 
 @SuppressWarnings("serial")
 public class MiPanelUsuario extends JPanel {
@@ -185,7 +186,7 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Etiqueta que sirve de titulo
 		
-		lblEdicionDatosInformacionUsuario = new JLabel("Información actualizada del perfil de Usuario");
+		lblEdicionDatosInformacionUsuario = new JLabel(Messages.getString("MiPanelUsuario.lblEdicionDatosInformacionUsuario.text")); //$NON-NLS-1$
 		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
 		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 4;
@@ -211,13 +212,13 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Etiqueta que permite seleccionar la foto
 		
-		lblInformacionUsuarioAvatarDB = new JLabel("");
+		lblInformacionUsuarioAvatarDB = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioAvatarDB.text")); //$NON-NLS-1$
 		lblInformacionUsuarioAvatarDB.setBackground(new Color(255, 255, 255));
 		lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/Avatar.png")));
 		lblInformacionUsuarioAvatarDB.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setViewportView(lblInformacionUsuarioAvatarDB);
 		
-		lblltimoAccesso = new JLabel("Información de accesso");
+		lblltimoAccesso = new JLabel(Messages.getString("MiPanelUsuario.lblltimoAccesso.text")); //$NON-NLS-1$
 		lblltimoAccesso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblltimoAccesso = new GridBagConstraints();
 		gbc_lblltimoAccesso.anchor = GridBagConstraints.SOUTH;
@@ -227,7 +228,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblltimoAccesso.gridy = 3;
 		add(lblltimoAccesso, gbc_lblltimoAccesso);
 		
-		lblHoraUltimoAcceso = new JLabel("Último accesso:");
+		lblHoraUltimoAcceso = new JLabel(Messages.getString("MiPanelUsuario.lblHoraUltimoAcceso.text")); //$NON-NLS-1$
 		lblHoraUltimoAcceso.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblHoraUltimoAcceso = new GridBagConstraints();
 		gbc_lblHoraUltimoAcceso.anchor = GridBagConstraints.EAST;
@@ -236,7 +237,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblHoraUltimoAcceso.gridy = 5;
 		add(lblHoraUltimoAcceso, gbc_lblHoraUltimoAcceso);
 		
-		lblUltimoAccesoDB = new JLabel("");
+		lblUltimoAccesoDB = new JLabel(Messages.getString("MiPanelUsuario.lblUltimoAccesoDB.text")); //$NON-NLS-1$
 		lblUltimoAccesoDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblUltimoAccesoDB = new GridBagConstraints();
 		gbc_lblUltimoAccesoDB.anchor = GridBagConstraints.WEST;
@@ -246,7 +247,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblUltimoAccesoDB.gridy = 5;
 		add(lblUltimoAccesoDB, gbc_lblUltimoAccesoDB);
 		
-		lblNombreUsuario = new JLabel("Usuario:");
+		lblNombreUsuario = new JLabel(Messages.getString("MiPanelUsuario.lblNombreUsuario.text")); //$NON-NLS-1$
 		lblNombreUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNombreUsuario = new GridBagConstraints();
 		gbc_lblNombreUsuario.anchor = GridBagConstraints.EAST;
@@ -255,7 +256,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblNombreUsuario.gridy = 6;
 		add(lblNombreUsuario, gbc_lblNombreUsuario);
 		
-		lblUserBD = new JLabel("");
+		lblUserBD = new JLabel(Messages.getString("MiPanelUsuario.lblUserBD.text")); //$NON-NLS-1$
 		lblUserBD.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblUserBD = new GridBagConstraints();
 		gbc_lblUserBD.anchor = GridBagConstraints.WEST;
@@ -267,7 +268,7 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Datos relacionados con el nombre
 		
-		lblInformacionUsuarioNombre = new JLabel("Nombre y apellidos:");
+		lblInformacionUsuarioNombre = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioNombre.text")); //$NON-NLS-1$
 		lblInformacionUsuarioNombre.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioNombre = new GridBagConstraints();
 		gbc_lblInformacionUsuarioNombre.gridwidth = 2;
@@ -277,7 +278,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblInformacionUsuarioNombre.gridy = 9;
 		add(lblInformacionUsuarioNombre, gbc_lblInformacionUsuarioNombre);
 		
-		lblNombreApellidosDB = new JLabel("");
+		lblNombreApellidosDB = new JLabel(Messages.getString("MiPanelUsuario.lblNombreApellidosDB.text")); //$NON-NLS-1$
 		lblNombreApellidosDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNombreApellidosDB = new GridBagConstraints();
 		gbc_lblNombreApellidosDB.anchor = GridBagConstraints.WEST;
@@ -287,7 +288,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblNombreApellidosDB.gridy = 9;
 		add(lblNombreApellidosDB, gbc_lblNombreApellidosDB);
 		
-		lblTipoDeEmpleado = new JLabel("");
+		lblTipoDeEmpleado = new JLabel(Messages.getString("MiPanelUsuario.lblTipoDeEmpleado.text")); //$NON-NLS-1$
 		lblTipoDeEmpleado.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblTipoDeEmpleado = new GridBagConstraints();
 		gbc_lblTipoDeEmpleado.anchor = GridBagConstraints.EAST;
@@ -298,7 +299,7 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Datos relacionados con el correo electronico
 		
-		lblInformacionUsuarioCorreoElectronico = new JLabel("Correo electrónico:");
+		lblInformacionUsuarioCorreoElectronico = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioCorreoElectronico.text")); //$NON-NLS-1$
 		lblInformacionUsuarioCorreoElectronico.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioCorreoElectronico = new GridBagConstraints();
 		gbc_lblInformacionUsuarioCorreoElectronico.gridwidth = 2;
@@ -308,7 +309,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblInformacionUsuarioCorreoElectronico.gridy = 11;
 		add(lblInformacionUsuarioCorreoElectronico, gbc_lblInformacionUsuarioCorreoElectronico);
 		
-		lblCorreoDB = new JLabel("");
+		lblCorreoDB = new JLabel(Messages.getString("MiPanelUsuario.lblCorreoDB.text")); //$NON-NLS-1$
 		lblCorreoDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblCorreoDB = new GridBagConstraints();
 		gbc_lblCorreoDB.anchor = GridBagConstraints.WEST;
@@ -320,7 +321,7 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Datos relacionados con el telefono
 		
-		lblInformacionUsuarioTelefono = new JLabel("Teléfono:");
+		lblInformacionUsuarioTelefono = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioTelefono.text")); //$NON-NLS-1$
 		lblInformacionUsuarioTelefono.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioTelefono = new GridBagConstraints();
 		gbc_lblInformacionUsuarioTelefono.gridwidth = 2;
@@ -330,7 +331,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblInformacionUsuarioTelefono.gridy = 12;
 		add(lblInformacionUsuarioTelefono, gbc_lblInformacionUsuarioTelefono);
 		
-		lblTelefonoDB = new JLabel("");
+		lblTelefonoDB = new JLabel(Messages.getString("MiPanelUsuario.lblTelefonoDB.text")); //$NON-NLS-1$
 		lblTelefonoDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblTelefonoDB = new GridBagConstraints();
 		gbc_lblTelefonoDB.anchor = GridBagConstraints.WEST;
@@ -340,7 +341,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblTelefonoDB.gridy = 12;
 		add(lblTelefonoDB, gbc_lblTelefonoDB);
 		
-		lblInformacionUsuarioTelefono_2 = new JLabel("Idiomas:");
+		lblInformacionUsuarioTelefono_2 = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioTelefono_2.text")); //$NON-NLS-1$
 		lblInformacionUsuarioTelefono_2.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioTelefono_2 = new GridBagConstraints();
 		gbc_lblInformacionUsuarioTelefono_2.gridwidth = 2;
@@ -350,7 +351,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblInformacionUsuarioTelefono_2.gridy = 14;
 		add(lblInformacionUsuarioTelefono_2, gbc_lblInformacionUsuarioTelefono_2);
 		
-		lblIdiomasDB = new JLabel("");
+		lblIdiomasDB = new JLabel(Messages.getString("MiPanelUsuario.lblIdiomasDB.text")); //$NON-NLS-1$
 		lblIdiomasDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblIdiomasDB = new GridBagConstraints();
 		gbc_lblIdiomasDB.anchor = GridBagConstraints.WEST;
@@ -360,7 +361,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblIdiomasDB.gridy = 14;
 		add(lblIdiomasDB, gbc_lblIdiomasDB);
 		
-		lblInformacionUsuarioTelefono_1 = new JLabel("Disponibilidad:");
+		lblInformacionUsuarioTelefono_1 = new JLabel(Messages.getString("MiPanelUsuario.lblInformacionUsuarioTelefono_1.text")); //$NON-NLS-1$
 		lblInformacionUsuarioTelefono_1.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblInformacionUsuarioTelefono_1 = new GridBagConstraints();
 		gbc_lblInformacionUsuarioTelefono_1.gridwidth = 2;
@@ -370,7 +371,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblInformacionUsuarioTelefono_1.gridy = 15;
 		add(lblInformacionUsuarioTelefono_1, gbc_lblInformacionUsuarioTelefono_1);
 		
-		lblDisponibilidadDB = new JLabel("");
+		lblDisponibilidadDB = new JLabel(Messages.getString("MiPanelUsuario.lblDisponibilidadDB.text")); //$NON-NLS-1$
 		lblDisponibilidadDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDisponibilidadDB = new GridBagConstraints();
 		gbc_lblDisponibilidadDB.anchor = GridBagConstraints.WEST;
@@ -380,7 +381,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblDisponibilidadDB.gridy = 15;
 		add(lblDisponibilidadDB, gbc_lblDisponibilidadDB);
 		
-		lblNivelDeEstudios_1 = new JLabel("Nivel de estudios:");
+		lblNivelDeEstudios_1 = new JLabel(Messages.getString("MiPanelUsuario.lblNivelDeEstudios_1.text")); //$NON-NLS-1$
 		lblNivelDeEstudios_1.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		GridBagConstraints gbc_lblNivelDeEstudios_1 = new GridBagConstraints();
 		gbc_lblNivelDeEstudios_1.gridwidth = 2;
@@ -390,7 +391,7 @@ public class MiPanelUsuario extends JPanel {
 		gbc_lblNivelDeEstudios_1.gridy = 16;
 		add(lblNivelDeEstudios_1, gbc_lblNivelDeEstudios_1);
 		
-		lblNivelEstudiosDB = new JLabel("");
+		lblNivelEstudiosDB = new JLabel(Messages.getString("MiPanelUsuario.lblNivelEstudiosDB.text")); //$NON-NLS-1$
 		lblNivelEstudiosDB.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNivelEstudiosDB = new GridBagConstraints();
 		gbc_lblNivelEstudiosDB.anchor = GridBagConstraints.WEST;

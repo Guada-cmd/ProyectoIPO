@@ -8,7 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Dominio.Idioma;
+import Presentacion.Principal.AplicacionPrincipal;
+import Traductor.Messages;
 
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -31,7 +32,7 @@ public class DialogoSeleccionIdioma extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			DialogoSeleccionIdioma dialog = new DialogoSeleccionIdioma();
+			DialogoSeleccionIdioma dialog = new DialogoSeleccionIdioma("");
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,7 +43,7 @@ public class DialogoSeleccionIdioma extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DialogoSeleccionIdioma() {
+	public DialogoSeleccionIdioma(String tipoVentana) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DialogoSeleccionIdioma.class.getResource("/recursos/translation.png")));
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setBackground(new Color(255, 255, 255));
@@ -54,13 +55,13 @@ public class DialogoSeleccionIdioma extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblSeleccionIdioma = new JLabel("Selecciones el idioma:");
+			JLabel lblSeleccionIdioma = new JLabel(Messages.getString("DialogoSeleccionIdioma.lblSeleccionIdioma.text")); //$NON-NLS-1$
 			lblSeleccionIdioma.setBounds(136, 14, 138, 20);
 			lblSeleccionIdioma.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 			contentPanel.add(lblSeleccionIdioma);
 		}
 		{
-			rdbtnIngles = new JRadioButton("Inglés");
+			rdbtnIngles = new JRadioButton(Messages.getString("DialogoSeleccionIdioma.rdbtnIngles.text")); //$NON-NLS-1$
 			rdbtnIngles.setIcon(new ImageIcon(DialogoSeleccionIdioma.class.getResource("/recursos/banderaIng.gif")));
 			rdbtnIngles.setBounds(279, 10, 69, 29);
 			rdbtnIngles.setBackground(new Color(255, 255, 255));
@@ -69,7 +70,7 @@ public class DialogoSeleccionIdioma extends JDialog {
 			contentPanel.add(rdbtnIngles);
 		}
 		{
-			JRadioButton rdbtnEspanol = new JRadioButton("Español");
+			JRadioButton rdbtnEspanol = new JRadioButton(Messages.getString("DialogoSeleccionIdioma.rdbtnEspanol.text")); //$NON-NLS-1$
 			rdbtnEspanol.setIcon(new ImageIcon(DialogoSeleccionIdioma.class.getResource("/recursos/banderaEsp.gif")));
 			rdbtnEspanol.setBounds(353, 10, 81, 29);
 			rdbtnEspanol.setBackground(new Color(255, 255, 255));
@@ -78,7 +79,7 @@ public class DialogoSeleccionIdioma extends JDialog {
 			contentPanel.add(rdbtnEspanol);
 		}
 		{
-			JButton okButton = new JButton("OK");
+			JButton okButton = new JButton(Messages.getString("DialogoSeleccionIdioma.okButton.text")); //$NON-NLS-1$
 			okButton.setForeground(new Color(255, 255, 255));
 			okButton.setBackground(new Color(51, 51, 51));
 			okButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -89,17 +90,24 @@ public class DialogoSeleccionIdioma extends JDialog {
 					
 					if(rdbtnIngles.isSelected()) {
 						
-						Idioma.idioma = "en";
+						Messages.setIdioma("inglés");
 					}
 					else {
-						Idioma.idioma = "es";
+						Messages.setIdioma("español");
+						
 					}
-					VentanaInicio ventana_inicio = new VentanaInicio();
-					ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+					if(tipoVentana.equals("inicio")) {
+						VentanaInicio ventana_inicio = new VentanaInicio();
+						ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+					}else if(tipoVentana.equals("principal")) {
+						AplicacionPrincipal aplicacion_principal = new AplicacionPrincipal();
+						aplicacion_principal.getJFrame().setVisible(true);
+					}
+
 					dispose();
 				}
 			});
-			okButton.setActionCommand("OK");
+			okButton.setActionCommand(Messages.getString("DialogoSeleccionIdioma.okButton.actionCommand")); //$NON-NLS-1$
 			getRootPane().setDefaultButton(okButton);
 		}
 	}
