@@ -84,13 +84,14 @@ public class DialogoSeleccionIdioma extends JDialog {
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
-				
 					if(rdbtnIngles.isSelected()) {
+						
 						//MensajesSeminario5Inter.setIdioma("inglés");
 					}
 					
-					//Seminario5 ventana = new Seminario5();
-					//ventana.getFrame().setVisible(true);dispose();
+					VentanaInicio ventana_inicio = new VentanaInicio();
+					ventana_inicio.getJFrameVentanaInicio().setVisible(true);
+					dispose();
 				}
 			});
 			okButton.setActionCommand("OK");
