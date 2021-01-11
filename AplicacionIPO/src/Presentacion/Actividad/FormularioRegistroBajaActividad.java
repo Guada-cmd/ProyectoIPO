@@ -74,6 +74,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	private JPanel contentPane;
 	
 	private JTextField txtNombreActividadBaja;
+	
 	private JLabel lblNombreActividadBaja;
 	private JLabel lblComprobarNombreActividadBaja;
 	
@@ -115,34 +116,24 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	 * Create the frame.
 	 */
 	public FormularioRegistroBajaActividad() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		inicializarDatosFormularioRegistro();
+		inicializarDatosFormularioBaja();
 		
 		//Inicializacion de los datos con respecto a los dos primeros campos agrupados
 		inicializarDatosPrimerAgrupamiento();
-		
-		//Inicializacion de los datos con respecto a los cuatro siguientes campos agrupados
-		inicializarDatosSegundoAgrupamiento();
-		
-		//Inicializacion de los datos con respecto a los tres ultimos campos agrupados
-		inicializarDatosTercerAgrupamiento();
-	
-		//Inicializacion de los datos con respecto a los dos check box
-		inicializarDatosAgrupamientoCheckBox();
-		
+				
 		//Inicializacion botones
 		inicializarDatosBotones();
 		
-		asociacionOyentesFormularioRegistro();
+		asociacionOyentesFormularioRegistroBaja();
 		
 	}
 	/**
 	 * 
-	 * Descripcion: metodo que contiene todos los oyentes del Formulario Registro
+	 * Descripcion: metodo que contiene todos los oyentes del Formulario Baja
 	 * 
 	 */
-	private void asociacionOyentesFormularioRegistro() {
+	private void asociacionOyentesFormularioRegistroBaja() {
 		
 		btnRegistroRutaTerminado.addActionListener(new BtnFinalizarRegistroActionListener());
 		btnRegistroRutaCancelado.addActionListener(new BtnCancelarRegistroActionListener());
@@ -152,48 +143,9 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	}
 	/**
 	 * 
-	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrarel registro
-	 * 
-	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar el registro
-	 */
-	private int  dialogoCerrarRegistro() {
-		
-		int opcion = -1;
-		
-		//Mensaje de cerrar aplicacion
-		
-		JLabel labelDialogoCerrarRegistroMensaje = new JLabel("¿Está seguro que desea cerrar el registro? Los datos no seran guardados.");
-		labelDialogoCerrarRegistroMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
-		//Creaccion de los nombres de los botones
-		
-		String[] botones_list = {"Aceptar", "Cancelar"};
-		
-		if (MiPanelEditarActividad.frame_registro_actividad_baja != null) {
-			opcion = JOptionPane.showOptionDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoCerrarRegistroMensaje, "Aviso de cierre registro.", 0, 2, null, botones_list, null);
-		}
-		
-		return opcion;
-	}
-	/**
-	 * 
-	 * Descripcion: Cancelar el resgistro y salirse si el usuario lo desea
+	 * Descripcion: Focos en los txt del formulario baja
 	 *
 	 */
-	private class BtnCancelarRegistroActionListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			int opcion_registro = -1;
-			
-			if (MiPanelEditarActividad.frame_registro_actividad_baja != null) {
-				opcion_registro = dialogoCerrarRegistro();
-				if(opcion_registro == 0) {
-					MiPanelEditarActividad.frame_registro_actividad_baja.dispose();
-				}
-			}
-		}
-	}
-	
 	private class TxtFormularioRegistroFocusListener extends FocusAdapter {
 		
 		@Override
@@ -208,8 +160,12 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		}
 		
 	}
-	
-	
+	/**
+	 * 
+	 * Descripcion: Comprobar nombre actividad existente en el sistema
+	 * 
+	 * @return
+	 */
 	private int ComprobacionNombreActividadRegistrado() {
 		
 		
@@ -235,22 +191,27 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	}
 	/**
 	 * 
-	 * Descripcion: creaccion de un dialogo que avisa al usuario que faltan campos por completar
-	 * 
+	 * Descripcion: Cancelar el resgistro y salirse si el usuario lo desea
+	 *
 	 */
-	private void dialogoCamposIncompletos() {
-		
-		//Datos dialogo aviso en el registro
-		
-		JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
-		labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		
-		//Mensaje
-		
-		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
-		
+	private class BtnCancelarRegistroActionListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			
+			int opcion_registro = -1;
+			
+			if (MiPanelEditarActividad.frame_registro_actividad_baja != null) {
+				opcion_registro = dialogoCerrarRegistro();
+				if(opcion_registro == 0) {
+					MiPanelEditarActividad.frame_registro_actividad_baja.dispose();
+				}
+			}
+		}
 	}
-	
+	/**
+	 * 
+	 * Descripcion: Permite finalizar el formularios
+	 *
+	 */
 	private class BtnFinalizarRegistroActionListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
@@ -293,8 +254,42 @@ public class FormularioRegistroBajaActividad extends JFrame {
 			}
 		}
 	}
+	/**
+	 * 
+	 * Descripcion: Metodo de comprobacion de datos
+	 * 
+	 */
+	private void comprobarDatosFormularioBajaActividad() {
+		
+		//Bordes Descripcion
+		
+		if (txtNombreActividadBaja.getText().equals("")) {
+			txtNombreActividadBaja.setBorder(bordeRojo);
+		}
 	
+			
+		//Bordes Nombre ruta
 
+		if (txtNombreActividadBaja.getText() != null) {
+			
+			int comprobar_nombre_actividad_sistema =  ComprobacionNombreActividadRegistrado();
+			
+			if(comprobar_nombre_actividad_sistema == 0) {
+				lblComprobarNombreActividadBaja.setText("Actividad disponible");
+				txtNombreActividadBaja.setBorder(bordeVerde);
+			}
+			else if (comprobar_nombre_actividad_sistema != 0 && txtNombreActividadBaja.getText().equals("") == false) {
+				txtNombreActividadBaja.setBorder(bordeRojo);
+				lblComprobarNombreActividadBaja.setText("No hay actividad con ese nombre");
+			}
+		}
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo que permite eliminar una actividad del sistema
+	 * 
+	 */
 	private void eliminarDatosActividad() {
 		
 		
@@ -321,152 +316,7 @@ public class FormularioRegistroBajaActividad extends JFrame {
 	}
 	/**
 	 * 
-	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos han sigo registrados correctamente
-	 * 
-	 */
-	private void dialogoActividadEliminadaExitoso() {
-				
-		//Datos dialogo exito en el registro
-		
-		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido eliminados correctamente.");
-		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-	
-		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroCorrectoMensaje, "Datos eliminados.", 1);
-			
-	}
-	/**
-	 * 
-	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos no han sigo registrados
-	 * 
-	 */
-	private void dialogoErrorEliminacionActividadBaja() {
-		
-		//Datos dialogo error registrar datos
-		
-		JLabel labelDialogoRegistroErrorMensaje = new JLabel("No se han podido actualizar los datos.");
-		labelDialogoRegistroErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		
-		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroErrorMensaje, "Error eliminacion actividad.", 0);
-			
-	}
-	
-	/**
-	 * 
-	 * Descripcion: Datos generados de la parte de diseño al inicializar es estilo que tendra esta parte de la aplicacion
-	 * 
-	 */
-	private void inicializarDatosFormularioRegistro() {
-		
-		setTitle("Ventana Formulario Baja Actividad.");
-		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistroBajaActividad.class.getResource("/recursos/Form.png")));
-		
-		setFont(new Font("Segoe UI", Font.BOLD, 16));
-		setBounds(new Rectangle(50, 50, 500, 300));
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
-		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Formulario Baja", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{99, 132, 73, 84, 193, 47, 0};
-		gbl_contentPane.rowHeights = new int[]{320, 29, 33, 30, 31, 30, 24, 36, 29, 31, 33, 32, 32, 32, 0, 32, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-		
-		
-		//Permite al pulsat INTRO desplazarte entre campos
-		
-		Set<AWTKeyStroke> teclas = new HashSet<AWTKeyStroke>();
-        teclas.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
-        teclas.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_TAB, 0));
-        
-        getContentPane().setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclas);
-		
-	}
-	private int dialogoRealizarOperacion() {
-		
-		//Mensaje de cerrar aplicacion
-		
-		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea eliminar esta actividad?");
-		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
-		//Creaccion de los nombres de los botones
-		
-		String[] botones_list = {"Aceptar", "Cancelar"};
-		
-		return JOptionPane.showOptionDialog(null, labelDialogoCerrarAplicacionMensaje, "Aviso de cierre aplicacion principal.", 0, 2, null, botones_list, null);
-	
-	}
-	/**
-	 * 
-	 * Descripcion: Datos generados de la parte disenio relacionados con los dos primeros campos similares del formulario
-	 * 
-	 */
-	private void inicializarDatosPrimerAgrupamiento() {
-		
-	}
-	/**
-	 * 
-	 * Descripcion: Datos generados con respecto a la parte de disenio del segundo grupo con caracteristicas similares
-	 * 
-	 */
-	private void inicializarDatosSegundoAgrupamiento() {
-		
-		//Datos campos Nombre de Usuario
-		
-		lblNombreActividadBaja = new JLabel("Nombre ruta:");
-		lblNombreActividadBaja.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblNombreActividadBaja = new GridBagConstraints();
-		gbc_lblNombreActividadBaja.anchor = GridBagConstraints.EAST;
-		gbc_lblNombreActividadBaja.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNombreActividadBaja.gridx = 1;
-		gbc_lblNombreActividadBaja.gridy = 2;
-		contentPane.add(lblNombreActividadBaja, gbc_lblNombreActividadBaja);
-		
-		txtNombreActividadBaja = new JTextField();
-		GridBagConstraints gbc_txtNombreActividadBaja = new GridBagConstraints();
-		gbc_txtNombreActividadBaja.gridwidth = 2;
-		gbc_txtNombreActividadBaja.fill = GridBagConstraints.BOTH;
-		gbc_txtNombreActividadBaja.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNombreActividadBaja.gridx = 2;
-		gbc_txtNombreActividadBaja.gridy = 2;
-		contentPane.add(txtNombreActividadBaja, gbc_txtNombreActividadBaja);
-		txtNombreActividadBaja.setColumns(10);
-		
-	}
-	/**
-	 * 
-	 * Descripcion: Datos generados de la parte de disenio con respecto al ultimo grupo que tiene caracteristicas similares
-	 * 
-	 */
-	private void inicializarDatosTercerAgrupamiento() {
-		
-		
-		//Formaro al campo del telefono
-		
-		MaskFormatter formatoTlfno;
-		try {
-			formatoTlfno = new MaskFormatter("'(###')' ###' ###' ###");
-			formatoTlfno.setPlaceholderCharacter('*');
-		} 
-		catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	/**
-	 * 
-	 * Descripcion:Datos generados con respecto a la parte de disenio relacionados con los check box
-	 * 
-	 */
-	private void inicializarDatosAgrupamientoCheckBox() {
-		
-	}
-	/**
-	 * 
-	 * Descripcion: Inicializacion de los botones del Formulario Registro
+	 * Descripcion: Inicializacion de los botones del Formulario Baja
 	 * 
 	 */
 	private void inicializarDatosBotones() {
@@ -509,42 +359,178 @@ public class FormularioRegistroBajaActividad extends JFrame {
 		contentPane.add(btnRegistroRutaTerminado, gbc_btnRegistroRutaTerminado);
 		
 	}
-	
-	
-	private void comprobarDatosFormularioBajaActividad() {
+	/**
+	 * 
+	 * Descripcion: Datos generados con respecto a la parte de disenio del segundo grupo con caracteristicas similares
+	 * 
+	 */
+	private void inicializarDatosPrimerAgrupamiento() {
 		
-		//Bordes Descripcion
+		//Datos campos Nombre de Usuario
 		
-		if (txtNombreActividadBaja.getText().equals("")) {
-			txtNombreActividadBaja.setBorder(bordeRojo);
-		}
-	
-			
-		//Bordes Nombre ruta
-
-		if (txtNombreActividadBaja.getText() != null) {
-			
-			int comprobar_nombre_actividad_sistema =  ComprobacionNombreActividadRegistrado();
-			
-			if(comprobar_nombre_actividad_sistema == 0) {
-				lblComprobarNombreActividadBaja.setText("Actividad disponible");
-				txtNombreActividadBaja.setBorder(bordeVerde);
-			}
-			else if (comprobar_nombre_actividad_sistema != 0 && txtNombreActividadBaja.getText().equals("") == false) {
-				txtNombreActividadBaja.setBorder(bordeRojo);
-				lblComprobarNombreActividadBaja.setText("No hay actividad con ese nombre");
-			}
-		}
+		lblNombreActividadBaja = new JLabel("Nombre ruta:");
+		lblNombreActividadBaja.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblNombreActividadBaja = new GridBagConstraints();
+		gbc_lblNombreActividadBaja.anchor = GridBagConstraints.EAST;
+		gbc_lblNombreActividadBaja.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreActividadBaja.gridx = 1;
+		gbc_lblNombreActividadBaja.gridy = 2;
+		contentPane.add(lblNombreActividadBaja, gbc_lblNombreActividadBaja);
+		
+		txtNombreActividadBaja = new JTextField();
+		GridBagConstraints gbc_txtNombreActividadBaja = new GridBagConstraints();
+		gbc_txtNombreActividadBaja.gridwidth = 2;
+		gbc_txtNombreActividadBaja.fill = GridBagConstraints.BOTH;
+		gbc_txtNombreActividadBaja.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNombreActividadBaja.gridx = 2;
+		gbc_txtNombreActividadBaja.gridy = 2;
+		contentPane.add(txtNombreActividadBaja, gbc_txtNombreActividadBaja);
+		txtNombreActividadBaja.setColumns(10);
 		
 	}
-	private void dialogoNoDatos() {
+	/**
+	 * 
+	 * Descripcion: Datos generados de la parte de diseño al inicializar es estilo que tendra esta parte de la aplicacion
+	 * 
+	 */
+	private void inicializarDatosFormularioBaja() {
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Ventana Formulario Baja Actividad.");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FormularioRegistroBajaActividad.class.getResource("/recursos/Form.png")));
+		
+		setFont(new Font("Segoe UI", Font.BOLD, 16));
+		setBounds(new Rectangle(50, 50, 500, 300));
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		contentPane.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Formulario Baja", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setContentPane(contentPane);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{99, 132, 73, 84, 193, 47, 0};
+		gbl_contentPane.rowHeights = new int[]{320, 29, 33, 30, 31, 30, 24, 36, 29, 31, 33, 32, 32, 32, 0, 32, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
+		
+		
+		//Permite al pulsat INTRO desplazarte entre campos
+		
+		Set<AWTKeyStroke> teclas = new HashSet<AWTKeyStroke>();
+        teclas.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
+        teclas.add(AWTKeyStroke.getAWTKeyStroke(KeyEvent.VK_TAB, 0));
+        
+        getContentPane().setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, teclas);
+		
+	}
+	
+	/**
+	 * 
+	 * Descripcion: creaccion de los botones del dialogo que avisa al usuario de si desea cerrarel registro
+	 * 
+	 * @return un entero que si tiene el valor de 0 el usuario querra cerrar el registro
+	 */
+	private int  dialogoCerrarRegistro() {
+		
+		int opcion = -1;
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarRegistroMensaje = new JLabel("¿Está seguro que desea cerrar el registro? Los datos no seran guardados.");
+		labelDialogoCerrarRegistroMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		if (MiPanelEditarActividad.frame_registro_actividad_baja != null) {
+			opcion = JOptionPane.showOptionDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoCerrarRegistroMensaje, "Aviso de cierre registro.", 0, 2, null, botones_list, null);
+		}
+		
+		return opcion;
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que faltan campos por completar
+	 * 
+	 */
+	private void dialogoCamposIncompletos() {
+		
+		//Datos dialogo aviso en el registro
+		
+		JLabel labelDialogoRegistroIncompletoMensaje = new JLabel("Termine de completar los campos que faltan.");
+		labelDialogoRegistroIncompletoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		//Mensaje
+		
+		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroIncompletoMensaje, "Campos incompletos.", 2);
+		
+	}
+	
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos han sigo registrados correctamente
+	 * 
+	 */
+	private void dialogoActividadEliminadaExitoso() {
+				
 		//Datos dialogo exito en el registro
 		
-		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han introducido datos.");
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("Los datos han sido eliminados correctamente.");
 		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	
-		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroCorrectoMensaje, "Datos no introducidos.", 2);
+		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroCorrectoMensaje, "Datos eliminados.", 1);
+			
+	}
+	/**
+	 * 
+	 * Descripcion: creaccion de un dialogo que avisa al usuario que sus datos no han sigo registrados
+	 * 
+	 */
+	private void dialogoErrorEliminacionActividadBaja() {
+		
+		//Datos dialogo error registrar datos
+		
+		JLabel labelDialogoRegistroErrorMensaje = new JLabel("No se han podido actualizar los datos.");
+		labelDialogoRegistroErrorMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		
+		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroErrorMensaje, "Error eliminacion actividad.", 0);
+			
+	}
+	
+	/**
+	 * 
+	 * Descripcion: dialogo para confirmar operacion
+	 * 
+	 * @return
+	 */
+	private int dialogoRealizarOperacion() {
+		
+		//Mensaje de cerrar aplicacion
+		
+		JLabel labelDialogoCerrarAplicacionMensaje = new JLabel("¿Está seguro que desea eliminar esta actividad?");
+		labelDialogoCerrarAplicacionMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+		//Creaccion de los nombres de los botones
+		
+		String[] botones_list = {"Aceptar", "Cancelar"};
+		
+		return JOptionPane.showOptionDialog(null, labelDialogoCerrarAplicacionMensaje, "Aviso de cierre aplicacion principal.", 0, 2, null, botones_list, null);
+	
+	}
+	/**
+	 * 
+	 * Descripcion: Dialogo si no hay datos
+	 * 
+	 */
+	private void dialogoNoDatos() {
+		
+
+		JLabel labelDialogoRegistroNoDatos = new JLabel("No se han introducido datos.");
+		labelDialogoRegistroNoDatos.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(MiPanelEditarActividad.frame_registro_actividad_baja, labelDialogoRegistroNoDatos, "Datos no introducidos.", 2);
 			
 	}
 	
