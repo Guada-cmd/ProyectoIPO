@@ -14,6 +14,34 @@ public class gestorRutas {
 	public static int comprobacion_resultado_rutas;
 	
 	
+	public int updateFotoRuta(String nombre_ruta, String foto_ruta) {
+		
+		int resultado = -1;
+		Connection connection = null;
+		
+		String sentencia_update_foto = "update Rutas SET Foto = ? WHERE Nombre = ?";
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();
+			prepared_statement_rutas = connection.prepareStatement(sentencia_update_foto);
+			
+			prepared_statement_rutas.setString(1, foto_ruta);
+			prepared_statement_rutas.setString(2, nombre_ruta);
+			
+			resultado = prepared_statement_rutas.executeUpdate();
+			prepared_statement_rutas.close();
+			connection.close();
+			
+		}catch (Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		return resultado;
+	}
+	
 	
 	public int insertarRuta(String nombre_ruta, String fecha_ruta, String hora_inicio, String hora_fin, String ofertada, 
 			String punto_encuentro, int minimo, int maximo, String dificultad, String equipamiento, String descripcion, String foto) {
@@ -154,6 +182,34 @@ public class gestorRutas {
 			if(resultado_consulta_rutas.next()) {
 				
 				buscar_dato_ruta = resultado_consulta_rutas.getString(parametro);
+				
+			}
+			
+			connection.close();
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return buscar_dato_ruta;
+	}
+	
+	public String buscarRutaUser(String nombre_user) {
+		
+		String buscar_dato_ruta = null;
+		Connection connection = null;
+		
+		try {
+			
+			connection = BrokerBD.conectarBD();  
+			String sentencia_dato_ruta = "select Nombre from Rutas WHERE Ofertada = '"+nombre_user+"'";
+			
+			prepared_statement_rutas = connection.prepareStatement(sentencia_dato_ruta);
+			resultado_consulta_rutas = prepared_statement_rutas.executeQuery();
+			
+			if(resultado_consulta_rutas.next()) {
+				
+				buscar_dato_ruta = resultado_consulta_rutas.getString("Nombre");
 				
 			}
 			

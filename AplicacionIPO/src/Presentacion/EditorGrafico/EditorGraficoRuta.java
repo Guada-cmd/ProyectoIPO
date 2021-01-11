@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import Persistencia.gestorPerfil;
 import Persistencia.gestorRutas;
+import Presentacion.Actividad.FormularioRegistroAltaActividad;
 import Presentacion.InicioSesion.FormularioRegistro;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.Principal.AplicacionPrincipal;
@@ -173,6 +174,7 @@ public class EditorGraficoRuta extends JFrame {
 	private int index_foto;
 	
 	private gestorRutas metodos_gestor_rutas = new gestorRutas();
+	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
 
 	/**
 	 * Launch the application.
@@ -388,16 +390,23 @@ public class EditorGraficoRuta extends JFrame {
 		miGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				int validar_foto = -1;
+				
 				if(ruta_personalizada != null) {
 					
-					String ruta_valida = "/recursos/Perfil/foto_"+index_foto+".png";
-					/**
-					validar_foto = metodos_gestor_perfil.updateFoto(usuario_datos_configuracion.getNombreUsuario(), ruta_valida);
+					String nombre = metodos_gestor_rutas.buscarRutaUser(AplicacionPrincipal.usuario_actual.getNombreUsuario());
 					
-					if(validar_foto == -1) {
-						errorConfiguracionDialogo();
+					String ruta_valida = "/recursos/MisRutas/foto_"+index_foto+".png";
+					
+					if(nombre != null) {
+					
+						validar_foto = metodos_gestor_rutas.updateFotoRuta(nombre, ruta_valida);
+					
+						if(validar_foto == -1) {
+							errorEditorDialogo();
+						}
 					}
-					**/
+					
 				}
 				
 			}
@@ -628,7 +637,7 @@ public class EditorGraficoRuta extends JFrame {
 					imagenOriginal= ImageIO.read(file);
 					imagenEscalada = imagenOriginal.getScaledInstance(miAreaDibujo.getWidth(), miAreaDibujo.getHeight(), java.awt.Image.SCALE_SMOOTH);
 					
-					String bd = System.getProperty("user.dir") + "\\src\\recursos\\Perfil\\";
+					String bd = System.getProperty("user.dir") + "\\src\\recursos\\MisRutas\\";
 					File outputfile = new File(bd+"foto_"+index_foto+".png");
 					ImageIO.write(imagen_ruta_personalizada, "png", outputfile);
 					
@@ -823,6 +832,16 @@ public class EditorGraficoRuta extends JFrame {
 				
 			}	
 		}
+	}
+	private void errorEditorDialogo() {
+		
+		//Datos dialogo exito en el registro
+		
+		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han podido actualizar los datos.");
+		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+	
+		JOptionPane.showMessageDialog(null, labelDialogoRegistroCorrectoMensaje, "Fallo de registro.", 0);
+			
 	}
 }
 
