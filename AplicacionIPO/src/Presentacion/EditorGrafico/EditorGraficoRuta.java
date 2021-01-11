@@ -113,6 +113,18 @@ public class EditorGraficoRuta extends JFrame {
 	private final int CIRCULO = 4;
 	private final int TEXTO = 5;
 	
+	private final int FORMA_UBICACION = 10;
+	private final int FORMA_PUENTE = 11;
+	private final int FORMA_RIO = 12;
+	private final int FORMA_MERENDEREO = 13;
+	private final int FORMA_ACAMPADA = 14;
+	private final int FORMA_ANIMAL = 13;
+	
+	private final int FORMA_NO_TIENE = 20;
+	private final int FORMA_BAJA = 21;
+	private final int FORMA_INTERMEDIO = 22;
+	private final int FORMA_EXPERTO = 23;
+	
 	private ImageIcon imagenNueva;
 	
 	//Creamos atributos para las distintas imagenes y punteros de raton personalizados usados en la aplicacion
@@ -630,6 +642,7 @@ public class EditorGraficoRuta extends JFrame {
 			x = e.getX();
 			y = e.getY();
 			
+			toolkit = Toolkit.getDefaultToolkit();
 			
 			switch(color) {
 				case 1:
@@ -662,6 +675,18 @@ public class EditorGraficoRuta extends JFrame {
 				
 			}
 			
+			
+			//private final int FORMA_PUENTE = 11;
+			//private final int FORMA_RIO = 12;
+			//private final int FORMA_MERENDEREO = 13;
+			//private final int FORMA_ACAMPADA = 14;
+			//private final int FORMA_ANIMAL = 13;
+			
+			//private final int FORMA_NO_TIENE = 20;
+			//private final int FORMA_BAJA = 21;
+			//private final int FORMA_INTERMEDIO = 22;
+			//private final int FORMA_EXPERTO = 23;
+			
 			if (imagen != null) {
 				switch (modo){
 				
@@ -680,6 +705,11 @@ public class EditorGraficoRuta extends JFrame {
 								
 						miAreaDibujo.add(txtTexto);
 						break;
+						
+					case FORMA_UBICACION:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagUbicacion));
+						miAreaDibujo.repaint();
 						
 				}
 			}

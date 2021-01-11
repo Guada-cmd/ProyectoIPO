@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
+
 public class MiAreaDibujo extends JLabel { 
 	
 	private ArrayList<ObjetoGrafico> objetosGraficos = new ArrayList<ObjetoGrafico>();
@@ -24,8 +25,11 @@ public class MiAreaDibujo extends JLabel {
 		for (int i = 0; i < objetosGraficos.size(); i++) {
 			
 			ObjetoGrafico objg = objetosGraficos.get(i);
-			//if (objg instanceof ImagenGrafico){ g.drawImage(((ImagenGrafico)objg).getImagen(), objg.getX(), objg.getY(), null);}}
-			if (objg instanceof RectanguloGrafico) { 
+			
+			if (objg instanceof ImagenGrafico) {
+				g.drawImage(((ImagenGrafico)objg).getImagen(), objg.getX(), objg.getY(), null);
+			}
+			else if (objg instanceof RectanguloGrafico) { 
 				
 				g.setColor(((RectanguloGrafico)objg).getColor());
 				int w = ((RectanguloGrafico)objg).getX1() -objg.getX();
