@@ -58,7 +58,6 @@ public class EditorGraficoRuta extends JFrame {
 	private JMenuItem miAbrir;
 	private JMenuItem miNuevo;
 	private JMenuItem miGuardar;
-	private JMenuItem miGuardarComo;
 	private JSeparator separator;
 	private JMenuItem miAcercaEditorGrafico;
 	private JMenuItem miSalir;
@@ -370,25 +369,27 @@ public class EditorGraficoRuta extends JFrame {
 		menuBar.add(mArchivo);
 		
 		miNuevo = new JMenuItem("Nuevo");
+		miNuevo.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/NuevoArchivo.png")));
 		mArchivo.add(miNuevo);
 		
 		miAbrir = new JMenuItem("Abrir...");
+		miAbrir.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/Abrir.png")));
 		miAbrir.setName("");
 		mArchivo.add(miAbrir);
 		
 		miGuardar = new JMenuItem("Guardar");
+		miGuardar.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/Guardar.png")));
 		mArchivo.add(miGuardar);
-		
-		miGuardarComo = new JMenuItem("Guardar como");
-		mArchivo.add(miGuardarComo);
 		
 		separator = new JSeparator();
 		mArchivo.add(separator);
 		
 		miAcercaEditorGrafico = new JMenuItem("Acerca de Editor gráfico rutas");
+		miAcercaEditorGrafico.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/InfoEditor.png")));
 		mArchivo.add(miAcercaEditorGrafico);
 		
 		miSalir = new JMenuItem("Salir");
+		miSalir.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/Salir.png")));
 		mArchivo.add(miSalir);
 		
 		//Inicializacion de los items del Menu Ver
@@ -397,9 +398,11 @@ public class EditorGraficoRuta extends JFrame {
 		menuBar.add(mVer);
 		
 		miAcercar = new JMenuItem("Acercar");
+		miAcercar.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/ZoomIn.png")));
 		mVer.add(miAcercar);
 		
 		miAlejar = new JMenuItem("Alejar");
+		miAlejar.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/zoomOut.png")));
 		mVer.add(miAlejar);
 		
 	}
