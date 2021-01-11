@@ -118,7 +118,7 @@ public class EditorGraficoRuta extends JFrame {
 	private final int FORMA_RIO = 12;
 	private final int FORMA_MERENDEREO = 13;
 	private final int FORMA_ACAMPADA = 14;
-	private final int FORMA_ANIMAL = 13;
+	private final int FORMA_ANIMAL = 15;
 	
 	private final int FORMA_NO_TIENE = 20;
 	private final int FORMA_BAJA = 21;
@@ -675,18 +675,8 @@ public class EditorGraficoRuta extends JFrame {
 				
 			}
 			
-			
-			//private final int FORMA_PUENTE = 11;
-			//private final int FORMA_RIO = 12;
-			//private final int FORMA_MERENDEREO = 13;
-			//private final int FORMA_ACAMPADA = 14;
-			//private final int FORMA_ANIMAL = 13;
-			
-			//private final int FORMA_NO_TIENE = 20;
-			//private final int FORMA_BAJA = 21;
-			//private final int FORMA_INTERMEDIO = 22;
-			//private final int FORMA_EXPERTO = 23;
-			
+		
+		
 			if (imagen != null) {
 				switch (modo){
 				
@@ -710,12 +700,67 @@ public class EditorGraficoRuta extends JFrame {
 						
 						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagUbicacion));
 						miAreaDibujo.repaint();
+						break;
 						
+					case FORMA_PUENTE:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagPuente));
+						miAreaDibujo.repaint();
+						break;
+					
+					case FORMA_RIO:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagRio));
+						miAreaDibujo.repaint();
+						break;
+					
+					case FORMA_MERENDEREO:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagMerendero));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_ACAMPADA:
+	
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAcampada));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_ANIMAL:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagAnimal));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_NO_TIENE:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagNoTiene));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_BAJA:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagBaja));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_INTERMEDIO:
+						
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagIntermedio));
+						miAreaDibujo.repaint();
+						break;
+						
+					case FORMA_EXPERTO:
+	
+						miAreaDibujo.addObjetoGrafico(new ImagenGrafico(x,y,imagNoExperto));
+						miAreaDibujo.repaint();
+						break;
 				}
 			}
 		}
-		
+	
 	}
+	
 	/**
 	 * 
 	 * Descripcion: Clase que permite introducir texto en el area de dibujo

@@ -42,7 +42,7 @@ public class MiPanelIconos extends JPanel {
 	private final int FORMA_RIO = 12;
 	private final int FORMA_MERENDEREO = 13;
 	private final int FORMA_ACAMPADA = 14;
-	private final int FORMA_ANIMAL = 13;
+	private final int FORMA_ANIMAL = 15;
 	
 	private final int FORMA_NO_TIENE = 20;
 	private final int FORMA_BAJA = 21;
