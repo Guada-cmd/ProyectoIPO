@@ -412,10 +412,10 @@ public class Reserva {
 	}
 	private class ListSelectorCabanaListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
-			if(listSelectorParcela.getSelectedIndex()!=-1) {
+			if(listSelectorCabana.getSelectedIndex()!=-1) {
 				idEstancia = listSelectorCabana.getSelectedIndex();
-				textInformacionCabana.setText((String) vEstancias.get(listSelectorCabana.getSelectedIndex()).get(3));
-				lblPrecioCabana.setText((String)vEstancias.get(listSelectorCabana.getSelectedIndex()).get(4));
+				textInformacionCabana.setText((String) vEstancias.elementAt(idEstancia).elementAt(3));
+				lblPrecioCabana.setText(String.valueOf(vEstancias.elementAt(idEstancia).elementAt(4)));
 				btnEjecutarCabana.setEnabled(true);
 			}
 		}
