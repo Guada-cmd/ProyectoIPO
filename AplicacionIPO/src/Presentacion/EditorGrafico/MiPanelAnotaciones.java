@@ -65,7 +65,6 @@ public class MiPanelAnotaciones extends JPanel {
 	 * Create the panel.
 	 */
 	public MiPanelAnotaciones() {
-		setBackground(new Color(255, 255, 255));
 		
 		//Metodo con el codigo de inicializacion del panel que se nos genera automaticamente
 		inicializarPanel();
@@ -94,6 +93,7 @@ public class MiPanelAnotaciones extends JPanel {
 	 */
 	public void inicializarPanel() {
 		
+		setBackground(new Color(255, 255, 255));
 		setBorder(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{11, 0, 0, 16, 0};

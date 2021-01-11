@@ -76,7 +76,6 @@ public class EditorGraficoRuta extends JFrame {
 	private int x;
 	private int y;
 	
-	
 	//Variable a la que se le asignara un color depensiendo del boton pulsado
 	
 	private Color color_forma;
@@ -115,6 +114,46 @@ public class EditorGraficoRuta extends JFrame {
 	private final int TEXTO = 5;
 	
 	private ImageIcon imagenNueva;
+	
+	//Creamos atributos para las distintas imagenes y punteros de raton personalizados usados en la aplicacion
+	//Cursores e imagenes
+	private Toolkit toolkit;
+		
+	private Image imagUbicacion;
+	private Image imagPuente;
+	private Image imagRio;
+	private Image imagMerendero;
+	private Image imagAcampada;
+	private Image imagAnimal;
+		
+	private Image imagNoTiene;
+	private Image imagBaja;
+	private Image imagIntermedio;
+	private Image imagNoExperto;
+		
+	private Image imagCursorUbicacion;
+	private Image imagCursorPuente;
+	private Image imagCursorRio;
+	private Image imagCursorMerendero;
+	private Image imagCursorAcampada;
+	private Image imagCursorAnimal;
+		
+	private Image imagCursorNoTiene;
+	private Image imagCursorBaja;
+	private Image imagCursorIntermedio;
+	private Image imagCursorExperto;
+			
+	private Cursor cursorUbicacion;
+	private Cursor cursorPuente;
+	private Cursor cursorRio;
+	private Cursor cursorMerendero;
+	private Cursor cursorAcampada;
+	private Cursor cursorAnimal;
+		
+	private Cursor cursorNoTiene;
+	private Cursor cursorBaja;
+	private Cursor cursorIntermedio;
+	private Cursor cursorExperto;
 
 
 	/**
@@ -137,11 +176,7 @@ public class EditorGraficoRuta extends JFrame {
 	 * Create the frame.
 	 */
 	public EditorGraficoRuta() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(EditorGraficoRuta.class.getResource("/recursos/editorGrafico.png")));
-		setBackground(new Color(255, 255, 255));
-		setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		setForeground(new Color(255, 255, 255));
-		setResizable(false);
+		
 		
 		inicializarDatosEditorGraficoRutas();
 		
@@ -168,7 +203,59 @@ public class EditorGraficoRuta extends JFrame {
 		
 		asociacionOyentesEditorGrafico();
 		
+		personalizarCursorEditorGrafico();
+		
 		centrarEditorRutas();
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Metodo que permite crear las imagenes y los cursores personalizados.
+	 * 
+	 */
+	public void personalizarCursorEditorGrafico() {
+		
+	
+		//Creación de imágenes y cursores
+		toolkit = Toolkit.getDefaultToolkit();
+		
+		imagUbicacion = toolkit.getImage(getClass().getClassLoader().getResource("recursos/ubicacion.png"));
+		imagPuente = toolkit.getImage(getClass().getClassLoader().getResource("recursos/puentes.png"));
+		imagRio = toolkit.getImage(getClass().getClassLoader().getResource("recursos/rio.png"));
+		imagMerendero = toolkit.getImage(getClass().getClassLoader().getResource("recursos/rest-area.png"));
+		imagAcampada = toolkit.getImage(getClass().getClassLoader().getResource("recursos/noche.png"));
+		imagAnimal = toolkit.getImage(getClass().getClassLoader().getResource("recursos/pata.png"));
+		
+		imagNoTiene = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/NoTiene.png"));
+		imagBaja = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/baja.png"));
+		imagIntermedio = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/Intermedio.png"));
+		imagNoExperto = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/Experto.png"));
+		
+		imagCursorUbicacion = toolkit.getImage(getClass().getClassLoader().getResource("recursos/ubicacion.png"));
+		imagCursorPuente = toolkit.getImage(getClass().getClassLoader().getResource("recursos/puentes.png"));
+		imagCursorRio = toolkit.getImage(getClass().getClassLoader().getResource("recursos/rio.png"));
+		imagCursorMerendero = toolkit.getImage(getClass().getClassLoader().getResource("recursos/rest-area.png"));
+		imagCursorAcampada = toolkit.getImage(getClass().getClassLoader().getResource("recursos/noche.png"));
+		imagCursorAnimal = toolkit.getImage(getClass().getClassLoader().getResource("recursos/pata.png"));
+		
+		imagCursorNoTiene = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/NoTiene.png"));
+		imagCursorBaja = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/baja.png"));
+		imagCursorIntermedio = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/Intermedio.png"));
+		imagCursorExperto = toolkit.getImage(getClass().getClassLoader().getResource("recursos/Rutas/Experto.png"));
+		
+		//Creación de los cursores
+		cursorUbicacion = toolkit.createCustomCursor(imagCursorUbicacion,new Point(0,0),"CURSOR_UBICACION");
+		cursorPuente = toolkit.createCustomCursor(imagCursorPuente,new Point(0,0),"CURSOR_PUENTE");
+		cursorRio = toolkit.createCustomCursor(imagCursorRio,new Point(0,0),"CURSOR_RIO");
+		cursorMerendero = toolkit.createCustomCursor(imagCursorMerendero,new Point(0,0),"CURSOR_MERENDERO");
+		cursorAcampada = toolkit.createCustomCursor(imagCursorAcampada,new Point(0,0),"CURSOR_ACAMPADA");
+		cursorAnimal = toolkit.createCustomCursor(imagCursorAnimal,new Point(0,0),"CURSOR_ANIMAL");
+		
+		cursorNoTiene = toolkit.createCustomCursor(imagCursorNoTiene,new Point(0,0),"CURSOR_NOTIENE");
+		cursorBaja = toolkit.createCustomCursor(imagCursorBaja,new Point(0,0),"CURSOR_BAJA");
+		cursorIntermedio = toolkit.createCustomCursor(imagCursorIntermedio,new Point(0,0),"CURSOR_INTERMEDIO");
+		cursorExperto = toolkit.createCustomCursor(imagCursorExperto,new Point(0,0),"CURSOR_EXPERTO");
+		
 		
 	}
 	/**
@@ -239,6 +326,12 @@ public class EditorGraficoRuta extends JFrame {
 	 * 
 	 */
 	private void inicializarDatosEditorGraficoRutas() {
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(EditorGraficoRuta.class.getResource("/recursos/editorGrafico.png")));
+		setBackground(new Color(255, 255, 255));
+		setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		setForeground(new Color(255, 255, 255));
+		setResizable(false);
 		
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setTitle("Editor gráfico rutas\r\n");
@@ -371,13 +464,6 @@ public class EditorGraficoRuta extends JFrame {
 		btnLimpiar.setFocusPainted(false);
 		btnLimpiar.setFocusTraversalKeysEnabled(false);
 		btnLimpiar.setFocusable(false);
-		btnLimpiar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				
-			}
-		});
 		
 		btnLimpiar.setForeground(new Color(255, 255, 255));
 		btnLimpiar.setBackground(new Color(51, 51, 51));
@@ -593,6 +679,8 @@ public class EditorGraficoRuta extends JFrame {
 						txtTexto.addActionListener(new TxtAnotacionesAreaDibujoActionListener());
 								
 						miAreaDibujo.add(txtTexto);
+						break;
+						
 				}
 			}
 		}
