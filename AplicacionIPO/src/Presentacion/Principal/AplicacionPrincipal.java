@@ -888,7 +888,7 @@ public class AplicacionPrincipal {
 		btnIdiomaAplicacion.setFocusTraversalKeysEnabled(false);
 		btnIdiomaAplicacion.setFocusPainted(false);
 		btnIdiomaAplicacion.setBorder(null);
-		btnIdiomaAplicacion.setBackground(Color.WHITE);
+		btnIdiomaAplicacion.setBackground(new Color(255, 255, 255));
 		menuBarAplicacionPrincipal.add(btnIdiomaAplicacion);
 		
 	}
