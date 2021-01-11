@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
-
 public class gestorActividad {
 	
 	public static BrokerBD brokerActividad = new BrokerBD();
@@ -14,6 +12,21 @@ public class gestorActividad {
 	public static String sql_actividad;
 	public static int comprobacion_resultado_actividad;
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite insertar una actividad con sus datos correspondientes
+	 * 
+	 * @param nombre_actividad
+	 * @param Horario
+	 * @param min
+	 * @param max
+	 * @param destinada
+	 * @param precio_mes
+	 * @param area
+	 * @param descripcion
+	 * @param material
+	 * @return
+	 */
 	
 	public int insertarActividad(String nombre_actividad, String Horario, int min, int max, String destinada, 
 			String precio_mes, String area, String descripcion, String material) {
@@ -53,6 +66,13 @@ public class gestorActividad {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que dado un nombre de una actividad (nombre unico) elimina todos los datos de la actividad
+	 * 
+	 * @param nombre_actividad
+	 * @return
+	 */
 	public int eliminarActividad(String nombre_actividad) {
 		
 		int resultado = -1;
@@ -81,6 +101,13 @@ public class gestorActividad {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que busca una actividad en el sistema dado un nombre, utilizado para no registrar actividades con el mismos nombre entre otros
+	 * 
+	 * @param nombre_actividad
+	 * @return
+	 */
 	public int buscarNombreActividadRegistrado(String nombre_actividad) {
 		
 		int actividad_registrado = -1;
@@ -108,6 +135,16 @@ public class gestorActividad {
 		return actividad_registrado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Actualizar los datos que se puedan de una actividad
+	 * 
+	 * @param nombre_actividad
+	 * @param precio_actividad
+	 * @param area
+	 * @param material
+	 * @return
+	 */
 	public int updateActividad(String nombre_actividad, String precio_actividad, String area, String material) {
 		
 		int resultado = -1;
@@ -139,7 +176,15 @@ public class gestorActividad {
 		
 		return resultado;
 	}
-
+	
+	/**
+	 * 
+	 * Descripcion: Metodo que busca en funcion de un parametro y su indice, utilizado para la creaccion de tablas
+	 * 
+	 * @param parametro
+	 * @param index
+	 * @return
+	 */
 	public String crearTableActividad(String parametro, int index) {
 		
 		String buscar_dato_actividad = null;
@@ -168,6 +213,14 @@ public class gestorActividad {
 		return buscar_dato_actividad;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Buscar un dato de una actividad dependiendo de su identificador unico
+	 * 
+	 * @param parametro
+	 * @param nombre_actividad
+	 * @return
+	 */
 	public String buscarActividad(String parametro, String nombre_actividad) {
 		
 		String buscar_dato_actividad = null;
@@ -196,7 +249,12 @@ public class gestorActividad {
 		return buscar_dato_actividad;
 	}
 	
-	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite saber cuantas filas tiene una tabla para poder crearla en la parte de presentacion
+	 * 
+	 * @return numero de filas
+	 */
 	public int numeroFilasTablaActividad() {
 		
 		Connection connection = null;

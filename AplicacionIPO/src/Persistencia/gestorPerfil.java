@@ -13,6 +13,15 @@ public class gestorPerfil {
 	public static String sql_perfil;
 	public static int comprobacion_resultado_perfil;
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite la actualizacion de la foto de perfil del usuario
+	 * 
+	 * @param nombre_usuario
+	 * @param foto_ruta
+	 * @return
+	 */
+	
 	public int updateFoto(String nombre_usuario, String foto_ruta) {
 		
 		int resultado = -1;
@@ -80,7 +89,16 @@ public class gestorPerfil {
 		}
 		return resultado;
 	}
-	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite actualizar los datos del usuario en la configuracion
+	 * 
+	 * @param nombre_usuario
+	 * @param idiomas
+	 * @param disponibilidad
+	 * @param formacion
+	 * @return
+	 */
 	public int updatePerfil(String nombre_usuario, String idiomas, String disponibilidad, String formacion) {
 		
 		int resultado = -1;
@@ -110,7 +128,14 @@ public class gestorPerfil {
 		
 		return resultado;
 	}
-	
+	/**
+	 * 
+	 * Descripcion: Metodo para buscar los datos de un usuario dado su nombre de usuario
+	 * 
+	 * @param parametro
+	 * @param nombre_usuario
+	 * @return
+	 */
 	public String buscarDatoPerfilUsuario(String parametro, String nombre_usuario) {
 		
 		String buscar_dato_perfil = null;

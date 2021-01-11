@@ -59,7 +59,13 @@ public class gestorUsuario {
 		
 		return resultado;
 	}
-
+	/**
+	 * 
+	 * Descripcion: Permite elimar todos los datos de un usario de la tabla Usuario
+	 * 
+	 * @param nombre_usuario
+	 * @return
+	 */
 	public int eliminarUsuario(String nombre_usuario) {
 		
 		int resultado = -1;
@@ -87,6 +93,14 @@ public class gestorUsuario {
 		
 		return resultado;
 	}
+	/**
+	 * 
+	 * Descripcion: Metodo que actualiza una contrasena si el usuario desea cambiarla
+	 * 
+	 * @param nombre_usuario
+	 * @param nueva_pass
+	 * @return
+	 */
 	public int updateUsuarioPass(String nombre_usuario, String nueva_pass) {
 		
 		int resultado = -1;
@@ -115,6 +129,15 @@ public class gestorUsuario {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite actualizar otros datos en el sistema
+	 * 
+	 * @param nombre_usuario
+	 * @param nombre_parametro
+	 * @param nuevo_parametro
+	 * @return
+	 */
 	public int updateUsuarioParametro(String nombre_usuario, String nombre_parametro, String nuevo_parametro) {
 		
 		int resultado = -1;
@@ -210,6 +233,14 @@ public class gestorUsuario {
 		
 		return contrasena;
 	}
+	/**
+	 * 
+	 * Descripcion: Metodo que encuentra un determinado dato en el sistema
+	 * 
+	 * @param parametro
+	 * @param nombre_usuario
+	 * @return
+	 */
 	public String buscarDatoUsuario(String parametro, String nombre_usuario) {
 		
 		String buscar_dato = null;

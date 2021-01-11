@@ -14,6 +14,14 @@ public class gestorRutas {
 	public static int comprobacion_resultado_rutas;
 	
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite actualizar la foto que por defecto no esta disponible, a la que ha creado el usuario con el editor
+	 * 
+	 * @param nombre_ruta
+	 * @param foto_ruta
+	 * @return
+	 */
 	public int updateFotoRuta(String nombre_ruta, String foto_ruta) {
 		
 		int resultado = -1;
@@ -42,6 +50,24 @@ public class gestorRutas {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que inserta en access todos los datos de una ruta 
+	 * 
+	 * @param nombre_ruta
+	 * @param fecha_ruta
+	 * @param hora_inicio
+	 * @param hora_fin
+	 * @param ofertada
+	 * @param punto_encuentro
+	 * @param minimo
+	 * @param maximo
+	 * @param dificultad
+	 * @param equipamiento
+	 * @param descripcion
+	 * @param foto
+	 * @return
+	 */
 	
 	public int insertarRuta(String nombre_ruta, String fecha_ruta, String hora_inicio, String hora_fin, String ofertada, 
 			String punto_encuentro, int minimo, int maximo, String dificultad, String equipamiento, String descripcion, String foto) {
@@ -84,6 +110,13 @@ public class gestorRutas {
 		return resultado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite conocer si una ruta ya esta registrada en el sistema con ese nombre
+	 * 
+	 * @param nombre_ruta
+	 * @return
+	 */
 	public int buscarNombreRutaRegistrado(String nombre_ruta) {
 		
 		int ruta_registrado = -1;
@@ -111,6 +144,14 @@ public class gestorRutas {
 		return ruta_registrado;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite crear una tabla de rutas pasandole como parametros el nombre del registro y su indice
+	 * 
+	 * @param parametro
+	 * @param index
+	 * @return
+	 */
 	public String crearTableRuta(String parametro, int index) {
 		
 		String buscar_dato_ruta = null;
@@ -139,7 +180,12 @@ public class gestorRutas {
 		return buscar_dato_ruta;
 	}
 	
-	
+	/**
+	 * 
+	 * Descripcion: Metodo que permite conocer el numero de filas de la tabla rutas
+	 * 
+	 * @return numero de filas de la tabla
+	 */
 	public int numeroFilasTablaRutas() {
 		
 		Connection connection = null;
@@ -166,6 +212,14 @@ public class gestorRutas {
 		return numero_filas;
 	}
 	
+	/**
+	 * 
+	 * Descripcion: Permite buscar un dato de la tabla Rutas que se quiera conocer
+	 * 
+	 * @param parametro
+	 * @param nombre_ruta
+	 * @return
+	 */
 	public String buscarRuta(String parametro, String nombre_ruta) {
 		
 		String buscar_dato_ruta = null;
@@ -193,7 +247,13 @@ public class gestorRutas {
 		
 		return buscar_dato_ruta;
 	}
-	
+	/**
+	 * 
+	 * Descripcion: Metodo utilizado para saber las rutas que tiene un usuario registrado en el sistema
+	 * 
+	 * @param nombre_user
+	 * @return
+	 */
 	public String buscarRutaUser(String nombre_user) {
 		
 		String buscar_dato_ruta = null;
