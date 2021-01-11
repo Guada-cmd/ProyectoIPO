@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class MiPanelReservas extends JPanel {
@@ -33,9 +34,9 @@ public class MiPanelReservas extends JPanel {
 		panelReservas.setBackground(new Color(255, 255, 255));
 		add(panelReservas, BorderLayout.CENTER);
 		GridBagLayout gbl_panelReservas = new GridBagLayout();
-		gbl_panelReservas.columnWidths = new int[]{53, 111, 0};
+		gbl_panelReservas.columnWidths = new int[]{0, 53, 111, 0};
 		gbl_panelReservas.rowHeights = new int[]{21, 0, 0, 0, 0, 0};
-		gbl_panelReservas.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panelReservas.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panelReservas.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		panelReservas.setLayout(gbl_panelReservas);
 		
@@ -44,21 +45,24 @@ public class MiPanelReservas extends JPanel {
 		btnParcela.addActionListener(new BtnParcelaActionListener());
 		
 		JLabel lblReservarParcela = new JLabel("Para realizar reservas de parcelas:");
+		lblReservarParcela.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblReservarParcela.setBackground(Color.WHITE);
 		GridBagConstraints gbc_lblReservarParcela = new GridBagConstraints();
 		gbc_lblReservarParcela.insets = new Insets(0, 0, 5, 5);
-		gbc_lblReservarParcela.gridx = 0;
+		gbc_lblReservarParcela.gridx = 1;
 		gbc_lblReservarParcela.gridy = 0;
 		panelReservas.add(lblReservarParcela, gbc_lblReservarParcela);
 		GridBagConstraints gbc_btnParcela = new GridBagConstraints();
 		gbc_btnParcela.insets = new Insets(0, 0, 5, 0);
-		gbc_btnParcela.gridx = 1;
+		gbc_btnParcela.gridx = 2;
 		gbc_btnParcela.gridy = 0;
 		panelReservas.add(btnParcela, gbc_btnParcela);
 		
 		JLabel lblReservarCabana = new JLabel("Para realizar reservas de cabañas:");
+		lblReservarCabana.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblReservarCabana = new GridBagConstraints();
 		gbc_lblReservarCabana.insets = new Insets(0, 0, 5, 5);
-		gbc_lblReservarCabana.gridx = 0;
+		gbc_lblReservarCabana.gridx = 1;
 		gbc_lblReservarCabana.gridy = 2;
 		panelReservas.add(lblReservarCabana, gbc_lblReservarCabana);
 		
@@ -66,21 +70,22 @@ public class MiPanelReservas extends JPanel {
 		btnCabana.addActionListener(new BtnCabanaActionListener());
 		GridBagConstraints gbc_btnCabana = new GridBagConstraints();
 		gbc_btnCabana.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCabana.gridx = 1;
+		gbc_btnCabana.gridx = 2;
 		gbc_btnCabana.gridy = 2;
 		panelReservas.add(btnCabana, gbc_btnCabana);
 		
 		JLabel lblExplorarReservas = new JLabel("Para explorar y finalizar reservas:");
+		lblExplorarReservas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblExplorarReservas = new GridBagConstraints();
 		gbc_lblExplorarReservas.insets = new Insets(0, 0, 0, 5);
-		gbc_lblExplorarReservas.gridx = 0;
+		gbc_lblExplorarReservas.gridx = 1;
 		gbc_lblExplorarReservas.gridy = 4;
 		panelReservas.add(lblExplorarReservas, gbc_lblExplorarReservas);
 		
 		JButton btnExplorar = new JButton("Explorar reservas");
 		btnExplorar.addActionListener(new BtnExplorarActionListener());
 		GridBagConstraints gbc_btnExplorar = new GridBagConstraints();
-		gbc_btnExplorar.gridx = 1;
+		gbc_btnExplorar.gridx = 2;
 		gbc_btnExplorar.gridy = 4;
 		panelReservas.add(btnExplorar, gbc_btnExplorar);
 
