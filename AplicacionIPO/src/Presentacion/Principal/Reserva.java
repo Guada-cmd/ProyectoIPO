@@ -27,6 +27,7 @@ import javax.swing.event.ListSelectionListener;
 import Persistencia.GestorEstancias;
 import Persistencia.GestorReservas;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Toolkit;
 
 public class Reserva {
 
@@ -101,6 +102,7 @@ public class Reserva {
 	private void initialize() {
 		textNombre.setColumns(10);
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Reserva.class.getResource("/recursos/wooden-house.png")));
 		frame.setBounds(100, 100, 450, 300);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		

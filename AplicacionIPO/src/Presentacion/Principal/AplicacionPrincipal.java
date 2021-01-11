@@ -575,7 +575,7 @@ public class AplicacionPrincipal {
 		frmAplicacinPrincipalDe = new JFrame();
 		frmAplicacinPrincipalDe.setTitle("Aplicación principal.");
 		frmAplicacinPrincipalDe.setResizable(false);
-		frmAplicacinPrincipalDe.setIconImage(Toolkit.getDefaultToolkit().getImage(AplicacionPrincipal.class.getResource("/recursos/logo_aplicacion.png")));
+		frmAplicacinPrincipalDe.setIconImage(Toolkit.getDefaultToolkit().getImage(AplicacionPrincipal.class.getResource("/recursos/iconoAplicacion.png")));
 		frmAplicacinPrincipalDe.setVisible(true);
 		frmAplicacinPrincipalDe.setBounds(new Rectangle(100, 100, 960, 540));
 		frmAplicacinPrincipalDe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

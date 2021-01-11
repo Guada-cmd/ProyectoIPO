@@ -25,6 +25,7 @@ public class MiPanelReservas extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		lblNewLabel = new JLabel("Reservas");
+		lblNewLabel.setBackground(Color.LIGHT_GRAY);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNewLabel, BorderLayout.NORTH);
 		
