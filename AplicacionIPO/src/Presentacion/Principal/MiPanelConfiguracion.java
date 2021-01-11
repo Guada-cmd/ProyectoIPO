@@ -464,13 +464,13 @@ public class MiPanelConfiguracion extends JPanel {
 			Image imagenEscalada, imagenOriginal;
 			File file;
 			int valorDevuelto = 0;
-			index_foto = index_foto+1;
+			index_foto = (int) Math.floor(Math.random()*500+1);
 			BufferedImage imagen_prueba = null;
 			
 			JFileChooser fcAbrir = new JFileChooser();
 			
 			//Aplicamos un filtro que solo permita cargar imagenes png y jpg
-			fcAbrir.setFileFilter(new ImageFilter());
+			fcAbrir.setFileFilter(new ImageFilterPNG());
 			
 			valorDevuelto = fcAbrir.showOpenDialog(VentanaInicio.frame_registro);
 			
