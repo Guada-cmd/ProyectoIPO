@@ -1,7 +1,8 @@
 package Dominio;
 
 public class Perfil {
-
+	
+	
 	private String nombre_usuario;
 	private String idiomas;
 	private String disponibilidad;
@@ -9,6 +10,17 @@ public class Perfil {
 	private String ultimo_accesso;
 	private String ruta_foto;
 	
+	/**
+	 * 
+	 * Descripcion: Constructor clase dominio para el perfil
+	 * 
+	 * @param nombre_usuario
+	 * @param idiomas
+	 * @param disponibilidad
+	 * @param formacion
+	 * @param ultimo_accesso
+	 * @param ruta_foto
+	 */
 	public Perfil (String nombre_usuario, String idiomas, String disponibilidad, String formacion, String ultimo_accesso, String ruta_foto) {
 	
 		this.nombre_usuario = nombre_usuario;
@@ -19,6 +31,7 @@ public class Perfil {
 		this.ruta_foto = ruta_foto;
 		
 	}
+	
 	public String getRutaFoto() {
 		return this.ruta_foto;
 	}

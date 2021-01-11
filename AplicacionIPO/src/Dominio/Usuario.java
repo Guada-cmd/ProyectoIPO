@@ -16,6 +16,20 @@ public class Usuario {
 	private String correo_electronico;
 	private Date fecha_nacimiento;
 	
+	/**
+	 * 
+	 * Descripcion: Constructor clase dominio del Usuario
+	 * 
+	 * @param nombre
+	 * @param apellidos
+	 * @param nombre_usuario
+	 * @param contrasena
+	 * @param tipo_usuario
+	 * @param telefono
+	 * @param correo_electronico
+	 * @param fecha_nacimiento
+	 */
+	
 	public Usuario (String nombre, String apellidos, String nombre_usuario, String contrasena, String tipo_usuario, String telefono, String correo_electronico, Date fecha_nacimiento) {
 		
 		this.nombre = nombre;
