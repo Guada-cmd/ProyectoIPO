@@ -555,8 +555,9 @@ public class AplicacionPrincipal {
 			String disponibilidadDB = metodos_gestor_perfil.buscarDatoPerfilUsuario("Disponibilidad", VentanaInicio.usuario_sistema);
 			String formacion = metodos_gestor_perfil.buscarDatoPerfilUsuario("Formacion", VentanaInicio.usuario_sistema);
 			String ultimo_acceso = metodos_gestor_perfil.buscarDatoPerfilUsuario("UltimoAcceso", VentanaInicio.usuario_sistema);
+			String ruta_foto = metodos_gestor_perfil.buscarDatoPerfilUsuario("Foto", VentanaInicio.usuario_sistema);
 			
-			perfil_usuario = new Perfil (nombre_usuario_perfilDB, idiomasDB, disponibilidadDB, formacion, ultimo_acceso);
+			perfil_usuario = new Perfil (nombre_usuario_perfilDB, idiomasDB, disponibilidadDB, formacion, ultimo_acceso, ruta_foto);
 			
 			pnlUsuario = new MiPanelUsuario(usuario_actual, perfil_usuario);
 			pnlContenidoAplicacionPrincipal.add(pnlUsuario, "Perfil");

@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,96 +27,67 @@ import javax.swing.border.Border;
 
 import Dominio.Perfil;
 import Dominio.Usuario;
+import Persistencia.gestorPerfil;
 import Persistencia.gestorUsuario;
+import Presentacion.EditorGrafico.ImageFilter;
 import Presentacion.InicioSesion.VentanaInicio;
 
 public class MiPanelConfiguracion extends JPanel {
 	
 	private JScrollPane scrollPane;
+	
 	private JLabel lblInformacionUsuarioAvatar;
 	private JLabel lblEdicionDatosInformacionUsuario;
-	
-	//Objeto que permite inicializar los datos de los usuarios
-	
-	private Usuario usuario_datos_configuracion;
-	private Perfil datos_perfil;
-	
-	private JButton btnCambiarFoto;
-	private JTextField txtUpdateApellidos;
-	private JTextField textUpdateNombre;
-	private JTextField txtUpdateCorreo;
 	private JLabel lblDatosNombre;
 	private JLabel lblDatosApellidos;
 	private JLabel lblDatosCorreo;
+	
+	private JTextField txtUpdateApellidos;
+	private JTextField textUpdateNombre;
+	private JTextField txtUpdateCorreo;
+
 	private JButton btnGuardarUpdateDatos;
+	private JButton btnCambiarFoto;
+	
 	private JCheckBox chckbxPermitirEdicion;
+	
+	//Objeto que permite inicializar los datos de los usuarios
+	
+	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
+	private gestorPerfil metodos_gestor_perfil = new gestorPerfil();
+	private Usuario usuario_datos_configuracion;
+	private Perfil datos_perfil;
+	
+	private VentanaInicio frame_ventana_inicio;
+	private ImageIcon imagen;
+	private ImageIcon imagenNueva;
+
+	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
 	
 	private Color colorVerde = new Color(0, 143, 57);
 	
-	private gestorUsuario metodos_gestor_usuario = new gestorUsuario();
-	
-	private VentanaInicio frame_ventana_inicio;
-
-	
-	//Creaccion de atributos privados a nivel de clase para determinar mediante colores acciones correctas o no
-	
 	private Border bordeRojo = BorderFactory.createLineBorder(Color.RED);
 	private Border bordeVerde = BorderFactory.createLineBorder(colorVerde);
+	
+	private String ruta;
+	private String ruta_foto_perfil;
 
 
 	/**
 	 * Create the panel.
 	 */
 	public MiPanelConfiguracion(Usuario usuario_datos_configuracion, Perfil datos_perfil) {
-		setBackground(new Color(255, 255, 255));
 		
 		this.usuario_datos_configuracion = usuario_datos_configuracion;
 		this.datos_perfil = datos_perfil;
 		
-		inicializarDatosPanelInformacionUsuario();
-		
-		//Inicializacion de los datos respecto a la parte de la imagen del usuario
-		inicializarDatosImagenUsuario();
+		inicializarDatosPanelConfiguracion();
 		
 		//Inicializacion de los datos respecto a la parte de edicion de datos de la configuracion
 		inicializarCamposInformacionUsuario();
-		
-		//Informacion Usuario
-		inicializarDatosUsuario();
-		
-		//Datos perfil
-		inicializarDatosPerfilUsuario();
 					
 		//Oyentes del panel configuracion
-		asociacionOyentesInformacionUsuario();
-		
-	}
-	/**
-	 * 
-	 * Descripcion: muestra los datos del perfil usuario iniciados por defectos en la configuracion
-	 * 
-	 */
-	private void inicializarDatosPerfilUsuario() {
-		
-		if(VentanaInicio.usuario_sistema != null) {
-		
-		
-			
-		}
-		
-	}
-	/**
-	 * 
-	 * Descripcion: muestra los datos del usuario en la configuracion
-	 * 
-	 */
-	private void inicializarDatosUsuario() {
-		
-		if(VentanaInicio.usuario_sistema != null) {
-			
-			
-			
-		}
+		asociacionOyentesConfiguracionUsuario();
 		
 	}
 	
@@ -120,15 +96,107 @@ public class MiPanelConfiguracion extends JPanel {
 	 * Descripcion: metodo que contiene los eventos del panel de configuracion
 	 * 
 	 */
-	private void asociacionOyentesInformacionUsuario() {
+	private void asociacionOyentesConfiguracionUsuario() {
 		
+		btnCambiarFoto.addActionListener(new CargarImagenPerfilListener());
+		btnGuardarUpdateDatos.addActionListener(new GuardarDatosConfiguracion());
+		
+		chckbxPermitirEdicion.addActionListener(new ComprobarSeleccionEditarConfiguracionListener());
+		
+	}
+	/**
+	 * 
+	 * Descripcion: Guardar los nuevos datos
+	 *
+	 */
+	private class GuardarDatosConfiguracion implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			int validar_nuevo_nombre = -1;
+			int validar_nuevo_apellido = -1;
+			int validar_nuevo_correo = -1;
+			
+			if (textUpdateNombre.getText() != null || txtUpdateApellidos.getText() != null || txtUpdateCorreo.getText() != null) {
+				
+				if(txtUpdateApellidos.getText().isEmpty() == false) {
+						
+					txtUpdateApellidos.setBorder(bordeVerde);
+					validar_nuevo_apellido = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), 
+							"Apellidos", txtUpdateApellidos.getText().toString());
+					
+					if(validar_nuevo_apellido == -1) {
+						errorConfiguracionDialogo();
+					}
+				}
+						
+				else if(txtUpdateCorreo.getText().isEmpty() == false) {
+						
+					boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
+					
+					if (correo_correcto_comprobacion == false) {
+						txtUpdateCorreo.setBorder(bordeRojo);
+						dialogoCorreoIncorrecto();
+					}
+					else {
+						txtUpdateCorreo.setBorder(bordeVerde);
+						validar_nuevo_correo = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), 
+								"Correo", txtUpdateCorreo.getText().toString());
+					
+						if(validar_nuevo_correo == -1) {
+							errorConfiguracionDialogo();	
+						}
+					}
+				}
+					
+				else if(textUpdateNombre.getText().isEmpty() == false) {
+						
+					textUpdateNombre.setBorder(bordeVerde);
+					validar_nuevo_nombre = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), 
+							"Nombre", textUpdateNombre.getText().toString());
+					if(validar_nuevo_nombre == -1) {
+						errorConfiguracionDialogo();
+					}
+					dialogoRegistroExitoso();
+				}
+				else if (textUpdateNombre.getText().equals("") && txtUpdateApellidos.getText().equals("") && txtUpdateCorreo.getText().equals("")) {
+					dialogoNoDatos();
+				}
+			}	
+		}
+	}
+	/**
+	 * 
+	 * Descripcion: comprobar si esta seleccionado para poder permitir que el usuario edite los datos
+	 *
+	 */
+	private class ComprobarSeleccionEditarConfiguracionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			if(chckbxPermitirEdicion.isSelected()) {
+				
+				textUpdateNombre.setEnabled(true);
+				txtUpdateApellidos.setEnabled(true);
+				txtUpdateCorreo.setEnabled(true);
+				
+				lblDatosNombre.setEnabled(true);
+				lblDatosApellidos.setEnabled(true);
+				lblDatosCorreo.setEnabled(true);
+				
+				btnGuardarUpdateDatos.setEnabled(true);
+			
+		
+			}
+			
+		}
 	}
 	/**
 	 * 
 	 * Descripcion: Datos generados parte de disenio al hacer el panel personalizado
 	 * 
 	 */
-	private void inicializarDatosPanelInformacionUsuario() {
+	private void inicializarDatosPanelConfiguracion() {
+		
+		setBackground(new Color(255, 255, 255));
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{112, 84, 61, 53, 40, 57, 65, 54, 54, 41, 0, 0, 0, 0, 0, 0};
@@ -144,26 +212,6 @@ public class MiPanelConfiguracion extends JPanel {
 	 * 
 	 */
 	private void inicializarDatosImagenUsuario() {
-		
-	}
-	/**
-	 * 
-	 * Descripcion: datos generado de la parte de disenio para que el usuario edite los datos
-	 * 
-	 */
-	private void inicializarCamposInformacionUsuario() {
-		
-		//Etiqueta que sirve de titulo
-		
-		lblEdicionDatosInformacionUsuario = new JLabel("Editar información del Usuario");
-		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
-		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 4;
-		gbc_lblEdicionDatosInformacionUsuario.anchor = GridBagConstraints.WEST;
-		gbc_lblEdicionDatosInformacionUsuario.insets = new Insets(0, 0, 5, 5);
-		gbc_lblEdicionDatosInformacionUsuario.gridx = 1;
-		gbc_lblEdicionDatosInformacionUsuario.gridy = 1;
-		add(lblEdicionDatosInformacionUsuario, gbc_lblEdicionDatosInformacionUsuario);
 		
 		//Componente scrollPane para la imagen del Usuario
 		
@@ -187,28 +235,54 @@ public class MiPanelConfiguracion extends JPanel {
 		lblInformacionUsuarioAvatar.setHorizontalAlignment(SwingConstants.CENTER);
 		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
 		
+		//Boton foto
+		
+		btnCambiarFoto = new JButton("Cargar...");
+		btnCambiarFoto.setBorder(null);
+		btnCambiarFoto.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/add-picture.png")));
+		btnCambiarFoto.setFocusPainted(false);
+		btnCambiarFoto.setFocusTraversalKeysEnabled(false);
+		btnCambiarFoto.setFocusable(false);
+		btnCambiarFoto.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		
+		btnCambiarFoto.setForeground(new Color(51, 51, 51));
+		btnCambiarFoto.setBackground(new Color(255, 255, 255));
+		
+		GridBagConstraints gbc_btnCambiarFoto = new GridBagConstraints();
+		gbc_btnCambiarFoto.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnCambiarFoto.gridwidth = 2;
+		gbc_btnCambiarFoto.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCambiarFoto.gridx = 1;
+		gbc_btnCambiarFoto.gridy = 9;
+		add(btnCambiarFoto, gbc_btnCambiarFoto);
+		
+	}
+	/**
+	 * 
+	 * Descripcion: datos generado de la parte de disenio para que el usuario edite los datos
+	 * 
+	 */
+	private void inicializarCamposInformacionUsuario() {
+		
+		
+		//Etiqueta que sirve de titulo
+		
+		lblEdicionDatosInformacionUsuario = new JLabel("Editar información del Usuario");
+		lblEdicionDatosInformacionUsuario.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		GridBagConstraints gbc_lblEdicionDatosInformacionUsuario = new GridBagConstraints();
+		gbc_lblEdicionDatosInformacionUsuario.gridwidth = 4;
+		gbc_lblEdicionDatosInformacionUsuario.anchor = GridBagConstraints.WEST;
+		gbc_lblEdicionDatosInformacionUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEdicionDatosInformacionUsuario.gridx = 1;
+		gbc_lblEdicionDatosInformacionUsuario.gridy = 1;
+		add(lblEdicionDatosInformacionUsuario, gbc_lblEdicionDatosInformacionUsuario);
+		
+		
+		inicializarDatosImagenUsuario();
+		
+		//ICONO LAPIZ EDITAR
+		
 		chckbxPermitirEdicion = new JCheckBox("");
-		chckbxPermitirEdicion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			
-				if(chckbxPermitirEdicion.isSelected()) {
-					
-					textUpdateNombre.setEnabled(true);
-					txtUpdateApellidos.setEnabled(true);
-					txtUpdateCorreo.setEnabled(true);
-					
-					lblDatosNombre.setEnabled(true);
-					lblDatosApellidos.setEnabled(true);
-					lblDatosCorreo.setEnabled(true);
-					
-					btnGuardarUpdateDatos.setEnabled(true);
-				
-			
-				}
-				
-			}
-		});
 		chckbxPermitirEdicion.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/pencil.png")));
 		chckbxPermitirEdicion.setBackground(Color.WHITE);
 		GridBagConstraints gbc_chckbxPermitirEdicion = new GridBagConstraints();
@@ -217,6 +291,8 @@ public class MiPanelConfiguracion extends JPanel {
 		gbc_chckbxPermitirEdicion.gridx = 5;
 		gbc_chckbxPermitirEdicion.gridy = 3;
 		add(chckbxPermitirEdicion, gbc_chckbxPermitirEdicion);
+		
+		//Campos nombre
 		
 		lblDatosNombre = new JLabel("Nombre:");
 		lblDatosNombre.setEnabled(false);
@@ -240,6 +316,8 @@ public class MiPanelConfiguracion extends JPanel {
 		add(textUpdateNombre, gbc_textUpdateNombre);
 		textUpdateNombre.setColumns(10);
 		
+		//Campo apellidos
+		
 		lblDatosApellidos = new JLabel("Apellidos:");
 		lblDatosApellidos.setEnabled(false);
 		lblDatosApellidos.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -260,6 +338,8 @@ public class MiPanelConfiguracion extends JPanel {
 		gbc_txtUpdateApellidos.gridy = 6;
 		add(txtUpdateApellidos, gbc_txtUpdateApellidos);
 		txtUpdateApellidos.setColumns(10);
+		
+		//Campo correp
 		
 		lblDatosCorreo = new JLabel("Correo:");
 		lblDatosCorreo.setEnabled(false);
@@ -283,107 +363,10 @@ public class MiPanelConfiguracion extends JPanel {
 		add(txtUpdateCorreo, gbc_txtUpdateCorreo);
 		txtUpdateCorreo.setColumns(10);
 		
-		btnCambiarFoto = new JButton("Cargar...");
-		btnCambiarFoto.setBorder(null);
-		btnCambiarFoto.setIcon(new ImageIcon(MiPanelConfiguracion.class.getResource("/recursos/add-picture.png")));
-		btnCambiarFoto.setFocusPainted(false);
-		btnCambiarFoto.setFocusTraversalKeysEnabled(false);
-		btnCambiarFoto.setFocusable(false);
-		btnCambiarFoto.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		
-	
-		btnCambiarFoto.setForeground(new Color(51, 51, 51));
-		btnCambiarFoto.setBackground(new Color(255, 255, 255));
-		
-		GridBagConstraints gbc_btnCambiarFoto = new GridBagConstraints();
-		gbc_btnCambiarFoto.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCambiarFoto.gridwidth = 2;
-		gbc_btnCambiarFoto.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCambiarFoto.gridx = 1;
-		gbc_btnCambiarFoto.gridy = 9;
-		add(btnCambiarFoto, gbc_btnCambiarFoto);
+		//Boton guardar datos
 		
 		btnGuardarUpdateDatos = new JButton("Guardar");
-		btnGuardarUpdateDatos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				int validar_nuevo_nombre = -1;
-				int validar_nuevo_apellido = -1;
-				int validar_nuevo_correo = -1;
-				
-				
-				if (textUpdateNombre.getText() != null || txtUpdateApellidos.getText() != null || txtUpdateCorreo.getText() != null) {
-					
-				
-					
-						if(txtUpdateApellidos.getText().isEmpty() == false) {
-						
-							txtUpdateApellidos.setBorder(bordeVerde);
-						
-							validar_nuevo_apellido = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Apellidos", txtUpdateApellidos.getText().toString());
-						
-							if(validar_nuevo_apellido == -1) {
-							
-								errorConfiguracionDialogo();
-						
-							}
-					
-						}
-						
-						else if(txtUpdateCorreo.getText().isEmpty() == false) {
-							
-							boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
-						
-							if (correo_correcto_comprobacion == false) {
-							
-								txtUpdateCorreo.setBorder(bordeRojo);
-								dialogoCorreoIncorrecto();
-							
-							}
-							else {
-							
-								txtUpdateCorreo.setBorder(bordeVerde);
-							
-								validar_nuevo_correo = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Correo", txtUpdateCorreo.getText().toString());
-							
-								if(validar_nuevo_correo == -1) {
-								
-									errorConfiguracionDialogo();
-								
-							
-								}
-							
-							}
-						
-						}
-						
-						else if(textUpdateNombre.getText().isEmpty() == false) {
-							
-							textUpdateNombre.setBorder(bordeVerde);
-						
-							validar_nuevo_nombre = metodos_gestor_usuario.updateUsuarioParametro(usuario_datos_configuracion.getNombreUsuario(), "Nombre", textUpdateNombre.getText().toString());
-						
-							if(validar_nuevo_nombre == -1) {
-							
-								errorConfiguracionDialogo();
-							
-							}
-					
-						
-					dialogoRegistroExitoso();
-					}
-					else if (textUpdateNombre.getText().equals("") && txtUpdateApellidos.getText().equals("") && txtUpdateCorreo.getText().equals("")) {
-							
-							
-							dialogoNoDatos();
-							
-						}
-				}
-				
-			
-			
-			}
-		});
+		
 		btnGuardarUpdateDatos.setFocusable(false);
 		btnGuardarUpdateDatos.setFocusPainted(false);
 		btnGuardarUpdateDatos.setFocusTraversalKeysEnabled(false);
@@ -419,7 +402,7 @@ public class MiPanelConfiguracion extends JPanel {
 		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han introducido datos que actualizar.");
 		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	
-		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos no introducidos.", 2);
+		JOptionPane.showMessageDialog(null, labelDialogoRegistroCorrectoMensaje, "Datos no introducidos.", 2);
 			
 	}
 	
@@ -430,7 +413,7 @@ public class MiPanelConfiguracion extends JPanel {
 		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("No se han podido actualizar los datos.");
 		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	
-		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Fallo de registro.", 0);
+		JOptionPane.showMessageDialog(null, labelDialogoRegistroCorrectoMensaje, "Fallo de registro.", 0);
 			
 	}
 	
@@ -441,7 +424,7 @@ public class MiPanelConfiguracion extends JPanel {
 		JLabel labelDialogoRegistroCorrectoMensaje = new JLabel("El formato del dato correo no es correcto.");
 		labelDialogoRegistroCorrectoMensaje.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 	
-		JOptionPane.showMessageDialog(VentanaInicio.frame_registro, labelDialogoRegistroCorrectoMensaje, "Datos incorrecto.", 0);
+		JOptionPane.showMessageDialog(null, labelDialogoRegistroCorrectoMensaje, "Datos incorrecto.", 0);
 			
 	}
 	private boolean comprobarCorreoElectronico() {
@@ -458,5 +441,37 @@ public class MiPanelConfiguracion extends JPanel {
 		return correo_correcto;
 		
 	}
-
+	private class CargarImagenPerfilListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+			Image imagenEscalada, imagenOriginal;
+			File file;
+			int valorDevuelto = 0;
+			
+			JFileChooser fcAbrir = new JFileChooser();
+			
+			//Aplicamos un filtro que solo permita cargar imagenes png y jpg
+			fcAbrir.setFileFilter(new ImageFilter());
+			
+			valorDevuelto = fcAbrir.showOpenDialog(VentanaInicio.frame_registro);
+			
+			if (valorDevuelto == JFileChooser.APPROVE_OPTION) {
+				
+				file = fcAbrir.getSelectedFile();
+				ruta = file.getAbsolutePath();
+				imagen = new ImageIcon(file.getAbsolutePath());
+				//miAreaDibujo.setIcon(imagen);
+				
+				try {
+					imagenOriginal= ImageIO.read(file);
+					imagenEscalada = imagenOriginal.getScaledInstance(lblInformacionUsuarioAvatar.getWidth(), lblInformacionUsuarioAvatar.getHeight(), java.awt.Image.SCALE_SMOOTH);
+					imagenNueva = new ImageIcon(imagenEscalada);
+					lblInformacionUsuarioAvatar.setIcon(imagenNueva);
+				} 
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }

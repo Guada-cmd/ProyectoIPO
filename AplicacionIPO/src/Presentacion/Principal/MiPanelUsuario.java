@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,12 +17,13 @@ import javax.swing.SwingConstants;
 import Dominio.Perfil;
 import Dominio.Usuario;
 import Presentacion.InicioSesion.VentanaInicio;
+import Presentacion.rutas.MiPanelRutasOfertadas;
 
 @SuppressWarnings("serial")
 public class MiPanelUsuario extends JPanel {
 	
 	private JScrollPane scrollPane;
-	private JLabel lblInformacionUsuarioAvatar;
+	private JLabel lblInformacionUsuarioAvatarDB;
 	private JLabel lblInformacionUsuarioNombre;
 	private JLabel lblInformacionUsuarioTelefono;
 	private JLabel lblInformacionUsuarioCorreoElectronico;
@@ -49,6 +52,7 @@ public class MiPanelUsuario extends JPanel {
 	private JLabel lblUltimoAccesoDB;
 
 
+	
 	/**
 	 * Create the panel.
 	 */
@@ -94,6 +98,15 @@ public class MiPanelUsuario extends JPanel {
 			}
 			else {
 				lblUltimoAccesoDB.setText("Ningun acceso registrado");
+			}
+			
+			if (datos_perfil.getRutaFoto() != null) {
+				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(datos_perfil.getRutaFoto())).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+				
+			}
+			else {
+				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Avatar.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+				
 			}
 			
 		}
@@ -198,11 +211,11 @@ public class MiPanelUsuario extends JPanel {
 		
 		//Etiqueta que permite seleccionar la foto
 		
-		lblInformacionUsuarioAvatar = new JLabel("");
-		lblInformacionUsuarioAvatar.setBackground(new Color(255, 255, 255));
-		lblInformacionUsuarioAvatar.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/Avatar.png")));
-		lblInformacionUsuarioAvatar.setHorizontalAlignment(SwingConstants.CENTER);
-		scrollPane.setViewportView(lblInformacionUsuarioAvatar);
+		lblInformacionUsuarioAvatarDB = new JLabel("");
+		lblInformacionUsuarioAvatarDB.setBackground(new Color(255, 255, 255));
+		lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(MiPanelUsuario.class.getResource("/recursos/Avatar.png")));
+		lblInformacionUsuarioAvatarDB.setHorizontalAlignment(SwingConstants.CENTER);
+		scrollPane.setViewportView(lblInformacionUsuarioAvatarDB);
 		
 		lblltimoAccesso = new JLabel("Información de accesso");
 		lblltimoAccesso.setFont(new Font("Segoe UI", Font.PLAIN, 14));

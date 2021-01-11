@@ -7,15 +7,23 @@ public class Perfil {
 	private String disponibilidad;
 	private String formacion;
 	private String ultimo_accesso;
+	private String ruta_foto;
 	
-	public Perfil (String nombre_usuario, String idiomas, String disponibilidad, String formacion, String ultimo_accesso) {
+	public Perfil (String nombre_usuario, String idiomas, String disponibilidad, String formacion, String ultimo_accesso, String ruta_foto) {
 	
 		this.nombre_usuario = nombre_usuario;
 		this.idiomas = idiomas;
 		this.disponibilidad = disponibilidad; 
 		this.formacion = formacion;
 		this.ultimo_accesso = ultimo_accesso;
+		this.ruta_foto = ruta_foto;
 		
+	}
+	public String getRutaFoto() {
+		return this.ruta_foto;
+	}
+	public void setRutaFoto(String rf) {
+		this.ruta_foto = rf;
 	}
 	public String getUltimoAccesso() {
 		return this.ultimo_accesso;

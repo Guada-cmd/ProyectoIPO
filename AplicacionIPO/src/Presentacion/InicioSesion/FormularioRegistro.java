@@ -439,7 +439,8 @@ public class FormularioRegistro extends JFrame {
 						dialogoRegistroExitoso();
 						
 						//Insertar datos por defecto
-						metodos_gestor_perfil.insertarPerfilUsuario(txtNombreUsuario.getText().toString(), "Ninguno".toString(), "No".toString(), "Otro".toString());
+						metodos_gestor_perfil.insertarPerfilUsuario(txtNombreUsuario.getText().toString(), "Ninguno".toString(), 
+								"No".toString(), "Otro".toString(), "/recursos/Avatar.png".toString());
 					}
 					else {
 						dialogoErrorRegistro();
