@@ -101,11 +101,11 @@ public class MiPanelUsuario extends JPanel {
 			}
 			
 			if (datos_perfil.getRutaFoto() != null) {
-				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(datos_perfil.getRutaFoto())).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource(datos_perfil.getRutaFoto())).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
 				
 			}
 			else {
-				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Avatar.jpg")).getImage().getScaledInstance(246, 172, Image.SCALE_SMOOTH)));
+				lblInformacionUsuarioAvatarDB.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Avatar.jpg")).getImage().getScaledInstance(64, 64, Image.SCALE_SMOOTH)));
 				
 			}
 			

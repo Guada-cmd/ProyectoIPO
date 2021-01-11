@@ -8,8 +8,10 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -71,6 +73,7 @@ public class MiPanelConfiguracion extends JPanel {
 	
 	private String ruta;
 	private String ruta_foto_perfil;
+	private int index_foto;
 
 
 	/**
@@ -115,6 +118,8 @@ public class MiPanelConfiguracion extends JPanel {
 			int validar_nuevo_nombre = -1;
 			int validar_nuevo_apellido = -1;
 			int validar_nuevo_correo = -1;
+			int validar_foto = -1;
+			
 			
 			if (textUpdateNombre.getText() != null || txtUpdateApellidos.getText() != null || txtUpdateCorreo.getText() != null) {
 				
@@ -128,7 +133,19 @@ public class MiPanelConfiguracion extends JPanel {
 						errorConfiguracionDialogo();
 					}
 				}
-						
+				
+				else if(ruta_foto_perfil != null) {
+					
+					String ruta_valida = "/recursos/Perfil/foto_"+index_foto+".png";
+					
+					validar_foto = metodos_gestor_perfil.updateFoto(usuario_datos_configuracion.getNombreUsuario(), ruta_valida);
+					
+					if(validar_foto == -1) {
+						errorConfiguracionDialogo();
+					}
+					
+				}
+				
 				else if(txtUpdateCorreo.getText().isEmpty() == false) {
 						
 					boolean correo_correcto_comprobacion = comprobarCorreoElectronico();
@@ -447,6 +464,8 @@ public class MiPanelConfiguracion extends JPanel {
 			Image imagenEscalada, imagenOriginal;
 			File file;
 			int valorDevuelto = 0;
+			index_foto = index_foto+1;
+			BufferedImage imagen_prueba = null;
 			
 			JFileChooser fcAbrir = new JFileChooser();
 			
@@ -461,10 +480,22 @@ public class MiPanelConfiguracion extends JPanel {
 				ruta = file.getAbsolutePath();
 				imagen = new ImageIcon(file.getAbsolutePath());
 				//miAreaDibujo.setIcon(imagen);
-				
 				try {
-					imagenOriginal= ImageIO.read(file);
+					imagen_prueba = ImageIO.read(new File(file.getAbsolutePath()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					imagenOriginal = ImageIO.read(file);
 					imagenEscalada = imagenOriginal.getScaledInstance(lblInformacionUsuarioAvatar.getWidth(), lblInformacionUsuarioAvatar.getHeight(), java.awt.Image.SCALE_SMOOTH);
+					
+					String bd = System.getProperty("user.dir") + "\\src\\recursos\\Perfil\\";
+					File outputfile = new File(bd+"foto_"+index_foto+".png");
+					ImageIO.write(imagen_prueba, "png", outputfile);
+					
+					ruta_foto_perfil = bd+"foto_"+index_foto+".png";
+					
 					imagenNueva = new ImageIcon(imagenEscalada);
 					lblInformacionUsuarioAvatar.setIcon(imagenNueva);
 				} 
@@ -474,4 +505,5 @@ public class MiPanelConfiguracion extends JPanel {
 			}
 		}
 	}
+	
 }
