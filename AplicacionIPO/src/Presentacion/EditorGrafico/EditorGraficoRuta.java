@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Persistencia.gestorPerfil;
+import Persistencia.gestorRutas;
 import Presentacion.InicioSesion.FormularioRegistro;
 import Presentacion.InicioSesion.VentanaInicio;
 import Presentacion.Principal.AplicacionPrincipal;
@@ -48,6 +50,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.awt.Font;
 
 public class EditorGraficoRuta extends JFrame {
@@ -166,6 +169,10 @@ public class EditorGraficoRuta extends JFrame {
 	private Cursor cursorIntermedio;
 	private Cursor cursorExperto;
 
+	private String ruta_personalizada;
+	private int index_foto;
+	
+	private gestorRutas metodos_gestor_rutas = new gestorRutas();
 
 	/**
 	 * Launch the application.
@@ -378,6 +385,23 @@ public class EditorGraficoRuta extends JFrame {
 		mArchivo.add(miAbrir);
 		
 		miGuardar = new JMenuItem("Guardar");
+		miGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(ruta_personalizada != null) {
+					
+					String ruta_valida = "/recursos/Perfil/foto_"+index_foto+".png";
+					/**
+					validar_foto = metodos_gestor_perfil.updateFoto(usuario_datos_configuracion.getNombreUsuario(), ruta_valida);
+					
+					if(validar_foto == -1) {
+						errorConfiguracionDialogo();
+					}
+					**/
+				}
+				
+			}
+		});
 		miGuardar.setIcon(new ImageIcon(EditorGraficoRuta.class.getResource("/recursos/Guardar.png")));
 		mArchivo.add(miGuardar);
 		
@@ -576,6 +600,9 @@ public class EditorGraficoRuta extends JFrame {
 			Image imagenEscalada, imagenOriginal;
 			File file;
 			int valorDevuelto = 0;
+			index_foto = (int) Math.floor(Math.random()*500+1);
+			
+			BufferedImage imagen_ruta_personalizada = null;
 			
 			JFileChooser fcAbrir = new JFileChooser();
 			
@@ -591,8 +618,22 @@ public class EditorGraficoRuta extends JFrame {
 				//miAreaDibujo.setIcon(imagen);
 				
 				try {
+					imagen_ruta_personalizada = ImageIO.read(new File(file.getAbsolutePath()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				try {
 					imagenOriginal= ImageIO.read(file);
 					imagenEscalada = imagenOriginal.getScaledInstance(miAreaDibujo.getWidth(), miAreaDibujo.getHeight(), java.awt.Image.SCALE_SMOOTH);
+					
+					String bd = System.getProperty("user.dir") + "\\src\\recursos\\Perfil\\";
+					File outputfile = new File(bd+"foto_"+index_foto+".png");
+					ImageIO.write(imagen_ruta_personalizada, "png", outputfile);
+					
+					ruta_personalizada = bd+"foto_"+index_foto+".png";
+					
 					imagenNueva = new ImageIcon(imagenEscalada);
 					miAreaDibujo.setIcon(imagenNueva);
 				} 

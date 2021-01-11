@@ -329,7 +329,7 @@ public class FormularioRegistroRuta extends JFrame {
 			
 			comprobacion = metodos_gestor_rutas.insertarRuta(txtNombreRuta.getText().toString(), "Fecha no disponible", 
 					(String)cmbHora.getSelectedItem(), "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
-					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString());
+					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString(), "/recursos/Actividad/noDisponible.jpg");
 			
 					
 		} else {
@@ -339,7 +339,7 @@ public class FormularioRegistroRuta extends JFrame {
 			
 			comprobacion = metodos_gestor_rutas.insertarRuta(txtNombreRuta.getText().toString(), cadena_formato_fecha, 
 					(String)cmbHora.getSelectedItem(), "Hora Fin no disponible", AplicacionPrincipal.usuario_actual.getNombreUsuario().toString(), (String)cmbPuntoEncuentro.getSelectedItem(), 2, 
-					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString());
+					(Integer) spnMaximo.getValue(), (String)cmbDificultad.getSelectedItem(), (String)cmbEquipamiento.getSelectedItem(), txtDescripcionRuta.getText().toString(),"/recursos/Actividad/noDisponible.jpg");
 			
 		}
 		

@@ -14,15 +14,16 @@ public class gestorRutas {
 	public static int comprobacion_resultado_rutas;
 	
 	
+	
 	public int insertarRuta(String nombre_ruta, String fecha_ruta, String hora_inicio, String hora_fin, String ofertada, 
-			String punto_encuentro, int minimo, int maximo, String dificultad, String equipamiento, String descripcion) {
+			String punto_encuentro, int minimo, int maximo, String dificultad, String equipamiento, String descripcion, String foto) {
 		
 		int resultado = 0;
 		Connection connection = null;
 		
 		String sentencia_insertar_ruta = 
-				"insert into Rutas (Nombre, Fecha, HoraInicio, HoraFin, Ofertada, PuntoEncuentro, Minimo, Maximo, Dificultad, Equipamiento, Descripcion) "
-				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				"insert into Rutas (Nombre, Fecha, HoraInicio, HoraFin, Ofertada, PuntoEncuentro, Minimo, Maximo, Dificultad, Equipamiento, Descripcion, Foto) "
+				+ "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			
@@ -40,6 +41,7 @@ public class gestorRutas {
 			prepared_statement_rutas.setString(9, dificultad);
 			prepared_statement_rutas.setString(10, equipamiento);
 			prepared_statement_rutas.setString(11, descripcion);
+			prepared_statement_rutas.setString(12, foto);
 			
 			resultado = prepared_statement_rutas.executeUpdate();
 			prepared_statement_rutas.close();
