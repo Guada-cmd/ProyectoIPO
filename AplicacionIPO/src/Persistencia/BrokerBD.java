@@ -52,7 +52,7 @@ public class BrokerBD {
 			
 			connection = DriverManager.getConnection(url);
 			System.out.println("Conexion establecida");
-			connection.close();
+			//connection.close();
 			
 		}catch(SQLException e) {
 			
