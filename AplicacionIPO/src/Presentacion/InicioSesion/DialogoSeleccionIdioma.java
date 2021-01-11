@@ -86,9 +86,11 @@ public class DialogoSeleccionIdioma extends JDialog {
 					
 					if(rdbtnIngles.isSelected()) {
 						
-						//MensajesSeminario5Inter.setIdioma("inglés");
+						MessagesAppInter.setIdioma("inglés");
 					}
-					
+					else {
+						MessagesAppInter.setIdioma("español");
+					}
 					VentanaInicio ventana_inicio = new VentanaInicio();
 					ventana_inicio.getJFrameVentanaInicio().setVisible(true);
 					dispose();
