@@ -391,7 +391,7 @@ public class VentanaInicio {
 		frmVentanaDeLogin = new JFrame();
 		frmVentanaDeLogin.setTitle(MessagesAppInter.getString("VentanaInicio.frmVentanaDeLogin.title")); //$NON-NLS-1$
 		frmVentanaDeLogin.setResizable(false);
-		frmVentanaDeLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/recursos/logo_aplicacion.png")));
+		frmVentanaDeLogin.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaInicio.class.getResource("/recursos/iconoAplicacion.png")));
 		frmVentanaDeLogin.setBounds(225, 225, 810, 287);
 		frmVentanaDeLogin.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frmVentanaDeLogin.getContentPane().setLayout(null);
